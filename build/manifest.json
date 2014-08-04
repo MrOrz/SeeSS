@@ -1,0 +1,26 @@
+{
+  // Required
+  "manifest_version": 2,
+  "name": "SeeSS",
+  "version": "0.0.0",
+
+  // Recommended
+  "description": "SeeSS Chrome extension helps you identify unintended visual changes by visualizing CSS change impact.",
+  "icons": { "16" : "assets/16.png",
+             "48" : "assets/48.png",
+             "128": "assets/128.png" },
+
+  // Pick one (or none)
+  "browser_action": {
+    "default_icon": {
+      "19": "assets/19-inactive.png",
+      "38": "assets/19-inactive@2x.png"
+    },
+    "default_title": "Activate SeeSS"
+  },
+
+  "background": {
+    "scripts": ["index.js"],
+    "persistent": true
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "SeeSS",
+  "version": "0.0.0",
+  "homepage": "https://github.com/MrOrz/SeeSS",
+  "authors": [
+    "MrOrz <johnsonliang7@gmail.com>"
+  ],
+  "description": "SeeSS Chrome extension helps you identify unintended visual changes by visualizing CSS change impact.",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "SeeSS",
+    "CSS",
+    "debug",
+    "visualization"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "SeeSS",
+  "version": "0.0.0",
+  "description": "SeeSS Chrome extension helps you identify unintended visual changes by visualizing CSS change impact.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/MrOrz/SeeSS.git"
+  },
+  "keywords": [
+    "SeeSS",
+    "CSS",
+    "Visualization",
+    "Debugging"
+  ],
+  "author": "MrOrz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MrOrz/SeeSS/issues"
+  },
+  "homepage": "https://github.com/MrOrz/SeeSS",
+  "dependencies": {
+    "gulp": "~3.8.7",
+    "gulp-browserify": "~0.5.0",
+    "liveify": "~0.4.0"
+  }
+}
