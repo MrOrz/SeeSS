@@ -17,7 +17,7 @@ gulp.task \default, <[watch]>
 gulp.task \webpack, (cb)->
   webpack do
     entry:
-      content-script: './src/livescript/content-script.ls'
+      content-script: './src/livescript/contentScript.ls'
       background: './src/livescript/background.ls'
     output:
       path: './build'
