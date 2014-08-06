@@ -22,5 +22,12 @@
   "background": {
     "scripts": ["background.bundle.js"],
     "persistent": true
-  }
+  },
+
+  "permissions": [
+    "pageCapture",
+    "tabs",
+    "http://*/",
+    "https://*/"
+  ]
 }
