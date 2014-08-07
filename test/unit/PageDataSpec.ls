@@ -8,8 +8,7 @@ describe '#constructor', (...) !->
 
   it 'takes care of <href>\'s links', ->
     input-html = """
-      <html>
-        Fake link href should not be altered: &lt;link href="intact.css"&gt;
+      <html><head>
         <link href="../relative.css" ref="stylesheets">
         <link href="http://somewhere.else/absolute.css" ref="stylesheets">
         <link href="//no-protocol.com/la.css" ref="stylesheets">
@@ -17,20 +16,22 @@ describe '#constructor', (...) !->
           href="/root.css"
           ref="stylesheets"
         >
-      </html>
+      </head>
+      <body>
+        Fake link href should not be altered: &lt;link href="intact.css"&gt;
+      </body></html>
     """
 
     expected = """
-      <html>
-        Fake link href should not be altered: &lt;link href="intact.css"&gt;
+      <html><head>
         <link href="http://vuse.tw/channels/1/relative.css" ref="stylesheets">
         <link href="http://somewhere.else/absolute.css" ref="stylesheets">
         <link href="http://no-protocol.com/la.css" ref="stylesheets">
-        <link
-          href="http://vuse.tw/root.css"
-          ref="stylesheets"
-        >
-      </html>
+        <link href="http://vuse.tw/root.css" ref="stylesheets">
+      </head>
+      <body>
+        Fake link href should not be altered: &lt;link href="intact.css"&gt;
+      </body></html>
     """
 
     output = new PageData html: input-html, url: 'http://vuse.tw/channels/1/users/2?tag=123#hash'
@@ -39,7 +40,7 @@ describe '#constructor', (...) !->
 
   it 'takes care of url() in <style> and style attributes', ->
     input-html = """
-      <html>
+      <html><head></head><body>
         style="url('not-in-style-thus-not-modified.jpg')"
         <style>
           .a {
@@ -55,11 +56,11 @@ describe '#constructor', (...) !->
           }
         </style>
         <div style="background: url('mi.jpg')" ng-style="{font: url('not-affected')}"></div>
-      </html>
+      </body></html>
     """
 
     expected = """
-      <html>
+      <html><head></head><body>
         style="url('not-in-style-thus-not-modified.jpg')"
         <style>
           .a {
@@ -75,7 +76,7 @@ describe '#constructor', (...) !->
           }
         </style>
         <div style="background: url('http://vuse.tw/channels/1/users/mi.jpg')" ng-style="{font: url('not-affected')}"></div>
-      </html>
+      </body></html>
     """
 
     output = new PageData html: input-html, url: 'http://vuse.tw/channels/1/users/2?tag=123#hash'
@@ -85,7 +86,7 @@ describe '#constructor', (...) !->
 
   it 'strips all <script> tags', ->
     input-html = """
-      <html>script &lt;
+      <html><head></head><body>script &lt;
         script&gt;
         <script type="text/javascript">
           var a = 42;
@@ -100,13 +101,17 @@ describe '#constructor', (...) !->
         <script>
           blahblah
         </script>
-      </html>
+      </body></html>
     """
 
     expected = """
-      <html>script &lt;
+      <html><head></head><body>script &lt;
         script&gt;
-      </html>
+        
+        
+        
+        
+      </body></html>
     """
 
     output = new PageData html: input-html, url: 'http://google.com'
