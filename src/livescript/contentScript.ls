@@ -6,3 +6,6 @@ chrome.runtime.send-message null,
   width: window.inner-width
   height: window.inner-height
   scroll-top: document.body.scroll-top
+  doctype:
+    public-id: document.doctype.public-id
+    system-id: document.doctype.system-id

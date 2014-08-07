@@ -14,16 +14,14 @@ class PageData
   # Shared parser
   _dom-parser = new DOMParser
 
-  # Process url() in css or style tag
-  _process-url-function = (css, base-url) ->
-    return css.replace URL_FUNCTION_MATCHER, (matched-url-func, quote, old-url) ->
-      return "url('#{new URL old-url, base-url}')"
-
+  ({html, @url, @width, @height, @scroll-top, doctype}) ->
+    @dom = _process-html(html, @url)
+    @doctype = _process-doctype doctype
 
   # Process the links of link[href] and all url()s in <style> or style attributes.
   # Remove the <script> tags.
   #
-  _process-html = (html, base-url) ->
+  function _process-html (html, base-url)
     dom = _dom-parser.parse-from-string html, 'text/html'
 
     # Remove all script tags
@@ -52,7 +50,22 @@ class PageData
     # Return the fully-processed HTML
     return dom
 
-  ({html, @url, @width, @height, @scroll-top}) ->
-    @dom = _process-html(html, @url)
+  # Process doctype to a string
+  function _process-doctype doctype
+    doctype-string = "<!doctype html"
+    if doctype.public-id.length
+      doctype-string += " public \"#{doctype.public-id}\""
+    if doctype.system-id.length
+      doctype-string += "\n\"#{doctype.system-id}\""
+    doctype-string += ">"
+
+    return doctype-string
+
+
+  # Process url() in css or style tag
+  function _process-url-function (css, base-url)
+    return css.replace URL_FUNCTION_MATCHER, (matched-url-func, quote, old-url) ->
+      return "url('#{new URL old-url, base-url}')"
+
 
 module.exports = PageData

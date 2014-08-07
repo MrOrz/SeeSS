@@ -2,6 +2,10 @@ require! {
   '../../src/livescript/components/PageData.ls'
 }
 
+const EMPTY_DOCTYPE =
+  public-id: ''
+  system-id: ''
+
 (...) <-! describe \PageData, _
 
 describe '#constructor', (...) !->
@@ -38,7 +42,7 @@ describe '#constructor', (...) !->
       </body></html>
     """
 
-    output = new PageData html: input-html, url: 'http://vuse.tw/channels/1/users/2?tag=123#hash'
+    output = new PageData html: input-html, url: 'http://vuse.tw/channels/1/users/2?tag=123#hash', doctype: EMPTY_DOCTYPE
 
     expect output.dom.documentElement.outerHTML .to.eql expected
 
@@ -83,7 +87,7 @@ describe '#constructor', (...) !->
       </body></html>
     """
 
-    output = new PageData html: input-html, url: 'http://vuse.tw/channels/1/users/2?tag=123#hash'
+    output = new PageData html: input-html, url: 'http://vuse.tw/channels/1/users/2?tag=123#hash', doctype: EMPTY_DOCTYPE
 
     expect output.dom.documentElement.outerHTML .to.eql expected
 
@@ -118,6 +122,20 @@ describe '#constructor', (...) !->
       </body></html>
     """
 
-    output = new PageData html: input-html, url: 'http://google.com'
+    output = new PageData html: input-html, url: 'http://google.com', doctype: EMPTY_DOCTYPE
 
     expect output.dom.documentElement.outerHTML .to.eql expected
+
+  it 'creates correct doctype string', ->
+    doctype1 =
+      public-id: ''
+      system-id: ''
+    output1 = new PageData(html: '', doctype: doctype1) .doctype
+    expect output1 .to.eql '<!doctype html>'
+
+    doctype2 =
+      public-id: '-//W3C//DTD HTML 4.01//EN'
+      system-id: 'http://www.w3.org/TR/html4/strict.dtd'
+
+    output2 = new PageData(html: '', doctype: doctype2) .doctype
+    expect output2 .to.eql "<!doctype html public \"-//W3C//DTD HTML 4.01//EN\"\n\"http://www.w3.org/TR/html4/strict.dtd\">"
