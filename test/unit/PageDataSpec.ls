@@ -35,46 +35,52 @@ describe '#constructor', (...) !->
 
     output = new PageData html: input-html, url: 'http://vuse.tw/channels/1/users/2?tag=123#hash'
 
-    expect input-html .to.eql expected
+    expect output.html .to.eql expected
 
   it 'takes care of url() in <style> and style attributes', ->
     input-html = """
       <html>
-        style="url('not-modified.jpg')"
+        style="url('not-in-style-thus-not-modified.jpg')"
         <style>
           .a {
             background: url(a.jpg) #333;
             background: url("b.jpg") #333;
           }
+        </style>
+        <style>
           @font-face{
             src: url('font.eot?') format('eot'),
                  url('font.woff') format('woff'),
                  url('font.ttf') format('truetype');
           }
         </style>
-        <div style="background: url('mi.jpg')" ng-style="{font: 'not affected'}"></div>
+        <div style="background: url('mi.jpg')" ng-style="{font: url('not-affected')}"></div>
       </html>
     """
 
     expected = """
       <html>
-        style="url('not-modified.jpg')"
+        style="url('not-in-style-thus-not-modified.jpg')"
         <style>
           .a {
-            background: url(http://vuse.tw/channels/1/users/a.jpg) #333;
-            background: url("http://vuse.tw/channels/1/users/b.jpg") #333;
+            background: url('http://vuse.tw/channels/1/users/a.jpg') #333;
+            background: url('http://vuse.tw/channels/1/users/b.jpg') #333;
           }
+        </style>
+        <style>
           @font-face{
             src: url('http://vuse.tw/channels/1/users/font.eot?') format('eot'),
                  url('http://vuse.tw/channels/1/users/font.woff') format('woff'),
                  url('http://vuse.tw/channels/1/users/font.ttf') format('truetype');
           }
         </style>
-        <div style="background: url('http://vuse.tw/channels/1/users/mi.jpg')" ng-style="{font: 'not affected'}"></div>
+        <div style="background: url('http://vuse.tw/channels/1/users/mi.jpg')" ng-style="{font: url('not-affected')}"></div>
       </html>
     """
 
-    expect input-html .to.eql expected
+    output = new PageData html: input-html, url: 'http://vuse.tw/channels/1/users/2?tag=123#hash'
+
+    expect output.html .to.eql expected
 
 
   it 'strips all <script> tags', ->
