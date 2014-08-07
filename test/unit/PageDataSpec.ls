@@ -36,7 +36,7 @@ describe '#constructor', (...) !->
 
     output = new PageData html: input-html, url: 'http://vuse.tw/channels/1/users/2?tag=123#hash'
 
-    expect output.html .to.eql expected
+    expect output.dom.documentElement.outerHTML .to.eql expected
 
   it 'takes care of url() in <style> and style attributes', ->
     input-html = """
@@ -81,7 +81,7 @@ describe '#constructor', (...) !->
 
     output = new PageData html: input-html, url: 'http://vuse.tw/channels/1/users/2?tag=123#hash'
 
-    expect output.html .to.eql expected
+    expect output.dom.documentElement.outerHTML .to.eql expected
 
 
   it 'strips all <script> tags', ->
@@ -116,4 +116,4 @@ describe '#constructor', (...) !->
 
     output = new PageData html: input-html, url: 'http://google.com'
 
-    expect output.html .to.eql expected
+    expect output.dom.documentElement.outerHTML .to.eql expected

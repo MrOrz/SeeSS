@@ -45,9 +45,9 @@ class PageData
       start-tag.set-attribute \style, _process-url-function(css, base-url)
 
     # Return the fully-processed HTML
-    return dom.documentElement.outerHTML
+    return dom
 
   ({html, @url, @width, @height, @scroll-top}) ->
-    @html = _process-html(html, @url)
+    @dom = _process-html(html, @url)
 
 module.exports = PageData
