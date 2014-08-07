@@ -29,5 +29,7 @@
     "tabs",
     "http://*/",
     "https://*/"
-  ]
+  ],
+
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://apis.google.com; object-src 'self'"
 }
