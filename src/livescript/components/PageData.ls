@@ -1,7 +1,7 @@
 # http://stackoverflow.com/questions/1979884/how-to-use-javascript-regex-over-multiple-lines
 const SCRIPT_ELEM_MATCHER = /<script[^>]*>[\s\S]*?<\/script>/gim
 const LINK_TAG_MATCHER = /<link([^>]*)>/gim
-const HREF_ATTR_MATCHER = /\bhref="(.+?)"\b/i
+const HREF_ATTR_MATCHER = /\bhref="([^"]+)"/i
 
 class PageData
 
@@ -14,9 +14,10 @@ class PageData
 
     # Replace link tag href with absolute URLs
     .replace LINK_TAG_MATCHER, (matched, attributes) ->
-      return attributes.replace HREF_ATTR_MATCHER, (matched, href) ->
+      new-attributes = attributes.replace HREF_ATTR_MATCHER, (matched, href) ->
         new-href = new URL href, base-url .toString!
         return "href=\"#{new-href}\""
+      return "<link#{new-attributes}>"
 
 
   ({html, @url, @width, @height, @scroll-top}) ->
