@@ -6,7 +6,7 @@ require! {
 
 describe '#constructor', (...) !->
 
-  it 'takes care of <href>\'s links', ->
+  it 'takes care of link[href], iframe[src] and img[src]', ->
     input-html = """
       <html><head>
         <link href="../relative.css" ref="stylesheets">
@@ -19,6 +19,8 @@ describe '#constructor', (...) !->
       </head>
       <body>
         Fake link href should not be altered: &lt;link href="intact.css"&gt;
+        <img src="some-img?params">
+        <iframe src="some-html?params\#hash"></iframe>
       </body></html>
     """
 
@@ -31,6 +33,8 @@ describe '#constructor', (...) !->
       </head>
       <body>
         Fake link href should not be altered: &lt;link href="intact.css"&gt;
+        <img src="http://vuse.tw/channels/1/users/some-img?params">
+        <iframe src="http://vuse.tw/channels/1/users/some-html?params\#hash"></iframe>
       </body></html>
     """
 

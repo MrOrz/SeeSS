@@ -35,6 +35,11 @@ class PageData
       href = link-elem.get-attribute \href
       link-elem.set-attribute \href, (new URL href, base-url .toString!)
 
+    # Replace image/iframe src with absolute URLs
+    for img-elem in dom.query-selector-all 'img[src],iframe[src],frame[src]'
+      href = img-elem.get-attribute \src
+      img-elem.set-attribute \src, (new URL href, base-url .toString!)
+
     # Replace url() in style tag
     for style-elem in dom.query-selector-all \style
       style-elem.innerHTML = _process-url-function(style-elem.innerHTML, base-url)
