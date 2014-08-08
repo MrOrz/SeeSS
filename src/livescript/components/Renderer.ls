@@ -27,6 +27,13 @@ class Renderer
     return @_promise
 
   #
+  # Given [{cssname, styles}, ...] array, update the snapshot and returns the
+  # difference between 'before' and 'after' applying the new stylesheets
+  #
+  apply: (new-stylesheets) ->
+    ...
+
+  #
   # Load the page-data into iframe.
   # Returns a promise that is resolved when all data in iframe is loaded.
   #
