@@ -13,12 +13,12 @@ describe '#constructor', (...) !->
   it 'takes care of link[href], iframe[src] and img[src]', ->
     input-html = """
       <html><head>
-        <link href="../relative.css" ref="stylesheets">
-        <link href="http://somewhere.else/absolute.css" ref="stylesheets">
-        <link href="//no-protocol.com/la.css" ref="stylesheets">
+        <link href="../relative.css" rel="stylesheet">
+        <link href="http://somewhere.else/absolute.css" rel="stylesheet">
+        <link href="//no-protocol.com/la.css" rel="stylesheet">
         <link
           href="/root.css"
-          ref="stylesheets"
+          rel="stylesheet"
         >
       </head>
       <body>
@@ -30,10 +30,10 @@ describe '#constructor', (...) !->
 
     expected = """
       <html><head>
-        <link href="http://vuse.tw/channels/1/relative.css" ref="stylesheets">
-        <link href="http://somewhere.else/absolute.css" ref="stylesheets">
-        <link href="http://no-protocol.com/la.css" ref="stylesheets">
-        <link href="http://vuse.tw/root.css" ref="stylesheets">
+        <link href="http://vuse.tw/channels/1/relative.css" rel="stylesheet">
+        <link href="http://somewhere.else/absolute.css" rel="stylesheet">
+        <link href="http://no-protocol.com/la.css" rel="stylesheet">
+        <link href="http://vuse.tw/root.css" rel="stylesheet">
       </head>
       <body>
         Fake link href should not be altered: &lt;link href="intact.css"&gt;
