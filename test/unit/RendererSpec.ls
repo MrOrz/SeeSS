@@ -18,8 +18,7 @@ describe '#constructor', (...) !->
     renderer.render document.body .then ->
       rendered-doc = renderer.iframe.content-window.document
 
-      expect rendered-doc.doctype.public-id .to.eql ''
-      expect rendered-doc.doctype.system-id .to.eql ''
+      expect rendered-doc.compat-mode .to.be \CSS1Compat
       expect rendered-doc.document-element.outerHTML .to.eql html-string
 
   it 'waits for assets to load in PageData', ->
