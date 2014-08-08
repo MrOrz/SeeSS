@@ -81,10 +81,25 @@ class Renderer
     walker = iframe-document.create-tree-walker iframe-document.body,
       NodeFilter.SHOW_ELEMENT
 
-    while current-node = walker.next-node!
-      console.log \current-node , current-node.node-name
+    page-snapshot = while current-node = walker.next-node!
+      new ElementSnapshot current-node, iframe.content-window
 
     # Return the snapshot
-    return {}
+    return page-snapshot
+
+
+#
+# Helper class definition for renderer.
+#
+# Defines what information should be remembered for each element in the page snapshot.
+# The page snapshot is an array of ElementSnapshot in DOM tree walk order.
+#
+class ElementSnapshot
+  (@elem, iframe-window) ->
+    # The bounding client rect is relative to viewport, but should still be workable
+    @rect = elem.get-bounding-client-rect!
+    @computed = iframe-window.get-computed-style elem
+    @before-elem = iframe-window.get-computed-style elem, \:before
+    @after-elem = iframe-window.get-computed-style elem, \:after
 
 module.exports = Renderer
