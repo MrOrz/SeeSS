@@ -52,4 +52,4 @@ Team
 Publication
 -----------
 
-This Google Chrome extension is an open-source re-write of the original version in the paper *[SeeSS: Seeing What I Broke -- Visualizing Change Impact of Cascading Style Sheets (CSS)](http://dl.acm.org/citation.cfm?id=2502006)*, which was published in ACM UIST 2013.
+This Google Chrome extension is an open-source re-write of the original version in the paper *[SeeSS: Seeing What I Broke -- Visualizing Change Impact of Cascading Style Sheets (CSS)](http://dl.acm.org/citation.cfm?id=2502006)* ([raw version before peer-review](https://dl.dropboxusercontent.com/u/3813488/seess-non-peer-reviewed.pdf)), which was published in ACM UIST 2013.
