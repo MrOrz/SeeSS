@@ -174,7 +174,11 @@ class Renderer
     return differences
 
   function _delay-animation-frame
-    return Promise.delay 100
+    return Promise.delay 0
+
+    # Seems that only setTimeout triggers the re-layout or something like that.
+    # requestAnimationFrame often fires before the CSS got applied.
+    #
     # return new Promise (resolve, reject) ->
       # request-animation-frame resolve
 
