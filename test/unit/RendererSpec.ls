@@ -78,6 +78,10 @@ describe '#applyCSS', (...) !->
   it 'distinguishes pseudo-element change', ->
     ...
 
+  it 'works for multiple calls to #applyCSS', ->
+    ...
+
+
 describe '#applyHTML', (...) !->
   it 'refreshes on attribute change', ->
     ...
