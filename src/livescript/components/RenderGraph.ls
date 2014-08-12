@@ -61,8 +61,14 @@ class RenderGraph
     @adj-list[referrer-idx][renderer-idx] = edge-data
 
   #
-  # Refresh all source renderers from server,
-  # then propagate the HTML diff to other renderers in graph.
+  # Receives Livereload reload events, determine whether it is a stylesheet change
+  # or an HTML change.
+  #
+  # If is a stylesheet change, invoke #applyCSS to all renderers.
+  #
+  # If otherwise, refresh all source renderers from server,
+  # then traverse the render graph using the original visiting order,
+  # while replaying the events and refreshing the other non-source renderers.
   #
   refresh: ->
     ...
