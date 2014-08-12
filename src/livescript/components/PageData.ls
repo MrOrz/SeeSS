@@ -8,8 +8,8 @@ class PageData
   # Shared parser
   _dom-parser = new DOMParser
 
-  ({html, @url, @width, @height, @scroll-top, doctype}) ->
-    @dom = _process-html(html, @url)
+  ({@html, @url, @width, @height, @scroll-top, doctype}) ->
+    @dom = _process-html( @html, @url )
     @doctype = _process-doctype doctype
 
   # Process the links of link[href] and all url()s in <style> or style attributes.
@@ -47,9 +47,9 @@ class PageData
   # Process doctype to a string
   function _process-doctype doctype
     doctype-string = "<!doctype html"
-    if doctype.public-id.length
+    if doctype?public-id.length
       doctype-string += " public \"#{doctype.public-id}\""
-    if doctype.system-id.length
+    if doctype?system-id.length
       doctype-string += "\n\"#{doctype.system-id}\""
     doctype-string += ">"
 
