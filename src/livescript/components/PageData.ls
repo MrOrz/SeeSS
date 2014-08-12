@@ -1,12 +1,6 @@
 # The use of [\s\S]: matching over multiple lines
 # http://stackoverflow.com/questions/1979884/how-to-use-javascript-regex-over-multiple-lines
 #
-const SCRIPT_ELEM_MATCHER = /<script[^>]*?>[\s\S]*?<\/script>/gim
-const LINK_TAG_MATCHER = /<link([^>]*?)>/gim
-const HREF_ATTR_MATCHER = /\bhref="([^"]+?)"/i
-const STYLE_ELEM_MATCHER = /<style([^>]*?)>([\s\S]*?)<\/style>/gim
-const START_TAG_MATCHER = /<([^>]+?)>/
-const STYLE_ATTR_MATCHER = /\bstyle="([^"]+?)"/i
 const URL_FUNCTION_MATCHER = /url\((['"]?)([^)]+?)\1\)/gim
 
 class PageData
