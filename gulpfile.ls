@@ -26,7 +26,9 @@ gulp.task \webpack, (cb)->
       loaders:
         * test: /\.ls$/
           loader: 'livescript'
-        ...
+        * test: /\.coffee$/
+          loader: 'coffee-loader'
+
     (err, stats) ->
       throw new gulp-util.PluginError \webpack, err if err
 

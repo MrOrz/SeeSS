@@ -23,5 +23,8 @@
     "vendor/bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "livereload-js": "https://github.com/livereload/livereload-js.git#master"
+  }
 }

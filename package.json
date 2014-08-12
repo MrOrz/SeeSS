@@ -39,6 +39,9 @@
     "karma-expect": "~1.1.0",
     "karma-chrome-launcher": "~0.1.4",
     "karma-webpack": "~1.2.1",
-    "karma-mocha-reporter": "~0.2.8"
+    "karma-mocha-reporter": "~0.2.8",
+    "coffee-script": "~1.7.1",
+    "coffee-loader": "~0.7.2",
+    "execSync": "~1.0.1-pre"
   }
 }

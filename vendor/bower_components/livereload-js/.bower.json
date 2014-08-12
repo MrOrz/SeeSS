@@ -1,0 +1,13 @@
+{
+  "name": "livereload-js",
+  "homepage": "https://github.com/livereload/livereload-js",
+  "_release": "e6b5ac4319",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "e6b5ac4319bb84dc83d5e323e09d67f3236751bf"
+  },
+  "_source": "https://github.com/livereload/livereload-js.git",
+  "_target": "master",
+  "_originalSource": "https://github.com/livereload/livereload-js.git"
+}

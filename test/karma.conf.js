@@ -43,6 +43,9 @@ module.exports = function(config) {
           loaders: [{
               test: /\.ls$/,
               loader: 'livescript'
+          },{
+              test: /\.coffee$/,
+              loader: 'coffee-loader'
           }]
         }
     },
