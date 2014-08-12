@@ -18,8 +18,9 @@ module.exports = function(config) {
       'test/unit/**/*.ls',
 
       // Fixtures
-      'test/unit/fixtures/*.html',
-      'test/unit/fixtures/*.json'
+      'test/fixtures/*.html',
+      'test/fixtures/*.css',
+      'test/fixtures/*.json'
     ],
 
 

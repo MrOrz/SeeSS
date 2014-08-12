@@ -1,0 +1,7 @@
+.position-test {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 100px;
+  height: 100px;
+}

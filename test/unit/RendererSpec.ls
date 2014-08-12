@@ -57,10 +57,23 @@ describe '#constructor', (...) !->
 
 describe '#applyCSS', (...) !->
   it 'distinguishes position change', ->
-    ...
+    const NEW_CSS = 'renderer-css-position-test.css'
 
-  it 'distinguishes color change', ->
-    ...
+    renderer = new Renderer(new PageData html: __html__['test/fixtures/renderer-test.html'], url: location.href)
+    <- renderer.render document.body .then
+
+    # Hack: Change the CSS filename inside renderer iframe to simulate CSS file change
+    link = renderer.iframe.content-window.document.get-element-by-id \css-target
+    link.href .= replace 'renderer-css-test.css', NEW_CSS
+
+    # Trigger CSS apply
+    diff <- renderer.applyCSS link.href .then
+
+    expect diff.length .to.be 1
+    expect diff.0.elem.class-name .to.be 'position-test'
+    expect diff.0.rect.top .to.eql before: 0, after: 10
+    expect diff.0.rect.left .to.eql before: 0, after: 10
+
 
   it 'distinguishes pseudo-element change', ->
     ...
