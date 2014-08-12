@@ -17,9 +17,9 @@ class Renderer
 
 
     @_promise = _load-page-data @page-data, @iframe
-    .then _delay-animation-frame # Wait 16ms for browsers to render assets
+    .then _delay-animation-frame # Wait for browsers to render assets
     .then ~>
-      @reloader = new Reloader @iframe.content-window, console, Timer
+      @reloader = new Reloader @iframe.content-window, {log: -> , error: ->}, Timer
 
       # Hack: we don't call @reloader.reload, must provide set its options explicitly.
       @reloader.options = {}
