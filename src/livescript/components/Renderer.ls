@@ -4,6 +4,8 @@
 
 require! {
   Promise: bluebird
+  Reloader: '../../../vendor/bower_components/livereload-js/src/reloader.coffee'.Reloader
+  Timer: '../../../vendor/bower_components/livereload-js/src/timer.coffee'.Timer
 }
 
 class Renderer
@@ -13,7 +15,15 @@ class Renderer
     @iframe.width = page-data.width
     @iframe.height = page-data.height
 
-    @_promise = _load-page-data @page-data, @iframe .then ~>
+
+    @_promise = _load-page-data @page-data, @iframe
+    .then _delay-animation-frame # Wait 16ms for browsers to render assets
+    .then ~>
+      @reloader = new Reloader @iframe.content-window, console, Timer
+
+      # Hack: we don't call @reloader.reload, must provide set its options explicitly.
+      @reloader.options = {}
+
       return _take-initial-snapshot @iframe
     .then (snapshot) ~>
       @snapshot = snapshot
@@ -27,11 +37,20 @@ class Renderer
     return @_promise
 
   #
-  # Given [{cssname, styles}, ...] array, update the snapshot and returns the
-  # difference between 'before' and 'after' applying the new stylesheets
+  # Given changed CSS detected by livereload, update the snapshot and returns
+  # a promise that resolves to differences between 'before' and 'after' applying the new stylesheets
   #
-  applyCSS: (new-stylesheets) ->
-    ...
+  applyCSS: (path) ->
+    # Invoke reloader to livereload CSS.
+    # The style tags may be manipulated here.
+    @reloader.reload-stylesheet path
+
+    # Check if all contents loaded
+    <~ _register-load-callbacks @iframe.content-window.document .then
+
+    # Take another page snapshot and return diff
+    return _update-snapshot @iframe, @snapshot
+
 
   #
   # Given the new DOM, update the snapshot and perform HMTL diff algorithm
@@ -110,6 +129,35 @@ class Renderer
     # Return the snapshot
     return page-snapshot
 
+  function _update-snapshot iframe, page-snapshot
+    iframe-document = iframe.content-window.document
+    walker = iframe-document.create-tree-walker iframe-document.body,
+      NodeFilter.SHOW_ELEMENT
+
+    idx = 0
+    differences = []
+    while current-node = walker.next-node!
+      # Calculate new snapshot and the element difference
+      new-elem-snapshot = new ElementSnapshot current-node, iframe.content-window
+      element-diff = new-elem-snapshot.diff page-snapshot[idx]
+      if element-diff
+        differences ++= element-diff
+
+      # Update snapshot
+      page-snapshot[idx] = new-elem-snapshot
+      idx += 1
+
+    return differences
+
+  function _delay-animation-frame
+    return new Promise (resolve, reject) ->
+      request-animation-frame resolve
+
+# Difference between old element and new element
+#
+class ElementDifference
+  ( @elem, diff ) ->
+    @ <<< diff
 
 #
 # Helper class definition for renderer.
@@ -124,5 +172,27 @@ class ElementSnapshot
     @computed = iframe-window.get-computed-style elem
     @before-elem = iframe-window.get-computed-style elem, \:before
     @after-elem = iframe-window.get-computed-style elem, \:after
+
+  diff: (old-elem-snapshot) ->
+    differences = {}
+    is-empty = true
+    # console.log '[SNAPSHOT DIFF]', @, old-elem-snapshot
+    for own attr-name, attributes of @ when attr-name != \elem
+      old-snapshot-attr = old-elem-snapshot[attr-name]
+      for own key, value of attributes
+        old-snapshot-value = old-snapshot-attr[key]
+
+        unless old-snapshot-value == value
+          is-empty = false
+          differences[attr-name] ?= {}
+          differences[attr-name][key] =
+            before: old-snapshot-value
+            after: value
+
+
+    if is-empty
+      return null
+    else
+      return new ElementDifference @elem, differences
 
 module.exports = Renderer
