@@ -150,8 +150,9 @@ class Renderer
     return differences
 
   function _delay-animation-frame
-    return new Promise (resolve, reject) ->
-      request-animation-frame resolve
+    return Promise.delay 100
+    # return new Promise (resolve, reject) ->
+      # request-animation-frame resolve
 
 # Difference between old element and new element
 #
