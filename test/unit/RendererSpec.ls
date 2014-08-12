@@ -15,11 +15,11 @@ describe '#constructor', (...) !->
         system-id: ''
 
     renderer = new Renderer(page-data)
-    renderer.render document.body .then ->
-      rendered-doc = renderer.iframe.content-window.document
+    <- renderer.render document.body .then
+    rendered-doc = renderer.iframe.content-window.document
 
-      expect rendered-doc.compat-mode .to.be \CSS1Compat
-      expect rendered-doc.document-element.outerHTML .to.eql html-string
+    expect rendered-doc.compat-mode .to.be \CSS1Compat
+    expect rendered-doc.document-element.outerHTML .to.eql html-string
 
   it 'waits for assets to load in PageData', ->
     # A page that contains a image with dimension of 126x123
@@ -34,8 +34,8 @@ describe '#constructor', (...) !->
 
     renderer = new Renderer page-data
 
-    renderer.render document.body .then ->
-      expect renderer.iframe.content-window.document.query-selector('img').width .to.be 126
+    <- renderer.render document.body .then
+    expect renderer.iframe.content-window.document.query-selector('img').width .to.be 126
 
   it 'creates initial page snapshot', ->
     # A page that contains a image with dimension of 126x123
@@ -49,11 +49,11 @@ describe '#constructor', (...) !->
 
     renderer = new Renderer page-data
 
-    renderer.render document.body .then ->
-      # specs
-      expect renderer.snapshot[1].elem.node-name .to.be 'H1'
-      expect renderer.snapshot[0].rect .to.be.a \object
-      expect renderer.snapshot[0].computed .to.be.a \object
+    <- renderer.render document.body .then
+    # specs
+    expect renderer.snapshot[1].elem.node-name .to.be 'H1'
+    expect renderer.snapshot[0].rect .to.be.a \object
+    expect renderer.snapshot[0].computed .to.be.a \object
 
 describe '#applyCSS', (...) !->
   it 'distinguishes position change', ->
