@@ -30,7 +30,14 @@ class Renderer
   # Given [{cssname, styles}, ...] array, update the snapshot and returns the
   # difference between 'before' and 'after' applying the new stylesheets
   #
-  apply: (new-stylesheets) ->
+  applyCSS: (new-stylesheets) ->
+    ...
+
+  #
+  # Given the new DOM, update the snapshot and perform HMTL diff algorithm
+  # to generate difference
+  #
+  applyHTML: (new-dom) ->
     ...
 
   #

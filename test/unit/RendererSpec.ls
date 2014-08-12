@@ -54,3 +54,23 @@ describe '#constructor', (...) !->
       expect renderer.snapshot[1].elem.node-name .to.be 'H1'
       expect renderer.snapshot[0].rect .to.be.a \object
       expect renderer.snapshot[0].computed .to.be.a \object
+
+describe '#applyCSS', (...) !->
+  it 'distinguishes position change', ->
+    ...
+
+  it 'distinguishes color change', ->
+    ...
+
+  it 'distinguishes pseudo-element change', ->
+    ...
+
+describe '#applyHTML', (...) !->
+  it 'refreshes on attribute change', ->
+    ...
+
+  it 'detects new child element and generates correct style diff', ->
+    ...
+
+  it 'detects wrapping new DOM element and generates correct style diff', ->
+    ...
