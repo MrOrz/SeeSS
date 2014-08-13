@@ -52,11 +52,16 @@ class Renderer
     @reloader.reload-stylesheet path
 
     # Check if all contents loaded
-    <~ _register-load-callbacks @iframe.content-window.document .then
+    return _register-load-callbacks @iframe.content-window.document
+    .then ~>
+      # Wait for pseudo element style to be visible in getComputedStyle
+      # https://github.com/akoenig/angular-deckgrid/issues/27#issuecomment-38924697
+      #
+      Promise.delay 100
 
-    # Take another page snapshot and return diff
-    return _update-snapshot @iframe, @snapshot
-
+    .then ~>
+      # Take another page snapshot and return diff
+      return _update-snapshot @iframe, @snapshot
 
   #
   # Given the new DOM, update the snapshot and perform HMTL diff algorithm
@@ -181,6 +186,9 @@ class Renderer
 
 
 # Difference between old element and new element
+#
+# The structure of ElementDifference object is the same as ElementSnapshot instances,
+# except that each property value is replaced by {before: <val-before>, after: <val-after>}
 #
 class ElementDifference
   ( @elem, diff ) ->
