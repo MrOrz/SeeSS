@@ -84,7 +84,22 @@ describe '#applyCSS', (...) !->
 
 
   it 'distinguishes pseudo-element change', ->
-    ...
+    const NEW_CSS = 'renderer-css-pseudoelem-test.css'
+
+    renderer = new Renderer(new PageData html: __html__['test/fixtures/renderer-test.html'], url: location.href)
+    <- renderer.render document.body .then
+
+    new-css = load-css renderer.iframe.content-window.document, NEW_CSS
+
+    # Trigger CSS apply
+    diff <- renderer.applyCSS new-css .then
+
+    console.log \DIFF, diff
+
+    expect diff.length .to.be 1
+    expect diff.0.elem.class-name .to.be 'position-test'
+    expect diff.0.before-elem.color .to.eql before: undefined, after: 'rgb(255, 0, 0)'
+
   it 'works for multiple calls to #applyCSS'
 
   function load-css doc, new-css
