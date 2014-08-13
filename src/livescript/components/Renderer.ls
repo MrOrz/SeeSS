@@ -139,7 +139,7 @@ class Renderer
         iframe-document.replace-child page-data.dom.document-element, iframe-document.document-element
 
         # Register load callback
-        _register-load-callbacks page-data.dom .then resolve
+        _register-load-callbacks iframe-document .then resolve
 
 
   function _take-initial-snapshot iframe
