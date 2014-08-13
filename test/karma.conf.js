@@ -20,7 +20,7 @@ module.exports = function(config) {
       // Fixtures
       'test/fixtures/*.html',
       'test/fixtures/*.css',
-      'test/fixtures/*.json'
+      {pattern: 'test/fixtures/*.jpg',  watched: false, included: false, served: true}
     ],
 
 

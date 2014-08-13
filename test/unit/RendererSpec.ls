@@ -18,9 +18,9 @@ describe '#constructor', (...) !->
     expect rendered-doc.compat-mode .to.be \CSS1Compat
     expect rendered-doc.document-element.outerHTML .to.eql html-string
 
-  it 'waits for assets to load in PageData', ->
+  it 'waits for images to load in PageData', ->
     # A page that contains a image with dimension of 126x123
-    const html-string = '<html><head></head><body><img src="http://placekitten.com/126/123"></body></html>'
+    const html-string = "<html><head></head><body><img src=\"/base/test/fixtures/w126h123.jpg#{cache-burst!}\"></body></html>"
 
     page-data = new PageData do
       html: html-string
@@ -30,6 +30,21 @@ describe '#constructor', (...) !->
 
     <- renderer.render document.body .then
     expect renderer.iframe.content-window.document.query-selector('img').width .to.be 126
+
+  it 'waits for stylesheets to load in PageData', ->
+    # A CSS that set h1 font size to 2rem (16 * 2 px)
+    const html-string = "<html><head><link href=\"/base/test/fixtures/renderer-load.css#{cache-burst!}\" rel=\"stylesheet\"></head><body><h1>Yo</h1></body></html>"
+
+    page-data = new PageData do
+      html: html-string
+      url: location.href
+
+    renderer = new Renderer page-data
+
+    <- renderer.render document.body .then
+    h1 = renderer.iframe.content-window.document.query-selector('h1')
+    h1-style = renderer.iframe.content-window.get-computed-style h1
+    expect h1-style.font-size .to.be '32px' # 2rem
 
   it 'creates initial page snapshot', ->
     # A page that contains a image with dimension of 126x123
@@ -85,3 +100,7 @@ describe '#applyHTML', (...) !->
 
   it 'detects wrapping new DOM element and generates correct style diff', ->
     ...
+
+
+function cache-burst
+  "?burst=#{('' + Math.random!).slice 2}"
