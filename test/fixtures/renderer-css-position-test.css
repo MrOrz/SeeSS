@@ -1,7 +1,6 @@
+@import url(/base/test/fixtures/renderer-css-test.css);
+
 .position-test {
-  position: absolute;
   left: 10px;
   top: 10px;
-  width: 100px;
-  height: 100px;
 }
