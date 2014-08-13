@@ -83,7 +83,7 @@ describe '#applyCSS', (...) !->
     expect diff.0.rect.left .to.eql before: 0, after: 10
 
 
-  it 'distinguishes pseudo-element change', ->
+  it.skip 'distinguishes pseudo-element change', ->
     const NEW_CSS = 'renderer-css-pseudoelem-test.css'
 
     renderer = new Renderer(new PageData html: __html__['test/fixtures/renderer-test.html'], url: location.href)
