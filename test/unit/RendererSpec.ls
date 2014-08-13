@@ -85,24 +85,22 @@ describe '#applyCSS', (...) !->
 
   it 'distinguishes pseudo-element change', ->
     ...
+  it 'works for multiple calls to #applyCSS'
+
   function load-css doc, new-css
     # Hack: Change the CSS filename inside renderer iframe to simulate CSS file change
     link = doc.get-element-by-id \css-target
     link.href .= replace \PLACEHOLDER, new-css
 
-  it 'works for multiple calls to #applyCSS', ->
-    ...
+    return link.href
 
 
 describe '#applyHTML', (...) !->
-  it 'refreshes on attribute change', ->
-    ...
+  it 'refreshes on attribute change'
 
-  it 'detects new child element and generates correct style diff', ->
-    ...
+  it 'detects new child element and generates correct style diff'
 
-  it 'detects wrapping new DOM element and generates correct style diff', ->
-    ...
+  it 'detects wrapping new DOM element and generates correct style diff'
 
 
 function cache-burst
