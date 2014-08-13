@@ -10,9 +10,6 @@ describe '#constructor', (...) !->
     const html-string = '<html><head></head><body></body></html>'
     page-data = new PageData do
       html: html-string
-      doctype:
-        public-id: ''
-        system-id: ''
 
     renderer = new Renderer(page-data)
     <- renderer.render document.body .then
@@ -27,10 +24,7 @@ describe '#constructor', (...) !->
 
     page-data = new PageData do
       html: html-string
-      doctype:
-        public-id: ''
-        system-id: ''
-      url: 'http://google.com'
+      url: location.href
 
     renderer = new Renderer page-data
 
