@@ -20,7 +20,10 @@ module.exports = function(config) {
       // Fixtures
       'test/fixtures/*.html',
       'test/fixtures/*.css',
-      {pattern: 'test/fixtures/*.jpg',  watched: false, included: false, served: true}
+      {pattern: 'test/fixtures/*.jpg',  watched: false, included: false, served: true},
+
+      // Filename placeholders
+      {pattern: 'test/fixtures/PLACEHOLDER',  watched: false, included: false, served: true}
     ],
 
 

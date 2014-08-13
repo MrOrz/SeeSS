@@ -1,7 +1,13 @@
+/* Base CSS for test */
+
 .position-test {
   position: absolute;
   left: 0;
   top: 0;
   width: 100px;
   height: 100px;
+}
+
+.position-test:before {
+  content: 'before!';
 }

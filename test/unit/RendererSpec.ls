@@ -65,18 +65,17 @@ describe '#constructor', (...) !->
     expect renderer.snapshot[0].computed .to.be.a \object
 
 describe '#applyCSS', (...) !->
+
   it 'distinguishes position change', ->
     const NEW_CSS = 'renderer-css-position-test.css'
 
     renderer = new Renderer(new PageData html: __html__['test/fixtures/renderer-test.html'], url: location.href)
     <- renderer.render document.body .then
 
-    # Hack: Change the CSS filename inside renderer iframe to simulate CSS file change
-    link = renderer.iframe.content-window.document.get-element-by-id \css-target
-    link.href .= replace 'renderer-css-test.css', NEW_CSS
+    new-css = load-css renderer.iframe.content-window.document, NEW_CSS
 
     # Trigger CSS apply
-    diff <- renderer.applyCSS link.href .then
+    diff <- renderer.applyCSS new-css .then
 
     expect diff.length .to.be 1
     expect diff.0.elem.class-name .to.be 'position-test'
@@ -86,6 +85,10 @@ describe '#applyCSS', (...) !->
 
   it 'distinguishes pseudo-element change', ->
     ...
+  function load-css doc, new-css
+    # Hack: Change the CSS filename inside renderer iframe to simulate CSS file change
+    link = doc.get-element-by-id \css-target
+    link.href .= replace \PLACEHOLDER, new-css
 
   it 'works for multiple calls to #applyCSS', ->
     ...
