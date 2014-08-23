@@ -114,9 +114,13 @@ describe '#applyCSS', (...) !->
 
 
 describe '#applyHTML', (...) !->
-  it 'refreshes on attribute change'
+  it 'updates iframe on content text change'
 
-  it 'detects new child element and generates correct style diff'
+  it 'detects node change and generates correct style diff'
+
+  it 'detects new elements and generates correct style diff'
+
+  it 'detects element removal and generates correct style diff'
 
   it 'detects wrapping new DOM element and generates correct style diff'
 
