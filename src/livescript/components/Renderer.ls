@@ -10,29 +10,16 @@ require! {
 
 class Renderer
   (@page-data) ->
-    @iframe = document.create-element \iframe
-    @iframe.set-attribute \sandbox, 'allow-same-origin allow-scripts'
-    @iframe.width = page-data.width
-    @iframe.height = page-data.height
+    @iframe = _generate-iframe @page-data
 
-
-    @_promise = _load-page-data @page-data, @iframe
-    .then ~>
-      # Wait for browsers to render assets.
-      # Seems that only setTimeout triggers the re-layout or something like that.
-      # requestAnimationFrame often fires before the CSS got applied.
-      #
-      return Promise.delay 0
-
-    .then ~>
+    @_promise = _load-and-snapshot-page-data @page-data, @iframe
+    .then (@snapshot) ~>
+      # Register @reloader on the new iframe content window
       @reloader = new Reloader @iframe.content-window, {log: -> , error: ->}, Timer
 
       # Hack: we don't call @reloader.reload, must provide set its options explicitly.
       @reloader.options = {}
 
-      return _take-initial-snapshot @iframe
-    .then (snapshot) ~>
-      @snapshot = snapshot
       return @ # resolve the current renderer
 
   #
@@ -129,10 +116,10 @@ class Renderer
   # Load the page-data into iframe.
   # Returns a promise that is resolved when all data in iframe is loaded.
   #
-  function _load-page-data page-data, iframe
+  function _load-and-snapshot-page-data page-data, iframe
 
     return new Promise (resolve, reject) ->
-      iframe.onload = ->
+      onload = ->
         # Unset onload callback, because document.close will trigger onload again.
         iframe.onload = null
 
@@ -152,18 +139,38 @@ class Renderer
         # Register load callback
         _register-load-callbacks iframe-document .then resolve
 
+      if !iframe.content-window
+        # If the iframe.content-window is not ready yet, wait until it's ready
+        iframe.onload = onload
+      else
+        # Otherwise, just put the new page-data inside the iframe
+        onload!
 
-  function _take-initial-snapshot iframe
-    iframe-document = iframe.content-window.document
-    walker = iframe-document.create-tree-walker iframe-document.body,
-      NodeFilter.SHOW_ELEMENT
+    .then ~>
+      # Wait for browsers to render assets.
+      # Seems that only setTimeout triggers the re-layout or something like that.
+      # requestAnimationFrame often fires before the CSS got applied.
+      #
+      return Promise.delay 0
 
-    page-snapshot = while current-node = walker.next-node!
-      new ElementSnapshot current-node, iframe.content-window
+    .then ~>
+      # Take the initial page snapshot by walking the nodes
+      #
+      iframe-document = iframe.content-window.document
+      walker = iframe-document.create-tree-walker iframe-document.body,
+        NodeFilter.SHOW_ELEMENT
 
-    # Return the snapshot
-    return page-snapshot
+      idx = 0
+      page-snapshot = while current-node = walker.next-node!
+        # Secretly put snapshot index reference into DOM
+        current-node._seess-snapshot-idx = idx
+        idx += 1
+        new ElementSnapshot current-node, iframe.content-window
 
+      # Return the snapshot
+      return page-snapshot
+
+  # Updates page snapshot and return the differences
   function _update-snapshot iframe, page-snapshot
     iframe-document = iframe.content-window.document
     walker = iframe-document.create-tree-walker iframe-document.body,
@@ -184,6 +191,15 @@ class Renderer
 
     return differences
 
+  # Generate new iframe using dimensions specified in page-data object
+  #
+  function _generate-iframe page-data
+    iframe = document.create-element \iframe
+    iframe.set-attribute \sandbox, 'allow-same-origin allow-scripts'
+    iframe.width = page-data.width
+    iframe.height = page-data.height
+
+    return iframe
 
 # Difference between old element and new element
 #
