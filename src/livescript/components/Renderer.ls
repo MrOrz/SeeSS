@@ -6,6 +6,7 @@ require! {
   Promise: bluebird
   Reloader: '../../../vendor/bower_components/livereload-js/src/reloader.coffee'.Reloader
   Timer: '../../../vendor/bower_components/livereload-js/src/timer.coffee'.Timer
+  './DiffXMatcher.ls'
 }
 
 class Renderer
@@ -51,11 +52,70 @@ class Renderer
       return _update-snapshot @iframe, @snapshot
 
   #
-  # Given the new DOM, update the snapshot and perform HMTL diff algorithm
-  # to generate difference
+  # Given the new DOM, update the snapshot and perform HTML diff algorithm
+  # to generate difference.
+  # Returns a promise that resolves to the page differences.
   #
-  applyHTML: (new-dom) ->
-    ...
+  applyHTML: (new-html) ->
+
+    # Update @page-data with a new instance with the new HTML
+    @page-data = new PageData do
+      html: new-html
+      url: @page-data.url
+      width: @page-data.width
+      height: @page-data.height
+      scroll-top: @page-data.scroll-top
+      doctype: @page-data.doctype
+
+    new-iframe = _generate-iframe @page-data
+
+    # Load iframe
+    @_promise = _load-and-snapshot-page-data @page-data, new-iframe
+    .then (new-snapshot) ~>
+      # Register @reloader on the new iframe content window
+      @reloader = new Reloader @iframe.content-window, {log: -> , error: ->}, Timer
+
+      # Calculate diff
+      matcher = new DiffXMatcher @iframe.content-window.document, new-iframe.content-window.document
+
+      diffs = []
+      for elem-snapshot in new-snapshot
+        matched-old-elem = matcher.to-old-node elem-snapshot.elem
+        unless matched-old-elem
+          # No matched old element; the element is new!
+          diffs ++= new ElementDifference elem-snapshot.elem, elem-snapshot, ElementDifference.TYPE_ADDED
+
+        else
+          # Corresponding old element found; calculate element difference
+          old-elem-snapshot = @snapshot[matched-old-elem._seess-snapshot-idx]
+          elem-diff = elem-snapshot.diff old-elem-snapshot
+          diffs ++= elem-diff if elem-diff
+
+          # Mark the referred old element snapshot
+          @snapshot[matched-old-elem._seess-snapshot-idx] = \REFERRED
+
+      # Collect all the old element snapshots that is not referred in the previous step.
+      # These "unreferred snapshots" are snapshots of the elements that are removed
+      # in the new version of html.
+      unreferenced-snapshots = @snapshot.filter (elem-snapshot) -> elem-snapshot isnt \REFERRED
+      diffs ++= @snapshot.filter (elem-snapshot) -> elem-snapshot isnt \REFERRED
+        .map (unreferenced-elem-snapshot) ->
+          new ElementDifference unreferenced-elem-snapshot.elem, unreferenced-elem-snapshot, ElementDifference.TYPE_REMOVED
+
+      # We are done with the old snapshot. Update with new-snapshot now.
+      @snapshot = new-snapshot
+
+      # Now we can totally replace the old @iframe with the new one.
+      # There should be no reference to the old iframe after this line.
+      @iframe = new-iframe
+
+      return diffs
+
+    # Kick start the new iframe loading.
+    @iframe.parent-node.replace-child new-iframe, @iframe
+
+    return @_promise
+
 
   #
   # Helper function that returns a promise that resolves when all assets
