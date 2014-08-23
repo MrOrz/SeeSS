@@ -204,11 +204,19 @@ class Renderer
 # Difference between old element and new element
 #
 # The structure of ElementDifference object is the same as ElementSnapshot instances,
-# except that each property value is replaced by {before: <val-before>, after: <val-after>}
+# except that each property value is replaced by {before: <val-before>, after: <val-after>},
+# and has @elem and @type attributes in addition.
+#
+# However, if @type is not TYPE_MOD, the property value will be a scalar term,
+# since there is no "before" or "after" when adding or removing elements.
 #
 class ElementDifference
-  ( @elem, diff ) ->
-    @ <<< diff
+  @TYPE_MOD = 0
+  @TYPE_ADDED = 1
+  @TYPE_REMOVED = 2
+
+  ( @elem, diff-or-snapshot, @type = @@TYPE_MOD ) ->
+    @ <<< diff-or-snapshot
 
 #
 # Helper class definition for renderer.
@@ -246,4 +254,6 @@ class ElementSnapshot
     else
       return new ElementDifference @elem, differences
 
+# Exports Renderer and ElementDifference
 module.exports = Renderer
+module.exports.ElementDifference = ElementDifference

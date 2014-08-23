@@ -78,6 +78,9 @@ describe '#applyCSS', (...) !->
     diff <- renderer.applyCSS new-css .then
 
     expect diff.length .to.be 1
+
+    # Checking type, elem and the actual difference
+    expect diff.0.type .to.be Renderer.ElementDifference.TYPE_MOD
     expect diff.0.elem.class-name .to.be 'position-test'
     expect diff.0.rect.top .to.eql before: 0, after: 10
     expect diff.0.rect.left .to.eql before: 0, after: 10
