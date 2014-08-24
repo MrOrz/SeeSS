@@ -103,12 +103,50 @@ describe '#applyCSS', (...) !->
     expect diff.0.elem.class-name .to.be 'position-test'
     expect diff.0.before-elem.color .to.eql before: undefined, after: 'rgb(255, 0, 0)'
 
-  it 'works for multiple calls to #applyCSS'
+  it 'works for multiple calls to #applyCSS', ->
+    const CSS1 = 'renderer-css-position-test.css'
+    const CSS2 = 'renderer-css-test.css' # Change back to css-test
 
-  function load-css doc, new-css
+    renderer = new Renderer(new PageData html: __html__['test/fixtures/renderer-test.html'], url: location.href)
+    <- renderer.render document.body .then
+
+    new-css = load-css renderer.iframe.content-window.document, CSS1
+
+    # Trigger CSS apply
+    diff <- renderer.applyCSS new-css .then
+
+    # CSS1 is already tested in another test suite. Go change CSS to CSS2.
+    new-css = load-css renderer.iframe.content-window.document, CSS2, CSS1
+
+    diff <- renderer.applyCSS new-css .then
+
+    expect diff.length .to.be 1
+
+    # Check if the difference equals the change caused by
+    # CSS2 --> CSS1.
+    expect diff.0.type .to.be Renderer.ElementDifference.TYPE_MOD
+    expect diff.0.elem.class-name .to.be 'position-test'
+    expect diff.0.rect.top .to.eql before: 10, after: 0
+    expect diff.0.rect.left .to.eql before: 10, after: 0
+
+  it 'do not output false alarm when there is no visual difference', ->
+    const NEW_CSS = 'renderer-css-invariant-test.css'
+
+    renderer = new Renderer(new PageData html: __html__['test/fixtures/renderer-test.html'], url: location.href)
+    <- renderer.render document.body .then
+
+    new-css = load-css renderer.iframe.content-window.document, NEW_CSS
+
+    # Trigger CSS apply
+    diff <- renderer.applyCSS new-css .then
+
+    expect diff.length .to.be 0
+
+
+  function load-css doc, new-filename, old-filename = \PLACEHOLDER
     # Hack: Change the CSS filename inside renderer iframe to simulate CSS file change
     link = doc.get-element-by-id \css-target
-    link.href .= replace \PLACEHOLDER, new-css
+    link.href .= replace old-filename, new-filename
 
     return link.href
 

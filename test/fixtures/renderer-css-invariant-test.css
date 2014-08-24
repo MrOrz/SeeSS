@@ -1,0 +1,7 @@
+/* This should cast no visual difference */
+
+.position-test {
+  position: fixed;
+  left: 100px;
+  transform: translate(-100px, 0);
+}
