@@ -3,5 +3,5 @@
 .position-test {
   position: fixed;
   left: 100px;
-  transform: translate(-100px, 0);
+  margin-left: -100px;
 }

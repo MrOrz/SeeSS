@@ -285,12 +285,18 @@ class ElementDifference
 # The page snapshot is an array of ElementSnapshot in DOM tree walk order.
 #
 class ElementSnapshot
+
+  # Blacklist some computed style properties because their change will reflect
+  # in @rect (getBoundingClientRect)
+  #
+  const COMPUTED_BLACKLIST = <[position left top right bottom width height float margin margin-left margin-right margin-top margin-bottom box-sizing]>
+
   (@elem, iframe-window) ->
     # The bounding client rect is relative to viewport, but should still be workable
-    @rect = elem.get-bounding-client-rect!
-    @computed = iframe-window.get-computed-style elem
-    @before-elem = iframe-window.get-computed-style elem, \:before
-    @after-elem = iframe-window.get-computed-style elem, \:after
+    @rect = @elem.get-bounding-client-rect!
+    @computed = clone-styles iframe-window.get-computed-style @elem
+    @before-elem = clone-styles iframe-window.get-computed-style(@elem, \:before), true
+    @after-elem = clone-styles iframe-window.get-computed-style(@elem, \:after), true
 
   diff: (old-elem-snapshot) ->
     differences = {}
@@ -313,6 +319,28 @@ class ElementSnapshot
       return null
     else
       return new ElementDifference @elem, differences
+
+  function clone-styles style-declaration, is-pseudo-elem = false
+
+    styles = {[attr, style-declaration.get-property-value(attr)] for attr in style-declaration}
+
+    # Blacklist some positioning styles because their change should be visible
+    # in @rect when the change is really relavant.
+    #
+    # However, we cannot calculate pseudo element's client rect,
+    # thus pseudo element CSS should not be blacklisted.
+    #
+    # Note: a valid pseudo element should have "content" in computedStyle,
+    # at least it should be '\'\'' or 'attr(...)'.
+    # An element without pseudo-element will replicate the computed style of parent element,
+    # so the case must be taken care of.
+    #
+    unless is-pseudo-elem and style-declaration.content isnt ''
+      for attr in COMPUTED_BLACKLIST
+        delete styles[attr]
+
+    return styles
+
 
 # Exports Renderer and ElementDifference
 module.exports = Renderer

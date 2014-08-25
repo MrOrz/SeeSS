@@ -96,15 +96,15 @@ describe '#applyCSS', (...) !->
     # Triger CSS apply
     diff <- renderer.applyCSS new-css .then
 
-      # there should be only one ElementDifference that reports
-      # the color of h1 changed from blue to red.
+    # there should be only one ElementDifference that reports
+    # the color of h1 changed from blue to red.
 
     expect diff.length .to.be 1
     expect diff.0.elem.node-name .to.be \H1
-    expect diff.0.computed.color.before .to.be "rgb(0,0,255)"
-    expect diff.0.computed.color.after .to.be "rgb(255,0,0)"
+    expect diff.0.computed.color.before .to.be "rgb(0, 0, 255)"
+    expect diff.0.computed.color.after .to.be "rgb(255, 0, 0)"
 
-  it.skip 'distinguishes pseudo-element change', ->
+  it 'distinguishes pseudo-element change', ->
     const NEW_CSS = 'renderer-css-pseudoelem-test.css'
 
     renderer = new Renderer(new PageData html: __html__['test/fixtures/renderer-test.html'], url: location.href)
@@ -115,11 +115,9 @@ describe '#applyCSS', (...) !->
     # Trigger CSS apply
     diff <- renderer.applyCSS new-css .then
 
-    console.log \DIFF, diff
-
     expect diff.length .to.be 1
     expect diff.0.elem.class-name .to.be 'position-test'
-    expect diff.0.before-elem.color .to.eql before: undefined, after: 'rgb(255, 0, 0)'
+    expect diff.0.before-elem.color .to.eql before: 'rgb(0, 0, 0)', after: 'rgb(255, 0, 0)'
 
   it 'works for multiple calls to #applyCSS', ->
     const CSS1 = 'renderer-css-position-test.css'
