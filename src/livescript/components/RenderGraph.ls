@@ -77,6 +77,20 @@ class RenderGraph
   #
   refresh: ->
     ...
+  # Given a renderer or renderer-id, return array of renderers and edges
+  #
+  neighbors-of: (renderer) ->
+    if typeof renderer is \number
+      renderer-idx = renderer
+      renderer = @renderers[renderer]
+    else
+      renderer-idx = renderer._graph-prop.id
+
+    neighbors = for own neighbor-id, edge of @adj-list[renderer-idx]
+      new Neighbor(edge, @renderers[neighbor-id])
+
+    return neighbors
+
 # The data structure storing data in edge
 #
 class Edge

@@ -40,4 +40,29 @@ describe '#add', (...) !->
     expect graph.renderers.length .to.be 4
     expect graph.adj-list.4 .to.be undefined
 
+describe '#neighbors-of', (...) ->
+  it 'returns correct neighbors', ->
+    graph = new RenderGraph document.body
+
+    renderer0 = graph.add (new PageData html: '<node0>')
+    renderer1 = graph.add (new PageData html: '<node1>'), (new RenderGraph.Edge renderer0, \edge-0-1)
+    renderer2 = graph.add (new PageData html: '<node2>'), (new RenderGraph.Edge renderer1, \edge-1-2)
+
+    neighbor0 = graph.neighbors-of 0
+
+    expect neighbor0.length .to.eql 1
+    expect neighbor0.0.edge.action .to.be \edge-0-1
+    expect neighbor0.0.renderer.page-data.html .to.be '<node1>'
+
+    neighbor1 = graph.neighbors-of 1
+
+    expect neighbor1.length .to.eql 1
+    expect neighbor1.0.edge.action .to.be \edge-1-2
+    expect neighbor1.0.renderer.page-data.html .to.be '<node2>'
+
+    neighbor2 = graph.neighbors-of 2
+
+    expect neighbor2.length .to.eql 0
+
+
 describe '#refresh', (...) !->
