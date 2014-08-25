@@ -5,21 +5,22 @@ require!{
 # A directed graph for renderers
 #
 class RenderGraph
-  ->
+  (@iframe-container) ->
     # Renderer array, renderer-id --> renderer object instance
     #
     @renderers = []
 
-    # @adj-list[renderer1][renderer2] === edge-data
+    # @adj-list[renderer1][renderer2] === edge
     #
-    # edge-data is an user action event, thus it is directed.
+    # edge is an user action event, thus it is directed.
     #
     @adj-list = {}
 
   #
-  # Add a renderer node given the page-data and edge-data
+  # Add a renderer node given the page-data and edge,
+  # return the new renderer node.
   #
-  add: (page-data, edge-data) ->
+  add: (page-data, edge) ->
 
     # Check if the page already exists in a renderer
     #
@@ -43,22 +44,26 @@ class RenderGraph
       #
       @renderers[renderer-idx]._graph-prop =
         id: renderer-idx
-        is-source: !edge-data
+        is-source: !edge
+
+      # Invoke renderer's render so that iframe can start rendering
+      @renderers[renderer-idx].render @iframe-container
 
       # Initialize adj-list of the renderer
       @adj-list[renderer-idx] = {}
 
     renderer = @renderers[renderer-idx]
 
-    referrer-idx = renderer-idx - 1
-    referrer = @renderers[referrer-idx]
+    # Skip the following step if there is no edge
+    return renderer unless edge
 
-    # Skip the following step if there is no referrer renderer
-    return if not referrer or renderer._graph-prop.is-source
 
     # Managing adjacent list
     #
-    @adj-list[referrer-idx][renderer-idx] = edge-data
+    referrer-idx = edge.from-renderer._graph-prop.id
+    @adj-list[referrer-idx][renderer-idx] = edge
+
+    return renderer
 
   #
   # Receives Livereload reload events, determine whether it is a stylesheet change
@@ -72,5 +77,17 @@ class RenderGraph
   #
   refresh: ->
     ...
+# The data structure storing data in edge
+#
+class Edge
+  (@from-renderer, @action, @target) ->
+
+# The data structure returned by neighbors-of in arrays
+#
+class Neighbor
+  (@edge, @renderer) ->
+
+
 
 module.exports = RenderGraph
+module.exports.Edge = Edge
