@@ -28,6 +28,9 @@ gulp.task \webpack, (cb)->
           loader: 'livescript'
         * test: /\.coffee$/
           loader: 'coffee-loader'
+    resolve:
+      alias:
+        'protocol': './protocol.coffee' # For interconnected components in Livereload 
 
     (err, stats) ->
       throw new gulp-util.PluginError \webpack, err if err

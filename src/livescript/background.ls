@@ -1,4 +1,5 @@
 require! {
+  './components/LiveReloadClient.ls'
   './components/PageData.ls'
   './components/Renderer.ls'
 }
@@ -17,10 +18,12 @@ chrome.runtime.on-message.add-listener (data, sender, send-response) ->
   renderer.render document.body
 
 chrome.browser-action.on-clicked.add-listener (tab) ->
-  console.log \Yo!
+  console.log \Yo!, new LiveReloadClient (changes) ->
+    console.log "Change detected", changes
 
-  chrome.tabs.execute-script tab.id,
-    file: "contentScript.bundle.js"
+
+#   chrome.tabs.execute-script tab.id,
+#     file: "contentScript.bundle.js"
     # (results) -> console.log "execute result: ", results
   #chrome.page-capture.save-as-mHTML tab-id: tab.id, (mhtml-data) ->
   #  object-url = URL.create-object-uRL mhtml-data
