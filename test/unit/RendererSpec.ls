@@ -158,6 +158,21 @@ describe '#applyCSS', (...) !->
 
     expect diff.length .to.be 0
 
+  # TODO
+  it.skip 'do not output false alarm when z-index change is introduced by position change', ->
+    const NEW_CSS = 'renderer-css-invariant-zindex-test.css'
+
+    renderer = new Renderer(new PageData html: __html__['test/fixtures/renderer-css-invariant-zindex-test.html'], url: location.href)
+    <- renderer.render document.body .then
+
+    new-css = load-css renderer.iframe.content-window.document, NEW_CSS
+
+    # Trigger CSS apply
+    diff <- renderer.applyCSS new-css .then
+
+    expect diff.length .to.be 0
+
+
 
   function load-css doc, new-filename, old-filename = \PLACEHOLDER
     # Hack: Change the CSS filename inside renderer iframe to simulate CSS file change

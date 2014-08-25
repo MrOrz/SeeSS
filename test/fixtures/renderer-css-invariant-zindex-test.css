@@ -1,0 +1,3 @@
+h1{
+  position: fixed; /* Will trigger z-index change from auto to 0 */
+}
