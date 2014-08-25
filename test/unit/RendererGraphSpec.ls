@@ -66,7 +66,7 @@ describe '#neighbors-of', (...) !->
 
 
 describe '#refresh', (...) !->
-  it 'refreshes all iframe when CSS changed', ->
+  it 'refreshes all iframe when CSS changed, and outputs difference', ->
     const NEW_CSS = 'renderer-css-color-test2.css'
 
     graph = new RenderGraph document.body
