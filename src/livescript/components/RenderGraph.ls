@@ -77,7 +77,8 @@ class RenderGraph
   # then traverse the render graph using the original visiting order,
   # while replaying the events and refreshing the other non-source renderers.
   #
-  # #refresh returns an array of promises.
+  # #refresh returns an array of promises, each of which resolves to the changes
+  # for a renderer.
   #
   refresh: (path) ->
     if path.match /\.css$/i

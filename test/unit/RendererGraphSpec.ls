@@ -40,7 +40,7 @@ describe '#add', (...) !->
     expect graph.renderers.length .to.be 4
     expect graph.adj-list.4 .to.be undefined
 
-describe '#neighbors-of', (...) ->
+describe '#neighbors-of', (...) !->
   it 'returns correct neighbors', ->
     graph = new RenderGraph document.body
 
@@ -66,3 +66,37 @@ describe '#neighbors-of', (...) ->
 
 
 describe '#refresh', (...) !->
+  it 'refreshes all iframe when CSS changed', ->
+    const NEW_CSS = 'renderer-css-color-test2.css'
+
+    graph = new RenderGraph document.body
+    renderer1 = graph.add (new PageData html: __html__['test/fixtures/renderer-css-color-test.html'], url: location.href)
+    renderer2 = graph.add (new PageData html: __html__['test/fixtures/rendergraph-css-test.html'], url: location.href)
+
+    # After all renderer are loaded, put the CSS to refresh inside all renderers,
+    # and start refreshing
+    <- Promise.all [renderer1._promise, renderer2._promise] .then
+    new-css = load-css renderer1.iframe.content-window.document, NEW_CSS
+    load-css renderer2.iframe.content-window.document, NEW_CSS
+
+    results <- Promise.all graph.refresh new-css .then
+
+    # There should be 2 renderers
+    expect results.length .to.be 2
+
+    for diff in results
+      # For all renderers,
+      # there should be only one ElementDifference that reports
+      # the color of h1 changed from blue to red.
+      #
+      expect diff.length .to.be 1
+      expect diff.0.elem.node-name .to.be \H1
+      expect diff.0.computed.color.before .to.be "rgb(0,0,255)"
+      expect diff.0.computed.color.after .to.be "rgb(255,0,0)"
+
+  function load-css doc, new-filename, old-filename = \PLACEHOLDER
+    # Hack: Change the CSS filename inside renderer iframe to simulate CSS file change
+    link = doc.get-element-by-id \css-target
+    link.href .= replace old-filename, new-filename
+
+    return link.href

@@ -85,6 +85,24 @@ describe '#applyCSS', (...) !->
     expect diff.0.rect.top .to.eql before: 0, after: 10
     expect diff.0.rect.left .to.eql before: 0, after: 10
 
+  it 'distinguishes computed style change', ->
+    const NEW_CSS = 'renderer-css-color-test2.css'
+
+    renderer = new Renderer(new PageData html: __html__['test/fixtures/renderer-css-color-test.html'], url: location.href)
+    <- renderer.render document.body .then
+
+    new-css = load-css renderer.iframe.content-window.document, NEW_CSS
+
+    # Triger CSS apply
+    diff <- renderer.applyCSS new-css .then
+
+      # there should be only one ElementDifference that reports
+      # the color of h1 changed from blue to red.
+
+    expect diff.length .to.be 1
+    expect diff.0.elem.node-name .to.be \H1
+    expect diff.0.computed.color.before .to.be "rgb(0,0,255)"
+    expect diff.0.computed.color.after .to.be "rgb(255,0,0)"
 
   it.skip 'distinguishes pseudo-element change', ->
     const NEW_CSS = 'renderer-css-pseudoelem-test.css'
