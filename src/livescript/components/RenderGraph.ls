@@ -1,5 +1,6 @@
 require!{
   './Renderer.ls'
+  Promise: bluebird
 }
 
 # A directed graph for renderers
@@ -68,6 +69,7 @@ class RenderGraph
   #
   # Receives Livereload reload events, determine whether it is a stylesheet change
   # or an HTML change.
+  # The determination process is identical to the one in Livereload Reloader class.
   #
   # If is a stylesheet change, invoke #applyCSS to all renderers.
   #
@@ -75,8 +77,56 @@ class RenderGraph
   # then traverse the render graph using the original visiting order,
   # while replaying the events and refreshing the other non-source renderers.
   #
-  refresh: ->
-    ...
+  # #refresh returns an array of promises.
+  #
+  refresh: (path) ->
+    if path.match /\.css$/i
+      # Style change, invoke applyCSS!
+      return [renderer.applyCSS path for renderer in @renderers]
+
+    else
+      # BFS renderer queue
+      renderer-queue = []
+
+      # Create a simulating iframe for each source iframe,
+      # and reset all BFS taggings
+      for renderer in @renderers
+        delete renderer._graph-prop.bfs-visited
+        delete renderer._graph-prop.bfs-iframe
+
+        if renderer._graph-prop.is-source
+          # Put source renderers inside render queue
+          renderer-queue ++= renderer
+
+          # Create iframe for source renderers
+          renderer._graph-prop.bfs-iframe = document.create-element \iframe
+
+          let iframe = renderer._graph-prop.bfs-iframe, page-data = renderer.page-data
+            iframe.width = page-data.width
+            iframe.height = page-data.height
+
+            # Source renderer use src attribute to load data.
+            #
+            iframe.src = page-data.url
+            iframe.onload = ->
+              iframe.onload = null
+              ...
+
+            # Start iframe loading
+            #
+            @iframe-container.insert-before iframe
+
+
+      # Execute the BFS
+      while renderer = renderer-queue.unshift!
+        # If not source renderer, there must be an edge from the previous renderer
+        unless renderer._graph-prop.is-source
+          current-renderer-idx = renderer._graph-prop.id
+          previous-renderer-idx = @renderers[visiting-order-idx-1]._graph-prop.id
+          edge = @adj-list[previous-renderer-idx][current-renderer-idx]
+        ...
+
+
   # Given a renderer or renderer-id, return array of renderers and edges
   #
   neighbors-of: (renderer) ->
