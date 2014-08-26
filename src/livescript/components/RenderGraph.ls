@@ -37,7 +37,7 @@ class RenderGraph
       # The page is not in any existing renderer, create one.
       #
       renderer-idx = @renderers.length
-      @renderers ++= new Renderer page-data
+      @renderers.push new Renderer page-data
 
       # Record the position of the renderer for quick access when fetching its neighbors.
       # Also saves whether the renderer is a source node
@@ -97,7 +97,7 @@ class RenderGraph
 
         if renderer._graph-prop.is-source
           # Put source renderers inside render queue
-          renderer-queue ++= renderer
+          renderer-queue.push renderer
 
           # Create iframe for source renderers
           renderer._graph-prop.bfs-iframe = document.create-element \iframe
@@ -126,7 +126,6 @@ class RenderGraph
           previous-renderer-idx = @renderers[visiting-order-idx-1]._graph-prop.id
           edge = @adj-list[previous-renderer-idx][current-renderer-idx]
         ...
-
 
   # Given a renderer or renderer-id, return array of renderers and edges
   #

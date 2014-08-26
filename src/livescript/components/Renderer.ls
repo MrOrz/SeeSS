@@ -83,13 +83,13 @@ class Renderer
         matched-old-elem = matcher.to-old-node elem-snapshot.elem
         unless matched-old-elem
           # No matched old element; the element is new!
-          diffs ++= new ElementDifference elem-snapshot.elem, elem-snapshot, ElementDifference.TYPE_ADDED
+          diffs.push new ElementDifference elem-snapshot.elem, elem-snapshot, ElementDifference.TYPE_ADDED
 
         else
           # Corresponding old element found; calculate element difference
           old-elem-snapshot = @snapshot[matched-old-elem._seess-snapshot-idx]
           elem-diff = elem-snapshot.diff old-elem-snapshot
-          diffs ++= elem-diff if elem-diff
+          diffs.push elem-diff if elem-diff
 
           # Mark the referred old element snapshot
           @snapshot[matched-old-elem._seess-snapshot-idx] = \REFERRED
@@ -243,7 +243,7 @@ class Renderer
       new-elem-snapshot = new ElementSnapshot current-node, iframe.content-window
       element-diff = new-elem-snapshot.diff page-snapshot[idx]
       if element-diff
-        differences ++= element-diff
+        differences.push element-diff
 
       # Update snapshot
       page-snapshot[idx] = new-elem-snapshot
