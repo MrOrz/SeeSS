@@ -1,7 +1,7 @@
 require! {
   './components/LiveReloadClient.ls'
   './components/PageData.ls'
-  './components/Renderer.ls'
+  './components/RenderGraph.ls'
 }
 
 # rendering-window = null
@@ -11,20 +11,30 @@ require! {
 #   (w) ->
 #     rendering-window := w
 
-renderers = []
+graph = new RenderGraph window.document.body
 
 chrome.runtime.on-message.add-listener (data, sender, send-response) ->
-  renderers ++ renderer = new Renderer(new PageData data)
-  renderer.render document.body
+  page-data = new PageData data
+  graph.add page-data
+
+chrome.tabs.on-updated.add-listener (tab-id, change-info, tab) ->
+  # console.log \Yo!!, change-info, tab
+  return unless change-info.status is \loading and change-info.url and change-info.url.match(/^http:\/\/localhost/)
+
+  chrome.tabs.execute-script tab.id,
+    file: "contentScript.bundle.js"
+    (results) -> console.log "execute result: ", results
+
 
 chrome.browser-action.on-clicked.add-listener (tab) ->
-  console.log \Yo!, new LiveReloadClient (changes) ->
-    console.log "Change detected", changes
+  console.log \Yo!, new LiveReloadClient (change) ->
+    console.log "Change detected", change
+    results <- Promise.all graph.refresh(change.path) .then
+    console.log "SeeSS results", results
 
 
 #   chrome.tabs.execute-script tab.id,
 #     file: "contentScript.bundle.js"
-    # (results) -> console.log "execute result: ", results
   #chrome.page-capture.save-as-mHTML tab-id: tab.id, (mhtml-data) ->
   #  object-url = URL.create-object-uRL mhtml-data
   #  console.log "Object-URL:", object-url
