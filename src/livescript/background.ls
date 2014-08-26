@@ -96,7 +96,7 @@ TabManager = do ->
         return off
 
 chrome.browser-action.on-clicked.add-listener (tab) ->
-  if TabManager.get-state tab.id is on
+  if TabManager.get-state(tab.id) is on
     TabManager.turn-off tab.id
   else
     TabManager.turn-on tab.id
