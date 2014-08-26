@@ -51,17 +51,10 @@ class TabStateMachine
         \38 : 'assets/19-inactive@2x.png'
 
   function turn-on tab-id
-    # Reload the turned-on tab
+    # Reload the turned-on tab.
+    # The icon is setted on tab update.
     #
-    <- chrome.tabs.reload tab-id, {-bypassCache}, _
-
-    # Then change icon to active
-    #
-    chrome.browser-action.set-icon do
-      tab-id: tab-id
-      path:
-        \19 : 'assets/19-active.png'
-        \38 : 'assets/19-active@2x.png'
+    chrome.tabs.reload tab-id, {-bypassCache}
 
 # A singleton class that keeps track of all tabs' state machine
 #
@@ -133,6 +126,21 @@ chrome.runtime.on-message.add-listener ({type, data}, sender, send-response) ->
     #
     page-data = new PageData data
     graph.add page-data
+
+# If the tab state is "on",
+# set browser action icon on tab update because it always gets resetted by browser
+#
+chrome.tabs.on-updated.add-listener (tab-id, change-info) ->
+  return unless change-info.status is \loading and TabManager.get-state(tab-id) is on
+
+  # Then change icon to active
+  #
+  chrome.browser-action.set-icon do
+    tab-id: tab-id
+    path:
+      \19 : 'assets/19-active.png'
+      \38 : 'assets/19-active@2x.png'
+
 
 
 # -----------------------------------------
