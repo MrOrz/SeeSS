@@ -7,7 +7,7 @@ require! {
 class LiveReloadClient
   const TAG = "[LiveReloadClient]"
 
-  (reload-callback) ->
+  ({on-connect, on-reload, on-disconnect}) ->
     options = new Options
     options.host = 'localhost'
     @connector = new Connector options, WebSocket, Timer, do
@@ -15,15 +15,20 @@ class LiveReloadClient
       socketConnected: ~>
       connected: ~>
         console.log TAG, 'livereload connected'
+        on-connect! if on-connect
+
       error: (e) ~>
         console.log TAG, e.message
+
       disconnected: (reason, next-delay) ~>
         console.log TAG, 'disconnect', reason
+        on-disconnect reason, next-delay if on-disconnect
+
       message: (msg) ~>
         return unless msg.command is \reload
 
         console.log TAG, \RELOAD!
-        reload-callback msg
+        on-reload msg if on-reload
 
   shut-down: ->
     @connector.disconnect!
