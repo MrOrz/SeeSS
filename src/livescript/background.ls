@@ -68,7 +68,7 @@ TabManager = do ->
     close: (tab-id) ->
       state-machine = state-machines[tab-id]
       return unless state-machine
-      state-machine.set off
+      # state-machine.set off # No need, because the tab is closing
       delete state-machines[tab-id]
 
     # Set a tab's state machine to "on" state.
