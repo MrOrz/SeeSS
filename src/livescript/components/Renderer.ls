@@ -27,7 +27,7 @@ class Renderer
   # Kick-start the iframe rendering by putting the iframe into a DOM target
   #
   render: (target) ->
-    target.insert-before @iframe
+    target.insert-before @iframe, null
     return @_promise
 
   #

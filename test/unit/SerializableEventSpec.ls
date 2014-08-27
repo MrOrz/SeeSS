@@ -47,7 +47,7 @@ describe '#constructor', (...) !->
 
       click-target.dispatch-event evt
 
-    document.body.insert-before iframe
+    document.body.insert-before iframe, null
 
   # Unmark the click target
   #

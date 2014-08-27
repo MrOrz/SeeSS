@@ -112,7 +112,7 @@ class RenderGraph
 
             # Start iframe loading
             #
-            @iframe-container.insert-before iframe
+            @iframe-container.insert-before iframe, null
 
 
       # Execute the BFS
