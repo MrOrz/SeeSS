@@ -294,52 +294,89 @@ class ElementSnapshot
   (@elem, iframe-window) ->
     # The bounding client rect is relative to viewport, but should still be workable
     @rect = @elem.get-bounding-client-rect!
-    @computed = clone-styles iframe-window.get-computed-style @elem
-    @before-elem = clone-styles iframe-window.get-computed-style(@elem, \:before), true
-    @after-elem = clone-styles iframe-window.get-computed-style(@elem, \:after), true
+    @computed = iframe-window.get-computed-style @elem .css-text
+
+    # Set before-elem and after-elem only when the pseudo-element exists.
+    #
+    # a valid pseudo element should have "content" in computedStyle,
+    # at least it should be "''" or "attr(...)".
+    #
+    # The computed style of non-exist pseudo element will replicate the computed style of parent element,
+    # which confuses the diff process, thus should be avoided.
+    #
+    @before-elem = if (before-style = iframe-window.get-computed-style @elem, \:before).content isnt ''
+      before-style.css-text
+    else
+      ''
+
+    @after-elem = if (after-style = iframe-window.get-computed-style @elem, \:after).content isnt ''
+      after-style.css-text
+    else
+      ''
 
   diff: (old-elem-snapshot) ->
     differences = {}
     is-empty = true
-    # console.log '[SNAPSHOT DIFF]', @, old-elem-snapshot
-    for own attr-name, attributes of @ when attr-name != \elem
-      old-snapshot-attr = old-elem-snapshot[attr-name]
-      for own key, value of attributes
-        old-snapshot-value = old-snapshot-attr[key]
 
-        unless old-snapshot-value == value
-          is-empty = false
-          differences[attr-name] ?= {}
-          differences[attr-name][key] =
-            before: old-snapshot-value
-            after: value
+    # Check rect
+    for own key, new-value of @rect
+      old-value = old-elem-snapshot.rect[key]
 
+      unless old-value == new-value
+        is-empty = false
+        differences.rect ?= {}
+        differences.rect[key] =
+          before: old-value
+          after: new-value
+
+    # Check computed, before-elem, after-elem
+    for attr-name in <[computed beforeElem afterElem]>
+      new-css-text = @[attr-name]
+      old-css-text = old-elem-snapshot[attr-name]
+
+      # 1st check: string comparison
+      continue if new-css-text is old-css-text
+
+      # 2nd check: compare each css declaration
+
+      # First we should restore css-text to CSS declarations
+      #
+      existing-properties = {}
+      [new-css, old-css] = for css-text in [new-css-text, old-css-text]
+
+        # Collecte CSS declarations (css property - css value map)
+        declarations = {}
+
+        for declaration in css-text.split \; .slice 0, -1
+          colon-pos = declaration.index-of \:
+          property = declaration.slice 0, colon-pos .trim!
+
+          declarations[property] = declaration.slice colon-pos+2
+          existing-properties[property] = yes
+
+        # populate either new-css or old-css with the declaration object
+        declarations
+
+      # Delete the properties in blacklist, but don't do so for pseudo elements.
+      # This is because we can't collect pseudo element dimensions using getBoundingClientRect.
+      #
+      if attr-name is \computed
+        for blacklisted-property in COMPUTED_BLACKLIST
+          delete existing-properties[blacklisted-property]
+
+      # Then we compare the new declarations with the old declarations
+      #
+      for own property of existing-properties when new-css[property] isnt old-css[property]
+        is-empty = false
+        differences[attr-name] ?= {}
+        differences[attr-name][property] =
+          before: old-css[property]
+          after: new-css[property]
 
     if is-empty
       return null
     else
       return new ElementDifference @elem, differences
-
-  function clone-styles style-declaration, is-pseudo-elem = false
-
-    styles = {[attr, style-declaration.get-property-value(attr)] for attr in style-declaration}
-
-    # Blacklist some positioning styles because their change should be visible
-    # in @rect when the change is really relavant.
-    #
-    # However, we cannot calculate pseudo element's client rect,
-    # thus pseudo element CSS should not be blacklisted.
-    #
-    # Note: a valid pseudo element should have "content" in computedStyle,
-    # at least it should be '\'\'' or 'attr(...)'.
-    # An element without pseudo-element will replicate the computed style of parent element,
-    # so the case must be taken care of.
-    #
-    unless is-pseudo-elem and style-declaration.content isnt ''
-      for attr in COMPUTED_BLACKLIST
-        delete styles[attr]
-
-    return styles
 
 
 # Exports Renderer and ElementDifference
