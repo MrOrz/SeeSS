@@ -8,3 +8,4 @@ node_js:
 #
 before_install:
   - export CHROME_BIN="/usr/bin/chromium-browser"
+  - node -p process.env
