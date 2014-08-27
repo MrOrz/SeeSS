@@ -74,4 +74,8 @@ describe '#constructor', (...) !->
 
     expect recovered-sevt .to.eql sevt
 
+  it 'accepts timestamp and calculates timeout', ->
+    sevt = new SerializableEvent Date.now!
 
+    expect sevt.type .to.be \WAIT
+    expect sevt.timeout .to.be 0
