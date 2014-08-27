@@ -5,12 +5,6 @@ require! {
 
 (...) <-! describe \RendererGraph, _
 
-#
-# Mock Renderer to avoid real iframe generation
-#
-class Renderer
-  (@page-data) ->
-
 describe '#add', (...) !->
   it "creates renderer instance", ->
     graph = new RenderGraph document.body
