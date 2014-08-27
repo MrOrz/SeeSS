@@ -2,10 +2,12 @@ language: node_js
 node_js:
   - "0.10"
 
+script: node_modules/karma/bin/karma start test/karma.conf.js --single-run
+
 # Google Chrome
 #
 # https://github.com/travis-ci/travis-ci/issues/272#issuecomment-14402117
 #
 before_install:
   - export CHROME_BIN="/usr/bin/chromium-browser"
-  - node -p process.env
+  - export IS_TRAVIS=1
