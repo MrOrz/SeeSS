@@ -55,14 +55,11 @@ class RenderGraph
 
     renderer = @renderers[renderer-idx]
 
-    # Skip the following step if there is no edge
-    return renderer unless edge
-
-
-    # Managing adjacent list
-    #
-    referrer-idx = edge.from-renderer._graph-prop.id
-    @adj-list[referrer-idx][renderer-idx] = edge
+    if edge
+      # Managing adjacent list
+      #
+      referrer-idx = edge.from-renderer._graph-prop.id
+      @adj-list[referrer-idx][renderer-idx] = edge
 
     return renderer
 

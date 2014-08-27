@@ -16,6 +16,10 @@ var my-state
 #
 var mutation-observer, debounce-timeout-handle
 
+# Records the user interaction event
+#
+var last-event
+
 # Register message listeners from background script
 #
 chrome.runtime.on-message.add-listener ({type, data}, sender, send-response) ->
@@ -45,13 +49,16 @@ function send-page-data
   # Send HTML back to background
   #
   msg = new Message \PAGE_DATA,
-    html: document.document-element.outerHTML
-    url: location.href
-    width: window.inner-width
-    height: window.inner-height
-    scroll-top: document.body.scroll-top
-    doctype:
-      public-id: document.doctype.public-id
-      system-id: document.doctype.system-id
+    page:
+      html: document.document-element.outerHTML
+      url: location.href
+      width: window.inner-width
+      height: window.inner-height
+      scroll-top: document.body.scroll-top
+      doctype:
+        public-id: document.doctype.public-id
+        system-id: document.doctype.system-id
+
+    edge: last-event
 
   msg.send!

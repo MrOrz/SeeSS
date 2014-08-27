@@ -56,10 +56,17 @@ class TabStateMachine
     #
     chrome.tabs.reload tab-id, {-bypassCache}
 
-# A singleton class that keeps track of all tabs' state machine
+# A singleton class that keeps track of all tabs' state machines
 #
 TabManager = do ->
+  # Map tab-id to TabStateMachine instance
+  #
   state-machines = {}
+
+  # Map tab-id to renderer instance.
+  # Maintaining this relationship helps creating edges between renderers.
+  #
+  current-renderers = {}
 
   return do
 
@@ -95,6 +102,14 @@ TabManager = do ->
       else
         return off
 
+    # Maintain current-renderer map
+    #
+    set-renderer: (tab-id, renderer) ->
+      current-renderers[tab-id] = renderer
+
+    get-renderer: (tab-id) ->
+      current-renderers[tab-id]
+
 chrome.browser-action.on-clicked.add-listener (tab) ->
   if TabManager.get-state(tab.id) is on
     TabManager.turn-off tab.id
@@ -111,21 +126,33 @@ chrome.tabs.on-removed.add-listener (tab-id, remove-info) ->
 graph = new RenderGraph window.document.body
 
 chrome.runtime.on-message.add-listener ({type, data}, sender, send-response) ->
+  sender-tab-id = sender.tab.id
+
   switch type
   case \GET_STATE
     # The content script want to know the state of the tab it resides in.
     # Let's send back its state.
     #
-    target-tab-id = sender.tab.id
-    msg = new Message \SET_STATE, TabManager.get-state target-tab-id
-    msg.send target-tab-id
+    msg = new Message \SET_STATE, TabManager.get-state sender-tab-id
+    msg.send sender-tab-id
 
   case \PAGE_DATA
     console.log \TAG, "Page data received", data
     # The content script sends in pageData
     #
-    page-data = new PageData data
-    graph.add page-data
+
+    page-data = new PageData data.page
+
+    # Compose edge object upon receiving edge data
+    #
+    var edge
+    if data.edge
+      edge = new RenderGraph.Edge TabManager.get-renderer(sender-tab-id), data.edge.action, data.edge.target
+
+    # Add the page-data and edge to the graph, then update the current renderer of the tab
+    #
+    TabManager.set-renderer sender-tab-id, graph.add(page-data, edge)
+
 
 # If the tab state is "on",
 # set browser action icon on tab update because it always gets resetted by browser
