@@ -62,7 +62,9 @@ describe '#constructor', (...) !->
     # specs
     expect renderer.snapshot[1].elem.node-name .to.be 'H1'
     expect renderer.snapshot[0].rect .to.be.a \object
-    expect renderer.snapshot[0].computed .to.be.a \object
+    expect renderer.snapshot[0].computed .to.be.a \string
+    expect renderer.snapshot[0].before-elem .to.be ""
+    expect renderer.snapshot[0].after-elem .to.be ""
 
 describe '#applyCSS', (...) !->
 

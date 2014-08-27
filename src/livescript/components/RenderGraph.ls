@@ -37,7 +37,7 @@ class RenderGraph
       # The page is not in any existing renderer, create one.
       #
       renderer-idx = @renderers.length
-      @renderers ++= new Renderer page-data
+      @renderers.push new Renderer page-data
 
       # Record the position of the renderer for quick access when fetching its neighbors.
       # Also saves whether the renderer is a source node
@@ -55,14 +55,11 @@ class RenderGraph
 
     renderer = @renderers[renderer-idx]
 
-    # Skip the following step if there is no edge
-    return renderer unless edge
-
-
-    # Managing adjacent list
-    #
-    referrer-idx = edge.from-renderer._graph-prop.id
-    @adj-list[referrer-idx][renderer-idx] = edge
+    if edge
+      # Managing adjacent list
+      #
+      referrer-idx = edge.from-renderer._graph-prop.id
+      @adj-list[referrer-idx][renderer-idx] = edge
 
     return renderer
 
@@ -97,7 +94,7 @@ class RenderGraph
 
         if renderer._graph-prop.is-source
           # Put source renderers inside render queue
-          renderer-queue ++= renderer
+          renderer-queue.push renderer
 
           # Create iframe for source renderers
           renderer._graph-prop.bfs-iframe = document.create-element \iframe
@@ -127,7 +124,6 @@ class RenderGraph
           edge = @adj-list[previous-renderer-idx][current-renderer-idx]
         ...
 
-
   # Given a renderer or renderer-id, return array of renderers and edges
   #
   neighbors-of: (renderer) ->
@@ -145,7 +141,7 @@ class RenderGraph
 # The data structure storing data in edge
 #
 class Edge
-  (@from-renderer, @action, @target) ->
+  (@from-renderer, @event) ->
 
 # The data structure returned by neighbors-of in arrays
 #
