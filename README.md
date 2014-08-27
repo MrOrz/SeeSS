@@ -1,6 +1,8 @@
 SeeSS
 =====
 
+[![Build Status](https://travis-ci.org/MrOrz/SeeSS.svg?branch=master)](https://travis-ci.org/MrOrz/SeeSS)
+
 Current status: WIP. See [design notes](https://seess.hackpad.com/SeeSS-Open-Source-Project-bFQvnONEMEE) and [current system](https://seess.hackpad.com/SeeSS-Open-Source-Project-Structure-xTK0bgHyFoj) structure in Hackpad.
 
 When we write program, the code editor or IDE provides lots of hints like underlines and highlights that points out our mistakes. However, what do we have when we are tweaking complex graphical user interfaces, for example, a website?
