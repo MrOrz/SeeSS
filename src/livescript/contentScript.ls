@@ -1,8 +1,10 @@
 require! {
   './components/Message.ls'
+  './components/SerializableEvent.ls'
 }
 
 const MUTATION_DEBOUNCE_PERIOD = 500ms
+const EVENTS_OF_INTEREST = <[blur change click mouseover mouseleave scroll]>
 
 # The state of current tab
 #
@@ -20,6 +22,10 @@ var mutation-observer, debounce-timeout-handle
 #
 var last-event
 
+function record-event(evt)
+  last-event := evt
+
+
 # Register message listeners from background script
 #
 chrome.runtime.on-message.add-listener ({type, data}, sender, send-response) ->
@@ -31,14 +37,27 @@ chrome.runtime.on-message.add-listener ({type, data}, sender, send-response) ->
       send-page-data!
 
       # Instantiate the mutation observer and start observing
-      mutation-observer := new MutationObserver ->
+      mutation-observer := new MutationObserver (records) ->
+
+        # If the mutation is caused by SerializableEvent operation, skip it.
+        #
+        for record in records when record.attribute-name is SerializableEvent.MARK
+          return
+
         clear-timeout debounce-timeout-handle
         debounce-timeout-handle := set-timeout send-page-data, MUTATION_DEBOUNCE_PERIOD
 
       mutation-observer.observe document.body, {+subtree, +child-list}
 
+      # Capture the event recorders on document body at capturing phase
+      #
+      for evt in EVENTS_OF_INTEREST
+        document.body.add-event-listener evt, record-event, true
+
     else
       mutation-observer.disconnect! if mutation-observer
+      for evt in EVENTS_OF_INTEREST
+        document.body.remove-event-listener evt, record-event, true
 
 
 # On startup, fetch tab status.
@@ -48,6 +67,9 @@ chrome.runtime.on-message.add-listener ({type, data}, sender, send-response) ->
 function send-page-data
   # Send HTML back to background
   #
+  if last-event isnt undefined
+    evt = new SerializableEvent(last-event, window)
+
   msg = new Message \PAGE_DATA,
     page:
       html: document.document-element.outerHTML
@@ -59,6 +81,12 @@ function send-page-data
         public-id: document.doctype.public-id
         system-id: document.doctype.system-id
 
-    edge: last-event
+    event: evt
+
+  # Record the current timestamp
+  last-event := Date.now!
 
   msg.send!
+
+  # After sending, unmark the event target in DOM immediately
+  SerializableEvent.unmark document
