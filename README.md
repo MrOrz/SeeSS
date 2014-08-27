@@ -1,7 +1,7 @@
 SeeSS
 =====
 
-[![Build Status](https://travis-ci.org/MrOrz/SeeSS.svg?branch=master)](https://travis-ci.org/MrOrz/SeeSS)
+[![Build Status](https://travis-ci.org/MrOrz/SeeSS.svg?branch=master)](https://travis-ci.org/MrOrz/SeeSS) [![Coverage Status](https://img.shields.io/coveralls/MrOrz/SeeSS.svg)](https://coveralls.io/r/MrOrz/SeeSS)
 
 Current status: WIP. See [design notes](https://seess.hackpad.com/SeeSS-Open-Source-Project-bFQvnONEMEE) and [current system](https://seess.hackpad.com/SeeSS-Open-Source-Project-Structure-xTK0bgHyFoj) structure in Hackpad.
 
