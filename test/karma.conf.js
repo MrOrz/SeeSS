@@ -36,7 +36,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      '**/*Spec.ls': ['webpack'],
+      '**/*Spec.ls': ['webpack', 'coverage'],
       '**/*.html':['html2js'],
       '**/*.json':['html2js']
     },
@@ -98,6 +98,11 @@ module.exports = function(config) {
 
   if(process.env.TRAVIS){
     configuration.browsers = ['Chrome_travis_ci'];
+    configuration.reporters = configuration.reporters.concat(['coverage', 'coveralls']);
+    configuration.coverageReporter = {
+      type : 'lcovonly',
+      dir : 'coverage/'
+    };
   }
 
   config.set(configuration);
