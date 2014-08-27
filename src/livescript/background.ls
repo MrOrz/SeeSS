@@ -147,7 +147,7 @@ chrome.runtime.on-message.add-listener ({type, data}, sender, send-response) ->
     #
     var edge
     if data.edge
-      edge = new RenderGraph.Edge TabManager.get-renderer(sender-tab-id), data.edge.action, data.edge.target
+      edge = new RenderGraph.Edge TabManager.get-renderer(sender-tab-id), data.event
 
     # Add the page-data and edge to the graph, then update the current renderer of the tab
     #

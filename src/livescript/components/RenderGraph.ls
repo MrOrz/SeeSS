@@ -141,7 +141,7 @@ class RenderGraph
 # The data structure storing data in edge
 #
 class Edge
-  (@from-renderer, @action, @target) ->
+  (@from-renderer, @event) ->
 
 # The data structure returned by neighbors-of in arrays
 #
