@@ -11,9 +11,10 @@
 	<key>fonts</key>
 	<array>
 		<string>Monaco</string>
+		<string>PTSans-Caption</string>
 	</array>
 	<key>length</key>
-	<integer>74931</integer>
+	<integer>118797</integer>
 	<key>version</key>
 	<integer>37</integer>
 </dict>
