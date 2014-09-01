@@ -13,3 +13,7 @@ var HelloMessage = React.createClass({
 
 React.renderComponent(<HelloMessage name="Johnson"/>,
   document.getElementById('body'));
+
+chrome.runtime.onMessage.addListener(function(message){
+  console.log("Data arrived", message);
+});

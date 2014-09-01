@@ -87,5 +87,5 @@ gulp.task \watch, <[build]> ->
   server.use serve-static('build') .listen process.env.PORT || 5000
 
   livereload-server = gulp-livereload!
-  gulp.watch <[build/assets/*.css build/*.html build/report.js]> .on \change, ->
+  gulp.watch <[build/assets/*.css build/*.html build/report.js build/chromeMock.js]> .on \change, ->
     livereload-server.changed it.path
