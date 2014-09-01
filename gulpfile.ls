@@ -22,6 +22,8 @@ gulp.task \webpack, (cb)->
     entry:
       content-script: './src/livescript/contentScript.ls'
       background: './src/livescript/background.ls'
+      chrome-mock: './src/livescript/chromeMock.ls'
+      report: './src/javascript/report.js'
     output:
       path: './build'
       filename: "[name].js",
@@ -31,6 +33,8 @@ gulp.task \webpack, (cb)->
           loader: 'livescript'
         * test: /\.coffee$/
           loader: 'coffee-loader'
+        * test: /src\/javascript\/.+\.js$/
+          loaders: <[jshint jsx-loader]>
     resolve:
       alias:
         'protocol': './protocol.coffee' # For interconnected components in Livereload 
@@ -64,6 +68,6 @@ gulp.task \reload, ->
     ..stderr.pipe process.stderr
 
 gulp.task \watch, ->
-  gulp.watch './src/livescript/**/*', <[webpack reload]>
+  gulp.watch ['./src/livescript/**/*', './src/javascript/**/*'], <[webpack reload]>
   gulp.watch './src/jade/*.jade', <[jade reload]>
   gulp.watch './src/stylus/*.styl', <[stylus reload]>

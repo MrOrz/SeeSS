@@ -1,0 +1,2 @@
+window.chrome =
+  mock: yes
