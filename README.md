@@ -29,9 +29,8 @@ Development
 After cloning the repository, do the following in the terminal.
 
 ```
-$ npm install -g gulp LiveScript
+$ npm install -g gulp
 $ npm install
-$ bower install
 $ gulp
 ```
 

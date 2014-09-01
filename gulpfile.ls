@@ -2,7 +2,10 @@ require! {
   gulp
   webpack
   child_process
+  nib
   'gulp-util'
+  'gulp-jade'
+  'gulp-stylus'
   Promise: bluebird
 }
 
@@ -39,6 +42,16 @@ gulp.task \webpack, (cb)->
       gulp-util.log '[webpack]', stats.toString!
       cb!
 
+gulp.task \jade, ->
+  gulp.src './src/jade/*.jade'
+  .pipe gulp-jade pretty: true
+  .pipe gulp.dest './build/'
+
+gulp.task \stylus, ->
+  gulp.src './src/stylus/*.styl'
+  .pipe gulp-stylus use: [nib!]
+  .pipe gulp.dest './build/assets/'
+
 gulp.task \reload, ->
   (resolve, reject) <-! new Promise _
   resp = (err) ->
@@ -52,3 +65,5 @@ gulp.task \reload, ->
 
 gulp.task \watch, ->
   gulp.watch './src/livescript/**/*', <[webpack reload]>
+  gulp.watch './src/jade/*.jade', <[jade reload]>
+  gulp.watch './src/stylus/*.styl', <[stylus reload]>
