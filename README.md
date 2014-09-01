@@ -31,7 +31,7 @@ After cloning the repository, do the following in the terminal.
 ```
 $ npm install -g gulp
 $ npm install
-$ gulp
+$ gulp build
 ```
 
 The unpacked Google Chrome Extension will then be compiled to `build/`.

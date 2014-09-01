@@ -67,7 +67,9 @@ gulp.task \reload, ->
     ..stdout.pipe process.stdout
     ..stderr.pipe process.stderr
 
-gulp.task \watch, ->
+gulp.task \build, <[webpack jade stylus]>
+
+gulp.task \watch, <[build]> ->
   gulp.watch ['./src/livescript/**/*', './src/javascript/**/*'], <[webpack reload]>
   gulp.watch './src/jade/*.jade', <[jade reload]>
   gulp.watch './src/stylus/*.styl', <[stylus reload]>
