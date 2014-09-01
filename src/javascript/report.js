@@ -11,5 +11,5 @@ var HelloMessage = React.createClass({
   }
 });
 
-React.renderComponent(<HelloMessage name="John"/>,
+React.renderComponent(<HelloMessage name="Johnson"/>,
   document.getElementById('body'));

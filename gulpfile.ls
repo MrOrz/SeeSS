@@ -3,9 +3,12 @@ require! {
   webpack
   child_process
   nib
+  connect
   'gulp-util'
   'gulp-jade'
   'gulp-stylus'
+  'gulp-livereload'
+  'serve-static'
   Promise: bluebird
 }
 
@@ -17,6 +20,8 @@ gulp.task \default, <[watch]>
 # Since we have multiple entry points here, we can use webpack directly without
 # bothering using gulp-webpack.
 #
+webpack-cache = {}
+
 gulp.task \webpack, (cb)->
   webpack do
     entry:
@@ -37,7 +42,9 @@ gulp.task \webpack, (cb)->
           loaders: <[jshint jsx-loader]>
     resolve:
       alias:
-        'protocol': './protocol.coffee' # For interconnected components in Livereload 
+        'protocol': './protocol.coffee' # For interconnected components in Livereload
+
+    cache: webpack-cache
 
     (err, stats) ->
       throw new gulp-util.PluginError \webpack, err if err
@@ -70,6 +77,15 @@ gulp.task \reload, ->
 gulp.task \build, <[webpack jade stylus]>
 
 gulp.task \watch, <[build]> ->
-  gulp.watch ['./src/livescript/**/*', './src/javascript/**/*'], <[webpack reload]>
-  gulp.watch './src/jade/*.jade', <[jade reload]>
-  gulp.watch './src/stylus/*.styl', <[stylus reload]>
+  gulp.watch './src/livescript/**/*', <[webpack reload]>
+  gulp.watch './src/javascript/**/*' <[webpack]>
+  gulp.watch './src/jade/*.jade', <[jade]>
+  gulp.watch './src/stylus/*.styl', <[stylus]>
+
+  # Static http server & livereload server for developing report pages
+  server = connect!
+  server.use serve-static('build') .listen process.env.PORT || 5000
+
+  livereload-server = gulp-livereload!
+  gulp.watch <[build/assets/*.css build/*.html build/report.js]> .on \change, ->
+    livereload-server.changed it.path
