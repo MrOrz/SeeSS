@@ -24,7 +24,7 @@ gulp.task \webpack, (cb)->
       background: './src/livescript/background.ls'
     output:
       path: './build'
-      filename: "[name].bundle.js",
+      filename: "[name].js",
     module:
       loaders:
         * test: /\.ls$/

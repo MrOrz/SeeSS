@@ -20,14 +20,14 @@
   },
 
   "background": {
-    "scripts": ["background.bundle.js"],
+    "scripts": ["background.js"],
     "persistent": true
   },
 
   "content_scripts": [
     {
       "matches": ["http://*/*"],
-      "js": ["contentScript.bundle.js"]
+      "js": ["contentScript.js"]
     }
   ],
 
