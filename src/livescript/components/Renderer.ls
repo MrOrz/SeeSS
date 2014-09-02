@@ -48,8 +48,25 @@ class Renderer
       Promise.delay 100
 
     .then ~>
-      # Take another page snapshot and return diff
-      return _update-snapshot @iframe, @snapshot
+      # Take another page snapshot, update @snapshot and return diff
+      iframe-document = @iframe.content-window.document
+      walker = iframe-document.create-tree-walker iframe-document.body,
+        NodeFilter.SHOW_ELEMENT
+
+      idx = 0
+      differences = []
+      while current-node = walker.next-node!
+        # Calculate new snapshot and the element difference
+        new-elem-snapshot = new ElementSnapshot current-node, @iframe.content-window
+        element-diff = new-elem-snapshot.diff @snapshot[idx]
+        if element-diff
+          differences.push element-diff
+
+        # Update snapshot
+        @snapshot[idx] = new-elem-snapshot
+        idx += 1
+
+      return differences
 
   #
   # Given the new DOM, update the snapshot and perform HTML diff algorithm
@@ -230,26 +247,6 @@ class Renderer
       # Return the snapshot
       return page-snapshot
 
-  # Updates page snapshot and return the differences
-  function _update-snapshot iframe, page-snapshot
-    iframe-document = iframe.content-window.document
-    walker = iframe-document.create-tree-walker iframe-document.body,
-      NodeFilter.SHOW_ELEMENT
-
-    idx = 0
-    differences = []
-    while current-node = walker.next-node!
-      # Calculate new snapshot and the element difference
-      new-elem-snapshot = new ElementSnapshot current-node, iframe.content-window
-      element-diff = new-elem-snapshot.diff page-snapshot[idx]
-      if element-diff
-        differences.push element-diff
-
-      # Update snapshot
-      page-snapshot[idx] = new-elem-snapshot
-      idx += 1
-
-    return differences
 
   # Generate new iframe using dimensions specified in page-data object
   #
