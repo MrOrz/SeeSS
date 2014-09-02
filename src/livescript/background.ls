@@ -191,7 +191,7 @@ if renderer-count > 0 and !live-reload-client
     on-reload: (change) !->
       console.log TAG, "Change detected", change
       results <- Promise.all graph.refresh(change.path) .then
-      console.log TAG, "SeeSS results", results
+      console.log TAG, "SeeSS results", results.filter -> it isnt null
     on-connect: !->
       chrome.browser-action.set-badge-background-color color: '#090'
     on-disconnect: !->
