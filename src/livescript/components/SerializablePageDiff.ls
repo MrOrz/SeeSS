@@ -12,15 +12,16 @@ class SerializablePageDiff
   parser = new DOMParser
 
   #
-  # dom      Detached body element with its decendants argumented by DIFF_ID_ATTR.
-  # @html    HTML text of <body> element of "after" state of a page.
+  # dom      Detached HTMLHtmlElement with its decendants argumented by DIFF_ID_ATTR.
+  # @html    HTML text of <html> element of "after" state of a page.
+  # doctype  Doctype string
   #
   # Either dom or @html should exist.
   #
   # @diffs   an array mapping numerical diff-id to sanitized ElementDifference instances
   # @ordered ordered array of diff-id.
   #
-  ({dom, @html, @diffs, @order=[]}) ->
+  ({dom, @html, @doctype='<!doctype html>', @diffs, @order=[]}) ->
     if !dom and !@html
       throw new Error 'Either "dom" or "html" should be specified.'
 
@@ -53,7 +54,7 @@ class SerializablePageDiff
   # Generate @_dom only when methods that requires @_dom is invoked
   #
   _generate-dom: !->
-    @_dom = parser.parse-from-string @html, 'text/html' .body
+    @_dom = parser.parse-from-string @html, 'text/html' .document-element
 
   # Method called by JSON.stringify(...).
   # Just include the minimum items needed to re-construct the SerializablePageDiff instance.
