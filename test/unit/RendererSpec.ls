@@ -104,7 +104,7 @@ describe '#applyCSS', (...) !->
     # the color of h1 changed from blue to red.
 
     expect page-diff.diffs .to.have.length 1
-    expect page-diff.get-element-by-diff-id(0) .to.be \H1
+    expect page-diff.get-element-by-diff-id(0).node-name .to.be \H1
     expect page-diff.diffs.0.computed.color.before .to.be "rgb(0, 0, 255)"
     expect page-diff.diffs.0.computed.color.after .to.be "rgb(255, 0, 0)"
 
@@ -120,7 +120,7 @@ describe '#applyCSS', (...) !->
     page-diff <- renderer.applyCSS new-css .then
 
     expect page-diff.diffs .to.have.length 1
-    expect page-diff.get-element-by-diff-id(0) .to.be 'position-test'
+    expect page-diff.get-element-by-diff-id(0).class-name .to.be 'position-test'
     expect page-diff.diffs.0.before-elem.color .to.eql before: 'rgb(0, 0, 0)', after: 'rgb(255, 0, 0)'
 
   it 'works for multiple calls to #applyCSS', ->

@@ -72,14 +72,14 @@ class Renderer
         @snapshot[idx] = new-elem-snapshot
         idx += 1
 
-      # Return early if no differences found
-      return null if differences.length is 0
-
-
-      # Produce HTML for SerializablePageDiff
-      # ...
-      return new SerializablePageDiff do
-        diffs: differences
+      # Return SerializablePageDiff instance or null
+      if differences.length is 0
+        return null
+      else
+        return new SerializablePageDiff do
+          dom: _generate-detached-html @iframe
+          doctype: @page-data.doctype
+          diffs: differences
 
   #
   # Given the new DOM, update the snapshot and perform HTML diff algorithm
@@ -145,14 +145,14 @@ class Renderer
       # There should be no reference to the old iframe after this line.
       @iframe = new-iframe
 
-      # Return early if no differences found
-      return null if diffs.length is 0
-
-      # Produce HTML for SerializablePageDiff
-      # ...
-
-      return new SerializablePageDiff do
-        diffs: diffs
+      # Return SerializablePageDiff instance or null
+      if diffs.length is 0
+        return null
+      else
+        return new SerializablePageDiff do
+          dom: _generate-detached-html @iframe
+          doctype: @page-data.doctype
+          diffs: diffs
 
     # Kick start the new iframe loading.
     @iframe.parent-node.replace-child new-iframe, @iframe
@@ -284,8 +284,29 @@ class Renderer
 
     return iframe
 
-  # Generate a html string representing
+  # Generate a detatched DOM HTMLElement that marks diff-id on the elements
+  # that is changed by CSS or HTML
   #
+  function _generate-detached-html iframe
+    iframe-document = iframe.content-window.document
+
+    # Deep-copy the <html> element
+    detached = iframe-document.document-element.clone-node true
+
+    # Walk the two DOM trees at the same time.
+    # Start walking from body, as we did when generating page snapshots.
+    iframe-walker = iframe-document.create-tree-walker iframe-document.body, NodeFilter.SHOW_ELEMENT
+    marking-walker = iframe-document.create-tree-walker detached.query-selector(\body), NodeFilter.SHOW_ELEMENT
+
+    # Mark the diff-id as a HTML element attribute to the detached DOM tree.
+    #
+    while iframe-node = iframe-walker.next-node!
+      marking-node = marking-walker.next-node!
+
+      if iframe-node._seess-diff-id isnt undefined
+        marking-node.set-attribute SerializablePageDiff.DIFF_ID_ATTR, iframe-node._seess-diff-id
+
+    return detached
 
 #
 # Helper class definition for renderer.
