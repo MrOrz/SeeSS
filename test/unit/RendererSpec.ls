@@ -77,15 +77,15 @@ describe '#applyCSS', (...) !->
     new-css = load-css renderer.iframe.content-window.document, NEW_CSS
 
     # Trigger CSS apply
-    diff <- renderer.applyCSS new-css .then
+    page-diff <- renderer.applyCSS new-css .then
 
-    expect diff.length .to.be 1
+    expect page-diff.diffs.length .to.be 1
 
     # Checking type, elem and the actual difference
-    expect diff.0.type .to.be Renderer.ElementDifference.TYPE_MOD
-    expect diff.0.elem.class-name .to.be 'position-test'
-    expect diff.0.rect.top .to.eql before: 0, after: 10
-    expect diff.0.rect.left .to.eql before: 0, after: 10
+    expect page-diff.diffs.0.type .to.be Renderer.ElementDifference.TYPE_MOD
+    expect page-diff.diffs.0.elem.class-name .to.be 'position-test'
+    expect page-diff.diffs.0.rect.top .to.eql before: 0, after: 10
+    expect page-diff.diffs.0.rect.left .to.eql before: 0, after: 10
 
   it 'distinguishes computed style change', ->
     const NEW_CSS = 'renderer-css-color-test2.css'
@@ -96,15 +96,15 @@ describe '#applyCSS', (...) !->
     new-css = load-css renderer.iframe.content-window.document, NEW_CSS
 
     # Triger CSS apply
-    diff <- renderer.applyCSS new-css .then
+    page-diff <- renderer.applyCSS new-css .then
 
     # there should be only one ElementDifference that reports
     # the color of h1 changed from blue to red.
 
-    expect diff.length .to.be 1
-    expect diff.0.elem.node-name .to.be \H1
-    expect diff.0.computed.color.before .to.be "rgb(0, 0, 255)"
-    expect diff.0.computed.color.after .to.be "rgb(255, 0, 0)"
+    expect page-diff.diffs.length .to.be 1
+    expect page-diff.diffs.0.elem.node-name .to.be \H1
+    expect page-diff.diffs.0.computed.color.before .to.be "rgb(0, 0, 255)"
+    expect page-diff.diffs.0.computed.color.after .to.be "rgb(255, 0, 0)"
 
   it 'distinguishes pseudo-element change', ->
     const NEW_CSS = 'renderer-css-pseudoelem-test.css'
@@ -115,11 +115,11 @@ describe '#applyCSS', (...) !->
     new-css = load-css renderer.iframe.content-window.document, NEW_CSS
 
     # Trigger CSS apply
-    diff <- renderer.applyCSS new-css .then
+    page-diff <- renderer.applyCSS new-css .then
 
-    expect diff.length .to.be 1
-    expect diff.0.elem.class-name .to.be 'position-test'
-    expect diff.0.before-elem.color .to.eql before: 'rgb(0, 0, 0)', after: 'rgb(255, 0, 0)'
+    expect page-diff.diffs.length .to.be 1
+    expect page-diff.diffs.0.elem.class-name .to.be 'position-test'
+    expect page-diff.diffs.0.before-elem.color .to.eql before: 'rgb(0, 0, 0)', after: 'rgb(255, 0, 0)'
 
   it 'works for multiple calls to #applyCSS', ->
     const CSS1 = 'renderer-css-position-test.css'
@@ -131,21 +131,21 @@ describe '#applyCSS', (...) !->
     new-css = load-css renderer.iframe.content-window.document, CSS1
 
     # Trigger CSS apply
-    diff <- renderer.applyCSS new-css .then
+    <- renderer.applyCSS new-css .then
 
     # CSS1 is already tested in another test suite. Go change CSS to CSS2.
     new-css = load-css renderer.iframe.content-window.document, CSS2, CSS1
 
-    diff <- renderer.applyCSS new-css .then
+    page-diff <- renderer.applyCSS new-css .then
 
-    expect diff.length .to.be 1
+    expect page-diff.diffs.length .to.be 1
 
     # Check if the difference equals the change caused by
     # CSS2 --> CSS1.
-    expect diff.0.type .to.be Renderer.ElementDifference.TYPE_MOD
-    expect diff.0.elem.class-name .to.be 'position-test'
-    expect diff.0.rect.top .to.eql before: 10, after: 0
-    expect diff.0.rect.left .to.eql before: 10, after: 0
+    expect page-diff.diffs.0.type .to.be Renderer.ElementDifference.TYPE_MOD
+    expect page-diff.diffs.0.elem.class-name .to.be 'position-test'
+    expect page-diff.diffs.0.rect.top .to.eql before: 10, after: 0
+    expect page-diff.diffs.0.rect.left .to.eql before: 10, after: 0
 
   it 'do not output false alarm when there is no visual difference', ->
     const NEW_CSS = 'renderer-css-invariant-test.css'
@@ -156,9 +156,9 @@ describe '#applyCSS', (...) !->
     new-css = load-css renderer.iframe.content-window.document, NEW_CSS
 
     # Trigger CSS apply
-    diff <- renderer.applyCSS new-css .then
+    page-diff <- renderer.applyCSS new-css .then
 
-    expect diff.length .to.be 0
+    expect page-diff.diffs.length .to.be 0
 
   # TODO
   it.skip 'do not output false alarm when z-index change is introduced by position change', ->
@@ -170,9 +170,9 @@ describe '#applyCSS', (...) !->
     new-css = load-css renderer.iframe.content-window.document, NEW_CSS
 
     # Trigger CSS apply
-    diff <- renderer.applyCSS new-css .then
+    page-diff <- renderer.applyCSS new-css .then
 
-    expect diff.length .to.be 0
+    expect page-diff.diffs.length .to.be 0
 
 
 

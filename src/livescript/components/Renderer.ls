@@ -66,7 +66,8 @@ class Renderer
         @snapshot[idx] = new-elem-snapshot
         idx += 1
 
-      return differences
+      return new SerializablePageDiff do
+        diffs: differences
 
   #
   # Given the new DOM, update the snapshot and perform HTML diff algorithm
@@ -126,7 +127,8 @@ class Renderer
       # There should be no reference to the old iframe after this line.
       @iframe = new-iframe
 
-      return diffs
+      return new SerializablePageDiff do
+        diffs: diffs
 
     # Kick start the new iframe loading.
     @iframe.parent-node.replace-child new-iframe, @iframe
@@ -374,6 +376,27 @@ class ElementSnapshot
       return null
     else
       return new ElementDifference @elem, differences
+
+#
+# An object that collects every detail information needed to re-create
+# the differences of the page in another document.
+#
+class SerializablePageDiff
+  #
+  # @html    HTML of <body> element of "after" state of a page.
+  # @diffs   an array mapping numerical diff-id to sanitized ElementDifference (without @elem).
+  # @ordered ordered array of diff-id.
+  #
+  ({@html, @diffs, @order=[]}) ->
+
+  is-ordered: ->
+    @order.length > 0
+
+  ordered-diffs: ->
+    # Cache the ordered-diffs
+    #
+    @_ordered-diffs ?= @order.map (diff-id) ~> @diffs[diff-id]
+    return @_ordered-diffs
 
 
 # Exports Renderer and ElementDifference

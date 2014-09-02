@@ -78,15 +78,15 @@ describe '#refresh', (...) !->
     # There should be 2 renderers
     expect results.length .to.be 2
 
-    for diff in results
+    for page-diff in results
       # For all renderers,
       # there should be only one ElementDifference that reports
       # the color of h1 changed from blue to red.
       #
-      expect diff.length .to.be 1
-      expect diff.0.elem.node-name .to.be \H1
-      expect diff.0.computed.color.before .to.be "rgb(0, 0, 255)"
-      expect diff.0.computed.color.after .to.be "rgb(255, 0, 0)"
+      expect page-diff.diffs.length .to.be 1
+      expect page-diff.diffs.0.elem.node-name .to.be \H1
+      expect page-diff.diffs.0.computed.color.before .to.be "rgb(0, 0, 255)"
+      expect page-diff.diffs.0.computed.color.after .to.be "rgb(255, 0, 0)"
 
   function load-css doc, new-filename, old-filename = \PLACEHOLDER
     # Hack: Change the CSS filename inside renderer iframe to simulate CSS file change
