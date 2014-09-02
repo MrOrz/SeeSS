@@ -1,11 +1,6 @@
-mock-data-chunk1 =
-  yo: \yoyoyoy1
-
-mock-data-chunk2 =
-  yo2: \yoyoo2
-
-mock-data-chunk3 =
-  yo3: \yoyoo3
+require! {
+  page-diffs: 'json!../../test/fixtures/pagediffs.json'
+}
 
 window.chrome =
   mock: yes
@@ -13,11 +8,16 @@ window.chrome =
   runtime:
     on-message:
       add-listener: (cb) ->
-        <- set-timeout _, 1000
-        cb mock-data-chunk1
-        <- set-timeout _, 300
-        cb mock-data-chunk2
-        <- set-timeout _, 700
-        cb mock-data-chunk3
+        cb type: \PROCESS_START
 
+        function consume
+          cb do
+            type: \PAGE_DIFF
+            data: page-diffs.shift!
 
+          if page-diffs.length > 0
+            set-timeout consume, 500
+          else
+            cb type: \PROCESS_END
+
+        set-timeout consume, 1000

@@ -75,11 +75,11 @@ describe '#refresh', (...) !->
 
     results <- Promise.all graph.refresh new-css .then
 
-    # There should be 2 renderers
+    # There should be 2 SerializablePageDiff instances
     expect results .to.have.length 2
 
     for page-diff in results
-      # For all renderers,
+      # For all SerializablePageDiff instances,
       # there should be only one ElementDifference that reports
       # the color of h1 changed from blue to red.
       #

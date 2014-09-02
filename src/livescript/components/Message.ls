@@ -11,6 +11,9 @@ class Message
     \PAGE_DATA      # [ content -> background ] Sends extracted page data.
     \GET_STATE      # [ content -> background ] Ask current tab state from content script. Expects response.
     \SET_STATE      # [ background -> content ] Tells the content script its state.
+    \PROCESS_START  # [ background -> report ] Tells report page the processing of reload action has started.
+    \PROCESS_END    # [ background -> report ] Tells report page that all processing of reload action is done.
+    \PAGE_DIFF      # [ background -> report ] Pass an SerializablePageDiff to the report page.
 
   (@type, @data) ->
 
@@ -28,5 +31,10 @@ class Message
     # background -> content
     case \SET_STATE
       chrome.tabs.send-message target-tab-id, {@type, @data}
+
+    # background -> report
+    case \PROCESS_START, \PROCESS_END, \PAGE_DIFF
+      chrome.tabs.send-message target-tab-id, {@type, @data}
+
 
 module.exports = Message

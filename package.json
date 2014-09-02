@@ -34,6 +34,7 @@
     "jade": "^1.6.0",
     "jshint": "^2.5.5",
     "jshint-loader": "^0.8.0",
+    "json-loader": "^0.5.1",
     "jsx-loader": "^0.11.0",
     "livescript-loader": "~0.1.1",
     "nib": "^1.0.3",
