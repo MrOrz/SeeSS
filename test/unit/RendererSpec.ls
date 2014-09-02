@@ -81,7 +81,7 @@ describe '#applyCSS', (...) !->
     # Trigger CSS apply
     page-diff <- renderer.applyCSS new-css .then
 
-    expect page-diff.diffs.length .to.be 1
+    expect page-diff.diffs .to.have.length 1
 
     # Checking type, elem and the actual difference
     expect page-diff.diffs.0.type .to.be Renderer.ElementDifference.TYPE_MOD
@@ -103,8 +103,8 @@ describe '#applyCSS', (...) !->
     # there should be only one ElementDifference that reports
     # the color of h1 changed from blue to red.
 
-    expect page-diff.diffs.length .to.be 1
     expect page-diff.diffs.0.elem.node-name .to.be \H1
+    expect page-diff.diffs .to.have.length 1
     expect page-diff.diffs.0.computed.color.before .to.be "rgb(0, 0, 255)"
     expect page-diff.diffs.0.computed.color.after .to.be "rgb(255, 0, 0)"
 
@@ -119,8 +119,8 @@ describe '#applyCSS', (...) !->
     # Trigger CSS apply
     page-diff <- renderer.applyCSS new-css .then
 
-    expect page-diff.diffs.length .to.be 1
     expect page-diff.diffs.0.elem.class-name .to.be 'position-test'
+    expect page-diff.diffs .to.have.length 1
     expect page-diff.diffs.0.before-elem.color .to.eql before: 'rgb(0, 0, 0)', after: 'rgb(255, 0, 0)'
 
   it 'works for multiple calls to #applyCSS', ->
@@ -140,7 +140,7 @@ describe '#applyCSS', (...) !->
 
     page-diff <- renderer.applyCSS new-css .then
 
-    expect page-diff.diffs.length .to.be 1
+    expect page-diff.diffs .to.have.length 1
 
     # Check if the difference equals the change caused by
     # CSS2 --> CSS1.

@@ -31,7 +31,7 @@ describe '#add', (...) !->
     graph.add (new PageData html: '<node0>'), (new RenderGraph.Edge renderer3, \edge-3-0)
 
     # There should be only node 0~3
-    expect graph.renderers.length .to.be 4
+    expect graph.renderers .to.have.length 4
     expect graph.adj-list.4 .to.be undefined
 
 describe '#neighbors-of', (...) !->
@@ -76,14 +76,14 @@ describe '#refresh', (...) !->
     results <- Promise.all graph.refresh new-css .then
 
     # There should be 2 renderers
-    expect results.length .to.be 2
+    expect results .to.have.length 2
 
     for page-diff in results
       # For all renderers,
       # there should be only one ElementDifference that reports
       # the color of h1 changed from blue to red.
       #
-      expect page-diff.diffs.length .to.be 1
+      expect page-diff.diffs .to.have.length 1
       expect page-diff.diffs.0.elem.node-name .to.be \H1
       expect page-diff.diffs.0.computed.color.before .to.be "rgb(0, 0, 255)"
       expect page-diff.diffs.0.computed.color.after .to.be "rgb(255, 0, 0)"
