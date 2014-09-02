@@ -7,6 +7,7 @@ require! {
   Reloader: '../../../vendor/bower_components/livereload-js/src/reloader.coffee'.Reloader
   Timer: '../../../vendor/bower_components/livereload-js/src/timer.coffee'.Timer
   './DiffXMatcher.ls'
+  './SerializablePageDiff.ls'
 }
 
 class Renderer
@@ -112,7 +113,7 @@ class Renderer
         matched-old-elem = matcher.to-old-node elem-snapshot.elem
         unless matched-old-elem
           # No matched old element; the element is new!
-          diffs.push new ElementDifference elem-snapshot.elem, elem-snapshot, ElementDifference.TYPE_ADDED
+          diffs.push new ElementDifference elem-snapshot, ElementDifference.TYPE_ADDED
 
         else
           # Corresponding old element found; calculate element difference
@@ -135,7 +136,7 @@ class Renderer
       unreferenced-snapshots = @snapshot.filter (elem-snapshot) -> elem-snapshot isnt \REFERRED
       diffs ++= @snapshot.filter (elem-snapshot) -> elem-snapshot isnt \REFERRED
         .map (unreferenced-elem-snapshot) ->
-          new ElementDifference unreferenced-elem-snapshot.elem, unreferenced-elem-snapshot, ElementDifference.TYPE_REMOVED
+          new ElementDifference unreferenced-elem-snapshot, ElementDifference.TYPE_REMOVED
 
       # We are done with the old snapshot. Update with new-snapshot now.
       @snapshot = new-snapshot
@@ -283,11 +284,18 @@ class Renderer
 
     return iframe
 
+  # Generate a html string representing
+  #
+
+#
+# Helper class definition for renderer.
+#
+
 # Difference between old element and new element
 #
 # The structure of ElementDifference object is the same as ElementSnapshot instances,
 # except that each property value is replaced by {before: <val-before>, after: <val-after>},
-# and has @elem and @type attributes in addition.
+# and has @type attributes in addition.
 #
 # However, if @type is not TYPE_MOD, the property value will be a scalar term,
 # since there is no "before" or "after" when adding or removing elements.
@@ -297,12 +305,9 @@ class ElementDifference
   @TYPE_ADDED = 1
   @TYPE_REMOVED = 2
 
-  ( @elem, diff-or-snapshot, @type = @@TYPE_MOD ) ->
+  ( diff-or-snapshot, @type = @@TYPE_MOD ) ->
     @ <<< diff-or-snapshot
 
-#
-# Helper class definition for renderer.
-#
 # Defines what information should be remembered for each element in the page snapshot.
 # The page snapshot is an array of ElementSnapshot in DOM tree walk order.
 #
@@ -398,28 +403,7 @@ class ElementSnapshot
     if is-empty
       return null
     else
-      return new ElementDifference @elem, differences
-
-#
-# An object that collects every detail information needed to re-create
-# the differences of the page in another document.
-#
-class SerializablePageDiff
-  #
-  # @html    HTML of <body> element of "after" state of a page.
-  # @diffs   an array mapping numerical diff-id to sanitized ElementDifference (without @elem).
-  # @ordered ordered array of diff-id.
-  #
-  ({@html, @diffs, @order=[]}) ->
-
-  is-ordered: ->
-    @order.length > 0
-
-  ordered-diffs: ->
-    # Cache the ordered-diffs
-    #
-    @_ordered-diffs ?= @order.map (diff-id) ~> @diffs[diff-id]
-    return @_ordered-diffs
+      return new ElementDifference differences
 
 
 # Exports Renderer and ElementDifference
