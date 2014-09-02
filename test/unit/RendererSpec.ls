@@ -68,6 +68,8 @@ describe '#constructor', (...) !->
 
 describe '#applyCSS', (...) !->
 
+  it 'returns a SerializablePageDiff instance which can 100% recover a simple original page'
+
   it 'distinguishes position change', ->
     const NEW_CSS = 'renderer-css-position-test.css'
 
@@ -158,7 +160,7 @@ describe '#applyCSS', (...) !->
     # Trigger CSS apply
     page-diff <- renderer.applyCSS new-css .then
 
-    expect page-diff.diffs.length .to.be 0
+    expect page-diff .to.be null
 
   # TODO
   it.skip 'do not output false alarm when z-index change is introduced by position change', ->
@@ -172,7 +174,7 @@ describe '#applyCSS', (...) !->
     # Trigger CSS apply
     page-diff <- renderer.applyCSS new-css .then
 
-    expect page-diff.diffs.length .to.be 0
+    expect page-diff .to.be null
 
 
 

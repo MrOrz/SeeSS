@@ -59,13 +59,24 @@ class Renderer
         # Calculate new snapshot and the element difference
         new-elem-snapshot = new ElementSnapshot current-node, @iframe.content-window
         element-diff = new-elem-snapshot.diff @snapshot[idx]
+
         if element-diff
+          # Secretly store the diff-id in DOM
+          current-node._seess-diff-id = differences.length
           differences.push element-diff
+        else
+          delete current-node._seess-diff-id
 
         # Update snapshot
         @snapshot[idx] = new-elem-snapshot
         idx += 1
 
+      # Return early if no differences found
+      return null if differences.length is 0
+
+
+      # Produce HTML for SerializablePageDiff
+      # ...
       return new SerializablePageDiff do
         diffs: differences
 
@@ -107,7 +118,13 @@ class Renderer
           # Corresponding old element found; calculate element difference
           old-elem-snapshot = @snapshot[matched-old-elem._seess-snapshot-idx]
           elem-diff = elem-snapshot.diff old-elem-snapshot
-          diffs.push elem-diff if elem-diff
+          if elem-diff
+            # Secretly store the diff-id in DOM
+            elem-snapshot.elem._seess-diff-id = diffs.length
+            diffs.push elem-diff
+          else
+            delete elem-snapshot.elem._seess-diff-id
+
 
           # Mark the referred old element snapshot
           @snapshot[matched-old-elem._seess-snapshot-idx] = \REFERRED
@@ -126,6 +143,12 @@ class Renderer
       # Now we can totally replace the old @iframe with the new one.
       # There should be no reference to the old iframe after this line.
       @iframe = new-iframe
+
+      # Return early if no differences found
+      return null if diffs.length is 0
+
+      # Produce HTML for SerializablePageDiff
+      # ...
 
       return new SerializablePageDiff do
         diffs: diffs
