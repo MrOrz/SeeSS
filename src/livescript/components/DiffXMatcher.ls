@@ -1,12 +1,12 @@
 # Performs diffX Algorithm to find the mapping between the old-tree and the new-tree.
 #
-# Ref-- diffX: an algorithm to detect changes in multi-version XML documents
+# Reference -- diffX: an algorithm to detect changes in multi-version XML documents
 # http://dl.acm.org/citation.cfm?id=1105635
 #
 
 class DiffXMatcher
   # The constructor of DiffXMatcher.
-  # diffX is used as soon as a matcher is instantiated.
+  # The basic diffX algorithm is applied to the two trees when the matcher is instantiated.
   #
   # @old-tree and @new-tree are Document elements.
   # (https://developer.mozilla.org/en-US/docs/Web/API/document)
