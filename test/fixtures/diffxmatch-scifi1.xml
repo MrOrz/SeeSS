@@ -1,0 +1,24 @@
+<scifi-store>
+  <books>
+    <book>
+      <title>Foundation</title>
+      <authors>
+        <author>Issac Asimov</author>
+      </authors>
+      <price>$7.99</price>
+    </book>
+    <book>
+      <title>A Space Odyssey</title>
+      <arthors>
+        <arthor>Arthur C. Clarke</arthor>
+      </arthors>
+      <price>$7.50</price>
+    </book>
+  </books>
+  <movies>
+    <movie>
+      <title>Star Wars Trilogy</title>
+      <price>$45.49</price>
+    </movie>
+  </movies>
+</scifi-store>

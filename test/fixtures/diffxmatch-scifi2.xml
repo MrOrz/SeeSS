@@ -1,0 +1,30 @@
+<scifi-store>
+  <books>
+    <modern>
+      <book>
+        <title>Foundation</title>
+        <authors>
+          <author>Issac Asimov</author>
+        </authors>
+        <price>$7.99</price>
+      </book>
+    </modern>
+    <classic>
+      <book>
+        <title>A Space Odyssey</title>
+        <arthors>
+          <arthor>Arthur C. Clarke</arthor>
+        </arthors>
+        <price>$6.50</price>
+      </book>
+    </classic>
+  </books>
+  <movies>
+    <modern>
+      <movie>
+        <title>I, Robot</title>
+        <price>$19.50</price>
+      </movie>
+    </modern>
+  </movies>
+</scifi-store>

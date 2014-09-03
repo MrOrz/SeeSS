@@ -38,7 +38,8 @@ module.exports = function(config) {
     preprocessors: {
       '**/*Spec.ls': ['webpack'],
       '**/*.html':['html2js'],
-      '**/*.json':['html2js']
+      '**/*.json':['html2js'],
+      '**/*.xml':['html2js']
     },
 
     webpack: {
