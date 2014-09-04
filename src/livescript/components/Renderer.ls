@@ -105,12 +105,17 @@ class Renderer
       # Register @reloader on the new iframe content window
       @reloader = new Reloader @iframe.content-window, {log: -> , error: ->}, Timer
 
-      # Calculate diff
-      matcher = new MappingAlgorithm.diffX @iframe.content-window.document, new-iframe.content-window.document
+      # Match the DOM nodes using Valiente's bottom-up algorithm,
+      # then map the rest of nodes using diffX, as suggested in discussion section of diffX paper.
+      #
+      map-set = MappingAlgorithm.valiente @iframe.content-window.document.body, new-iframe.content-window.document.body
+      MappingAlgorithm.diffX @iframe.content-window.document.body, new-iframe.content-window.document.body, map-set
 
+      # Calculate diff
+      #
       diffs = []
       for elem-snapshot in new-snapshot
-        matched-old-elem = matcher.to-old-node elem-snapshot.elem
+        matched-old-elem = map-set.get-node-to elem-snapshot.elem
         unless matched-old-elem
           # No matched old element; the element is new!
           diffs.push new ElementDifference elem-snapshot, ElementDifference.TYPE_ADDED
