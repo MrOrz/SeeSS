@@ -2,6 +2,8 @@ require! {
   algo: '../../src/livescript/components/MappingAlgorithm.ls'
 }
 
+(...) <-! describe \MappingAlgorithm
+
 describe \MapSet, (...) !->
 
   var map-set
@@ -57,7 +59,7 @@ describe \MapSet, (...) !->
       expect map-set.get-node-from t1.10 .to.be undefined
 
 
-describe \diffX, (...) !->
+describe \#diffX, (...) !->
 
   # Sharted DOMParser instance
   parser = new DOMParser
@@ -231,3 +233,45 @@ describe \diffX, (...) !->
   function expect-mismatch mapset, t1-node, t2-node
     expect mapset.get-node-from(t1-node) .not.to.be t2-node
     expect mapset.get-node-to(t2-node) .not.to.be t1-node
+
+describe \#valiente, (...) !->
+
+  # Sharted DOMParser instance
+  parser = new DOMParser
+  var t1, t2
+
+  # Helper function that returns the first element matching given xpath in specific document.
+  # It is designed to be used like document.querySelector().
+  #
+  # https://developer.mozilla.org/en-US/docs/Web/API/document.evaluate
+  #
+  function query-path doc, xpath
+    doc.evaluate xpath, doc, null, XPathResult.ANY_TYPE, null .iterate-next!
+
+  # Expects the mapset to match xpath1 in t1 and xpath2 in t2
+  #
+  function expect-match mapset, xpath1, xpath2
+    expect mapset.get-node-from(t1 query-path xpath1) .to.be (t2 query-path xpath2)
+
+  it 'matches specified nodes in Figure 3 in Valiente paper', ->
+    t1 := parser.parse-from-string __html__['test/fixtures/valiente-fig3-t1'], 'application/xml'
+    t2 := parser.parse-from-string __html__['test/fixtures/valiente-fig3-t2'], 'application/xml'
+
+    mapset = algo.valiente t1.document-element, t2.document-element
+    expect-match mapset, '/r/a/a',    '/r/a'
+    expect-match mapset, '/r/a/a/a',  '/r/a/a'
+    expect-match mapset, '/r/e',      '/r/e/e'
+    expect-match mapset, '/r/e/e',    '/r/e/e/e'
+    expect-match mapset, '/r/e/e/e',  '/r/e/e/e/e'
+    expect-match mapset, '/r/e/c',    '/r/e/e/c'
+
+  it 'matches specified nodes in Figure 8 in Valiente paper', ->
+    t1 := parser.parse-from-string __html__['test/fixtures/valiente-fig3-t1'], 'application/xml'
+    t2 := parser.parse-from-string __html__['test/fixtures/valiente-fig3-t2'], 'application/xml'
+
+    mapset = algo.valiente t1.document-element, t2.document-element
+
+    expect-match mapset, '/n6/n3',      '//n7/n3'
+    expect-match mapset, '//n3/n2/n1',  '//n3/n2/n1'
+    expect-match mapset, '//n4/n2[1]/n1',  '//n7/n2/n1'
+    expect-match mapset, '//n4/n2[2]/n1',  '//n5/n2/n1'
