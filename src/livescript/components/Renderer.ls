@@ -12,9 +12,9 @@ require! {
 
 class Renderer
   (@page-data) ->
-    @iframe = _generate-iframe @page-data
+    @iframe = generate-iframe @page-data
 
-    @_promise = _load-and-snapshot-page-data @page-data, @iframe
+    @_promise = load-and-snapshot-page-data @page-data, @iframe
     .then (@snapshot) ~>
       # Register @reloader on the new iframe content window
       @reloader = new Reloader @iframe.content-window, {log: -> , error: ->}, Timer
@@ -41,7 +41,7 @@ class Renderer
     @reloader.reload-stylesheet path
 
     # Check if all contents loaded
-    return _register-load-callbacks @iframe.content-window.document
+    return register-load-callbacks @iframe.content-window.document
     .then ~>
       # Wait for pseudo element style to be visible in getComputedStyle
       # https://github.com/akoenig/angular-deckgrid/issues/27#issuecomment-38924697
@@ -77,7 +77,7 @@ class Renderer
         return null
       else
         return new SerializablePageDiff do
-          dom: _generate-detached-html @iframe
+          dom: generate-detached-html @iframe
           doctype: @page-data.doctype
           diffs: differences
 
@@ -97,10 +97,10 @@ class Renderer
       scroll-top: @page-data.scroll-top
       doctype: @page-data.doctype
 
-    new-iframe = _generate-iframe @page-data
+    new-iframe = generate-iframe @page-data
 
     # Load iframe
-    @_promise = _load-and-snapshot-page-data @page-data, new-iframe
+    @_promise = load-and-snapshot-page-data @page-data, new-iframe
     .then (new-snapshot) ~>
       # Register @reloader on the new iframe content window
       @reloader = new Reloader @iframe.content-window, {log: -> , error: ->}, Timer
@@ -150,7 +150,7 @@ class Renderer
         return null
       else
         return new SerializablePageDiff do
-          dom: _generate-detached-html @iframe
+          dom: generate-detached-html @iframe
           doctype: @page-data.doctype
           diffs: diffs
 
@@ -164,7 +164,7 @@ class Renderer
   # Helper function that returns a promise that resolves when all assets
   # are loaded
   #
-  function _register-load-callbacks doc
+  function register-load-callbacks doc
     return new Promise (resolve, reject) ->
 
       # First, check the already loaded elements in the current document
@@ -219,7 +219,7 @@ class Renderer
   # Load the page-data into iframe.
   # Returns a promise that is resolved when all data in iframe is loaded.
   #
-  function _load-and-snapshot-page-data page-data, iframe
+  function load-and-snapshot-page-data page-data, iframe
 
     return new Promise (resolve, reject) ->
       onload = ->
@@ -240,7 +240,7 @@ class Renderer
         iframe-document.replace-child page-data.dom.document-element, iframe-document.document-element
 
         # Register load callback
-        _register-load-callbacks iframe-document .then resolve
+        register-load-callbacks iframe-document .then resolve
 
       if !iframe.content-window
         # If the iframe.content-window is not ready yet, wait until it's ready
@@ -276,7 +276,7 @@ class Renderer
 
   # Generate new iframe using dimensions specified in page-data object
   #
-  function _generate-iframe page-data
+  function generate-iframe page-data
     iframe = document.create-element \iframe
     iframe.set-attribute \sandbox, 'allow-same-origin allow-scripts'
     iframe.width = page-data.width
@@ -287,7 +287,7 @@ class Renderer
   # Generate a detatched DOM HTMLElement that marks diff-id on the elements
   # that is changed by CSS or HTML
   #
-  function _generate-detached-html iframe
+  function generate-detached-html iframe
     iframe-document = iframe.content-window.document
 
     # Deep-copy the <html> element

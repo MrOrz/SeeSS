@@ -6,17 +6,17 @@ const URL_FUNCTION_MATCHER = /url\((['"]?)([^)]+?)\1\)/gim
 class PageData
 
   # Shared parser
-  _dom-parser = new DOMParser
+  dom-parser = new DOMParser
 
   ({@html, @url, @width, @height, @scroll-top, doctype}) ->
-    @dom = _process-html( @html, @url )
-    @doctype = _process-doctype doctype
+    @dom = process-html( @html, @url )
+    @doctype = process-doctype doctype
 
   # Process the links of link[href] and all url()s in <style> or style attributes.
   # Remove the <script> tags.
   #
-  function _process-html (html, base-url)
-    dom = _dom-parser.parse-from-string html, 'text/html'
+  function process-html (html, base-url)
+    dom = dom-parser.parse-from-string html, 'text/html'
 
     # Remove all script tags
     for script-elem in dom.query-selector-all('script')
@@ -34,18 +34,18 @@ class PageData
 
     # Replace url() in style tag
     for style-elem in dom.query-selector-all \style
-      style-elem.innerHTML = _process-url-function(style-elem.innerHTML, base-url)
+      style-elem.innerHTML = process-url-function(style-elem.innerHTML, base-url)
 
     # Replace url() in style attribute of any start tag
     for start-tag in dom.query-selector-all '[style]'
       css = start-tag.get-attribute \style
-      start-tag.set-attribute \style, _process-url-function(css, base-url)
+      start-tag.set-attribute \style, process-url-function(css, base-url)
 
     # Return the fully-processed HTML
     return dom
 
   # Process doctype to a string
-  function _process-doctype doctype
+  function process-doctype doctype
     doctype-string = "<!doctype html"
     if doctype?public-id.length
       doctype-string += " public \"#{doctype.public-id}\""
@@ -57,7 +57,7 @@ class PageData
 
 
   # Process url() in css or style tag
-  function _process-url-function (css, base-url)
+  function process-url-function (css, base-url)
     return css.replace URL_FUNCTION_MATCHER, (matched-url-func, quote, old-url) ->
       return "url('#{new URL old-url, base-url}')"
 
