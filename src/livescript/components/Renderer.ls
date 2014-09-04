@@ -6,7 +6,7 @@ require! {
   Promise: bluebird
   Reloader: '../../../vendor/bower_components/livereload-js/src/reloader.coffee'.Reloader
   Timer: '../../../vendor/bower_components/livereload-js/src/timer.coffee'.Timer
-  './DiffXMatcher.ls'
+  './MappingAlgorithm.ls'
   './SerializablePageDiff.ls'
 }
 
@@ -106,7 +106,7 @@ class Renderer
       @reloader = new Reloader @iframe.content-window, {log: -> , error: ->}, Timer
 
       # Calculate diff
-      matcher = new DiffXMatcher @iframe.content-window.document, new-iframe.content-window.document
+      matcher = new MappingAlgorithm.diffX @iframe.content-window.document, new-iframe.content-window.document
 
       diffs = []
       for elem-snapshot in new-snapshot
