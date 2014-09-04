@@ -8,9 +8,9 @@
 # Variable names are directly adopted from the pseudo-code in the paper.
 #
 # Input T1, T2 : tree, which are essentially DOM Node instances.
-# Output m : MapSet instance that maps the nodes between T1 and T2
+# Output m : TreeTreeMap instance that maps the nodes between T1 and T2
 #
-function diffX (T1, T2, M = new MapSet)
+function diffX (T1, T2, M = new TreeTreeMap)
 
   # index the nodes of T2
   t2-index = generate-index T2
@@ -26,9 +26,9 @@ function diffX (T1, T2, M = new MapSet)
 
     # let y[] be all nodes from T2 equal to x
     ys = equal-nodes-by-index x, t2-index
-    Mpp = new MapSet
+    Mpp = new TreeTreeMap
     for y in ys when !M.has(null, y)
-      Mp = new MapSet
+      Mp = new TreeTreeMap
       match-fragment x, y, M, Mp
       Mpp = Mp if Mp.size! > Mpp.size!
 
@@ -58,9 +58,9 @@ function diffX (T1, T2, M = new MapSet)
 # Variable names are directly adopted from the pseudo-code in the paper.
 #
 # Input T1, T2 : tree, which are essentially DOM Node instances.
-# Output m : MapSet instance that maps the nodes between T1 and T2
+# Output m : TreeTreeMap instance that maps the nodes between T1 and T2
 #
-function valiente (T1, T2, M = new MapSet)
+function valiente (T1, T2, M = new TreeTreeMap)
   G = new DAG # The compacted directed acyclic graph representation of T1 and T2
   K = new WeakMap # A map of nodes of T1 and T2 to nodes of G
 
@@ -78,14 +78,14 @@ function valiente (T1, T2, M = new MapSet)
 # Procedure "mapping" in Valeiente's paper
 #
 # Input T1, T2: tree, g: graph
-# Output m : MapSet instance that maps the nodes between T1 and T2
+# Output m : TreeTreeMap instance that maps the nodes between T1 and T2
 #
 !function mapping T1, T2, K, M
   ...
 
-# A set of ordered pairs (x, y), where x is a node of T1 and y is a node of T2.
+# Mapping a node x in a tree to its corresponding node y in another tree.
 #
-class MapSet
+class TreeTreeMap
   ->
     @_keys = [] # For merging
     @_map = new WeakMap
@@ -101,10 +101,10 @@ class MapSet
     @_map.set x, y
     @_reverse-map.set y, x
 
-  # Merge in another MapSet instance m
-  merge: (m) !->
-    for x in m._keys
-      @add x, m.get-node-from(x)
+  # Merge in another TreeTreeMap instance ttmap
+  merge: (ttmap) !->
+    for x in ttmap._keys
+      @add x, ttmap.get-node-from(x)
 
   # See if (x, y) mapping belongs to the set.
   # If x or y is null, it is considered to be a wildcard.
@@ -130,7 +130,7 @@ class MapSet
     @_map.get x
 
 
-exports <<< {MapSet, diffX, valiente}
+exports <<< {TreeTreeMap, diffX, valiente}
 
 
 #
@@ -249,3 +249,8 @@ class DAG
     add-child: (dag-node) ->
       @_child-idx.push dag-node._idx
 
+# Mapping a node in a tree to the corresponding node in a DAG instance.
+#
+class TreeDAGMap
+  ->
+    ...
