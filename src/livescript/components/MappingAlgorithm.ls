@@ -7,49 +7,49 @@
 #
 # Variable names are directly adopted from the pseudo-code in the paper.
 #
-# Input t1, t2 : tree, which are essentially DOM Node instances.
-# Output m : MapSet instance that maps the nodes between t1 and t2
+# Input T1, T2 : tree, which are essentially DOM Node instances.
+# Output m : MapSet instance that maps the nodes between T1 and T2
 #
-function diffX (t1, t2, m = new MapSet)
+function diffX (T1, T2, M = new MapSet)
 
-  # index the nodes of t2
-  t2-index = generate-index t2
+  # index the nodes of T2
+  t2-index = generate-index T2
 
-  # traverse t1 in a level-order sequence
-  level-order-iterator = LevelOrderIterator(t1)
+  # traverse T1 in a level-order sequence
+  level-order-iterator = LevelOrderIterator(T1)
   until (it = level-order-iterator.next!).done
     # let x be the current node
     x = it.value
 
-    if m.has x
+    if M.has x
       continue # skip current node
 
-    # let y[] be all nodes from t2 equal to x
+    # let y[] be all nodes from T2 equal to x
     ys = equal-nodes-by-index x, t2-index
-    mpp = new MapSet
-    for y in ys when !m.has(null, y)
-      mp = new MapSet
-      match-fragment x, y, m, mp
-      mpp = mp if mp.size! > mpp.size!
+    Mpp = new MapSet
+    for y in ys when !M.has(null, y)
+      Mp = new MapSet
+      match-fragment x, y, M, Mp
+      Mpp = Mp if Mp.size! > Mpp.size!
 
-    m.merge mpp
+    M.merge Mpp
 
-  return m
+  return M
 
 
 # Recursive part of basic diffX Algorithm
 # Input x, y: node, m: map
 # Output mp : map
 #
-!function match-fragment x, y, m, mp
-  if !m.has(x) and !m.has(null, y) and equals(x, y)
-    mp.add x, y
+!function match-fragment x, y, M, Mp
+  if !M.has(x) and !M.has(null, y) and equals(x, y)
+    Mp.add x, y
 
     # for i = 1 to minimum of number of children between x and y
     x-children = children-of x
     y-children = children-of y
     for i from 0 to Math.min(x-children.length, y-children.length)-1
-      match-fragment x-children[i], y-children[i], m, mp
+      match-fragment x-children[i], y-children[i], M, Mp
 
 # Valeiente's bottom-up mapping algoritm
 # Reference: An Efficient Bottom-Up Distance between Trees
@@ -57,33 +57,33 @@ function diffX (t1, t2, m = new MapSet)
 #
 # Variable names are directly adopted from the pseudo-code in the paper.
 #
-# Input t1, t2 : tree, which are essentially DOM Node instances.
-# Output m : MapSet instance that maps the nodes between t1 and t2
+# Input T1, T2 : tree, which are essentially DOM Node instances.
+# Output m : MapSet instance that maps the nodes between T1 and T2
 #
-function valiente (t1, t2, m = new MapSet)
-  g = new DAG # The compacted directed acyclic graph representation of t1 and t2
-  k = new WeakMap # A map of nodes of t1 and t2 to nodes of G
+function valiente (T1, T2, M = new MapSet)
+  G = new DAG # The compacted directed acyclic graph representation of T1 and T2
+  K = new WeakMap # A map of nodes of T1 and T2 to nodes of G
 
-  compact t1, t2, g, k
-  mapping t1, t2, k, m
+  compact T1, T2, G, K
+  mapping T1, T2, K, M
 
 # Procedure "compact" in Valeiente's paper
 #
-# Input t1, t2: tree, g: graph
-# Output k : map of nodes of t1 and t2 to nodes of G
+# Input T1, T2: tree, g: graph
+# Output k : map of nodes of T1 and T2 to nodes of G
 #
-!function compact t1, t2, g, k
+!function compact T1, T2, G, K
   ...
 
 # Procedure "mapping" in Valeiente's paper
 #
-# Input t1, t2: tree, g: graph
-# Output m : MapSet instance that maps the nodes between t1 and t2
+# Input T1, T2: tree, g: graph
+# Output m : MapSet instance that maps the nodes between T1 and T2
 #
-!function mapping t1, t2, k, m
+!function mapping T1, T2, K, M
   ...
 
-# A set of ordered pairs (x, y), where x is a node of t1 and y is a node of t2.
+# A set of ordered pairs (x, y), where x is a node of T1 and y is a node of T2.
 #
 class MapSet
   ->
