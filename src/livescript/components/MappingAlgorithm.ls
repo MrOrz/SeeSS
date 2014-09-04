@@ -51,12 +51,37 @@ function diffX (t1, t2, m = new MapSet)
     for i from 0 to Math.min(x-children.length, y-children.length)-1
       match-fragment x-children[i], y-children[i], m, mp
 
+# Valeiente's bottom-up mapping algoritm
+# Reference: An Efficient Bottom-Up Distance between Trees
+# http://www.cs.upc.edu/~valiente/abs-spire-2001.html
 #
+# Variable names are directly adopted from the pseudo-code in the paper.
 #
+# Input t1, t2 : tree, which are essentially DOM Node instances.
+# Output m : MapSet instance that maps the nodes between t1 and t2
 #
 function valiente (t1, t2, m = new MapSet)
+  g = new DAG # The compacted directed acyclic graph representation of t1 and t2
+  k = new WeakMap # A map of nodes of t1 and t2 to nodes of G
+
+  compact t1, t2, g, k
+  mapping t1, t2, k, m
+
+# Procedure "compact" in Valeiente's paper
+#
+# Input t1, t2: tree, g: graph
+# Output k : map of nodes of t1 and t2 to nodes of G
+#
+!function compact t1, t2, g, k
   ...
 
+# Procedure "mapping" in Valeiente's paper
+#
+# Input t1, t2: tree, g: graph
+# Output m : MapSet instance that maps the nodes between t1 and t2
+#
+!function mapping t1, t2, k, m
+  ...
 
 # A set of ordered pairs (x, y), where x is a node of t1 and y is a node of t2.
 #
@@ -190,3 +215,37 @@ function generate-index t
 #
 function equal-nodes-by-index x, idx
   return idx[x.node-type][label-of(x)] || []
+
+# Directed Acyclic Graph used in Valiente's bottom-up algorithm
+#
+class DAG
+
+  ->
+    @_nodes = []
+
+  # Returns the new Node's instance
+  #
+  add-node: (label, height=0)->
+    @_nodes.push new DAGNode(label, height, @, @_nodes.length)
+
+  # The Graph Nodes in DAG
+  #
+  class DAGNode
+    (@label, @height, @_graph, @_idx)->
+      @_child-idx = [] # An array of DAGNode index in parent DAG _nodes array
+
+    # Return an array of references pointing to the DAGNode instances
+    #
+    children: ->
+      @_child-idx.map (idx) ~> @_graph._nodes[idx]
+
+    # Return how many children the DAGnode has
+    #
+    outdegree: ->
+      @_child-idx.length
+
+    # Add a DAGNode instance as a child
+    #
+    add-child: (dag-node) ->
+      @_child-idx.push dag-node._idx
+
