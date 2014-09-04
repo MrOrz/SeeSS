@@ -1,13 +1,14 @@
 # Algorithms that finds the mapping between the old-tree and the new-tree
 #
 
-
 # The basic diffX algorithm (Algorithm 1 in diffX paper)
 # Reference -- diffX: an algorithm to detect changes in multi-version XML documents
 # http://dl.acm.org/citation.cfm?id=1105635
 #
+# Variable names are directly adopted from the pseudo-code in the paper.
+#
 # Input t1, t2 : tree, which are essentially DOM Node instances.
-# Output m : map
+# Output m : MapSet instance that maps the nodes between t1 and t2
 #
 function diffX (t1, t2, m = new MapSet)
 
@@ -36,7 +37,7 @@ function diffX (t1, t2, m = new MapSet)
   return m
 
 
-# recursive part of basic diffX Algorithm
+# Recursive part of basic diffX Algorithm
 # Input x, y: node, m: map
 # Output mp : map
 #
