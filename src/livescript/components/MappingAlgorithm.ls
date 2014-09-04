@@ -94,6 +94,8 @@ class TreeTreeMap
   size: ->
     @_keys.length
 
+  # Add a mapping that maps node x in a tree to node y in another tree
+  #
   add: (x, y) ->
     return if @_map.has x
 
@@ -253,4 +255,27 @@ class DAG
 #
 class TreeDAGMap
   ->
-    ...
+    @_map = new WeakMap
+    @_reverse-map = new WeakMap
+
+  # Add a mapping that maps a tree node to a DAGNode instance
+  #
+  add: (tree-node, dag-node) ->
+    return if @_map.has tree-node
+
+    @_map.set tree-node, dag-node
+
+    if @_reverse-map.has dag-node
+      @_reverse-map.get dag-node .push tree-node
+    else
+      @_reverse-map.set dag-node, [tree-node]
+
+  # Returns an array of tree nodes that maps to specified tree node
+  #
+  get-nodes-to: (dag-node) ->
+    @_reverse-map.get dag-node or []
+
+  # Returns the DAGNode instance that maps from specified tree node
+  #
+  get-node-from: (tree-node) ->
+    @_map.get tree-node
