@@ -197,62 +197,6 @@ describe \#diffX, (...) !->
       expect-match ttmap, t1-walker.current-node, t2-walker.current-node
     while t1-walker.next-node! && t2-walker.next-node!
 
-  #
-  # TODO:
-  #
-  # The _match-fragment in diffX paper always matches #span2 mistakenly
-  # when doing <body>'s mapping in _mapping function,
-  # because the for loop in _match-fragment is very sensitive to order of elements.
-  #
-  it.skip 'maps trees with two element nodes swapped', ->
-
-    # Move #span2 in front of #span1
-    t2.body.insert-before t2.get-element-by-id(\span2), t2.get-element-by-id(\span1)
-
-    # Check if the node are really swapped in t2 by checking the first span in t2
-    # and span1 should be the last child in body
-    expect t2.query-selector(\span).id .to.be \span2
-    expect t2.query-selector('#span1:last-child') .not.to.be null
-
-    ttmap = algo.diffX t1.body, t2.body
-
-    # Expect the first found span in both trees are not matched
-    expect-mismatch ttmap, t1.query-selector(\span), t1.query-selector(\span)
-
-    # Check if span1 and span2 are correctly mapped
-    expect-match ttmap, t1.get-element-by-id(\span1), t2.get-element-by-id(\span1)
-    expect-match ttmap, t1.get-element-by-id(\span2), t2.get-element-by-id(\span2)
-
-  #
-  # TODO:
-  #
-  # The _match-fragment in diffX paper always matches #span2 mistakenly
-  # when doing <body>'s mapping in _mapping function,
-  # because the for loop in _match-fragment is very sensitive to order of elements.
-  #
-  it.skip 'maps trees with hierarchical deepened subtrees', ->
-    t1-divs = t1.query-selector-all \div
-    t2-divs = t2.query-selector-all \div
-
-    # Create a new div that collects all div in body.
-    new-div = t2.create-element \div
-    t2.body.insert-before new-div, t2-divs[0]
-
-    for div in t2-divs
-      new-div.insert-before div
-
-    # Check the nested div structure
-    expect t2.query-selector-all 'div>div' .to.have.length 3
-
-    ttmap = algo.diffX t1.body, t2.body
-
-    # The divs between of two trees should still be matched
-    for t1-div, idx in t1-divs
-      expect-match ttmap, t1-div, t2-divs[idx]
-
-    # The #span1 should still be matched
-    expect-match ttmap, t1.get-element-by-id(\span1), t2.get-element-by-id(\span1)
-
 
   it 'maps trees with subtree addition', ->
     t1-divs = t1.query-selector-all \div
@@ -355,3 +299,84 @@ describe \#valiente, (...) !->
     expect-match ttmap, '//n3/n2/n1',  '//n3/n2/n1'
     expect-match ttmap, '//n4/n2[1]/n1',  '//n7/n2/n1'
     expect-match ttmap, '//n4/n2[2]/n1',  '//n5/n2/n1'
+
+describe '#diffX - #valiente combo', (...) !->
+  # The _match-fragment in diffX paper always matches #span2 mistakenly
+  # when doing <body>'s mapping in _mapping function,
+  # because the for loop in _match-fragment is very sensitive to order of elements.
+  #
+  # We must pass the mapping through valiente before getting to diffX for these cases.
+  #
+
+
+  # Sharted DOMParser instance
+  parser = new DOMParser
+
+  # The two trees as test data.
+  var t1, t2
+
+  # t1 and t2 resets for each test, so that each test gets a fresh copy
+  #
+  before-each ->
+    simple-html-str = __html__['test/fixtures/diffx-simple.html']
+    t1 := parser.parse-from-string simple-html-str, 'text/html'
+    t2 := parser.parse-from-string simple-html-str, 'text/html'
+
+
+  it 'maps trees with two element nodes swapped', ->
+
+    # Move #span2 in front of #span1
+    t2.body.insert-before t2.get-element-by-id(\span2), t2.get-element-by-id(\span1)
+
+    # Check if the node are really swapped in t2 by checking the first span in t2
+    # and span1 should be the last child in body
+    expect t2.query-selector(\span).id .to.be \span2
+    expect t2.query-selector('#span1:last-child') .not.to.be null
+
+    ttmap = algo.valiente t1.body, t2.body
+    algo.diffX t1.body, t2.body, ttmap
+
+    # Expect the first found span in both trees are not matched
+    expect-mismatch ttmap, t1.query-selector(\span), t1.query-selector(\span)
+
+    # Check if span1 and span2 are correctly mapped
+    expect-match ttmap, t1.get-element-by-id(\span1), t2.get-element-by-id(\span1)
+    expect-match ttmap, t1.get-element-by-id(\span2), t2.get-element-by-id(\span2)
+
+  it 'maps trees with hierarchical deepened subtrees', ->
+    t1-divs = t1.query-selector-all \div
+    t2-divs = t2.query-selector-all \div
+
+    # Create a new div that collects all div in body.
+    new-div = t2.create-element \div
+    t2.body.insert-before new-div, t2-divs[0]
+
+    for div in t2-divs
+      new-div.insert-before div
+
+    # Check the nested div structure
+    expect t2.query-selector-all 'div>div' .to.have.length 3
+
+    ttmap = algo.valiente t1.body, t2.body
+    algo.diffX t1.body, t2.body, ttmap
+
+    # The divs between of two trees should still be matched
+    for t1-div, idx in t1-divs
+      expect-match ttmap, t1-div, t2-divs[idx]
+
+    # The #span1 should still be matched
+    expect-match ttmap, t1.get-element-by-id(\span1), t2.get-element-by-id(\span1)
+
+  # Expects the ttmap to match t1-node to t2-node.
+  # Tests get-node-from and get-node-to together.
+  #
+  function expect-match ttmap, t1-node, t2-node
+    expect ttmap.get-node-from(t1-node) .to.be t2-node
+    expect ttmap.get-node-to(t2-node) .to.be t1-node
+
+  # Expects the ttmap not to match t1-node to t2-node.
+  # Tests get-node-from and get-node-to together.
+  #
+  function expect-mismatch ttmap, t1-node, t2-node
+    expect ttmap.get-node-from(t1-node) .not.to.be t2-node
+    expect ttmap.get-node-to(t2-node) .not.to.be t1-node

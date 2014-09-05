@@ -1,5 +1,9 @@
 # Algorithms that finds the mapping between the old-tree and the new-tree
 #
+# [Notice] TreeWalker should not be used in this module, since in our data model,
+# element attributes are considered to be childrens, but there is no way they appear
+# during a TreeWalker traversal.
+#
 
 # The basic diffX algorithm (Algorithm 1 in diffX paper)
 # Reference -- diffX: an algorithm to detect changes in multi-version XML documents
@@ -17,9 +21,9 @@ function diffX (T1, T2, M = new TreeTreeMap)
 
   # traverse T1 in a level-order sequence
   level-order-iterator = LevelOrderIterator(T1)
-  until (it = level-order-iterator.next!).done
+  until (cursor = level-order-iterator.next!).done
     # let x be the current node
-    x = it.value
+    x = cursor.value
 
     if M.has x
       continue # skip current node
@@ -91,12 +95,11 @@ function valiente (T1, T2, M = new TreeTreeMap)
   L = {} # Map of node label to nodes of G
   Q = [] # A queue of nodes of T1 & T2
 
-  walker1 = T1.owner-document.create-tree-walker T1, NodeFilter.SHOW_ELEMENT .|. NodeFilter.SHOW_TEXT
-  walker2 = T2.owner-document.create-tree-walker T2, NodeFilter.SHOW_ELEMENT .|. NodeFilter.SHOW_TEXT
+  for iterator in [PreorderIterator(T1), PreorderIterator(T2)]
 
-  for walker in [walker1, walker2]
-    do
-      v = walker.current-node
+    until (cursor = iterator.next!).done
+      v = cursor.value
+
       children-count = children-count-of v
       outdegree.set v, children-count
       children.set v, children-count
@@ -110,11 +113,9 @@ function valiente (T1, T2, M = new TreeTreeMap)
         if L[leaf-label] is undefined
           L[leaf-label] = G.add-node leaf-label
 
-    while walker.next-node!
-
   do
-    # console.log '[valiente#compact] Q:', Q.map -> it.node-name
-    # console.log '[valiente#compact] G:', G._nodes.map -> "<#{it.label} #{it.height} [#{it._child-idx}]>"
+    # console.log '[valiente#compact] Q:', Q.map -> label-of it .replace /[\n|\r]/g, ''
+    # console.log '[valiente#compact] G:', G._nodes.map -> "<#{it.label.replace(/[\n|\r]/g,'')} #{it.height} [#{it._child-idx}]>"
     v = Q.shift!
 
     if outdegree.get(v) is 0
@@ -150,11 +151,13 @@ function valiente (T1, T2, M = new TreeTreeMap)
           w.add-child K.get-node-from u
 
     unless is-root v
-      children-count = children.get(v.parent-node) - 1
-      children.set v.parent-node, children-count
+      v-parent = parent-of v
+
+      children-count = children.get(v-parent) - 1
+      children.set v-parent, children-count
 
       if children-count is 0
-        Q.push v.parent-node
+        Q.push v-parent
 
   until Q.length is 0
 
@@ -168,13 +171,13 @@ function valiente (T1, T2, M = new TreeTreeMap)
   # Get the right most node in T2, and calculate the preorder of each node in T2
   preorder = new WeakMap
 
-  t2-walker = T2.owner-document.create-tree-walker T2
+  var rightmost-in-t2
+  t2-iterator = PreorderIterator T2
   t2-idx = 0
-  do
-    preorder.set t2-walker.current-node, t2-idx
+  until (cursor = t2-iterator.next!).done
+    preorder.set cursor.value, t2-idx
     t2-idx += 1
-  while t2-walker.next-node!
-  rightmost-in-t2 = t2-walker.current-node
+    rightmost-in-t2 = cursor.value
 
   t2-document = T2.owner-document # To see if a node is in T2
 
@@ -193,15 +196,11 @@ function valiente (T1, T2, M = new TreeTreeMap)
           w = u
 
       if Kv is K.get-node-from w
-        t1-walker = T1.owner-document.create-tree-walker v
-        t2-walker = T2.owner-document.create-tree-walker w
+        t1-iterator = PreorderIterator v
+        t2-iterator = PreorderIterator w
 
-        do
-          s = t1-walker.current-node
-          t = t2-walker.current-node
-
-          M.add s, t
-        while t1-walker.next-node! and t2-walker.next-node!
+        until (cursor1 = t1-iterator.next!).done or (cursor2 = t2-iterator.next!).done
+          M.add cursor1.value, cursor2.value
 
 
 # Mapping a node x in a tree to its corresponding node y in another tree.
@@ -348,12 +347,35 @@ function LevelOrderIterator root-node
 
   return do
     next: ->
-      current-node = queue.shift!
-      queue ++= children-of current-node
+      if queue.length is 0
+        return done: true
+      else
+        current-node = queue.shift!
+        queue ++= children-of current-node
 
-      return do
-        value: current-node
-        done: queue.length == 0
+        return do
+          value: current-node
+          done: false
+
+# An iterator generator that performs a preorder traversal on a DOM tree using,
+# which is essentially DFS of a tree.
+#
+# Iterator protocol: http://goo.gl/kcgoFi
+#
+function PreorderIterator root-node
+  stack = [root-node]
+
+  return do
+    next: ->
+      if stack.length is 0
+        return done: true
+      else
+        current-node = stack.pop!
+        stack ++= children-of current-node .reverse!
+
+        return do
+          value: current-node
+          done: false
 
 # Returns an array of child nodes, including element, attribute and text nodes.
 # Do not include other nodes like comment nodes.
@@ -369,6 +391,12 @@ function children-of x
   else
     # Text nodes and attribute nodes are leaf nodes
     return []
+
+function parent-of x
+  if x.node-type is Node.ATTRIBUTE_NODE
+    return x.owner-element
+  else
+    return x.parent-node
 
 function children-count-of x
   if x.node-type is Node.ELEMENT_NODE
@@ -401,10 +429,10 @@ function node-equal x, y
 function generate-index t
   idx = {}
   idx[Node.ELEMENT_NODE] = {}; idx[Node.TEXT_NODE] = {}; idx[Node.ATTRIBUTE_NODE] = {}
-  walker = t.owner-document.create-tree-walker t, NodeFilter.SHOW_ELEMENT .|. NodeFilter.SHOW_TEXT
+  iterator = PreorderIterator t
 
-  do
-    current-node = walker.current-node
+  until (cursor = iterator.next!).done
+    current-node = cursor.value
     arr = idx[current-node.node-type][label-of(current-node)] ?= []
     arr.push current-node
 
@@ -413,7 +441,6 @@ function generate-index t
         arr = idx[Node.ATTRIBUTE_NODE][label-of(attribute-node)] ?= []
         arr.push attribute-node
 
-  while walker.next-node!
 
   return idx
 
@@ -461,4 +488,4 @@ function array-equal nodes1, nodes2
 # Returns if a TreeNode is the root of the tree
 #
 function is-root node
-  node.parent-node is node.owner-document
+  parent-of(node) is node.owner-document
