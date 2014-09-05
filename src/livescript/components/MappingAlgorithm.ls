@@ -42,7 +42,7 @@ function diffX (T1, T2, M = new TreeTreeMap)
 # Output mp : map
 #
 !function match-fragment x, y, M, Mp
-  if !M.has(x) and !M.has(null, y) and equals(x, y)
+  if !M.has(x) and !M.has(null, y) and node-equal(x, y)
     Mp.add x, y
 
     # for i = 1 to minimum of number of children between x and y
@@ -62,7 +62,7 @@ function diffX (T1, T2, M = new TreeTreeMap)
 #
 function valiente (T1, T2, M = new TreeTreeMap)
   G = new DAG # The compacted directed acyclic graph representation of T1 and T2
-  K = new WeakMap # A map of nodes of T1 and T2 to nodes of G
+  K = new TreeDAGMap # A map of nodes of T1 and T2 to nodes of G
 
   compact T1, T2, G, K
   mapping T1, T2, K, M
@@ -76,7 +76,87 @@ function valiente (T1, T2, M = new TreeTreeMap)
 # Output K : TreeDAGMap instance that maps nodes of T1 and T2 to nodes of G
 #
 !function compact T1, T2, G, K
-  ...
+
+  # First, calculate the height of each node in T1 and T2.
+  height = new WeakMap  # Maps a tree node to the height
+  compute-height T1, height
+  compute-height T2, height
+
+  # Initialization of G and chidren[]
+  #
+  # Combine the loop in line 3-7 and line 9-14 in Figure 6 alltogether
+  #
+  children = new WeakMap  # Maps a tree node to unprocessed child count, which may be edited
+  outdegree = new WeakMap # Maps a tree node to child count, which is constant if tree structures doesn't change
+  L = {} # Map of node label to nodes of G
+  Q = [] # A queue of nodes of T1 & T2
+
+  walker1 = T1.owner-document.create-tree-walker T1, NodeFilter.SHOW_ELEMENT .|. NodeFilter.SHOW_TEXT
+  walker2 = T2.owner-document.create-tree-walker T2, NodeFilter.SHOW_ELEMENT .|. NodeFilter.SHOW_TEXT
+
+  for walker in [walker1, walker2]
+    do
+      v = walker.current-node
+      children-count = children-count-of v
+      outdegree.set v, children-count
+      children.set v, children-count
+
+      if children-count is 0
+        Q.push v
+
+        leaf-label = label-of v
+
+        # Only add-node once for each leaf-label
+        if L[leaf-label] is undefined
+          L[leaf-label] = G.add-node leaf-label
+
+    while walker.next-node!
+
+  do
+    console.log '[valiente#compact] Q:', Q.map -> it.node-name
+    console.log '[valiente#compact] G:', G._nodes.map -> "<#{it.label} #{it.height}>"
+    v = Q.shift!
+
+    if outdegree.get(v) is 0
+      K.add v, L[label-of v]
+
+    else
+      found = false
+
+      iterator = G.generate-reverse-iterator!
+      until (cursor = iterator.next!).done
+        w = cursor.value
+
+        if height.get(v) isnt w.height
+          break
+
+        if outdegree.get(v) != w.outdegree! or label-of(v) != w.label
+          continue
+
+        V = children-of v .map -> K.get-node-from it
+        W = w.children!
+
+        if array-equal V, W
+          K.add v, w
+          found = true
+          break
+
+      if not found
+        v-label = label-of v
+        w = G.add-node v-label, height.get v
+        K.add v, w
+
+        for u in children-of v
+          w.add-child K.get-node-from u
+
+    unless is-root v
+      children-count = children.get(v.parent-node) - 1
+      children.set v.parent-node, children-count
+
+      if children-count is 0
+        Q.push v.parent-node
+
+  until Q.length is 0
 
 # Procedure "mapping" in Valeiente's paper
 #
@@ -84,7 +164,46 @@ function valiente (T1, T2, M = new TreeTreeMap)
 # Output M : TreeTreeMap instance that maps the nodes between T1 and T2
 #
 !function mapping T1, T2, K, M
-  ...
+
+  # Get the right most node in T2, and calculate the preorder of each node in T2
+  preorder = new WeakMap
+
+  t2-walker = T2.owner-document.create-tree-walker T2
+  t2-idx = 0
+  do
+    current-node = t2-walker.current-node
+    preorder.set current-node, t2-idx
+    t2-idx += 1
+  while t2-walker.next-node!
+  rightmost-in-t2 = t2-walker.current-node
+
+  t2-document = T2.owner-document # To see if a node is in T2
+
+  # Start algorithm
+  iterator = LevelOrderIterator T1
+  until (cursor = iterator.next!).done
+    v = cursor.value
+    Kv = K.get-node-from v # K[v], the mapped graph node from tree node v
+
+    if M.get-node-from(v) is undefined
+      w = rightmost-in-t2
+
+      U = K.get-nodes-to(Kv)
+      for u in U when u.owner-document is t2-document
+        if M.get-node-to(v) is undefined and preorder.get(u) < preorder.get(v)
+          w = u
+
+      if Kv is K.get-node-from w
+        t1-walker = T1.owner-document.create-tree-walker v
+        t2-walker = T2.owner-document.create-tree-walker w
+
+        do
+          s = t1-walker.current-node
+          t = t2-walker.current-node
+
+          M.add s, t
+        while t1-walker.next-node! and t2-walker.next-node!
+
 
 # Mapping a node x in a tree to its corresponding node y in another tree.
 #
@@ -252,6 +371,13 @@ function children-of x
     # Text nodes and attribute nodes are leaf nodes
     return []
 
+function children-count-of x
+  if x.node-type is Node.ELEMENT_NODE
+    return x.attributes.length + Array::filter.call(x.child-nodes, (node)->node.node-type <= 3).length
+  else
+    # Text nodes and attribute nodes are leaf nodes
+    return 0
+
 # Extracts label from a node x, as specified in section 3.1 Data Model
 # in the diffX paper.
 #
@@ -265,7 +391,7 @@ function label-of x
 # A comparator that checks if a node x equals node y,
 # as specified in section 3.1 Data Model in the diffX paper.
 #
-function equals x, y
+function node-equal x, y
   return x.node-type is y.node-type and label-of(x) is label-of(y)
 
 # Generates index of a DOM tree t,
@@ -276,7 +402,7 @@ function equals x, y
 function generate-index t
   idx = {}
   idx[Node.ELEMENT_NODE] = {}; idx[Node.TEXT_NODE] = {}; idx[Node.ATTRIBUTE_NODE] = {}
-  walker = document.create-tree-walker t, NodeFilter.SHOW_ELEMENT .|. NodeFilter.SHOW_TEXT
+  walker = t.owner-document.create-tree-walker t, NodeFilter.SHOW_ELEMENT .|. NodeFilter.SHOW_TEXT
 
   do
     current-node = walker.current-node
@@ -298,3 +424,42 @@ function generate-index t
 #
 function equal-nodes-by-index x, idx
   return idx[x.node-type][label-of(x)] || []
+
+
+# Recursively calculate the height of the current node,
+# which by definition is the largest distance from the leaves of the subtree
+# that roots the current node.
+#
+# Output height-map : Maps a tree node to its height
+#
+# http://www.csie.ntnu.edu.tw/~u91029/Tree.html
+#
+function compute-height current-node, height-map
+  height = 0
+
+  for child in children-of current-node
+    h = 1 + compute-height child, height-map
+    height = h if height < h
+
+  # Set output
+  height-map.set current-node, height
+
+  return height # Recursive return
+
+
+# Returns if two lists of DAGNode are equal
+#
+function array-equal nodes1, nodes2
+  return false if nodes1.length isnt nodes2.length
+
+  for node1, idx in nodes1
+    node2 = nodes2[idx]
+
+    return false if node1 isnt node2
+
+  return true
+
+# Returns if a TreeNode is the root of the tree
+#
+function is-root node
+  node.parent-node is node.owner-document
