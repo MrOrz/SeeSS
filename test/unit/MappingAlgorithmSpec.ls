@@ -39,24 +39,93 @@ describe \TreeTreeMap, (...) !->
       expect (-> ttmap.has t1.100, t2.100) .to.throw-error!
 
   describe '#merge', (...) !->
-    it 'merges two TreeTreeMaps', ->
-      ttmap2 = new algo.TreeTreeMap
-      ttmap2.add t1.10, t2.10
+    <- it 'merges two TreeTreeMaps'
+    ttmap2 = new algo.TreeTreeMap
+    ttmap2.add t1.10, t2.10
 
-      ttmap.merge ttmap2
+    ttmap.merge ttmap2
 
-      expect ttmap.has t1.10, t2.10 .to.be true
-      expect ttmap.has t2.10, t1.10 .to.be false
-      expect ttmap.has null,  t2.10 .to.be true
-      expect ttmap.has t1.10, null  .to.be true
-      expect ttmap.has null,  t2.11 .to.be false
+    expect ttmap.has t1.10, t2.10 .to.be true
+    expect ttmap.has t2.10, t1.10 .to.be false
+    expect ttmap.has null,  t2.10 .to.be true
+    expect ttmap.has t1.10, null  .to.be true
+    expect ttmap.has null,  t2.11 .to.be false
 
   describe '#get-node-*', (...) !->
-    it 'returns the mapped nodes correctly', ->
-      expect ttmap.get-node-to t2.7 .to.be t1.7
-      expect ttmap.get-node-from t2.7 .to.be undefined # Mis-use of get-node-from should return undefined
-      expect ttmap.get-node-from t1.7 .to.be t2.7
-      expect ttmap.get-node-from t1.10 .to.be undefined
+    <- it 'returns the mapped nodes correctly'
+    expect ttmap.get-node-to t2.7 .to.be t1.7
+    expect ttmap.get-node-from t2.7 .to.be undefined # Mis-use of get-node-from should return undefined
+    expect ttmap.get-node-from t1.7 .to.be t2.7
+    expect ttmap.get-node-from t1.10 .to.be undefined
+
+
+describe \TreeDAGMap, (...) !->
+
+  var tdmap
+
+  # The "tree nodes" and "dag nodes" we used as test data
+  tree = [{id: i} for i to 10]
+  dag = [{id: i} for i to 9]
+
+  before-each ->
+    tdmap := new algo.TreeDAGMap
+
+    # tree[0] --> dag[0], ..., tree[9] --> dag[9]
+    #
+    for i to 9
+      tdmap.add tree[i], dag[i]
+
+    # Make tree[10] points to a mapped DAG node
+    tdmap.add tree[10], dag[7]
+
+
+
+  describe '#get-node-*', (...) !->
+    <- it 'returns the mapped nodes correctly'
+    expect tdmap.get-nodes-to dag.6 .to.eql [tree.6]
+    expect tdmap.get-nodes-to dag.7 .to.eql [tree.7, tree.10]
+
+    expect tdmap.get-node-from dag.7 .to.be undefined # Mis-use of get-node-from should return undefined
+    expect tdmap.get-node-from tree.7 .to.be dag.7
+
+
+describe \DAG, (...) !->
+  var  nodes
+
+  before-each ->
+    dag = new algo.DAG
+
+    # 5 nodes: node0 ~ node4.
+    #
+    nodes := [dag.add-node "node#{i}" for i to 4]
+
+    #
+    # 0.<= 1   2 <= 3   4
+    # '\___________/
+
+    nodes.1.add-child nodes.0
+    nodes.3.add-child nodes.0
+    nodes.3.add-child nodes.2
+
+  describe '#children', (...) !->
+
+    <- it 'returns an array of children nodes'
+
+    expect nodes.0.children! .to.be.empty!
+    expect nodes.1.children! .to.eql [nodes.0]
+    expect nodes.2.children! .to.be.empty!
+    expect nodes.3.children! .to.eql [nodes.0, nodes.2]
+    expect nodes.4.children! .to.be.empty!
+
+  describe '#outdegree', (...) !->
+
+    <- it 'returns current out degree'
+
+    expect nodes.0.outdegree! .to.be 0
+    expect nodes.1.outdegree! .to.be 1
+    expect nodes.2.outdegree! .to.be 0
+    expect nodes.3.outdegree! .to.be 2
+    expect nodes.4.outdegree! .to.be 0
 
 
 describe \#diffX, (...) !->

@@ -67,18 +67,21 @@ function valiente (T1, T2, M = new TreeTreeMap)
   compact T1, T2, G, K
   mapping T1, T2, K, M
 
+  return M
+
+
 # Procedure "compact" in Valeiente's paper
 #
-# Input T1, T2: tree, g: graph
-# Output k : map of nodes of T1 and T2 to nodes of G
+# Input T1, T2: tree, G: graph
+# Output K : TreeDAGMap instance that maps nodes of T1 and T2 to nodes of G
 #
 !function compact T1, T2, G, K
   ...
 
 # Procedure "mapping" in Valeiente's paper
 #
-# Input T1, T2: tree, g: graph
-# Output m : TreeTreeMap instance that maps the nodes between T1 and T2
+# Input T1, T2: tree, K: TreeDAGMap instance
+# Output M : TreeTreeMap instance that maps the nodes between T1 and T2
 #
 !function mapping T1, T2, K, M
   ...
@@ -132,7 +135,73 @@ class TreeTreeMap
     @_map.get x
 
 
-exports <<< {TreeTreeMap, diffX, valiente}
+# Mapping a node in a tree to the corresponding node in a DAG instance.
+#
+class TreeDAGMap
+  ->
+    @_map = new WeakMap
+    @_reverse-map = new WeakMap
+
+  # Add a mapping that maps a tree node to a DAGNode instance
+  #
+  add: (tree-node, dag-node) ->
+    return if @_map.has tree-node
+
+    @_map.set tree-node, dag-node
+
+    if @_reverse-map.has dag-node
+      @_reverse-map.get dag-node .push tree-node
+    else
+      @_reverse-map.set dag-node, [tree-node]
+
+  # Returns an array of tree nodes that maps to specified tree node
+  #
+  get-nodes-to: (dag-node) ->
+    @_reverse-map.get dag-node or []
+
+  # Returns the DAGNode instance that maps from specified tree node
+  #
+  get-node-from: (tree-node) ->
+    @_map.get tree-node
+
+
+# Directed Acyclic Graph used in Valiente's bottom-up algorithm
+#
+class DAG
+
+  ->
+    @_nodes = []
+
+  # Returns the new Node's instance
+  #
+  add-node: (label, height=0)->
+    new-node = new DAGNode(label, height, @, @_nodes.length)
+    @_nodes.push new-node
+    return new-node
+
+  # The Graph Nodes in DAG
+  #
+  class DAGNode
+    (@label, @height, @_graph, @_idx)->
+      @_child-idx = [] # An array of DAGNode index in parent DAG _nodes array
+
+    # Return an array of references pointing to the DAGNode instances
+    #
+    children: ->
+      @_child-idx.map (idx) ~> @_graph._nodes[idx]
+
+    # Return how many children the DAGnode has
+    #
+    outdegree: ->
+      @_child-idx.length
+
+    # Add a DAGNode instance as a child
+    #
+    add-child: (dag-node) ->
+      @_child-idx.push dag-node._idx
+
+
+exports <<< {TreeTreeMap, TreeDAGMap, DAG, diffX, valiente}
 
 
 #
@@ -217,65 +286,3 @@ function generate-index t
 #
 function equal-nodes-by-index x, idx
   return idx[x.node-type][label-of(x)] || []
-
-# Directed Acyclic Graph used in Valiente's bottom-up algorithm
-#
-class DAG
-
-  ->
-    @_nodes = []
-
-  # Returns the new Node's instance
-  #
-  add-node: (label, height=0)->
-    @_nodes.push new DAGNode(label, height, @, @_nodes.length)
-
-  # The Graph Nodes in DAG
-  #
-  class DAGNode
-    (@label, @height, @_graph, @_idx)->
-      @_child-idx = [] # An array of DAGNode index in parent DAG _nodes array
-
-    # Return an array of references pointing to the DAGNode instances
-    #
-    children: ->
-      @_child-idx.map (idx) ~> @_graph._nodes[idx]
-
-    # Return how many children the DAGnode has
-    #
-    outdegree: ->
-      @_child-idx.length
-
-    # Add a DAGNode instance as a child
-    #
-    add-child: (dag-node) ->
-      @_child-idx.push dag-node._idx
-
-# Mapping a node in a tree to the corresponding node in a DAG instance.
-#
-class TreeDAGMap
-  ->
-    @_map = new WeakMap
-    @_reverse-map = new WeakMap
-
-  # Add a mapping that maps a tree node to a DAGNode instance
-  #
-  add: (tree-node, dag-node) ->
-    return if @_map.has tree-node
-
-    @_map.set tree-node, dag-node
-
-    if @_reverse-map.has dag-node
-      @_reverse-map.get dag-node .push tree-node
-    else
-      @_reverse-map.set dag-node, [tree-node]
-
-  # Returns an array of tree nodes that maps to specified tree node
-  #
-  get-nodes-to: (dag-node) ->
-    @_reverse-map.get dag-node or []
-
-  # Returns the DAGNode instance that maps from specified tree node
-  #
-  get-node-from: (tree-node) ->
-    @_map.get tree-node
