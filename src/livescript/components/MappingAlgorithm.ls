@@ -113,8 +113,8 @@ function valiente (T1, T2, M = new TreeTreeMap)
     while walker.next-node!
 
   do
-    console.log '[valiente#compact] Q:', Q.map -> it.node-name
-    console.log '[valiente#compact] G:', G._nodes.map -> "<#{it.label} #{it.height}>"
+    # console.log '[valiente#compact] Q:', Q.map -> it.node-name
+    # console.log '[valiente#compact] G:', G._nodes.map -> "<#{it.label} #{it.height} [#{it._child-idx}]>"
     v = Q.shift!
 
     if outdegree.get(v) is 0
@@ -171,8 +171,7 @@ function valiente (T1, T2, M = new TreeTreeMap)
   t2-walker = T2.owner-document.create-tree-walker T2
   t2-idx = 0
   do
-    current-node = t2-walker.current-node
-    preorder.set current-node, t2-idx
+    preorder.set t2-walker.current-node, t2-idx
     t2-idx += 1
   while t2-walker.next-node!
   rightmost-in-t2 = t2-walker.current-node
@@ -190,7 +189,7 @@ function valiente (T1, T2, M = new TreeTreeMap)
 
       U = K.get-nodes-to(Kv)
       for u in U when u.owner-document is t2-document
-        if M.get-node-to(v) is undefined and preorder.get(u) < preorder.get(v)
+        if M.get-node-to(u) is undefined and preorder.get(u) < preorder.get(w)
           w = u
 
       if Kv is K.get-node-from w

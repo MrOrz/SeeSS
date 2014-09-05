@@ -330,6 +330,7 @@ describe \#valiente, (...) !->
   # Expects the ttmap to match xpath1 in t1 and xpath2 in t2
   #
   function expect-match ttmap, xpath1, xpath2
+    # console.log "[EXPECT]", t1 `query-path` xpath1, "-->", ttmap.get-node-from(t1 `query-path` xpath1)
     expect ttmap.get-node-from(t1 `query-path` xpath1) .to.be (t2 `query-path` xpath2)
 
   it 'matches specified nodes in Figure 3 in Valiente paper', ->
