@@ -18,6 +18,7 @@ module.exports = function(config) {
       'test/unit/**/*.ls',
 
       // Fixtures
+      'test/fixtures/*.xml',
       'test/fixtures/*.html',
       'test/fixtures/*.css',
       {pattern: 'test/fixtures/*.jpg',  watched: false, included: false, served: true},
