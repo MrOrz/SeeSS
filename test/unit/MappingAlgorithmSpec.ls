@@ -127,7 +127,7 @@ describe \DAG, (...) !->
     expect nodes.3.children! .to.eql [nodes.0, nodes.2]
     expect nodes.4.children! .to.be.empty!
 
-  describe '#outdegree', (...) !->
+  describe 'DAGNode#outdegree', (...) !->
 
     <- it 'returns current out degree'
 
@@ -284,8 +284,8 @@ describe \#diffX, (...) !->
 
 
   it 'processes the example provided in diffX paper', ->
-    scifi1 = parser.parse-from-string __html__['test/fixtures/diffx-scifi1'], 'application/xml'
-    scifi2 = parser.parse-from-string __html__['test/fixtures/diffx-scifi2'], 'application/xml'
+    scifi1 = parser.parse-from-string __html__['test/fixtures/diffx-scifi1.xml'], 'application/xml'
+    scifi2 = parser.parse-from-string __html__['test/fixtures/diffx-scifi2.xml'], 'application/xml'
 
     ttmap = algo.diffX scifi1.document-element, scifi2.document-element
 
@@ -330,11 +330,11 @@ describe \#valiente, (...) !->
   # Expects the ttmap to match xpath1 in t1 and xpath2 in t2
   #
   function expect-match ttmap, xpath1, xpath2
-    expect ttmap.get-node-from(t1 query-path xpath1) .to.be (t2 query-path xpath2)
+    expect ttmap.get-node-from(t1 `query-path` xpath1) .to.be (t2 `query-path` xpath2)
 
   it 'matches specified nodes in Figure 3 in Valiente paper', ->
-    t1 := parser.parse-from-string __html__['test/fixtures/valiente-fig3-t1'], 'application/xml'
-    t2 := parser.parse-from-string __html__['test/fixtures/valiente-fig3-t2'], 'application/xml'
+    t1 := parser.parse-from-string __html__['test/fixtures/valiente-fig3-t1.xml'], 'application/xml'
+    t2 := parser.parse-from-string __html__['test/fixtures/valiente-fig3-t2.xml'], 'application/xml'
 
     ttmap = algo.valiente t1.document-element, t2.document-element
     expect-match ttmap, '/r/a/a',    '/r/a'
@@ -345,8 +345,8 @@ describe \#valiente, (...) !->
     expect-match ttmap, '/r/e/c',    '/r/e/e/c'
 
   it 'matches specified nodes in Figure 8 in Valiente paper', ->
-    t1 := parser.parse-from-string __html__['test/fixtures/valiente-fig3-t1'], 'application/xml'
-    t2 := parser.parse-from-string __html__['test/fixtures/valiente-fig3-t2'], 'application/xml'
+    t1 := parser.parse-from-string __html__['test/fixtures/valiente-fig8-t1.xml'], 'application/xml'
+    t2 := parser.parse-from-string __html__['test/fixtures/valiente-fig8-t2.xml'], 'application/xml'
 
     ttmap = algo.valiente t1.document-element, t2.document-element
 
