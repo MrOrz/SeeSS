@@ -179,6 +179,18 @@ class DAG
     @_nodes.push new-node
     return new-node
 
+  generate-reverse-iterator: ->
+    idx = @_nodes.length
+
+    return do
+      next: ~>
+        idx -= 1
+        current-node = @_nodes[idx]
+
+        return do
+          value: current-node
+          done: idx < 0
+
   # The Graph Nodes in DAG
   #
   class DAGNode

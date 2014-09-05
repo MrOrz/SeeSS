@@ -90,10 +90,10 @@ describe \TreeDAGMap, (...) !->
 
 
 describe \DAG, (...) !->
-  var  nodes
+  var dag, nodes
 
   before-each ->
-    dag = new algo.DAG
+    dag := new algo.DAG
 
     # 5 nodes: node0 ~ node4.
     #
@@ -107,7 +107,17 @@ describe \DAG, (...) !->
     nodes.3.add-child nodes.0
     nodes.3.add-child nodes.2
 
-  describe '#children', (...) !->
+  describe '#generate-reverse-iterator', (...) !->
+
+    <-! it 'should generate an iterator that traverses all nodes in reverse order'
+
+    iterator = dag.generate-reverse-iterator!
+    idx = 4
+    until (cursor = iterator.next!).done
+      expect cursor.value .to.be nodes[idx]
+      idx -= 1
+
+  describe 'DAGNode#children', (...) !->
 
     <- it 'returns an array of children nodes'
 
