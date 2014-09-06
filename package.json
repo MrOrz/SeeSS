@@ -58,6 +58,8 @@
     "karma-live-preprocessor": "~0.2.2",
     "karma-mocha": "~0.1.6",
     "karma-mocha-reporter": "~0.2.8",
-    "karma-webpack": "~1.2.1"
+    "karma-webpack": "~1.2.1",
+    "rewire": "^2.1.0",
+    "rewire-webpack": "^0.2.0"
   }
 }

@@ -1,3 +1,5 @@
+var RewirePlugin = require("rewire-webpack");
+
 // Karma configuration
 // Generated on Tue May 13 2014 12:20:09 GMT+0800 (CST)
 
@@ -44,16 +46,19 @@ module.exports = function(config) {
     },
 
     webpack: {
-        cache: true,
-        module: {
-          loaders: [{
-              test: /\.ls$/,
-              loader: 'livescript'
-          },{
-              test: /\.coffee$/,
-              loader: 'coffee-loader'
-          }]
-        }
+      cache: true,
+      module: {
+        loaders: [{
+          test: /\.ls$/,
+          loader: 'livescript'
+        },{
+          test: /\.coffee$/,
+          loader: 'coffee-loader'
+        }]
+      },
+      plugins: [
+        new RewirePlugin()
+      ]
     },
 
     // test results reporter to use

@@ -1,4 +1,5 @@
 require! {
+  rewire
   '../../src/livescript/components/PageData.ls'
   '../../src/livescript/components/RenderGraph.ls'
 }
@@ -6,6 +7,9 @@ require! {
 (...) <-! describe \RendererGraph, _
 
 describe '#add', (...) !->
+  RenderGraph = rewire '../../src/livescript/components/RenderGraph.ls'
+  # RenderGraph.__set__ Renderer: -> console.log \Hehehehhehe
+
   it "creates renderer instance", ->
     graph = new RenderGraph document.body
 
