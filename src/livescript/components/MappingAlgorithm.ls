@@ -70,7 +70,16 @@ function diffX (T1, T2, ttmap = new TreeTreeMap)
   if !ttmap.has(tree-node1) and !ttmap.has(null, tree-node2) and node-equal(tree-node1, tree-node2)
     subtree-ttmap.add tree-node1, tree-node2
 
-    # Loop through the tree nnodes of tree-node1 and tree-node 2.
+    # Loop through the tree nodes of tree-node1 and tree-node 2.
+    #
+    # Notice that the mapping here is pretty rough; it matches the nodes
+    # if they are in the same positions among their respective siblings in
+    # a top-down fashion, without matching their children first.
+    #
+    # The paper states that using Valiente's bottom-up algorithm beforehands
+    # may improve, since the bottom-up algorithm can match the identical subtrees
+    # from the leaves.
+    #
     # (L31-33)
     #
     node1-children = children-of tree-node1
@@ -78,31 +87,54 @@ function diffX (T1, T2, ttmap = new TreeTreeMap)
     for i from 0 to Math.min(node1-children.length, node2-children.length)-1
       match-fragment node1-children[i], node2-children[i], ttmap, subtree-ttmap
 
-# Valeiente's bottom-up mapping algoritm
+# Valiente's bottom-up mapping algoritm
 # Reference: An Efficient Bottom-Up Distance between Trees
 # http://www.cs.upc.edu/~valiente/abs-spire-2001.html
 #
 # Variable names are directly adopted from the pseudo-code in the paper.
 #
 # Input T1, T2 : tree, which are essentially DOM Node instances.
-# Output m : TreeTreeMap instance that maps the nodes between T1 and T2
+# Output ttmap : TreeTreeMap instance that maps the nodes between T1 and T2
 #
-function valiente (T1, T2, M = new TreeTreeMap)
-  G = new DAG # The compacted directed acyclic graph representation of T1 and T2
-  K = new TreeDAGMap # A map of nodes of T1 and T2 to nodes of G
-
-  compact T1, T2, G, K
-  mapping T1, T2, K, M
-
-  return M
-
-
-# Procedure "compact" in Valeiente's paper
+# Let (L##-##) denotes the line number of the pseudo-code of procedure Match-Fragment
+# in diffX paper.
 #
-# Input T1, T2: tree, G: graph
-# Output K : TreeDAGMap instance that maps nodes of T1 and T2 to nodes of G
+function valiente (T1, T2, ttmap = new TreeTreeMap)
+  # The compacted directed acyclic graph representation of T1 and T2
+  graph = new DAG         # variable `G` in the paper
+
+  tdmap = new TreeDAGMap  # variable `K` in the paper
+
+  compact T1, T2, graph, tdmap
+  mapping T1, T2, tdmap, ttmap
+
+  return ttmap
+
+# Compacting tree T1 and T2 into a directed acyclic graph (DAG).
+# The DAG is the compacted representation of the two tree T1 and T2.
+# It should fulfill Definition 7 in Valiente's paper, which is as follows:
 #
-!function compact T1, T2, G, K
+#   Definition 7. Let F be a forest. The compacted representation of F
+#   is a directed acyclic graph G such that a node [v] of G is an equivalence
+#   class of nodes of F , where two nodes u and v are equivalent if, and
+#   only if, the subtree of F rooted at u and the subtree of F rooted at v
+#   are isomorphic, and there is a directed edge from node [u] to node [v]
+#   in G if, and only if, there exist nodes u and v in some rooted tree T
+#   of F such that v is a child of u in T.
+#
+#
+# Procedure "compact(T1, T2, G, K)" in Valeiente's paper.
+#
+# Input T1, T2: tree
+# Output graph: resulting DAG
+#               Argument G in the paper
+# Output tdmap : TreeDAGMap instance that maps nodes of T1 and T2 to DAGNode instances
+#                Argument K in the paper
+#
+# Let (L##-##) denotes the line number of the pseudo-code of procedure compact
+# in diffX paper.
+#
+!function compact T1, T2, graph, tdmap
 
   # First, calculate the height of each node in T1 and T2.
   height = new WeakMap  # Maps a tree node to the height
@@ -111,89 +143,129 @@ function valiente (T1, T2, M = new TreeTreeMap)
 
   # Initialization of G and chidren[]
   #
+  # (L3-7, L9-14)
   # Combine the loop in line 3-7 and line 9-14 in Figure 6 alltogether
   #
   children = new WeakMap  # Maps a tree node to unprocessed child count, which may be edited
   outdegree = new WeakMap # Maps a tree node to child count, which is constant if tree structures doesn't change
-  L = {} # Map of node label to nodes of G
-  Q = [] # A queue of nodes of T1 & T2
+  label-to-graph-node = {} # Map of node label to graph nodes. Variable `L` in the paper.
+  queue = [] # A queue of nodes of T1 & T2. Variable `Q` in the paper.
 
   for iterator in [PreorderIterator(T1), PreorderIterator(T2)]
 
     until (cursor = iterator.next!).done
-      v = cursor.value
+      tree-node = cursor.value
 
-      children-count = children-count-of v
-      outdegree.set v, children-count
-      children.set v, children-count
+      children-count = children-count-of tree-node
+      outdegree.set tree-node, children-count
+      children.set tree-node, children-count
 
       if children-count is 0
-        Q.push v
+        queue.push tree-node
 
-        leaf-label = label-of v
+        leaf-label = label-of tree-node
 
         # Only add-node once for each leaf-label
-        if L[leaf-label] is undefined
-          L[leaf-label] = G.add-node leaf-label
+        if label-to-graph-node[leaf-label] is undefined
+          label-to-graph-node[leaf-label] = graph.add-node leaf-label
 
+  # Calculates mapping between tree node to DAG node in a bottom-up fashion.
+  # Populates TreeNode-to-DAGNode map (tdmap).
+  #
+  # (L15-49)
+  #
   do
     # console.log '[valiente#compact] Q:', Q.map -> label-of it .replace /[\n|\r]/g, ''
     # console.log '[valiente#compact] G:', G._nodes.map -> "<#{it.label.replace(/[\n|\r]/g,'')} #{it.height} [#{it._child-idx}]>"
-    v = Q.shift!
 
-    if outdegree.get(v) is 0
-      K.add v, L[label-of v]
+    # Pop a tree node to process from the queue.
+    #
+    tree-node = queue.shift!  # Variable `u` in the paper
 
+    # If the current tree is a leaf, it already has a graph node mapped to it.
+    # (L17-18)
+    #
+    if outdegree.get(tree-node) is 0
+      tdmap.add tree-node, label-to-graph-node[label-of tree-node]
+
+    # (L19-49)
+    #
     else
-      found = false
+      is-candidate-found = false  # Variable `found` in the paper
 
-      iterator = G.generate-reverse-iterator!
+      # Finding a candidate graph node that maps to the current tree node
+      # in all graph nodes that has the same tree height.
+      # (L21-32)
+      #
+      iterator = graph.generate-reverse-iterator!
       until (cursor = iterator.next!).done
-        w = cursor.value
+        candidate-graph-node = cursor.value
 
-        if height.get(v) isnt w.height
+        if height.get(tree-node) isnt candidate-graph-node.height
           break
 
-        if outdegree.get(v) != w.outdegree! or label-of(v) != w.label
+        if outdegree.get(tree-node) != candidate-graph-node.outdegree! or
+           label-of(tree-node) != candidate-graph-node.label
           continue
 
-        V = children-of v .map -> K.get-node-from it
-        W = w.children!
+        # Check if their children graph node match.
+        #
+        graph-children-of-tree-node = children-of tree-node .map -> tdmap.get-node-from it
+        graph-children-of-graph-node = candidate-graph-node.children!
 
-        if array-equal V, W
-          K.add v, w
-          found = true
+        if array-equal graph-children-of-tree-node, graph-children-of-graph-node
+          tdmap.add tree-node, candidate-graph-node
+          is-candidate-found = true
           break
 
-      if not found
-        v-label = label-of v
-        w = G.add-node v-label, height.get v
-        K.add v, w
+      # Create a new graph node when there is no candidate graph node found
+      #
+      # (L33-41)
+      #
+      unless is-candidate-found
+        label = label-of tree-node
+        graph-node = graph.add-node label, height.get tree-node
+        tdmap.add tree-node, graph-node
 
-        for u in children-of v
-          w.add-child K.get-node-from u
+        # Connect with the children graph nodes
+        #
+        for child-tree-node in children-of tree-node
+          graph-node.add-child tdmap.get-node-from child-tree-node
 
-    unless is-root v
-      v-parent = parent-of v
+    # If all children of a parent node has already been processed,
+    # put the parent node into the process queue
+    #
+    # (L43-48)
+    #
+    unless is-root tree-node
+      tree-parent = parent-of tree-node
 
-      children-count = children.get(v-parent) - 1
-      children.set v-parent, children-count
+      unprocessed-child-count = children.get(tree-parent) - 1
+      children.set tree-parent, unprocessed-child-count
 
-      if children-count is 0
-        Q.push v-parent
+      if unprocessed-child-count is 0
+        queue.push tree-parent
 
-  until Q.length is 0
+  until queue.length is 0
 
-# Procedure "mapping" in Valeiente's paper
+# Use the computed TreeNode-DAGNode mapping to infer the TreeNode-TreeNode mapping
+# from tree T1 to T2.
 #
-# Input T1, T2: tree, K: TreeDAGMap instance
-# Output M : TreeTreeMap instance that maps the nodes between T1 and T2
+# Procedure "mapping(T1, T2, G, K, M)" in Valeiente's paper.
 #
-!function mapping T1, T2, K, M
+# Input T1, T2: tree.
+# Input tdmap: TreeDAGMap instance. Argument `K` in the paper.
+# Output ttmap : TreeTreeMap instance that maps the nodes between T1 and T2.
+#                Argument `M` in the paper.
+#
+# Let (L##-##) denotes the line number of the pseudo-code of procedure mapping
+# in diffX paper.
+#
+!function mapping T1, T2, tdmap, ttmap
 
-  # Get the right most node in T2, and calculate the preorder of each node in T2
   preorder = new WeakMap
 
+  # Get the right most node in T2, and calculate the preorder of each node in T2
   var rightmost-in-t2
   t2-iterator = PreorderIterator T2
   t2-idx = 0
@@ -202,28 +274,43 @@ function valiente (T1, T2, M = new TreeTreeMap)
     t2-idx += 1
     rightmost-in-t2 = cursor.value
 
-  t2-document = T2.owner-document # To see if a node is in T2
-
-  # Start algorithm
+  # Traverse T1 in level order to calculate ttmap (top-down)
+  # (L3-20)
+  #
   iterator = LevelOrderIterator T1
   until (cursor = iterator.next!).done
-    v = cursor.value
-    Kv = K.get-node-from v # K[v], the mapped graph node from tree node v
+    tree-node = cursor.value                        # The tree node in T1 seeking for mapped node in T2. Variable `v` in paper
+    graph-node = tdmap.get-node-from tree-node      # The mapped graph node from the tree node. Variable `K[v]` in paper
 
-    if M.get-node-from(v) is undefined
-      w = rightmost-in-t2
+    if ttmap.get-node-from(tree-node) is undefined
 
-      U = K.get-nodes-to(Kv)
-      for u in U when u.owner-document is t2-document
-        if M.get-node-to(u) is undefined and preorder.get(u) < preorder.get(w)
-          w = u
+      # Find the "left-most" unmatched tree node in all T2's tree nodes that
+      # mapped to the identical graph node with the current tree node.
+      #
+      # (L5-12)
+      #
+      mapped-tree-node = rightmost-in-t2         # Variable `w` in paper
+      is-found = false
 
-      if Kv is K.get-node-from w
-        t1-iterator = PreorderIterator v
-        t2-iterator = PreorderIterator w
+      for candidate in tdmap.get-nodes-to(graph-node) when is-in-t2(candidate) # `candidate` is variable `u` in paper
+        if ttmap.get-node-to(candidate) is undefined and preorder.get(candidate) < preorder.get(mapped-tree-node)
+          mapped-tree-node = candidate
+          is-found = true
+
+      # If the unmatched tree node is found, match it and all its children with
+      #
+      # (L13-18)
+      #
+      if is-found
+        t1-iterator = PreorderIterator tree-node
+        t2-iterator = PreorderIterator mapped-tree-node
 
         until (cursor1 = t1-iterator.next!).done or (cursor2 = t2-iterator.next!).done
-          M.add cursor1.value, cursor2.value
+          ttmap.add cursor1.value, cursor2.value
+
+  # Helper function to see if a tree node belongs to T2
+  function is-in-t2 (node)
+    node.owner-document == T2.owner-document
 
 
 # Mapping a node x in a tree to its corresponding node y in another tree.
