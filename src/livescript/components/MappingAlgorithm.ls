@@ -9,51 +9,74 @@
 # Reference -- diffX: an algorithm to detect changes in multi-version XML documents
 # http://dl.acm.org/citation.cfm?id=1105635
 #
-# Variable names are directly adopted from the pseudo-code in the paper.
+# Procedure Mapping(T1, T2, M) in the paper.
 #
 # Input T1, T2 : tree, which are essentially DOM Node instances.
-# Output m : TreeTreeMap instance that maps the nodes between T1 and T2
+# Output ttmap : TreeTreeMap instance that maps the nodes between T1 and T2.
+#                Argument `M` in the paper.
 #
-function diffX (T1, T2, M = new TreeTreeMap)
+# Let (L##-##) denotes the line number of the pseudo-code of procedure Mapping
+# in diffX paper.
+#
+function diffX (T1, T2, ttmap = new TreeTreeMap)
 
   # index the nodes of T2
   t2-index = generate-index T2
 
   # traverse T1 in a level-order sequence
+  # (L6-23)
+  #
   level-order-iterator = LevelOrderIterator(T1)
   until (cursor = level-order-iterator.next!).done
-    # let x be the current node
-    x = cursor.value
+    current-node = cursor.value     # variable `x` in the paper
 
-    if M.has x
+    if ttmap.has current-node
       continue # skip current node
 
-    # let y[] be all nodes from T2 equal to x
-    ys = equal-nodes-by-index x, t2-index
-    Mpp = new TreeTreeMap
-    for y in ys when !M.has(null, y)
-      Mp = new TreeTreeMap
-      match-fragment x, y, M, Mp
-      Mpp = Mp if Mp.size! > Mpp.size!
+    # Match current node with candidates from T2.
+    #
+    candidates = equal-nodes-by-index current-node, t2-index # variable `y[]` in the paper
+    optimal-ttmap = new TreeTreeMap # variable `M"` in the paper
 
-    M.merge Mpp
+    # (L13-21)
+    #
+    for candidate in candidates when !ttmap.has(null, candidate)
+      new-ttmap = new TreeTreeMap   # variable `M'` in the paper
+      match-fragment current-node, candidate, ttmap, new-ttmap
+      optimal-ttmap = new-ttmap if new-ttmap.size! > optimal-ttmap.size!
 
-  return M
+    ttmap.merge optimal-ttmap
+
+  return ttmap
 
 
-# Recursive part of basic diffX Algorithm
-# Input x, y: node, m: map
-# Output mp : map
+# Recursive part of basic diffX Algorithm, recursively maps 2 subtrees rooted at
+# tree-node 1 and tree-node 2 and return the subtree mapping.
 #
-!function match-fragment x, y, M, Mp
-  if !M.has(x) and !M.has(null, y) and node-equal(x, y)
-    Mp.add x, y
+# tree-node1 comes from the tree T1 and tree-node2 comes from the tree T2.
+#
+# Procedure Match-Fragment(x, y, M, M') in the paper.
+#
+# Input tree-node1, tree-node2: node, ttmap: global TreeTreeMap instance.
+#       Argument x, y, M in the paper, respectively.
+# Output subtree-ttmap : TreeTreeMap instance that maps the nodes of subtrees rooted at
+#                        tree-node1 to subtrees rooted at tree-node2.
+#                        Argument M' in the paper.
+#
+# Let (L##-##) denotes the line number of the pseudo-code of procedure Match-Fragment
+# in diffX paper.
+#
+!function match-fragment tree-node1, tree-node2, ttmap, subtree-ttmap
+  if !ttmap.has(tree-node1) and !ttmap.has(null, tree-node2) and node-equal(tree-node1, tree-node2)
+    subtree-ttmap.add tree-node1, tree-node2
 
-    # for i = 1 to minimum of number of children between x and y
-    x-children = children-of x
-    y-children = children-of y
-    for i from 0 to Math.min(x-children.length, y-children.length)-1
-      match-fragment x-children[i], y-children[i], M, Mp
+    # Loop through the tree nnodes of tree-node1 and tree-node 2.
+    # (L31-33)
+    #
+    node1-children = children-of tree-node1
+    node2-children = children-of tree-node2
+    for i from 0 to Math.min(node1-children.length, node2-children.length)-1
+      match-fragment node1-children[i], node2-children[i], ttmap, subtree-ttmap
 
 # Valeiente's bottom-up mapping algoritm
 # Reference: An Efficient Bottom-Up Distance between Trees
