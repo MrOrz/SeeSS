@@ -4,18 +4,39 @@ require! {
   '../../src/livescript/components/RenderGraph.ls'
 }
 
+# A Renderer mock that only stores fake page data, without creating additional iframes
+#
+class SimpleObjectRendererMock
+  (@page-data) ->
+
+  # required by RenderGraph#add
+  render: ->
+
+class PageDataMock
+  (@html) ->
+
+
 (...) <-! describe \RendererGraph, _
 
 describe '#add', (...) !->
-  RenderGraph = rewire '../../src/livescript/components/RenderGraph.ls'
-  # RenderGraph.__set__ Renderer: -> console.log \Hehehehhehe
+
+  var RenderGraph
+
+  before ->
+    # We only test if the graph implementation works here. No need for real Renderers,
+    # which inserts irrelevant rendering iframes.
+    #
+
+    RenderGraph := rewire '../../src/livescript/components/RenderGraph.ls'
+    RenderGraph.__set__ Renderer: SimpleObjectRendererMock
+
 
   it "creates renderer instance", ->
     graph = new RenderGraph document.body
 
-    renderer0 = graph.add (new PageData html: '<node0>')
-    renderer1 = graph.add (new PageData html: '<node1>'), (new RenderGraph.Edge renderer0, \edge-0-1)
-    renderer2 = graph.add (new PageData html: '<node2>'), (new RenderGraph.Edge renderer1, \edge-1-2)
+    renderer0 = graph.add (new PageDataMock \node0)
+    renderer1 = graph.add (new PageDataMock \node1), (new RenderGraph.Edge renderer0, \edge-0-1)
+    renderer2 = graph.add (new PageDataMock \node2), (new RenderGraph.Edge renderer1, \edge-1-2)
 
     expect graph.adj-list.0.1.event .to.be \edge-0-1
     expect graph.adj-list.1.0 .to.be undefined
@@ -27,36 +48,48 @@ describe '#add', (...) !->
 
     # Visit order: 0 -> 1 -> 0 -> 2 -> 3 -> 0
     #
-    renderer0 = graph.add (new PageData html: '<node0>')
-    renderer1 = graph.add (new PageData html: '<node1>'), (new RenderGraph.Edge renderer0, \edge-0-1)
-    graph.add (new PageData html: '<node0>'), (new RenderGraph.Edge renderer1, \edge-1-0)
-    renderer2 = graph.add (new PageData html: '<node2>'), (new RenderGraph.Edge renderer0, \edge-0-2)
-    renderer3 = graph.add (new PageData html: '<node3>'), (new RenderGraph.Edge renderer2, \edge-2-3)
-    graph.add (new PageData html: '<node0>'), (new RenderGraph.Edge renderer3, \edge-3-0)
+    renderer0 = graph.add (new PageDataMock \node0)
+    renderer1 = graph.add (new PageDataMock \node1), (new RenderGraph.Edge renderer0, \edge-0-1)
+    graph.add (new PageDataMock \node0), (new RenderGraph.Edge renderer1, \edge-1-0)
+    renderer2 = graph.add (new PageDataMock \node2), (new RenderGraph.Edge renderer0, \edge-0-2)
+    renderer3 = graph.add (new PageDataMock \node3), (new RenderGraph.Edge renderer2, \edge-2-3)
+    graph.add (new PageDataMock \node0), (new RenderGraph.Edge renderer3, \edge-3-0)
 
     # There should be only node 0~3
     expect graph.renderers .to.have.length 4
     expect graph.adj-list.4 .to.be undefined
 
 describe '#neighbors-of', (...) !->
+
+  var RenderGraph
+
+  before ->
+    # We only test if the graph implementation works here. No need for real Renderers,
+    # which inserts irrelevant rendering iframes.
+    #
+
+    RenderGraph := rewire '../../src/livescript/components/RenderGraph.ls'
+    RenderGraph.__set__ Renderer: SimpleObjectRendererMock
+
+
   it 'returns correct neighbors', ->
     graph = new RenderGraph document.body
 
-    renderer0 = graph.add (new PageData html: '<node0>')
-    renderer1 = graph.add (new PageData html: '<node1>'), (new RenderGraph.Edge renderer0, \edge-0-1)
-    renderer2 = graph.add (new PageData html: '<node2>'), (new RenderGraph.Edge renderer1, \edge-1-2)
+    renderer0 = graph.add (new PageDataMock \node0)
+    renderer1 = graph.add (new PageDataMock \node1), (new RenderGraph.Edge renderer0, \edge-0-1)
+    renderer2 = graph.add (new PageDataMock \node2), (new RenderGraph.Edge renderer1, \edge-1-2)
 
     neighbor0 = graph.neighbors-of 0
 
     expect neighbor0.length .to.eql 1
     expect neighbor0.0.edge.event .to.be \edge-0-1
-    expect neighbor0.0.renderer.page-data.html .to.be '<node1>'
+    expect neighbor0.0.renderer.page-data.html .to.be \node1
 
     neighbor1 = graph.neighbors-of 1
 
     expect neighbor1.length .to.eql 1
     expect neighbor1.0.edge.event .to.be \edge-1-2
-    expect neighbor1.0.renderer.page-data.html .to.be '<node2>'
+    expect neighbor1.0.renderer.page-data.html .to.be \node2
 
     neighbor2 = graph.neighbors-of 2
 
