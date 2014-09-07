@@ -1,22 +1,13 @@
+require! {
+  './XPathUtil.ls'.queryXPath
+  './XPathUtil.ls'.generateXPath
+}
+
 # Given an event object (or specify wait timeout),
-# produces an serializable event and mark the event target on DOM.
+# produces an serializable event with element property values are replaced with
+# the XPath of the element.
 #
-# The event target mark can be unmarked using unmark() static method,
-# which returns the marked event target.
-#
-#
-
 class SerializableEvent
-
-  const @MARK = \__SEESS_EVENT_TARGET__
-
-  # Retrieve and unmark the event target element
-  #
-  @unmark = (marked-doc) ->
-    target = marked-doc.query-selector "[#{@@MARK}]"
-    target.remove-attribute @@MARK if target
-
-    return target
 
   # Create a serializable event object, given an DOM event,
   # or a serailzable event object just deserialized from JSON,
@@ -24,38 +15,40 @@ class SerializableEvent
   #
   (timestamp-or-event, event-window) ->
     if typeof timestamp-or-event is \number
-      @type = \WAIT
-      @timeout = Date.now! - timestamp-or-event
+      @_setup-wait-event timestamp-or-event
+
     else
-      # "timestamp-or-event" may be a DOM event or a serializable event instance
-      # recovered from JSON
-      #
-      evt = timestamp-or-event
-      is-dom-event = !evt.constructor-name
+      @constructor-name = timestamp-or-event.constructor-name || timestamp-or-event.constructor.name
 
-      if is-dom-event
-        # Copy non-DOM element properties over.
-        # Here we also skip properties that cannot be stringified,
-        # like those whose value is a function or is undefined.
-        #
-        for property, value of evt when !(value instanceof event-window.Element || typeof value is \function || value is undefined)
-          @[property] = value
-
-        # Delete other loop causing elements
-        delete @view # a window object, but not necessarily the window object where the event is triggered
-        delete @path # not sure what it is, just a NodeList
-
-        # Mark the target on document if a DOM event element is given
-        #
-        evt.target.set-attribute @@MARK, ''
+      if is-dom-event timestamp-or-event
+        @_setup-dom-event timestamp-or-event, event-window
 
       else
-        # If is deserialized data, prototype inheritance is enough
-        @ <<< evt
+        @_recover-from-json timestamp-or-event
 
-      # Records the constructor name (Event object constructor)
-      #
-      @constructor-name = evt.constructor-name || evt.constructor.name
+  _setup-wait-event: (timestamp) !->
+    @type = \WAIT
+    @timeout = Date.now! - timestamp
 
+  _setup-dom-event: (evt, event-window) !->
+    for property, value of evt when is-relevant(property, value)
+      @[property] = if value instanceof event-window.Element
+        generate-x-path value
+      else
+        value
+
+  _recover-from-json: (evt) !->
+    @ <<< evt
+
+  function is-dom-event (evt)
+    !evt.constructor-name
+
+  function is-relevant prop, value
+    # Irrelevant event properties:
+    #
+    # view: a window object, but not necessarily the window object where the event is triggered
+    # path: not sure what it is, just a NodeList
+    #
+    not (typeof value is \function || value is undefined || prop in <[view path]> )
 
 module.exports = SerializableEvent

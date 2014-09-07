@@ -1,5 +1,6 @@
 require! {
   '../../src/livescript/components/SerializableEvent.ls'
+  '../../src/livescript/components/XPathUtil.ls'.queryXPath
 }
 
 (...) <-! describe \SerializableEvent, _
@@ -49,17 +50,6 @@ describe '#constructor', (...) !->
 
     document.body.insert-before iframe, null
 
-  # Unmark the click target
-  #
-  after-each ->
-    SerializableEvent.unmark iframe-doc
-
-  it 'marks the event target and can unmark', ->
-    sevt = new SerializableEvent mouse-event, iframe.content-window
-
-    expect SerializableEvent.unmark(iframe-doc).id .to.be \click-target
-
-
   it 'is serializable', ->
     sevt = new SerializableEvent mouse-event, iframe.content-window
 
@@ -73,6 +63,13 @@ describe '#constructor', (...) !->
     recovered-sevt = new SerializableEvent deserialized
 
     expect recovered-sevt .to.eql sevt
+
+  it 'converts event target to correct XPath', ->
+    sevt = new SerializableEvent mouse-event, iframe.content-window
+    recovered-sevt = new SerializableEvent JSON.parse JSON.stringify sevt
+    recovered-target = iframe.content-window.document `query-x-path` recovered-sevt.target
+
+    expect recovered-target .to.be mouse-event.target
 
   it 'accepts timestamp and calculates timeout', ->
     sevt = new SerializableEvent Date.now!
