@@ -187,16 +187,52 @@ describe '#applyCSS', (...) !->
 
 
 describe '#applyHTML', (...) !->
-  it 'updates iframe on content text change'
+  it 'updates source iframe and detects diff change on content text change', ->
+    ({page-diff, renderer}) <- feed-test-file-to-source-renderer 'renderer-html-text-test' .then
 
-  it 'detects node change and generates correct style diff'
+    expect renderer.iframe.content-window.document.query-selector('#target').text-content .to.be 'Yo!'
 
-  it 'detects new elements and generates correct style diff'
+    expect page-diff .to.be.ok!
+    expect page-diff.diffs .to.have.length 1
+    expect page-diff.get-element-by-diff-id(0).id .to.be \target
 
-  it 'detects element removal and generates correct style diff'
+  it 'deals with attribute change on source iframe', ->
+    ({page-diff, renderer}) <- feed-test-file-to-source-renderer 'renderer-html-attr-test' .then
 
-  it 'detects wrapping new DOM element and generates correct style diff'
+    expect page-diff .to.be.ok!
+    expect page-diff.diffs .to.have.length 1
+    expect page-diff.diffs.0.type .to.be Renderer.ElementDifference.TYPE_MOD
+    expect page-diff.diffs.0.computed .to.eql do
+      color:
+        before: "rgb(255, 0, 0)"
+        after: "rgb(0, 0, 255)"
 
+  it 'deals with element addition', ->
+    ({page-diff, renderer}) <- feed-test-file-to-source-renderer 'renderer-html-add-test' .then
+
+    expect page-diff .to.be.ok!
+    expect page-diff.diffs .to.have.length 2
+    expect page-diff.diffs.0.type .to.be Renderer.ElementDifference.TYPE_MOD
+    expect page-diff.diffs.0.rect .to.eql do
+      top:
+        before: "0px"
+        after: "16px"
+
+    expect page-diff.diffs.1.type .to.be Renderer.ElementDifference.TYPE_ADDED
+
+
+  it 'deals with element removal'
+
+  it 'deals with new DOM wrapping old elements on source iframe'
+
+
+  function feed-test-file-to-source-renderer testfile
+    renderer = new Renderer(new PageData html: __html__["test/fixtures/#{testfile}-before.html"])
+    <- renderer.render document.body .then
+
+    (page-diff) <- renderer.applyHTML "#{location.origin}/base/test/fixtures/#{testfile}-after.html", [] .then
+
+    return {page-diff, renderer}
 
 function cache-burst
   "?burst=#{('' + Math.random!).slice 2}"

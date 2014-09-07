@@ -6,6 +6,7 @@ require! {
   Promise: bluebird
   Reloader: '../../../vendor/bower_components/livereload-js/src/reloader.coffee'.Reloader
   Timer: '../../../vendor/bower_components/livereload-js/src/timer.coffee'.Timer
+  './PageData.ls'
   './MappingAlgorithm.ls'
   './SerializablePageDiff.ls'
 }
@@ -82,11 +83,17 @@ class Renderer
           diffs: differences
 
   #
-  # Given the new DOM, update the snapshot and perform HTML diff algorithm
-  # to generate difference.
+  # Given the source iframe's src, and event sequence,
+  # replay the event sequence from source iframe to get to the specific state,
+  # and update the snapshot and perform HTML diff algorithm to generate difference.
+  #
+  # The XPath of the last event target to get to the targeting state should be updated
+  # after HTML diff algorithm is calculated.
+  #
   # Returns a promise that resolves to the page differences.
   #
-  applyHTML: (new-html) ->
+  applyHTML: (src, edge-promise) ->
+    return Promise.resolve null
 
     # Update @page-data with a new instance with the new HTML
     @page-data = new PageData do
