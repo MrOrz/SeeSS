@@ -234,9 +234,9 @@ describe '#applyHTML', (...) !->
     renderer = new Renderer(new PageData html: __html__["test/fixtures/#{testfile}-before.html"])
     <- renderer.render document.body .then
 
-    (page-diff) <- renderer.applyHTML "#{location.origin}/base/test/served/#{testfile}-after.html", Promise.resolve([]) .then
+    ({page-diff, mapping}) <- renderer.applyHTML "#{location.origin}/base/test/served/#{testfile}-after.html", Promise.resolve([]) .then
 
-    return {page-diff, renderer}
+    return {page-diff, mapping, renderer}
 
 function cache-burst
   "?burst=#{('' + Math.random!).slice 2}"

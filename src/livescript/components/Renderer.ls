@@ -88,10 +88,9 @@ class Renderer
   # replay the event sequence from source iframe to get to the specific state,
   # and update the snapshot and perform HTML diff algorithm to generate difference.
   #
-  # The XPath of the last event target to get to the targeting state should be updated
-  # after HTML diff algorithm is calculated.
-  #
-  # Returns a promise that resolves to the page differences.
+  # Returns a promise that resolves to an object:
+  # page-diff (SerializablePageDiff): The differences of the page.
+  # mapping (TreeTreeMap): DOM node mapping.
   #
   applyHTML: (src, edges-promise) ->
 
@@ -126,14 +125,14 @@ class Renderer
       # Match the DOM nodes using Valiente's bottom-up algorithm,
       # then map the rest of nodes using diffX, as suggested in discussion section of diffX paper.
       #
-      map-set = MappingAlgorithm.valiente @iframe.content-window.document.body, new-iframe.content-window.document.body
-      MappingAlgorithm.diffX @iframe.content-window.document.body, new-iframe.content-window.document.body, map-set
+      ttmap = MappingAlgorithm.valiente @iframe.content-window.document.body, new-iframe.content-window.document.body
+      MappingAlgorithm.diffX @iframe.content-window.document.body, new-iframe.content-window.document.body, ttmap
 
       # Calculate diff
       #
       diffs = []
       for elem-snapshot in new-snapshot
-        matched-old-elem = map-set.get-node-to elem-snapshot.elem
+        matched-old-elem = ttmap.get-node-to elem-snapshot.elem
         unless matched-old-elem
           # No matched old element; the element is new!
           diffs.push new ElementDifference elem-snapshot, ElementDifference.TYPE_ADDED
@@ -173,12 +172,18 @@ class Renderer
 
       # Return SerializablePageDiff instance or null
       if diffs.length is 0
-        return null
+        return {
+          page-diff: null
+          mapping: ttmap
+        }
       else
-        return new SerializablePageDiff do
-          dom: generate-detached-html @iframe
-          doctype: @page-data.doctype
-          diffs: diffs
+        return {
+          page-diff: new SerializablePageDiff do
+            dom: generate-detached-html @iframe
+            doctype: @page-data.doctype
+            diffs: diffs
+          mapping: ttmap
+        }
 
     # Kick start the new iframe loading.
     new-iframe.src = src
