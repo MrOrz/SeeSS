@@ -44,38 +44,32 @@ describe '#turn-on', (...) ->
     expect spy .to.be.called-once!
 
 describe '#turn-off', (...) ->
-
-  it 'turns the correct tab off', !->
-    for i from 1 to 3
+  before-each ->
+    for i from 1 to 10
       TabManager.turn-on i
 
+  it 'turns the correct tab off', !->
     TabManager.turn-off 2
 
     expect TabManager.get-state 1 .to.be on
     expect TabManager.get-state 2 .to.be off
-    expect TabManager.get-state 3 .to.be on
 
   it 'throws when turning non-existance tab off', !->
     expect (-> TabManager.turn-off 123456) .to.throw-error!
 
   it 'switches browser action icon to inactive', !->
-    const TAB_ID = 11
-
     spy = chrome-mock.browser-action.set-icon.with-args do
-      tab-id: TAB_ID
+      tab-id: 3
       path: Constants.INACTIVE_ICON_PATH
 
-    TabManager.turn-on TAB_ID
-    TabManager.turn-off TAB_ID
+    TabManager.turn-off 3
 
     expect spy .to.be.called-once!
 
   it 'sends message to content script when a tab is turned off', !->
-    const TAB_ID = 1234
-    spy = send-spy.with-args TAB_ID
+    spy = send-spy.with-args 4
 
-    TabManager.turn-on TAB_ID
-    TabManager.turn-off TAB_ID
+    TabManager.turn-off 4
 
     expect spy .to.be.called-once!
 
