@@ -1,6 +1,7 @@
 require! {
   './XPathUtil.ls'.queryXPath
   './XPathUtil.ls'.generateXPath
+  Promise: bluebird
 }
 
 # Given an event object (or specify wait timeout),
@@ -25,6 +26,25 @@ class SerializableEvent
 
       else
         @_recover-from-json timestamp-or-event
+
+  dispatch-in-window: (win) ->
+    if @type is \WAIT
+      return @_dispatch-wait-event-in-window win
+    else
+      return @_dispatch-dom-event-in-window win
+
+  _dispatch-dom-event-in-window: (win) ->
+    return new Promise (resolve, reject) ~>
+      target-elem = win.document `query-x-path` @target
+
+      target-elem.add-event-listener @type, resolve
+
+      evt = new win[@constructor-name] @type, @
+      target-elem.dispatch-event evt
+
+
+  _dispatch-wait-event-in-window: (win) ->
+    ...
 
   _setup-wait-event: (timestamp) !->
     @type = \WAIT

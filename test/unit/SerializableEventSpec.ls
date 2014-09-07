@@ -5,50 +5,56 @@ require! {
 
 (...) <-! describe \SerializableEvent, _
 
-describe '#constructor', (...) !->
-  # Stored mouse event created by browser natively
-  #
-  var mouse-event
+# Stored mouse event created by browser natively
+#
+var mouse-event
 
-  # The iframe that mouse-event happened in
-  #
-  iframe = document.create-element \iframe
-  var iframe-doc
+# The iframe that mouse-event happened in
+#
+iframe = document.create-element \iframe
+var iframe-doc
 
-  before (cb) ->
-    # Create an iframe to put #click-target in,
-    # then click the #click-target then populate mouse-event.
+before (cb) ->
+  # Create an iframe to put #click-target in,
+  # then click the #click-target then populate mouse-event.
+  #
+  iframe.onload = ->
+    iframe.onload = null
+    iframe-doc := iframe.content-window.document
+
+    iframe-doc.write '<div id="click-target">SerializableEvent click target</div>'
+    iframe-doc.close!
+
+    # The manually-built event that we use to trigger mouse event
     #
-    iframe.onload = ->
-      iframe.onload = null
-      iframe-doc := iframe.content-window.document
+    evt = new MouseEvent \click, do
+      view: window
+      bubbles: true
+      cancelable: true
+      which: 1
+      button: 1
+      clientX: 2
+      clientY: 3
 
-      iframe-doc.write '<div id="click-target"></div>'
-      iframe-doc.close!
+    # Fetch #click-target, add click handler and trigger a real click event.
+    #
+    click-target = iframe-doc.get-element-by-id \click-target
 
-      # The manually-built event that we use to trigger mouse event
+    listener = (e) ->
+      # Capture the real-world click event.
       #
-      evt = new MouseEvent \click, do
-        view: window
-        bubbles: true
-        cancelable: true
-        which: 1
-        button: 1
-        clientX: 2
-        clientY: 3
+      click-target.remove-event-listener \click, listener
+      mouse-event := e
+      cb!
 
-      # Fetch #click-target, add click handler and trigger a real click event.
-      #
-      click-target = iframe-doc.get-element-by-id \click-target
-      click-target.add-event-listener \click, (e) ->
-        # Capture the real-world click event.
-        #
-        mouse-event := e
-        cb!
+    click-target.add-event-listener \click, listener
 
-      click-target.dispatch-event evt
+    click-target.dispatch-event evt
 
-    document.body.insert-before iframe, null
+  document.body.insert-before iframe, null
+
+
+describe '#constructor', (...) !->
 
   it 'is serializable', ->
     sevt = new SerializableEvent mouse-event, iframe.content-window
@@ -76,3 +82,19 @@ describe '#constructor', (...) !->
 
     expect sevt.type .to.be \WAIT
     expect sevt.timeout .to.be 0
+
+describe '#dispatch-in-window', (...) !->
+
+  it 'dispatches DOM events', ->
+
+    sevt = new SerializableEvent mouse-event, iframe.content-window
+    spy = sinon.spy!
+
+    target = iframe-doc.get-element-by-id \click-target
+
+    target.add-event-listener \click, spy
+
+    sevt.dispatch-in-window iframe.content-window .then ->
+      expect spy .to.be.called-once!
+
+  it 'dispatches wait events'
