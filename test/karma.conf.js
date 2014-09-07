@@ -22,6 +22,7 @@ module.exports = function(config) {
       // Fixtures
       'test/fixtures/*.xml',
       'test/fixtures/*.html',
+      'test/served/*.html',
       'test/fixtures/*.css',
       {pattern: 'test/fixtures/*.jpg',  watched: false, included: false, served: true},
 
@@ -40,7 +41,8 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       '**/*Spec.ls': ['webpack'],
-      '**/*.html':['html2js'],
+      '**/fixtures/*.html':['html2js'],
+      '**/served/*.html':[], // Remove html2js to get the file served. https://github.com/karma-runner/karma/issues/788
       '**/*.json':['html2js'],
       '**/*.xml':['html2js']
     },
