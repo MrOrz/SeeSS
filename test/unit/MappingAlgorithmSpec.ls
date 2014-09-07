@@ -1,5 +1,6 @@
 require! {
   algo: '../../src/livescript/components/MappingAlgorithm.ls'
+  '../../src/livescript/components/XPathUtil.ls'.queryXPath
 }
 
 (...) <-! describe \MappingAlgorithm
@@ -263,19 +264,9 @@ describe \#valiente, (...) !->
   parser = new DOMParser
   var t1, t2
 
-  # Helper function that returns the first element matching given xpath in specific document.
-  # It is designed to be used like document.querySelector().
-  #
-  # https://developer.mozilla.org/en-US/docs/Web/API/document.evaluate
-  #
-  function query-path doc, xpath
-    doc.evaluate xpath, doc, null, XPathResult.ANY_TYPE, null .iterate-next!
-
-  # Expects the ttmap to match xpath1 in t1 and xpath2 in t2
-  #
   function expect-match ttmap, xpath1, xpath2
     # console.log "[EXPECT]", t1 `query-path` xpath1, "-->", ttmap.get-node-from(t1 `query-path` xpath1)
-    expect ttmap.get-node-from(t1 `query-path` xpath1) .to.be (t2 `query-path` xpath2)
+    expect ttmap.get-node-from(t1 `query-x-path` xpath1) .to.be (t2 `query-x-path` xpath2)
 
   it 'matches specified nodes in Figure 3 in Valiente paper', ->
     t1 := parser.parse-from-string __html__['test/fixtures/valiente-fig3-t1.xml'], 'application/xml'
