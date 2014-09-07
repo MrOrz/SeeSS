@@ -230,7 +230,7 @@ describe '#applyHTML', (...) !->
     renderer = new Renderer(new PageData html: __html__["test/fixtures/#{testfile}-before.html"])
     <- renderer.render document.body .then
 
-    (page-diff) <- renderer.applyHTML "#{location.origin}/base/test/fixtures/#{testfile}-after.html", [] .then
+    (page-diff) <- renderer.applyHTML "#{location.origin}/base/test/served/#{testfile}-after.html", Promise.resolve([]) .then
 
     return {page-diff, renderer}
 

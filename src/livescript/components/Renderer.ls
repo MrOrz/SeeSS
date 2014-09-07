@@ -9,6 +9,7 @@ require! {
   './PageData.ls'
   './MappingAlgorithm.ls'
   './SerializablePageDiff.ls'
+  './XPathUtil.ls'.queryXPath
 }
 
 class Renderer
@@ -92,25 +93,35 @@ class Renderer
   #
   # Returns a promise that resolves to the page differences.
   #
-  applyHTML: (src, edge-promise) ->
-    return Promise.resolve null
-
-    # Update @page-data with a new instance with the new HTML
-    @page-data = new PageData do
-      html: new-html
-      url: @page-data.url
-      width: @page-data.width
-      height: @page-data.height
-      scroll-top: @page-data.scroll-top
-      doctype: @page-data.doctype
+  applyHTML: (src, edges-promise) ->
 
     new-iframe = generate-iframe @page-data
+    @iframe.parent-node.insert-before new-iframe, @iframe
 
-    # Load iframe
-    @_promise = load-and-snapshot-page-data @page-data, new-iframe
+    iframe-promise = new Promise (resolve, reject) !~>
+      new-iframe.onload = ->
+        new-iframe.onload = null
+        resolve!
+
+
+    new-doc = new-iframe.content-window.document
+    process-promise = Promise.all [iframe-promise, edges-promise] .spread (..., edges) ~>
+
+      # Follow the edge chain events to get to the state this renderer represents
+      #
+      edge-execute-chain = Promise.resolve!
+
+      for i from 1 to edges.length
+        edge-execute-chain = edge-execute-chain.then ->
+          edge = edges.shift!
+          edge.event.dispatch-in-window iframe.content-window
+
+      return edge-execute-chain
+
+    .then ~>
+      take-snapshot new-iframe
+
     .then (new-snapshot) ~>
-      # Register @reloader on the new iframe content window
-      @reloader = new Reloader @iframe.content-window, {log: -> , error: ->}, Timer
 
       # Match the DOM nodes using Valiente's bottom-up algorithm,
       # then map the rest of nodes using diffX, as suggested in discussion section of diffX paper.
@@ -157,6 +168,9 @@ class Renderer
       # There should be no reference to the old iframe after this line.
       @iframe = new-iframe
 
+      # Register @reloader on the new iframe content window
+      @reloader = new Reloader @iframe.content-window, {log: -> , error: ->}, Timer
+
       # Return SerializablePageDiff instance or null
       if diffs.length is 0
         return null
@@ -167,10 +181,9 @@ class Renderer
           diffs: diffs
 
     # Kick start the new iframe loading.
-    @iframe.parent-node.replace-child new-iframe, @iframe
+    new-iframe.src = src
 
-    return @_promise
-
+    return process-promise
 
   #
   # Helper function that returns a promise that resolves when all assets
@@ -269,22 +282,24 @@ class Renderer
       return Promise.delay 0
 
     .then ~>
-      # Take the initial page snapshot by walking the nodes
-      #
-      iframe-document = iframe.content-window.document
-      walker = iframe-document.create-tree-walker iframe-document.body,
-        NodeFilter.SHOW_ELEMENT
+      take-snapshot iframe
 
-      idx = 0
-      page-snapshot = while current-node = walker.next-node!
-        # Secretly put snapshot index reference into DOM
-        current-node._seess-snapshot-idx = idx
-        idx += 1
-        new ElementSnapshot current-node, iframe.content-window
+  function take-snapshot iframe
+    # Take the initial page snapshot by walking the nodes
+    #
+    iframe-document = iframe.content-window.document
+    walker = iframe-document.create-tree-walker iframe-document.body,
+      NodeFilter.SHOW_ELEMENT
 
-      # Return the snapshot
-      return page-snapshot
+    idx = 0
+    page-snapshot = while current-node = walker.next-node!
+      # Secretly put snapshot index reference into DOM
+      current-node._seess-snapshot-idx = idx
+      idx += 1
+      new ElementSnapshot current-node, iframe.content-window
 
+    # Return the snapshot
+    return page-snapshot
 
   # Generate new iframe using dimensions specified in page-data object
   #
