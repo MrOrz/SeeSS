@@ -334,9 +334,9 @@ class Renderer
 # since there is no "before" or "after" when adding or removing elements.
 #
 class ElementDifference
-  @TYPE_MOD = 0
-  @TYPE_ADDED = 1
-  @TYPE_REMOVED = 2
+  const @TYPE_MOD = 0
+  const @TYPE_ADDED = 1
+  const @TYPE_REMOVED = 2
 
   ( diff-or-snapshot, @type = @@TYPE_MOD ) ->
     @ <<< diff-or-snapshot
