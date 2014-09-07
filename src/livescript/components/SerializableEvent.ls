@@ -27,6 +27,8 @@ class SerializableEvent
       else
         @_recover-from-json timestamp-or-event
 
+  # Returns a promise resolved when event is triggered
+  #
   dispatch-in-window: (win) ->
     if @type is \WAIT
       return @_dispatch-wait-event-in-window win
@@ -36,6 +38,8 @@ class SerializableEvent
   _dispatch-dom-event-in-window: (win) ->
     return new Promise (resolve, reject) ~>
       target-elem = win.document `query-x-path` @target
+
+      reject! if !target-elem
 
       target-elem.add-event-listener @type, resolve
 
