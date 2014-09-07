@@ -23,7 +23,7 @@ var mutation-observer, debounce-timeout-handle
 var last-event
 
 function record-event(evt)
-  last-event := evt
+  last-event := new SerializableEvent evt, window
 
 
 # Register message listeners from background script
@@ -65,10 +65,6 @@ chrome.runtime.on-message.add-listener ({type, data}, sender, send-response) ->
 (new Message \GET_STATE).send!
 
 function send-page-data
-  # Send HTML back to background
-  #
-  if last-event isnt undefined
-    evt = new SerializableEvent(last-event, window)
 
   msg = new Message \PAGE_DATA,
     page:
@@ -81,12 +77,9 @@ function send-page-data
         public-id: document.doctype.public-id
         system-id: document.doctype.system-id
 
-    event: evt
+    event: last-event
 
   # Record the current timestamp
   last-event := Date.now!
 
   msg.send!
-
-  # After sending, unmark the event target in DOM immediately
-  SerializableEvent.unmark document
