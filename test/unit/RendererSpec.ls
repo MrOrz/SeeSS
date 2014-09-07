@@ -203,7 +203,7 @@ describe '#applyHTML', (...) !->
     expect page-diff.diffs .to.have.length 1
     expect page-diff.diffs.0.type .to.be Renderer.ElementDifference.TYPE_MOD
     expect page-diff.diffs.0.computed .to.eql do
-      color:
+      'border-bottom-color':
         before: "rgb(255, 0, 0)"
         after: "rgb(0, 0, 255)"
 
@@ -212,13 +212,17 @@ describe '#applyHTML', (...) !->
 
     expect page-diff .to.be.ok!
     expect page-diff.diffs .to.have.length 2
-    expect page-diff.diffs.0.type .to.be Renderer.ElementDifference.TYPE_MOD
-    expect page-diff.diffs.0.rect .to.eql do
-      top:
-        before: "0px"
-        after: "16px"
 
-    expect page-diff.diffs.1.type .to.be Renderer.ElementDifference.TYPE_ADDED
+    expect page-diff.diffs.0.type .to.be Renderer.ElementDifference.TYPE_ADDED
+
+    expect page-diff.diffs.1.type .to.be Renderer.ElementDifference.TYPE_MOD
+    expect page-diff.diffs.1.rect .to.eql do
+      top:
+        before: 8
+        after: 24
+      bottom:
+        before: 24
+        after: 40
 
 
   it 'deals with element removal'
