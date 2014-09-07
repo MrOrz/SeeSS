@@ -28,5 +28,5 @@ describe '#turn-on', (...) ->
 
     TabManager.turn-on 321
 
-    expect spy.called-once .to.be true
+    expect spy .to.be.called-once!
 
