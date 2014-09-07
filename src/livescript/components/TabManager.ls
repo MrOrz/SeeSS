@@ -1,5 +1,9 @@
 # A singleton class that keeps track of all tabs' state machines
 #
+require! {
+  './Constants.ls'
+  './Message.ls'
+}
 
 const TAG = "[TabManager]"
 
@@ -91,9 +95,7 @@ class TabStateMachine
 
     chrome.browser-action.set-icon do
       tab-id: tab-id
-      path:
-        \19 : 'assets/19-inactive.png'
-        \38 : 'assets/19-inactive@2x.png'
+      path: Constants.INACTIVE_ICON_PATH
 
   function turn-on tab-id
     # Reload the turned-on tab.

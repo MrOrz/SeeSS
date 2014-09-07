@@ -4,6 +4,7 @@ require! {
   './components/RenderGraph.ls'
   './components/Message.ls'
   './components/TabManager.ls'
+  './components/Constants.ls'
 }
 
 const TAG = "[Background]"
@@ -62,10 +63,7 @@ chrome.tabs.on-updated.add-listener (tab-id, change-info) ->
   #
   chrome.browser-action.set-icon do
     tab-id: tab-id
-    path:
-      \19 : 'assets/19-active.png'
-      \38 : 'assets/19-active@2x.png'
-
+    path: Constants.ACTIVE_ICON_PATH
 
 
 # -----------------------------------------
