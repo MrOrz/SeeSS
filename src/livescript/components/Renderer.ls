@@ -183,6 +183,7 @@ class Renderer
 
       # Now we can totally replace the old @iframe with the new one.
       # There should be no reference to the old iframe after this line.
+      @iframe.remove!
       @iframe = new-iframe
 
       # Register @reloader on the new iframe content window
