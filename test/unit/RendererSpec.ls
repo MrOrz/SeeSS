@@ -221,11 +221,11 @@ describe '#applyHTML', (...) !->
     expect page-diff.diffs.1.type .to.be Renderer.ElementDifference.TYPE_MOD
     expect page-diff.diffs.1.rect .to.eql do
       top:
-        before: 8
-        after: 24
+        before: 0
+        after: 16
       bottom:
-        before: 24
-        after: 40
+        before: 16
+        after: 32
 
 
   it 'deals with element removal', ->
