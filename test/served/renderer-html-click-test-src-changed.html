@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<style>
+  .red { color: red; }
+</style>
+
+<ul class="red">
+  <li class="add-button">Add item</li>
+</ul>
+
+<script>
+  var addButton = document.querySelector('.add-button'),
+  ul = document.querySelector('ul');
+
+  addButton.addEventListener('click', function(){
+    var newLi = document.createElement('li');
+    newLi.textContent = "" + (ul.children.length - 1);
+    ul.insertBefore(newLi, addButton);
+  });
+</script>

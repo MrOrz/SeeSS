@@ -2,6 +2,7 @@ require! {
   rewire
   '../../src/livescript/components/PageData.ls'
   '../../src/livescript/components/RenderGraph.ls'
+  '../../src/livescript/components/SerializableEvent.ls'
 }
 
 # A Renderer mock that only stores fake page data, without creating additional iframes
@@ -124,6 +125,26 @@ describe '#refresh', (...) !->
       expect page-diff.query-diff-id(0).node-name .to.be \H1
       expect page-diff.diffs.0.computed.color.before .to.be "rgb(0, 0, 255)"
       expect page-diff.diffs.0.computed.color.after .to.be "rgb(255, 0, 0)"
+
+  it 'refreshes all iframe when HTML changed, and outputs difference', ->
+    graph = new RenderGraph document.body
+    filename = "base/test/served/renderer-html-click-test-src-changed.html"
+    url = "#{location.origin}/#{filename}"
+
+    root = graph.add (new PageData html: __html__['test/fixtures/renderer-html-click-test-src.html'], url: url)
+
+    edge-root-state0 = new RenderGraph.Edge root, new SerializableEvent({type: \click, constructor-name: \MouseEvent, target: '/html/body/ul/*[1]'})
+    state0 = graph.add (new PageData html: __html__['test/fixtures/renderer-html-click-test-state0.html'], url: url), edge-root-state0
+
+    edge-state0-state1 = new RenderGraph.Edge state0, new SerializableEvent({type: \click, constructor-name: \MouseEvent, target: '/html/body/ul/*[2]'})
+    state1 = graph.add (new PageData html: __html__['test/fixtures/renderer-html-click-test-state1.html'], url: url), edge-state0-state1
+
+    edge-state1-state2 = new RenderGraph.Edge state1, new SerializableEvent({type: \click, constructor-name: \MouseEvent, target: '/html/body/ul/*[3]'})
+    state2 = graph.add (new PageData html: __html__['test/fixtures/renderer-html-click-test-state2.html'], url: url), edge-state1-state2
+
+    promises <- Promise.all graph.refresh(filename) .then
+
+    expect promises .to.have.length 4
 
   function load-css doc, new-filename, old-filename = \PLACEHOLDER
     # Hack: Change the CSS filename inside renderer iframe to simulate CSS file change

@@ -102,13 +102,13 @@ class RenderGraph
           renderer._graph-prop.bfs-edges-updated-promise = Promise.resolve []
 
       # Execute the BFS
-      refresh-promises = while renderer = renderer-queue.unshift!
+      refresh-promises = while renderer = renderer-queue.shift!
 
         # Make renderer start applying new HTML as soon as possible
         renderer-src = renderer._graph-prop.bfs-src
         apply-promise = renderer.applyHTML renderer-src, renderer._graph-prop.bfs-edges-updated-promise
 
-        children = children-of renderer .map (child) -> child.renderer._graph-prop.bfs-queued isnt true
+        children = @children-of renderer .filter (child) -> child.renderer._graph-prop.bfs-queued isnt true
 
         # Update the outgoing edges when new HTML is applied
         edge-updated-promise = apply-promise.then let children = children
@@ -126,7 +126,7 @@ class RenderGraph
 
         for child in children
           # Remember the old event target element instance
-          old-event-target = child.renderer.iframe.content-window.document `query-x-path` child.in-edge.event.target
+          old-event-target = renderer.iframe.content-window.document `query-x-path` child.in-edge.event.target
           child.renderer._graph-prop.bfs-old-event-target = old-event-target
 
           # Set bfs properties of children and enqueue each child
@@ -141,9 +141,21 @@ class RenderGraph
 
           renderer-queue.push child.renderer
 
-        # refresh promise
+        # refresh promise pushed into refresh-promises array
         apply-promise.then ({page-diff, mapping}) ->
           page-diff
+        .catch let children = children, renderer = renderer
+          ->
+            console.log '[RenderGraph] Something wrong with renderer', renderer
+            # Stop traversing the children if something wrong applying HTML
+            #
+            i=0
+            while i < renderer-queue.length, i+=1 when renderer-queue[i] in children
+              child = renderer-queue.splice(i, 1).0
+
+              # make the child can be re-queued by others
+              child.bfs-queued = false
+            return "Cannot apply HTML to Renderer"
 
       return refresh-promises
 
