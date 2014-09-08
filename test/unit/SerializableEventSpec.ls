@@ -81,7 +81,7 @@ describe '#constructor', (...) !->
     sevt = new SerializableEvent Date.now!
 
     expect sevt.type .to.be \WAIT
-    expect sevt.timeout .to.be 0
+    expect sevt.timeout .to.be.less-than 5ms # 5ms should be long enough
 
 describe '#dispatch-in-window', (...) !->
 
