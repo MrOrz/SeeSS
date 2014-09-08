@@ -228,9 +228,22 @@ describe '#applyHTML', (...) !->
         after: 40
 
 
-  it 'deals with element removal'
+  it 'deals with element removal', ->
+    ({page-diff, renderer}) <- feed-test-file-to-source-renderer 'renderer-html-remove-test' .then
 
-  it 'deals with new DOM wrapping old elements on source iframe'
+    expect page-diff .to.be.ok!
+    expect page-diff.diffs .to.have.length 4
+
+    container = page-diff.get-element-by-diff-id(0)
+    expect container.node-name .to.be \DIV
+
+    expect page-diff.diffs.3.type .to.be Renderer.ElementDifference.TYPE_REMOVED
+
+    # In this test case, the removed element's ID is attached to its parent,
+    # which happens to be the the container of all buttons
+    #
+    removed-element-parent = page-diff.get-element-by-diff-id 3
+    expect removed-element-parent .to.be container
 
 
   function feed-test-file-to-source-renderer testfile

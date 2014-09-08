@@ -154,12 +154,25 @@ class Renderer
           @snapshot[matched-old-elem._seess-snapshot-idx] = \REFERRED
 
       # Collect all the old element snapshots that is not referred in the previous step.
+      #
       # These "unreferred snapshots" are snapshots of the elements that are removed
       # in the new version of html.
+      #
+      # The diff-id is recorded on the valid parent in the new DOM.
+      #
       unreferenced-snapshots = @snapshot.filter (elem-snapshot) -> elem-snapshot isnt \REFERRED
-      diffs ++= @snapshot.filter (elem-snapshot) -> elem-snapshot isnt \REFERRED
-        .map (unreferenced-elem-snapshot) ->
-          new ElementDifference unreferenced-elem-snapshot, ElementDifference.TYPE_REMOVED
+      @snapshot.filter (elem-snapshot) -> elem-snapshot isnt \REFERRED
+        .for-each (unreferenced-elem-snapshot) ->
+          parent = unreferenced-elem-snapshot.elem
+          until parent = ttmap.get-node-from parent.parent-node
+            continue
+
+          if parent._seess-diff-id is undefined
+            parent._seess-diff-id = diffs.length
+          else
+            parent._seess-diff-id = "#{parent._seess-diff-id} #{diffs.length}"
+
+          diffs.push new ElementDifference unreferenced-elem-snapshot, ElementDifference.TYPE_REMOVED, parent.innerHTML
 
       # We are done with the old snapshot. Update with new-snapshot now.
       @snapshot = new-snapshot
@@ -357,12 +370,15 @@ class Renderer
 # However, if @type is not TYPE_MOD, the property value will be a scalar term,
 # since there is no "before" or "after" when adding or removing elements.
 #
+# If type is TYPE_REMOVED, @before-html stores the innerHTML of the parent of the removed node,
+# before its removal.
+#
 class ElementDifference
   const @TYPE_MOD = 0
   const @TYPE_ADDED = 1
   const @TYPE_REMOVED = 2
 
-  ( diff-or-snapshot, @type = @@TYPE_MOD ) ->
+  ( diff-or-snapshot, @type = @@TYPE_MOD, @before-html ) ->
     @ <<< diff-or-snapshot
 
 # Defines what information should be remembered for each element in the page snapshot.
