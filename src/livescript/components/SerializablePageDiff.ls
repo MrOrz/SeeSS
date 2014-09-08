@@ -45,7 +45,7 @@ class SerializablePageDiff
     @_generate-dom! unless @_dom
     return @_dom
 
-  get-element-by-diff-id: (diff-id) ->
+  query-diff-id: (diff-id) ->
     @_generate-dom! unless @_dom
     return @_dom.query-selector "[#{@@DIFF_ID_ATTR}~=\"#{diff-id}\"]"
 

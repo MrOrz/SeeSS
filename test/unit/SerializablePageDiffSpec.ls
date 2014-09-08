@@ -47,11 +47,11 @@ describe '#toJSON', (...) !->
     # Invoke @dom() on restored-page-diff
     expect restored-page-diff.dom!child-nodes.length .to.be page-diff.dom!child-nodes.length
 
-describe '#get-element-by-diff-id', (...) !->
+describe '#query-diff-id', (...) !->
 
   it 'returns the element with corresponding diff-id', ->
     page-diff = new SerializablePageDiff do
       html: "<body><span id=\"target\" #{SerializablePageDiff.DIFF_ID_ATTR}=\"0\">text1</span>text2</body>"
       diffs: <[foo]>
 
-    expect page-diff.get-element-by-diff-id(0).id .to.be \target
+    expect page-diff.query-diff-id(0).id .to.be \target
