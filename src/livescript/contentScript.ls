@@ -39,11 +39,6 @@ chrome.runtime.on-message.add-listener ({type, data}, sender, send-response) ->
       # Instantiate the mutation observer and start observing
       mutation-observer := new MutationObserver (records) ->
 
-        # If the mutation is caused by SerializableEvent operation, skip it.
-        #
-        for record in records when record.attribute-name is SerializableEvent.MARK
-          return
-
         clear-timeout debounce-timeout-handle
         debounce-timeout-handle := set-timeout send-page-data, MUTATION_DEBOUNCE_PERIOD
 
