@@ -98,3 +98,19 @@ describe '#dispatch-in-window', (...) !->
       expect spy .to.be.called-once!
 
   it 'dispatches wait events'
+
+  it 'rejects when event target not found', ->
+    sevt = new SerializableEvent mouse-event, iframe.content-window
+
+    resolve-spy = sinon.spy!
+    reject-spy = sinon.spy!
+
+    # Assume the event target is updated to something not exist
+    sevt.target = '/NOT_EXIST'
+
+    sevt.dispatch-in-window iframe.content-window
+    .then resolve-spy, reject-spy
+    .finally !->
+      expect resolve-spy .to.be.not-called!
+      expect reject-spy .to.be.called-once!
+

@@ -39,7 +39,9 @@ class SerializableEvent
     return new Promise (resolve, reject) ~>
       target-elem = win.document `query-x-path` @target
 
-      reject! if !target-elem
+      if !target-elem
+        reject "Event target '#{@target}' not found"
+        return
 
       target-elem.add-event-listener @type, resolve
 
