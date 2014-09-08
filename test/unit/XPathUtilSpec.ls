@@ -53,3 +53,22 @@ describe '#generate-x-path', (...) !->
 
     expect x-path .to.be '/html/body/*[1]/*[3]'
     expect (htmldoc `query-x-path` x-path) .to.be p
+
+  it 'should not be affected by text nodes', (...) !->
+    htmldoc = parser.parse-from-string """
+      <html><head><style>
+        .red { color: red; }
+      </style>
+
+      </head><body><ul class="red">
+        <li class="add-button">Add item</li>
+      </ul>
+
+      </body></html>
+    """, 'text/html'
+
+    add-button = htmldoc.query-selector '.add-button'
+    x-path = generate-x-path add-button
+
+    expect x-path .to.be '/html/body/*[1]/*[1]'
+    expect (htmldoc `query-x-path` x-path) .to.be add-button

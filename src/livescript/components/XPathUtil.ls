@@ -16,7 +16,7 @@ function generateXPath elem
   new-chunk = if elem.node-name in <[HTML BODY]> or elem.parent-node is null
     "/#{elem.node-name.toLowerCase!}"
   else
-    position = Array::index-of.call elem.parent-node.child-nodes, elem
+    position = Array::index-of.call elem.parent-node.children, elem
     "/*[#{position+1}]"
 
   return generateXPath(elem.parent-node) + new-chunk
