@@ -126,27 +126,27 @@ class RenderGraph
 
   # Given a renderer or renderer-id, return array of renderers and edges
   #
-  neighbors-of: (renderer) ->
+  children-of: (renderer) ->
     if typeof renderer is \number
       renderer-idx = renderer
       renderer = @renderers[renderer]
     else
       renderer-idx = renderer._graph-prop.id
 
-    neighbors = for own neighbor-id, edge of @adj-list[renderer-idx]
-      new Neighbor(edge, @renderers[neighbor-id])
+    children = for own neighbor-id, edge of @adj-list[renderer-idx]
+      new Child(edge, @renderers[neighbor-id])
 
-    return neighbors
+    return children
 
 # The data structure storing data in edge
 #
 class Edge
   (@from-renderer, @event) ->
 
-# The data structure returned by neighbors-of in arrays
+# The data structure returned by children-of in arrays
 #
-class Neighbor
-  (@edge, @renderer) ->
+class Child
+  (@in-edge, @renderer) ->
 
 
 

@@ -59,7 +59,7 @@ describe '#add', (...) !->
     expect graph.renderers .to.have.length 4
     expect graph.adj-list.4 .to.be undefined
 
-describe '#neighbors-of', (...) !->
+describe '#children-of', (...) !->
 
   var RenderGraph
 
@@ -72,28 +72,28 @@ describe '#neighbors-of', (...) !->
     RenderGraph.__set__ Renderer: SimpleObjectRendererMock
 
 
-  it 'returns correct neighbors', ->
+  it 'returns correct children', ->
     graph = new RenderGraph document.body
 
     renderer0 = graph.add (new PageDataMock \node0)
     renderer1 = graph.add (new PageDataMock \node1), (new RenderGraph.Edge renderer0, \edge-0-1)
     renderer2 = graph.add (new PageDataMock \node2), (new RenderGraph.Edge renderer1, \edge-1-2)
 
-    neighbor0 = graph.neighbors-of 0
+    child0 = graph.children-of 0
 
-    expect neighbor0.length .to.eql 1
-    expect neighbor0.0.edge.event .to.be \edge-0-1
-    expect neighbor0.0.renderer.page-data.html .to.be \node1
+    expect child0.length .to.eql 1
+    expect child0.0.in-edge.event .to.be \edge-0-1
+    expect child0.0.renderer.page-data.html .to.be \node1
 
-    neighbor1 = graph.neighbors-of 1
+    child1 = graph.children-of 1
 
-    expect neighbor1.length .to.eql 1
-    expect neighbor1.0.edge.event .to.be \edge-1-2
-    expect neighbor1.0.renderer.page-data.html .to.be \node2
+    expect child1.length .to.eql 1
+    expect child1.0.in-edge.event .to.be \edge-1-2
+    expect child1.0.renderer.page-data.html .to.be \node2
 
-    neighbor2 = graph.neighbors-of 2
+    child2 = graph.children-of 2
 
-    expect neighbor2.length .to.eql 0
+    expect child2.length .to.eql 0
 
 
 describe '#refresh', (...) !->
