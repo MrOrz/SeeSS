@@ -1,6 +1,8 @@
 require! {
   '../../src/livescript/components/PageData.ls'
   '../../src/livescript/components/Renderer.ls'
+  '../../src/livescript/components/RenderGraph.ls'
+  '../../src/livescript/components/SerializableEvent.ls'
 }
 
 (...) <-! describe \Renderer, _
@@ -245,6 +247,26 @@ describe '#applyHTML', (...) !->
     removed-element-parent = page-diff.query-diff-id 3
     expect removed-element-parent .to.be container
 
+
+  it 'executes event stream and detects identical states', ->
+
+    # Assume a renderer rendering a page that is 2 clicks away from source.
+    #
+    # renderer-html-click-test-src --- 2 clicks --> renderer-html-click-test-state
+    #
+    renderer = new Renderer (new PageData html: __html__['test/fixtures/renderer-html-click-test-state.html'])
+
+    <- renderer.render document.body .then
+
+    edges =
+      new RenderGraph.Edge null, new SerializableEvent {constructorName: 'MouseEvent', target: '/html/body/ul/*[1]', type: 'click', which: 1, bubbles: true, cancelable: true}
+      new RenderGraph.Edge null, new SerializableEvent {constructorName: 'MouseEvent', target: '/html/body/ul/*[2]', type: 'click', which: 1, bubbles: true, cancelable: true}
+
+    ({page-diff, mapping}) <- renderer.applyHTML "#{location.origin}/base/test/served/renderer-html-click-test-src.html", Promise.resolve(edges) .then
+
+    expect page-diff .to.be null
+
+  it 'rejects promise when events could not be replayed'
 
   function feed-test-file-to-source-renderer testfile
     renderer = new Renderer(new PageData html: __html__["test/fixtures/#{testfile}-before.html"])

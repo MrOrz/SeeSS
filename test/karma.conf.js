@@ -22,8 +22,8 @@ module.exports = function(config) {
       // Fixtures
       'test/fixtures/*.xml',
       'test/fixtures/*.html',
-      'test/served/*.html',
       'test/fixtures/*.css',
+      {pattern: 'test/served/*.html',   watched: true, included: false, served: true},
       {pattern: 'test/fixtures/*.jpg',  watched: false, included: false, served: true},
 
       // Filename placeholders

@@ -113,11 +113,15 @@ class Renderer
       for i from 1 to edges.length
         edge-execute-chain = edge-execute-chain.then ->
           edge = edges.shift!
-          edge.event.dispatch-in-window iframe.content-window
+          edge.event.dispatch-in-window new-iframe.content-window
 
       return edge-execute-chain
 
     .then ~>
+      # Remove all script tags and take snapshot
+      for script-elem in new-iframe.content-window.document.query-selector-all \script
+        script-elem.remove!
+
       take-snapshot new-iframe
 
     .then (new-snapshot) ~>
