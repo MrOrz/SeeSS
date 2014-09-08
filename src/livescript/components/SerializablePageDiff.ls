@@ -2,8 +2,6 @@
 # An object that collects every detail information needed to re-create
 # all differences of the page in another document.
 #
-# Changed elements are marked with __seess_diff_id__ attribute.
-#
 class SerializablePageDiff
   # The HTML element property that stores diff-id of an element
   const @DIFF_ID_ATTR = \__seess_diff_id__

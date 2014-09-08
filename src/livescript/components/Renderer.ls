@@ -57,7 +57,7 @@ class Renderer
         NodeFilter.SHOW_ELEMENT
 
       idx = 0
-      differences = []
+      diffs = []
       while current-node = walker.next-node!
         # Calculate new snapshot and the element difference
         new-elem-snapshot = new ElementSnapshot current-node, @iframe.content-window
@@ -65,8 +65,8 @@ class Renderer
 
         if element-diff
           # Secretly store the diff-id in DOM
-          current-node._seess-diff-id = differences.length
-          differences.push element-diff
+          current-node._seess-diff-id = diffs.length
+          diffs.push element-diff
         else
           delete current-node._seess-diff-id
 
@@ -75,13 +75,13 @@ class Renderer
         idx += 1
 
       # Return SerializablePageDiff instance or null
-      if differences.length is 0
+      if diffs.length is 0
         return null
       else
         return new SerializablePageDiff do
           dom: generate-detached-html @iframe
           doctype: @page-data.doctype
-          diffs: differences
+          diffs: diffs
 
   #
   # Given the source iframe's src, and event sequence,
@@ -319,6 +319,9 @@ class Renderer
 
   # Generate a detatched DOM HTMLElement that marks diff-id on the elements
   # that is changed by CSS or HTML
+  #
+  # TODO: Not a good encapsulation. This should be done inside SerializableDiff
+  # class, even with a static method named "create" could be better than this.
   #
   function generate-detached-html iframe
     iframe-document = iframe.content-window.document
