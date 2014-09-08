@@ -207,6 +207,8 @@ describe '#applyHTML', (...) !->
         before: "rgb(255, 0, 0)"
         after: "rgb(0, 0, 255)"
 
+    expect page-diff.get-element-by-diff-id(0).class-name .to.be \blue
+
   it 'deals with element addition', ->
     ({page-diff, renderer}) <- feed-test-file-to-source-renderer 'renderer-html-add-test' .then
 
@@ -214,6 +216,7 @@ describe '#applyHTML', (...) !->
     expect page-diff.diffs .to.have.length 2
 
     expect page-diff.diffs.0.type .to.be Renderer.ElementDifference.TYPE_ADDED
+    expect page-diff.get-element-by-diff-id(0).class-name .to.be \added
 
     expect page-diff.diffs.1.type .to.be Renderer.ElementDifference.TYPE_MOD
     expect page-diff.diffs.1.rect .to.eql do

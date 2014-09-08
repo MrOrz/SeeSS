@@ -135,6 +135,7 @@ class Renderer
         matched-old-elem = ttmap.get-node-to elem-snapshot.elem
         unless matched-old-elem
           # No matched old element; the element is new!
+          elem-snapshot.elem._seess-diff-id = diffs.length
           diffs.push new ElementDifference elem-snapshot, ElementDifference.TYPE_ADDED
 
         else
