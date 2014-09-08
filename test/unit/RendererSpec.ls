@@ -252,9 +252,9 @@ describe '#applyHTML', (...) !->
 
     # Assume a renderer rendering a page that is 2 clicks away from source.
     #
-    # renderer-html-click-test-src --- 2 clicks --> renderer-html-click-test-state
+    # renderer-html-click-test-src --- 2 clicks --> renderer-html-click-test-state1
     #
-    renderer = new Renderer (new PageData html: __html__['test/fixtures/renderer-html-click-test-state.html'])
+    renderer = new Renderer (new PageData html: __html__['test/fixtures/renderer-html-click-test-state1.html'])
 
     <- renderer.render document.body .then
 
