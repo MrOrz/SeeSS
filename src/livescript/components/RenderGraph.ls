@@ -1,6 +1,8 @@
 require!{
   './Renderer.ls'
   Promise: bluebird
+  './XPathUtil.ls'.queryXPath
+  './XPathUtil.ls'.generateXPath
 }
 
 # A directed graph for renderers
@@ -83,46 +85,67 @@ class RenderGraph
       return [renderer.applyCSS path for renderer in @renderers]
 
     else
-      # BFS renderer queue
-      renderer-queue = []
 
-      # Create a simulating iframe for each source iframe,
-      # and reset all BFS taggings
+      # Reset all BFS taggings. Prepare for BFS.
+      renderer-queue = []
       for renderer in @renderers
-        delete renderer._graph-prop.bfs-visited
-        delete renderer._graph-prop.bfs-iframe
+        delete renderer._graph-prop.bfs-queued
 
         if renderer._graph-prop.is-source
           # Put source renderers inside render queue
           renderer-queue.push renderer
 
-          # Create iframe for source renderers
-          renderer._graph-prop.bfs-iframe = document.create-element \iframe
-
-          let iframe = renderer._graph-prop.bfs-iframe, page-data = renderer.page-data
-            iframe.width = page-data.width
-            iframe.height = page-data.height
-
-            # Source renderer use src attribute to load data.
-            #
-            iframe.src = page-data.url
-            iframe.onload = ->
-              iframe.onload = null
-              ...
-
-            # Start iframe loading
-            #
-            @iframe-container.insert-before iframe, null
-
+          # Set bfs properties
+          renderer._graph-prop.bfs-src = renderer.page-data.url
+          renderer._graph-prop.bfs-queued = true
+          renderer._graph-prop.bfs-edges = []
+          renderer._graph-prop.bfs-edges-updated-promise = Promise.resolve []
 
       # Execute the BFS
-      while renderer = renderer-queue.unshift!
-        # If not source renderer, there must be an edge from the previous renderer
-        unless renderer._graph-prop.is-source
-          current-renderer-idx = renderer._graph-prop.id
-          previous-renderer-idx = @renderers[visiting-order-idx-1]._graph-prop.id
-          edge = @adj-list[previous-renderer-idx][current-renderer-idx]
-        ...
+      refresh-promises = while renderer = renderer-queue.unshift!
+
+        # Make renderer start applying new HTML as soon as possible
+        renderer-src = renderer._graph-prop.bfs-src
+        apply-promise = renderer.applyHTML renderer-src, renderer._graph-prop.bfs-edges-updated-promise
+
+        children = children-of renderer .map (child) -> child.renderer._graph-prop.bfs-queued isnt true
+
+        # Update the outgoing edges when new HTML is applied
+        edge-updated-promise = apply-promise.then let children = children
+          ({mapping, page-diff}) ->
+
+            for child in children when child.in-edge.event.type isnt \WAIT
+              old-target = child.renderer._graph-prop.bfs-old-event-target
+              new-target = mapping.get-node-from old-target
+
+              if new-target
+                child.in-edge.event.target = generate-x-path new-target
+              else
+                child.in-edge.event.target = '/NOT_EXIST'
+
+
+        for child in children
+          # Remember the old event target element instance
+          old-event-target = child.renderer.iframe.content-window.document `query-x-path` child.in-edge.event.target
+          child.renderer._graph-prop.bfs-old-event-target = old-event-target
+
+          # Set bfs properties of children and enqueue each child
+          child.renderer._graph-prop.bfs-src = renderer-src
+          child.renderer._graph-prop.bfs-queued = true
+          child.renderer._graph-prop.bfs-edges = edges = renderer._graph-prop.bfs-edges ++ child.in-edge
+
+          # Resolve to child.renderer._graph-prop.bfs-edges when edge are updated
+          child.renderer._graph-prop.bfs-edges-updated-promise = edge-updated-promise.then let edges = edges
+            ->
+              edges
+
+          renderer-queue.push child.renderer
+
+        # refresh promise
+        apply-promise.then ({page-diff, mapping}) ->
+          page-diff
+
+      return refresh-promises
 
   # Given a renderer or renderer-id, return array of renderers and edges
   #
