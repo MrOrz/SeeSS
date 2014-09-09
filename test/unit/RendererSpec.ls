@@ -262,7 +262,9 @@ describe '#applyHTML', (...) !->
       new RenderGraph.Edge null, new SerializableEvent {constructorName: 'MouseEvent', target: '/html/body/ul/*[1]', type: 'click', which: 1, bubbles: true, cancelable: true}
       new RenderGraph.Edge null, new SerializableEvent {constructorName: 'MouseEvent', target: '/html/body/ul/*[2]', type: 'click', which: 1, bubbles: true, cancelable: true}
 
-    ({page-diff, mapping}) <- renderer.applyHTML "#{location.origin}/base/test/served/renderer-html-click-test-src.html", Promise.resolve(edges) .then
+    # Use http://127.0.0.1 instead of http://localhost to simulate cross-origin scenario
+    #
+    ({page-diff, mapping}) <- renderer.applyHTML "http://127.0.0.1:#{location.port}/base/test/served/renderer-html-click-test-src.html", Promise.resolve(edges) .then
 
     expect page-diff .to.be null
 
