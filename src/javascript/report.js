@@ -12,10 +12,16 @@ var HelloMessage = React.createClass({
   }
 });
 
-React.renderComponent(<HelloMessage name="Johnson"/>,
+React.renderComponent(<HelloMessage name="Jacky"/>,
   document.getElementById('body'));
 
+// For debug.
+// TODO: Remove when going live!
+//
+window.pageDiffs = [];
+
 chrome.runtime.onMessage.addListener(function(message){
+  var pageDiff;
   switch(message.type){
 
     // Background script starts processing a CSS or HTML change.
@@ -32,6 +38,12 @@ chrome.runtime.onMessage.addListener(function(message){
 
     // The background script passes a SerializablePageDiff instance here.
     case "PAGE_DIFF":
+    pageDiff = new SerializablePageDiff(message.data);
     console.log("<Message> Data arrived from background script", new SerializablePageDiff(message.data));
+
+    // For debug.
+    // TODO: Remove when going live!
+    //
+    pageDiffs.push(pageDiff);
   }
 });
