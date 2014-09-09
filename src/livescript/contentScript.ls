@@ -42,7 +42,7 @@ chrome.runtime.on-message.add-listener ({type, data}, sender, send-response) ->
         clear-timeout debounce-timeout-handle
         debounce-timeout-handle := set-timeout send-page-data, MUTATION_DEBOUNCE_PERIOD
 
-      mutation-observer.observe document.body, {+subtree, +child-list}
+      mutation-observer.observe document.body, {+subtree, +child-list, +attributes}
 
       # Capture the event recorders on document body at capturing phase
       #
