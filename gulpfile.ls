@@ -84,8 +84,12 @@ gulp.task \watch, <[build]> ->
 
   # Static http server & livereload server for developing report pages
   server = connect!
-  server.use serve-static('build') .listen process.env.PORT || 5000
+  port = process.env.PORT || 5000
+  server.use serve-static('build') .listen port
+  console.log "Open http://localhost:#{port}/report.html to develop report page"
 
   livereload-server = gulp-livereload!
+  livereload-server.changed!
   gulp.watch <[build/assets/*.css build/*.html build/report.js build/chromeMock.js]> .on \change, ->
+    console.log "Change detected: #{it.path}"
     livereload-server.changed it.path
