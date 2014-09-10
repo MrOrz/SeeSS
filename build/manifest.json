@@ -28,6 +28,11 @@
     {
       "matches": ["http://*/*"],
       "js": ["contentScript.js"]
+    },
+    {
+      "matches": ["http://*/*"],
+      "js": ["rendererScript.js"],
+      "all_frames": true
     }
   ],
 
