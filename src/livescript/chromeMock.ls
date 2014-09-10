@@ -1,5 +1,5 @@
 require! {
-  page-diffs: 'json!../../test/fixtures/pagediffs.json'
+  page-diffs: 'json!../../test/fixtures/pagediffs-bootstrap.json'
 }
 
 window.chrome =
