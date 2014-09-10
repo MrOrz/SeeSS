@@ -247,6 +247,17 @@ describe '#applyHTML', (...) !->
     removed-element-parent = page-diff.query-diff-id 3
     expect removed-element-parent .to.be container
 
+  it 'deals with multi-layer structure removal', ->
+    ({page-diff, renderer}) <- feed-test-file-to-source-renderer 'renderer-html-remove-test2' .then
+
+    expect page-diff .to.be.ok!
+    expect page-diff.diffs .to.have.length 3
+
+    for i from 0 to 2
+      container = page-diff.query-diff-id(i)
+      expect container.node-name .to.be \BODY
+      expect page-diff.diffs[i].type .to.be Renderer.ElementDifference.TYPE_REMOVED
+
 
   it 'executes event stream and detects identical states', ->
 

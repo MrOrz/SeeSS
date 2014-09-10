@@ -176,16 +176,16 @@ class Renderer
       unreferenced-snapshots = @snapshot.filter (elem-snapshot) -> elem-snapshot isnt \REFERRED
       @snapshot.filter (elem-snapshot) -> elem-snapshot isnt \REFERRED
         .for-each (unreferenced-elem-snapshot) ->
-          parent = unreferenced-elem-snapshot.elem
-          until parent = ttmap.get-node-from parent.parent-node
-            continue
+          parent = unreferenced-elem-snapshot.elem.parent-node
+          until mapped-parent = ttmap.get-node-from parent
+            parent = parent.parent-node
 
-          if parent._seess-diff-id is undefined
-            parent._seess-diff-id = diffs.length
+          if mapped-parent._seess-diff-id is undefined
+            mapped-parent._seess-diff-id = diffs.length
           else
-            parent._seess-diff-id = "#{parent._seess-diff-id} #{diffs.length}"
+            mapped-parent._seess-diff-id = "#{mapped-parent._seess-diff-id} #{diffs.length}"
 
-          diffs.push new ElementDifference unreferenced-elem-snapshot, ElementDifference.TYPE_REMOVED, parent.innerHTML
+          diffs.push new ElementDifference unreferenced-elem-snapshot, ElementDifference.TYPE_REMOVED, mapped-parent.innerHTML
 
       # We are done with the old snapshot. Update with new-snapshot now.
       @snapshot = new-snapshot
