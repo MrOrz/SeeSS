@@ -26,6 +26,9 @@ module.exports = function(config) {
       {pattern: 'test/served/*.html',   watched: true, included: false, served: true},
       {pattern: 'test/fixtures/*.jpg',  watched: false, included: false, served: true},
 
+      // Content scripts
+      {pattern: 'src/livescript/rendererScript.ls', watched: true, included: false, served: true},
+
       // Filename placeholders
       {pattern: 'test/fixtures/PLACEHOLDER',  watched: false, included: false, served: true}
     ],
@@ -40,7 +43,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      '**/*Spec.ls': ['webpack'],
+      '**/*.ls': ['webpack'],
       '**/fixtures/*.html':['html2js'],
       '**/served/*.html':[], // Remove html2js to get the file served. https://github.com/karma-runner/karma/issues/788
       '**/*.json':['html2js'],
@@ -89,8 +92,7 @@ module.exports = function(config) {
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     // browsers: ['Chrome', 'Safari', 'Firefox'],
-    browsers: ['Chrome'],
-    // browsers: ['ChromeCanary'],
+    browsers: ['Chrome'/*, 'ChromeCanary'*/],
 
     customLaunchers: {
       Chrome_travis_ci: {
