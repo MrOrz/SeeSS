@@ -110,7 +110,7 @@ class Renderer
       # Wait for @renderer executes through the edges.
       # The promise resolves to the page sanpshot.
       #
-      new Promise (resolve, reject) ~>
+      new Promise (resolve, reject) !~>
         callback = (event) ~>
           return if event.source isnt @iframe.content-window and
                     event.data.type isnt \PAGE_DATA

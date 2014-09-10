@@ -3,7 +3,7 @@ require! {
   './components/SerializableEvent.ls'
 }
 
-do ->
+do !->
   # Check if the rendererScript is inside an iframe of a chrome extension,
   # in order to save some calculation for normal frames & iframes.
   #
