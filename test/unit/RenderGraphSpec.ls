@@ -129,7 +129,10 @@ describe '#refresh', (...) !->
   it 'refreshes all iframe when HTML changed, and outputs difference', ->
     graph = new RenderGraph document.body
     filename = "base/test/served/renderer-html-click-test-src-changed.html"
-    url = "#{location.origin}/#{filename}"
+
+    # Use http://127.0.0.1 instead of http://localhost to simulate cross-origin scenario
+    #
+    url = "http://127.0.0.1:#{location.port}/#{filename}"
 
     root = graph.add (new PageData html: __html__['test/fixtures/renderer-html-click-test-src.html'], url: url)
 
