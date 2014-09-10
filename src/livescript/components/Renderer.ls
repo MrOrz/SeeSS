@@ -94,43 +94,52 @@ class Renderer
   #
   applyHTML: (src, edges-promise) ->
 
-    new-iframe = generate-iframe @page-data
-    @iframe.parent-node.insert-before new-iframe, @iframe
-
+    old-iframe = @iframe
+    @iframe = generate-iframe @page-data
     iframe-promise = new Promise (resolve, reject) !~>
-      new-iframe.onload = ->
-        new-iframe.onload = null
+      @iframe.onload = ~>
+        return unless @iframe.src
+        @iframe.onload = null
         resolve!
 
+    old-iframe.parent-node.insert-before @iframe, old-iframe
 
-    new-doc = new-iframe.content-window.document
+    new-doc = @iframe.content-window.document
     process-promise = Promise.all [iframe-promise, edges-promise] .spread (..., edges) ~>
 
-      # Follow the edge chain events to get to the state this renderer represents
+      # Wait for @renderer executes through the edges.
+      # The promise resolves to the page sanpshot.
       #
-      edge-execute-chain = Promise.resolve!
+      new Promise (resolve, reject) ~>
+        callback = (event) ~>
+          return if event.source isnt @iframe.content-window and
+                    event.data.type isnt \PAGE_DATA
+          window.remove-event-listener \message, callback
 
-      for i from 1 to edges.length
-        edge-execute-chain = edge-execute-chain.then ->
-          edge = edges.shift!
-          edge.event.dispatch-in-window new-iframe.content-window
+          page-data = new PageData event.data.data
 
-      return edge-execute-chain
+          # Remove src attribute, then load page data & take snapshot.
+          @iframe.onload = ~>
+            @iframe.onload = null
+            load-and-snapshot-page-data page-data, @iframe .then resolve
 
-    .then ~>
-      # Remove all script tags and take snapshot
-      for script-elem in new-iframe.content-window.document.query-selector-all \script
-        script-elem.remove!
+          @iframe.remove-attribute \src
 
-      take-snapshot new-iframe
+        window.add-event-listener \message, callback
+
+        # Kick start event sequence processing in @iframe
+        @iframe.content-window.post-message do
+          type: \EXECUTE
+          data: edges.map (-> it.event)
+          \*
 
     .then (new-snapshot) ~>
 
       # Match the DOM nodes using Valiente's bottom-up algorithm,
       # then map the rest of nodes using diffX, as suggested in discussion section of diffX paper.
       #
-      ttmap = MappingAlgorithm.valiente @iframe.content-window.document.body, new-iframe.content-window.document.body
-      MappingAlgorithm.diffX @iframe.content-window.document.body, new-iframe.content-window.document.body, ttmap
+      ttmap = MappingAlgorithm.valiente old-iframe.content-window.document.body, @iframe.content-window.document.body
+      MappingAlgorithm.diffX old-iframe.content-window.document.body, @iframe.content-window.document.body, ttmap
 
       # Calculate diff
       #
@@ -181,10 +190,9 @@ class Renderer
       # We are done with the old snapshot. Update with new-snapshot now.
       @snapshot = new-snapshot
 
-      # Now we can totally replace the old @iframe with the new one.
+      # Now we can totally remove the old iframe.
       # There should be no reference to the old iframe after this line.
-      @iframe.remove!
-      @iframe = new-iframe
+      old-iframe.remove!
 
       # Register @reloader on the new iframe content window
       @reloader = new Reloader @iframe.content-window, {log: -> , error: ->}, Timer
@@ -205,7 +213,7 @@ class Renderer
         }
 
     # Kick start the new iframe loading.
-    new-iframe.src = src
+    @iframe.src = src
 
     return process-promise
 
