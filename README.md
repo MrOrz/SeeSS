@@ -34,6 +34,8 @@ $ npm install
 $ gulp build
 ```
 
+During development, type `gulp` to start watching the source directories.
+
 The unpacked Google Chrome Extension will then be compiled to `build/`.
 
 We use [`cr-reloader`](https://github.com/victorhsieh/cr-reloader/) to reload the extension on file save. Please install both [Cr Reloader](https://chrome.google.com/webstore/detail/cr-reloader/gmmimkfknamjlkfclhbjojlbmiijcmgm) and
