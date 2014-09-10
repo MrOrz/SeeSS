@@ -393,6 +393,7 @@ class ElementDifference
 
   ( diff-or-snapshot, @type = @@TYPE_MOD, @before-html ) ->
     @ <<< diff-or-snapshot
+    @elem = undefined if @elem # Remove @elem if from snapshot
 
 # Defines what information should be remembered for each element in the page snapshot.
 # The page snapshot is an array of ElementSnapshot in DOM tree walk order.
