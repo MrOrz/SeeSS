@@ -206,7 +206,7 @@ describe \#diffX, (...) !->
     # Insert a <section> into the first <div> in t2
     #
     new-tree = parser.parse-from-string '<section>Inline Text <em>#3</em></section>', 'text/html'
-    t2.query-selector \div .insert-before new-tree.query-selector(\section)
+    t2.query-selector \div .insert-before new-tree.query-selector(\section), null
 
     ttmap = algo.diffX t1.body, t2.body
 
@@ -343,7 +343,7 @@ describe '#diffX - #valiente combo', (...) !->
     t2.body.insert-before new-div, t2-divs[0]
 
     for div in t2-divs
-      new-div.insert-before div
+      new-div.insert-before div, null
 
     # Check the nested div structure
     expect t2.query-selector-all 'div>div' .to.have.length 3
