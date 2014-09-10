@@ -1,7 +1,6 @@
 require! {
   './XPathUtil.ls'.queryXPath
   './XPathUtil.ls'.generateXPath
-  Promise: bluebird
 }
 
 # Given an event object (or specify wait timeout),
