@@ -1,0 +1,20 @@
+{
+  "name": "test",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.html",
+  "devDependencies": {
+    "LiveScript": "1.2.x",
+    "gulp": "*",
+    "gulp-livereload": "*",
+    "connect": "~2.21.1",
+    "q": "~1.0.1",
+    "karma-html2js-preprocessor": "~0.1.0"
+  },
+  "dependencies": {
+  },
+  "scripts": {
+  },
+  "author": "MrOrz",
+  "license": "MIT"
+}
