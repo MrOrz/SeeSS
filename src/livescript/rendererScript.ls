@@ -11,7 +11,7 @@ do !->
   # websites. However, with limited access to the parent DOM
   # (due to same-origin policy) we cannot do much.
   #
-  is-testing = document.scripts[document.scripts.length-1].has-attribute \unsafe
+  is-testing = document.scripts[document.scripts.length-1]?has-attribute \unsafe
   return unless window.parent isnt window and
                 (is-testing or window.parent.chrome.runtime)
 
