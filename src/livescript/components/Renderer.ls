@@ -402,7 +402,10 @@ class ElementSnapshot
   # Blacklist some computed style properties because their change will reflect
   # in @rect (getBoundingClientRect)
   #
-  const COMPUTED_BLACKLIST = <[position left top right bottom width height float margin margin-left margin-right margin-top margin-bottom box-sizing]>
+  const COMPUTED_BLACKLIST = <[
+    position left top right bottom width height float box-sizing align-self
+    margin margin-left margin-right margin-top margin-bottom
+  ]>
 
   (@elem, iframe-window) ->
     # The bounding client rect is relative to viewport, but should still be workable
