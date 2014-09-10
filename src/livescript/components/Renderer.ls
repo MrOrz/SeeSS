@@ -362,11 +362,11 @@ class Renderer
 
     # Mark the diff-id as a HTML element attribute to the detached DOM tree.
     #
-    while iframe-node = iframe-walker.next-node!
-      marking-node = marking-walker.next-node!
+    do
+      if iframe-walker.current-node._seess-diff-id isnt undefined
+        marking-walker.current-node.set-attribute SerializablePageDiff.DIFF_ID_ATTR, iframe-walker.current-node._seess-diff-id
 
-      if iframe-node._seess-diff-id isnt undefined
-        marking-node.set-attribute SerializablePageDiff.DIFF_ID_ATTR, iframe-node._seess-diff-id
+    while iframe-walker.next-node! && marking-walker.next-node!
 
     return detached
 
