@@ -281,6 +281,11 @@ describe '#applyHTML', (...) !->
 
   it 'rejects promise when events could not be replayed'
 
+  it 'executes event stream of consecutive input events'
+  # Should record real keyboard data here. Too much!
+
+  it 'waits for transition animations before taking new snapshots'
+
   function feed-test-file-to-source-renderer testfile
     renderer = new Renderer(new PageData html: __html__["test/fixtures/#{testfile}-before.html"])
     <- renderer.render document.body .then
