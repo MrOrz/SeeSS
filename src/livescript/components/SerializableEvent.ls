@@ -44,6 +44,10 @@ class SerializableEvent
 
       target-elem.add-event-listener @type, resolve
 
+      # Input element value changes before "input" event dispatches
+      if @type is \input
+        target-elem.value = @_input-value
+
       evt = new win[@_constructor-name] @type, @
       target-elem.dispatch-event evt
 

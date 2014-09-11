@@ -7,7 +7,7 @@ require! {
 
 # Stored mouse event created by browser natively
 #
-var mouse-event
+var mouse-event, input-event
 
 # The iframe that mouse-event happened in
 #
@@ -22,12 +22,12 @@ before (cb) ->
     iframe.onload = null
     iframe-doc := iframe.content-window.document
 
-    iframe-doc.write '<div id="click-target">SerializableEvent click target</div>'
+    iframe-doc.write '<div id="click-target">SerializableEvent click target</div><input type="text" id="input-target" value="test">'
     iframe-doc.close!
 
     # The manually-built event that we use to trigger mouse event
     #
-    evt = new MouseEvent \click, do
+    manual-click-event = new MouseEvent \click, do
       view: window
       bubbles: true
       cancelable: true
@@ -36,20 +36,32 @@ before (cb) ->
       clientX: 2
       clientY: 3
 
+    manual-input-event = new Event \input, do
+      view: window
+      bubbles: true
+      cancelable: true
+
     # Fetch #click-target, add click handler and trigger a real click event.
     #
     click-target = iframe-doc.get-element-by-id \click-target
+    input-target = iframe-doc.get-element-by-id \input-target
 
-    listener = (e) ->
-      # Capture the real-world click event.
-      #
-      click-target.remove-event-listener \click, listener
+    # Capture the real-world events.
+    #
+    click-listener = (e) ->
+      click-target.remove-event-listener \click, click-listener
       mouse-event := e
+
+    input-listener = (e) ->
+      input-target.remove-event-listener \input, input-listener
+      input-event := e
       cb!
 
-    click-target.add-event-listener \click, listener
+    click-target.add-event-listener \click, click-listener
+    input-target.add-event-listener \input, input-listener
 
-    click-target.dispatch-event evt
+    click-target.dispatch-event manual-click-event
+    input-target.dispatch-event manual-input-event
 
   document.body.insert-before iframe, null
 
@@ -114,3 +126,14 @@ describe '#dispatch-in-window', (...) !->
       expect resolve-spy .to.be.not-called!
       expect reject-spy .to.be.called-once!
 
+  it 'serializes and dispatches input events along with input content', ->
+    input-target = iframe.content-document.get-element-by-id \input-target
+
+    sevt = new SerializableEvent input-event, iframe.content-window
+
+    # Unset the input-target's value
+    input-target.value = ''
+
+    sevt.dispatch-in-window iframe.content-window
+    .then !->
+      expect input-target.value .to.be \test
