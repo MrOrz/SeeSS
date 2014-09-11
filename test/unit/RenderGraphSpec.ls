@@ -39,9 +39,9 @@ describe '#add', (...) !->
     renderer1 = graph.add (new PageDataMock \node1), (new RenderGraph.Edge renderer0, \edge-0-1)
     renderer2 = graph.add (new PageDataMock \node2), (new RenderGraph.Edge renderer1, \edge-1-2)
 
-    expect graph.adj-list.0.1.event .to.be \edge-0-1
+    expect graph.adj-list.0.1.events .to.be \edge-0-1
     expect graph.adj-list.1.0 .to.be undefined
-    expect graph.adj-list.1.2.event .to.be \edge-1-2
+    expect graph.adj-list.1.2.events .to.be \edge-1-2
     expect graph.adj-list.0.2 .to.be undefined
 
   it "recognizes and reuses duplicated renderer instance", ->
@@ -83,13 +83,13 @@ describe '#children-of', (...) !->
     child0 = graph.children-of 0
 
     expect child0.length .to.eql 1
-    expect child0.0.in-edge.event .to.be \edge-0-1
+    expect child0.0.in-edge.events .to.be \edge-0-1
     expect child0.0.renderer.page-data.html .to.be \node1
 
     child1 = graph.children-of 1
 
     expect child1.length .to.eql 1
-    expect child1.0.in-edge.event .to.be \edge-1-2
+    expect child1.0.in-edge.events .to.be \edge-1-2
     expect child1.0.renderer.page-data.html .to.be \node2
 
     child2 = graph.children-of 2

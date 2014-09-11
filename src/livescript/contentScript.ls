@@ -4,7 +4,7 @@ require! {
 }
 
 const MUTATION_DEBOUNCE_PERIOD = 500ms
-const EVENTS_OF_INTEREST = <[blur change click mouseover mouseleave scroll]>
+const EVENTS_OF_INTEREST = <[focus blur change click mouseover mouseleave scroll keydown keypress input keyup]>
 
 # The state of current tab
 #
@@ -14,16 +14,18 @@ const EVENTS_OF_INTEREST = <[blur change click mouseover mouseleave scroll]>
 #
 var my-state
 
+var is-first-page-data = true
+
 # Mutation observer instance, only populated when my-state is on for the tab.
 #
 var mutation-observer, debounce-timeout-handle
 
 # Records the user interaction event
 #
-var last-event
+var last-events = [], wait-timestamp
 
-function record-event(evt)
-  last-event := new SerializableEvent evt, window
+!function record-event(evt)
+  last-events.push new SerializableEvent evt, window
 
 
 # Register message listeners from background script
@@ -61,7 +63,10 @@ chrome.runtime.on-message.add-listener ({type, data}, sender, send-response) ->
 
 function send-page-data
 
-  msg = new Message \PAGE_DATA,
+  if last-events.length is 0 and !is-first-page-data
+    last-events := [new SerializableEvent(wait-timestamp)]
+
+  data-to-transfer =
     page:
       html: document.document-element.outerHTML
       url: location.href
@@ -72,9 +77,12 @@ function send-page-data
         public-id: document.doctype.public-id
         system-id: document.doctype.system-id
 
-    event: last-event
+    events: last-events
+
+
+  msg = new Message \PAGE_DATA, data-to-transfer
+  msg.send!
 
   # Record the current timestamp
-  last-event := Date.now!
-
-  msg.send!
+  last-events := []
+  wait-timestamp := Date.now!

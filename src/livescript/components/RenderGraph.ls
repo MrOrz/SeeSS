@@ -112,9 +112,12 @@ class RenderGraph
         children = @children-of renderer .filter (child) -> child.renderer._graph-prop.bfs-queued isnt true
 
         for child in children
-          # Remember the old event target element instance
-          old-event-target = renderer.iframe.content-window.document `query-x-path` child.in-edge.event.target
-          child.renderer._graph-prop.bfs-old-event-target = old-event-target
+          # Remember the old event target element instances
+          if child.in-edge.has-event-targets!
+            child.renderer._graph-prop.bfs-old-event-targets = []
+            for evt in child.in-edge.events
+              old-event-target = renderer.iframe.content-window.document `query-x-path` evt.target
+              child.renderer._graph-prop.bfs-old-event-targets.push old-event-target
 
           # Set bfs properties of children and enqueue each child
           child.renderer._graph-prop.bfs-src = renderer-src
@@ -132,14 +135,15 @@ class RenderGraph
         edge-updated-promise = apply-promise.then let children = children
           ({mapping, page-diff}) ->
 
-            for child in children when child.in-edge.event.type isnt \WAIT
-              old-target = child.renderer._graph-prop.bfs-old-event-target
-              new-target = mapping.get-node-from old-target
+            for child in children
+              if child.in-edge.has-event-targets!
+                for old-target, idx in child.renderer._graph-prop.bfs-old-event-targets
+                  new-target = mapping.get-node-from old-target
 
-              if new-target
-                child.in-edge.event.target = generate-x-path new-target
-              else
-                child.in-edge.event.target = '/NOT_EXIST'
+                  if new-target
+                    child.in-edge.events[idx].target = generate-x-path new-target
+                  else
+                    child.in-edge.events[idx].target = '/NOT_EXIST'
 
         for child in children
           # Resolve to child.renderer._graph-prop.bfs-edges when edge are updated
@@ -184,7 +188,11 @@ class RenderGraph
 # The data structure storing data in edge
 #
 class Edge
-  (@from-renderer, @event) ->
+  (@from-renderer, @events) ->
+
+  has-event-targets: ->
+    @events.length isnt 0 and @events.0.type isnt \WAIT
+
 
 # The data structure returned by children-of in arrays
 #

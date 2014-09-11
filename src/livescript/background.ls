@@ -44,9 +44,8 @@ chrome.runtime.on-message.add-listener ({type, data}, sender, send-response) ->
 
     # Compose edge object upon receiving edge data
     #
-    var edge
-    if data.edge
-      edge = new RenderGraph.Edge TabManager.get-renderer(sender-tab-id), data.event
+    if data.events.length > 0
+      edge = new RenderGraph.Edge TabManager.get-renderer(sender-tab-id), data.events
 
     # Add the page-data and edge to the graph, then update the current renderer of the tab
     #

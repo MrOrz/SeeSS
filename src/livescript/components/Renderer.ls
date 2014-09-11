@@ -129,10 +129,14 @@ class Renderer
 
         window.add-event-listener \message, callback
 
+        all-events = []
+        for edge in edges
+          all-events ++= edge.events
+
         # Kick start event sequence processing in @iframe
         @iframe.content-window.post-message do
           type: \EXECUTE
-          data: edges.map (-> it.event)
+          data: all-events
           \*
 
     .then (new-snapshot) ~>
