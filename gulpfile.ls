@@ -10,6 +10,7 @@ require! {
   'gulp-livereload'
   'serve-static'
   Promise: bluebird
+  './src/livescript/components/Constants.ls'
 }
 
 const EXTENSION_ID = \eeabdaneafdojlhagbcpiiplpmabhnhl
@@ -29,6 +30,7 @@ gulp.task \webpack, (cb)->
       background: './src/livescript/background.ls'
       chrome-mock: './src/livescript/chromeMock.ls'
       report: './src/javascript/report.js'
+      renderer-script: './src/livescript/rendererScript.ls'
     output:
       path: './build'
       filename: "[name].js",
@@ -70,7 +72,7 @@ gulp.task \reload, ->
       reject!
     else
       resolve!
-  child_process.exec "curl http://localhost:24601/r?ext=#{EXTENSION_ID}", resp
+  child_process.exec "curl http://localhost:24601/r?ext=#{Constants.EXTENSION_ID}", resp
     ..stdout.pipe process.stdout
     ..stderr.pipe process.stderr
 

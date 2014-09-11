@@ -104,11 +104,29 @@ class RenderGraph
       # Execute the BFS
       refresh-promises = while renderer = renderer-queue.shift!
 
-        # Make renderer start applying new HTML as soon as possible
+        # Setting children's BFS properties
+        #
+
         renderer-src = renderer._graph-prop.bfs-src
-        apply-promise = renderer.applyHTML renderer-src, renderer._graph-prop.bfs-edges-updated-promise
 
         children = @children-of renderer .filter (child) -> child.renderer._graph-prop.bfs-queued isnt true
+
+        for child in children
+          # Remember the old event target element instance
+          old-event-target = renderer.iframe.content-window.document `query-x-path` child.in-edge.event.target
+          child.renderer._graph-prop.bfs-old-event-target = old-event-target
+
+          # Set bfs properties of children and enqueue each child
+          child.renderer._graph-prop.bfs-src = renderer-src
+          child.renderer._graph-prop.bfs-queued = true
+
+          renderer-queue.push child.renderer
+
+        # Setting promise-related relationships on children.
+        #
+
+        # Make renderer start applying new HTML as soon as possible
+        apply-promise = renderer.applyHTML renderer-src, renderer._graph-prop.bfs-edges-updated-promise
 
         # Update the outgoing edges when new HTML is applied
         edge-updated-promise = apply-promise.then let children = children
@@ -123,25 +141,15 @@ class RenderGraph
               else
                 child.in-edge.event.target = '/NOT_EXIST'
 
-
         for child in children
-          # Remember the old event target element instance
-          old-event-target = renderer.iframe.content-window.document `query-x-path` child.in-edge.event.target
-          child.renderer._graph-prop.bfs-old-event-target = old-event-target
-
-          # Set bfs properties of children and enqueue each child
-          child.renderer._graph-prop.bfs-src = renderer-src
-          child.renderer._graph-prop.bfs-queued = true
-          child.renderer._graph-prop.bfs-edges = edges = renderer._graph-prop.bfs-edges ++ child.in-edge
-
           # Resolve to child.renderer._graph-prop.bfs-edges when edge are updated
+          edges = child.renderer._graph-prop.bfs-edges = renderer._graph-prop.bfs-edges ++ child.in-edge
           child.renderer._graph-prop.bfs-edges-updated-promise = edge-updated-promise.then let edges = edges
             ->
               edges
 
-          renderer-queue.push child.renderer
-
-        # refresh promise pushed into refresh-promises array
+        # "refresh promise" pushed into refresh-promises array
+        #
         apply-promise.then ({page-diff, mapping}) ->
           page-diff
         .catch let children = children, renderer = renderer

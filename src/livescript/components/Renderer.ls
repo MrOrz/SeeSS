@@ -9,12 +9,13 @@ require! {
   './PageData.ls'
   './MappingAlgorithm.ls'
   './SerializablePageDiff.ls'
+  './IframeUtil.ls'
   './XPathUtil.ls'.queryXPath
 }
 
 class Renderer
   (@page-data) ->
-    @iframe = generate-iframe @page-data
+    @iframe = IframeUtil.create-iframe @page-data.width, @page-data.height
 
     @_promise = load-and-snapshot-page-data @page-data, @iframe
     .then (@snapshot) ~>
@@ -43,7 +44,7 @@ class Renderer
     @reloader.reload-stylesheet path
 
     # Check if all contents loaded
-    return register-load-callbacks @iframe.content-window.document
+    return IframeUtil.wait-for-assets @iframe.content-window.document
     .then ~>
       # Wait for pseudo element style to be visible in getComputedStyle
       # https://github.com/akoenig/angular-deckgrid/issues/27#issuecomment-38924697
@@ -82,6 +83,7 @@ class Renderer
           dom: generate-detached-html @iframe
           doctype: @page-data.doctype
           diffs: diffs
+          page-data: @iframe.page-data
 
   #
   # Given the source iframe's src, and event sequence,
@@ -94,43 +96,52 @@ class Renderer
   #
   applyHTML: (src, edges-promise) ->
 
-    new-iframe = generate-iframe @page-data
-    @iframe.parent-node.insert-before new-iframe, @iframe
-
+    old-iframe = @iframe
+    @iframe = IframeUtil.create-iframe @page-data.width, @page-data.height
     iframe-promise = new Promise (resolve, reject) !~>
-      new-iframe.onload = ->
-        new-iframe.onload = null
+      @iframe.onload = ~>
+        return unless @iframe.src
+        @iframe.onload = null
         resolve!
 
+    old-iframe.parent-node.insert-before @iframe, old-iframe
 
-    new-doc = new-iframe.content-window.document
+    new-doc = @iframe.content-window.document
     process-promise = Promise.all [iframe-promise, edges-promise] .spread (..., edges) ~>
 
-      # Follow the edge chain events to get to the state this renderer represents
+      # Wait for @renderer executes through the edges.
+      # The promise resolves to the page sanpshot.
       #
-      edge-execute-chain = Promise.resolve!
+      new Promise (resolve, reject) !~>
+        callback = (event) ~>
+          return if event.source isnt @iframe.content-window and
+                    event.data.type isnt \PAGE_DATA
+          window.remove-event-listener \message, callback
 
-      for i from 1 to edges.length
-        edge-execute-chain = edge-execute-chain.then ->
-          edge = edges.shift!
-          edge.event.dispatch-in-window new-iframe.content-window
+          page-data = new PageData event.data.data
 
-      return edge-execute-chain
+          # Remove src attribute, then load page data & take snapshot.
+          @iframe.onload = ~>
+            @iframe.onload = null
+            load-and-snapshot-page-data page-data, @iframe .then resolve
 
-    .then ~>
-      # Remove all script tags and take snapshot
-      for script-elem in new-iframe.content-window.document.query-selector-all \script
-        script-elem.remove!
+          @iframe.remove-attribute \src
 
-      take-snapshot new-iframe
+        window.add-event-listener \message, callback
+
+        # Kick start event sequence processing in @iframe
+        @iframe.content-window.post-message do
+          type: \EXECUTE
+          data: edges.map (-> it.event)
+          \*
 
     .then (new-snapshot) ~>
 
       # Match the DOM nodes using Valiente's bottom-up algorithm,
       # then map the rest of nodes using diffX, as suggested in discussion section of diffX paper.
       #
-      ttmap = MappingAlgorithm.valiente @iframe.content-window.document.body, new-iframe.content-window.document.body
-      MappingAlgorithm.diffX @iframe.content-window.document.body, new-iframe.content-window.document.body, ttmap
+      ttmap = MappingAlgorithm.valiente old-iframe.content-window.document.body, @iframe.content-window.document.body
+      MappingAlgorithm.diffX old-iframe.content-window.document.body, @iframe.content-window.document.body, ttmap
 
       # Calculate diff
       #
@@ -167,24 +178,23 @@ class Renderer
       unreferenced-snapshots = @snapshot.filter (elem-snapshot) -> elem-snapshot isnt \REFERRED
       @snapshot.filter (elem-snapshot) -> elem-snapshot isnt \REFERRED
         .for-each (unreferenced-elem-snapshot) ->
-          parent = unreferenced-elem-snapshot.elem
-          until parent = ttmap.get-node-from parent.parent-node
-            continue
+          parent = unreferenced-elem-snapshot.elem.parent-node
+          until mapped-parent = ttmap.get-node-from parent
+            parent = parent.parent-node
 
-          if parent._seess-diff-id is undefined
-            parent._seess-diff-id = diffs.length
+          if mapped-parent._seess-diff-id is undefined
+            mapped-parent._seess-diff-id = diffs.length
           else
-            parent._seess-diff-id = "#{parent._seess-diff-id} #{diffs.length}"
+            mapped-parent._seess-diff-id = "#{mapped-parent._seess-diff-id} #{diffs.length}"
 
-          diffs.push new ElementDifference unreferenced-elem-snapshot, ElementDifference.TYPE_REMOVED, parent.innerHTML
+          diffs.push new ElementDifference unreferenced-elem-snapshot, ElementDifference.TYPE_REMOVED, mapped-parent.innerHTML
 
       # We are done with the old snapshot. Update with new-snapshot now.
       @snapshot = new-snapshot
 
-      # Now we can totally replace the old @iframe with the new one.
+      # Now we can totally remove the old iframe.
       # There should be no reference to the old iframe after this line.
-      @iframe.remove!
-      @iframe = new-iframe
+      old-iframe.remove!
 
       # Register @reloader on the new iframe content window
       @reloader = new Reloader @iframe.content-window, {log: -> , error: ->}, Timer
@@ -201,68 +211,14 @@ class Renderer
             dom: generate-detached-html @iframe
             doctype: @page-data.doctype
             diffs: diffs
+            page-data: @iframe.page-data
           mapping: ttmap
         }
 
     # Kick start the new iframe loading.
-    new-iframe.src = src
+    @iframe.src = src
 
     return process-promise
-
-  #
-  # Helper function that returns a promise that resolves when all assets
-  # are loaded
-  #
-  function register-load-callbacks doc
-    return new Promise (resolve, reject) ->
-
-      # First, check the already loaded elements in the current document
-      #
-      # CSS file exists in document.styleSheets only after loaded.
-      is-loaded = {[stylesheet.href, true] for stylesheet in doc.styleSheets}
-
-      # <img> appears in document.images even when not loaded.
-      # The `complete` boolean property seems to be true even when not rendered yet.
-      # We can only go for img.naturalWidth or img.naturalHeight
-      #
-      for img in doc.images when img.naturalWidth
-        is-loaded[img.src] = true
-
-      # Secondly, insert load callbacks to page-data DOM to get the exact time when
-      # the DOM elements is loaded.
-
-      link-elems = doc.query-selector-all "link[href][rel=stylesheet]"
-      img-elems = doc.query-selector-all "img[src]"
-
-      unloaded-element-count = link-elems.length + img-elems.length
-
-      if unloaded-element-count > 0
-        # Resolve when all elements are loaded
-        on-element-load = ->
-          this.onload = this.onerror = null # this = the loaded element
-          unloaded-element-count -= 1
-
-          resolve! if unloaded-element-count is 0
-
-        for link-elem in link-elems
-          # Usually link-elem.__LiveReload_pendingRemoval implies the link is loaded.
-          # However, in test scripts we replace the href so that it is not true.
-          #
-          if is-loaded[link-elem.href] || link-elem.__LiveReload_pendingRemoval
-            # The <link> is already loaded, remove the mis-added element counts
-            unloaded-element-count -= 1
-          else
-            link-elem.onload = link-elem.onerror = on-element-load
-
-        for img-elem in img-elems
-          if is-loaded[img-elem.src]
-            # The <img> is already loaded, remove the mis-added element counts
-            unloaded-element-count -= 1
-          else
-            img-elem.onload = img-elem.onerror = on-element-load
-
-      # If no unloaded element at all, resolve immediately.
-      resolve! if unloaded-element-count is 0
 
   #
   # Load the page-data into iframe.
@@ -289,7 +245,7 @@ class Renderer
         iframe-document.replace-child page-data.dom.document-element, iframe-document.document-element
 
         # Register load callback
-        register-load-callbacks iframe-document .then resolve
+        IframeUtil.wait-for-assets iframe-document .then resolve
 
       if !iframe.content-window
         # If the iframe.content-window is not ready yet, wait until it's ready
@@ -325,16 +281,6 @@ class Renderer
     # Return the snapshot
     return page-snapshot
 
-  # Generate new iframe using dimensions specified in page-data object
-  #
-  function generate-iframe page-data
-    iframe = document.create-element \iframe
-    iframe.set-attribute \sandbox, 'allow-same-origin allow-scripts'
-    iframe.width = page-data.width
-    iframe.height = page-data.height
-
-    return iframe
-
   # Generate a detatched DOM HTMLElement that marks diff-id on the elements
   # that is changed by CSS or HTML
   #
@@ -354,11 +300,11 @@ class Renderer
 
     # Mark the diff-id as a HTML element attribute to the detached DOM tree.
     #
-    while iframe-node = iframe-walker.next-node!
-      marking-node = marking-walker.next-node!
+    do
+      if iframe-walker.current-node._seess-diff-id isnt undefined
+        marking-walker.current-node.set-attribute SerializablePageDiff.DIFF_ID_ATTR, iframe-walker.current-node._seess-diff-id
 
-      if iframe-node._seess-diff-id isnt undefined
-        marking-node.set-attribute SerializablePageDiff.DIFF_ID_ATTR, iframe-node._seess-diff-id
+    while iframe-walker.next-node! && marking-walker.next-node!
 
     return detached
 
@@ -385,6 +331,7 @@ class ElementDifference
 
   ( diff-or-snapshot, @type = @@TYPE_MOD, @before-html ) ->
     @ <<< diff-or-snapshot
+    @elem = undefined if @elem # Remove @elem if from snapshot
 
 # Defines what information should be remembered for each element in the page snapshot.
 # The page snapshot is an array of ElementSnapshot in DOM tree walk order.
@@ -394,7 +341,10 @@ class ElementSnapshot
   # Blacklist some computed style properties because their change will reflect
   # in @rect (getBoundingClientRect)
   #
-  const COMPUTED_BLACKLIST = <[position left top right bottom width height float margin margin-left margin-right margin-top margin-bottom box-sizing]>
+  const COMPUTED_BLACKLIST = <[
+    position left top right bottom width height float box-sizing align-self
+    margin margin-left margin-right margin-top margin-bottom
+  ]>
 
   (@elem, iframe-window) ->
     # The bounding client rect is relative to viewport, but should still be workable

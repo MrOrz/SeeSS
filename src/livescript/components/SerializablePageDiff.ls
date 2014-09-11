@@ -19,7 +19,7 @@ class SerializablePageDiff
   # @diffs   an array mapping numerical diff-id to sanitized ElementDifference instances
   # @ordered ordered array of diff-id.
   #
-  ({dom, @html, @doctype='<!doctype html>', @diffs, @order=[]}) ->
+  ({dom, @html, @doctype='<!doctype html>', @diffs, @order=[], page-data, @width, @height, @scroll-top, @url, @doctype}) ->
     if !dom and !@html
       throw new Error 'Either "dom" or "html" should be specified.'
 
@@ -31,6 +31,13 @@ class SerializablePageDiff
 
     # Populate missing @html property
     @html = @_dom.outerHTML if !@html
+
+    # Copy the page-data properties
+    @width ?= page-data?width
+    @height ?= page-data?height
+    @scroll-top ?= page-data?scroll-top
+    @url ?= page-data?url
+    @doctype ?= page-data?doctype
 
   is-ordered: ->
     @order.length > 0
@@ -58,6 +65,6 @@ class SerializablePageDiff
   # Just include the minimum items needed to re-construct the SerializablePageDiff instance.
   #
   toJSON: ->
-    {@html, @diffs, @order}
+    {@html, @diffs, @order, @width, @height, @scroll-top, @url, @doctype}
 
 module.exports = SerializablePageDiff

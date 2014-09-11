@@ -110,7 +110,7 @@ describe '#dispatch-in-window', (...) !->
 
     sevt.dispatch-in-window iframe.content-window
     .then resolve-spy, reject-spy
-    .finally !->
+    .then !->
       expect resolve-spy .to.be.not-called!
       expect reject-spy .to.be.called-once!
 

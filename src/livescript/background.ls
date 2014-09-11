@@ -36,7 +36,7 @@ chrome.runtime.on-message.add-listener ({type, data}, sender, send-response) ->
     msg.send sender-tab-id
 
   case \PAGE_DATA
-    console.log \TAG, "Page data received", data
+    console.log TAG, "Page data received", data
     # The content script sends in pageData
     #
 
