@@ -18,7 +18,7 @@ class SerializableEvent
       @_setup-wait-event timestamp-or-event
 
     else
-      @constructor-name = timestamp-or-event.constructor-name || timestamp-or-event.constructor.name
+      @_constructor-name = timestamp-or-event._constructor-name || timestamp-or-event.constructor.name
 
       if is-dom-event timestamp-or-event
         @_setup-dom-event timestamp-or-event, event-window
@@ -44,7 +44,7 @@ class SerializableEvent
 
       target-elem.add-event-listener @type, resolve
 
-      evt = new win[@constructor-name] @type, @
+      evt = new win[@_constructor-name] @type, @
       target-elem.dispatch-event evt
 
 
@@ -66,7 +66,7 @@ class SerializableEvent
     @ <<< evt
 
   function is-dom-event (evt)
-    !evt.constructor-name
+    !evt._constructor-name
 
   function is-relevant prop, value
     # Irrelevant event properties:

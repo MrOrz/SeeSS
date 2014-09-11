@@ -270,8 +270,8 @@ describe '#applyHTML', (...) !->
     <- renderer.render document.body .then
 
     edges =
-      new RenderGraph.Edge null, new SerializableEvent {constructorName: 'MouseEvent', target: '/html/body/ul/*[1]', type: 'click', which: 1, bubbles: true, cancelable: true}
-      new RenderGraph.Edge null, new SerializableEvent {constructorName: 'MouseEvent', target: '/html/body/ul/*[2]', type: 'click', which: 1, bubbles: true, cancelable: true}
+      new RenderGraph.Edge null, [new SerializableEvent {_constructor-name: 'MouseEvent', target: '/html/body/ul/*[1]', type: 'click', which: 1, bubbles: true, cancelable: true}]
+      new RenderGraph.Edge null, [new SerializableEvent {_constructor-name: 'MouseEvent', target: '/html/body/ul/*[2]', type: 'click', which: 1, bubbles: true, cancelable: true}]
 
     # Use http://127.0.0.1 instead of http://localhost to simulate cross-origin scenario
     #
