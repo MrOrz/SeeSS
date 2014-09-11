@@ -1,4 +1,5 @@
 require! {
+  './components/ContentScriptStorage.ls'
   './components/Message.ls'
   './components/SerializableEvent.ls'
 }
@@ -79,6 +80,9 @@ function send-page-data
 
     events: last-events
 
+  if is-first-page-data
+    data-to-transfer.local-storage = ContentScriptStorage.get-item \localStorage
+    is-first-page-data := false
 
   msg = new Message \PAGE_DATA, data-to-transfer
   msg.send!
