@@ -2,6 +2,7 @@
 
 var React = require('react');
 var SerializablePageDiff = require('../livescript/components/SerializablePageDiff.ls');
+var IframeUtil = require('../livescript/components/IframeUtil.ls');
 
 console.log('React', React);
 console.log('chrome', chrome);

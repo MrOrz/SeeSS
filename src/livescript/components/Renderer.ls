@@ -9,12 +9,13 @@ require! {
   './PageData.ls'
   './MappingAlgorithm.ls'
   './SerializablePageDiff.ls'
+  './IframeUtil.ls'
   './XPathUtil.ls'.queryXPath
 }
 
 class Renderer
   (@page-data) ->
-    @iframe = generate-iframe @page-data
+    @iframe = IframeUtil.create-iframe @page-data.width, @page-data.height
 
     @_promise = load-and-snapshot-page-data @page-data, @iframe
     .then (@snapshot) ~>
@@ -43,7 +44,7 @@ class Renderer
     @reloader.reload-stylesheet path
 
     # Check if all contents loaded
-    return register-load-callbacks @iframe.content-window.document
+    return IframeUtil.wait-for-assets @iframe.content-window.document
     .then ~>
       # Wait for pseudo element style to be visible in getComputedStyle
       # https://github.com/akoenig/angular-deckgrid/issues/27#issuecomment-38924697
@@ -96,7 +97,7 @@ class Renderer
   applyHTML: (src, edges-promise) ->
 
     old-iframe = @iframe
-    @iframe = generate-iframe @page-data
+    @iframe = IframeUtil.create-iframe @page-data.width, @page-data.height
     iframe-promise = new Promise (resolve, reject) !~>
       @iframe.onload = ~>
         return unless @iframe.src
@@ -220,61 +221,6 @@ class Renderer
     return process-promise
 
   #
-  # Helper function that returns a promise that resolves when all assets
-  # are loaded
-  #
-  function register-load-callbacks doc
-    return new Promise (resolve, reject) ->
-
-      # First, check the already loaded elements in the current document
-      #
-      # CSS file exists in document.styleSheets only after loaded.
-      is-loaded = {[stylesheet.href, true] for stylesheet in doc.styleSheets}
-
-      # <img> appears in document.images even when not loaded.
-      # The `complete` boolean property seems to be true even when not rendered yet.
-      # We can only go for img.naturalWidth or img.naturalHeight
-      #
-      for img in doc.images when img.naturalWidth
-        is-loaded[img.src] = true
-
-      # Secondly, insert load callbacks to page-data DOM to get the exact time when
-      # the DOM elements is loaded.
-
-      link-elems = doc.query-selector-all "link[href][rel=stylesheet]"
-      img-elems = doc.query-selector-all "img[src]"
-
-      unloaded-element-count = link-elems.length + img-elems.length
-
-      if unloaded-element-count > 0
-        # Resolve when all elements are loaded
-        on-element-load = ->
-          this.onload = this.onerror = null # this = the loaded element
-          unloaded-element-count -= 1
-
-          resolve! if unloaded-element-count is 0
-
-        for link-elem in link-elems
-          # Usually link-elem.__LiveReload_pendingRemoval implies the link is loaded.
-          # However, in test scripts we replace the href so that it is not true.
-          #
-          if is-loaded[link-elem.href] || link-elem.__LiveReload_pendingRemoval
-            # The <link> is already loaded, remove the mis-added element counts
-            unloaded-element-count -= 1
-          else
-            link-elem.onload = link-elem.onerror = on-element-load
-
-        for img-elem in img-elems
-          if is-loaded[img-elem.src]
-            # The <img> is already loaded, remove the mis-added element counts
-            unloaded-element-count -= 1
-          else
-            img-elem.onload = img-elem.onerror = on-element-load
-
-      # If no unloaded element at all, resolve immediately.
-      resolve! if unloaded-element-count is 0
-
-  #
   # Load the page-data into iframe.
   # Returns a promise that is resolved when all data in iframe is loaded.
   #
@@ -299,7 +245,7 @@ class Renderer
         iframe-document.replace-child page-data.dom.document-element, iframe-document.document-element
 
         # Register load callback
-        register-load-callbacks iframe-document .then resolve
+        IframeUtil.wait-for-assets iframe-document .then resolve
 
       if !iframe.content-window
         # If the iframe.content-window is not ready yet, wait until it's ready
@@ -334,16 +280,6 @@ class Renderer
 
     # Return the snapshot
     return page-snapshot
-
-  # Generate new iframe using dimensions specified in page-data object
-  #
-  function generate-iframe page-data
-    iframe = document.create-element \iframe
-    iframe.set-attribute \sandbox, 'allow-same-origin allow-scripts'
-    iframe.width = page-data.width
-    iframe.height = page-data.height
-
-    return iframe
 
   # Generate a detatched DOM HTMLElement that marks diff-id on the elements
   # that is changed by CSS or HTML
