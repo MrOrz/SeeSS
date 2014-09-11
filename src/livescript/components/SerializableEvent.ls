@@ -62,8 +62,14 @@ class SerializableEvent
       else
         value
 
+    if evt.type is \input
+      @_input-value = evt.target.value
+
   _recover-from-json: (evt) !->
     @ <<< evt
+
+  get-input-value: ->
+    @_input-value
 
   function is-dom-event (evt)
     !evt._constructor-name
