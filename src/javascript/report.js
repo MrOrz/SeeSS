@@ -63,14 +63,14 @@ var DiffList = React.createClass({
   render: function(){
     var DiffArray = this.state.data.map(function(diff){
       console.log(diff.dom());
-      return <Diff dom={diff.dom()}></Diff>
-    })
+      return (<Diff dom={diff.dom()}></Diff>);
+    });
 
     return (
       <div className="difflist">
-        {DiffArray} 
+        {DiffArray}
       </div>
-    )
+    );
   }
 });
 
@@ -79,7 +79,6 @@ var Diff = React.createClass({
   render: function(){
     return (
       <div className="diff">
-          <!--iframe src={this.props.dom}></iframe-->
           <iframe src="http://www.ntu.edu.tw"></iframe>
       </div>
     );
