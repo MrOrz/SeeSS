@@ -32,6 +32,7 @@ gulp.task \webpack, (cb)->
       chrome-mock: './src/livescript/chromeMock.ls'
       report: './src/javascript/report.js'
       renderer-script: './src/livescript/rendererScript.ls'
+      seess-mock: './src/javascript/seessMock.js'
     output:
       path: './build'
       filename: "[name].js",
