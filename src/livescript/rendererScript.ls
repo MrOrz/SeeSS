@@ -15,8 +15,26 @@ do !->
   return unless window.parent isnt window and
                 (is-testing or window.parent.chrome.runtime)
 
-  extension-matcher = new RegExp "^chrome-extension://#{Constants.EXTENSION_ID}"
+  # <style> that disables transitions and animations
+  var disable-duration-style-elem
 
+  dom-preprocess-promise = new Promise (resolve, reject) ->
+    window.add-event-listener \load, resolve
+  .then function disable-duration
+    selectors = []
+
+    for stylesheet in document.style-sheets
+      for rule in stylesheet.css-rules when rule.type is CSSRule.STYLE_RULE
+        if rule.style.transition-duration isnt '' or rule.style.webkit-animation-duration isnt ''
+          selectors.push rule.selector-text
+
+    disable-duration-style-elem := document.create-element \style
+    disable-duration-style-elem.innerHTML = "#{selectors.join(',')}{transition-duration: 0; -webkit-animation-duration: 0;}"
+
+    document.body.insert-before disable-duration-style-elem, null
+
+
+  extension-matcher = new RegExp "^chrome-extension://#{Constants.EXTENSION_ID}"
   (event) <-! window.add-event-listener \message, _
 
   # Strict matching of event origin, preventing malicious websites from stealing
@@ -28,15 +46,19 @@ do !->
   case \EXECUTE
     events = [new SerializableEvent(evt) for evt in event.data.data]
 
-    event-execute-chain = Promise.resolve!
+    event-execute-chain = dom-preprocess-promise
 
-    for evt in events
-      event-execute-chain .= then let evt = evt
+    for let evt in events
+      event-execute-chain .= then ->
         evt.dispatch-in-window window
 
     # Send PAGE_DATA event to parent (background script) after executing all edges
     #
     event-execute-chain.then ->
+      # All events are executed, this <style> is no longer needed.
+      # Remove it so that it does not interfere with xdiff process.
+      disable-duration-style-elem.remove!
+
       window.parent.post-message do
         type: \PAGE_DATA
         data:

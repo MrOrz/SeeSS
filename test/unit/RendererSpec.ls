@@ -270,12 +270,25 @@ describe '#applyHTML', (...) !->
     <- renderer.render document.body .then
 
     edges =
-      new RenderGraph.Edge null, [new SerializableEvent {_constructor-name: 'MouseEvent', target: '/html/body/ul/*[1]', type: 'click', which: 1, bubbles: true, cancelable: true}]
-      new RenderGraph.Edge null, [new SerializableEvent {_constructor-name: 'MouseEvent', target: '/html/body/ul/*[2]', type: 'click', which: 1, bubbles: true, cancelable: true}]
+      new RenderGraph.Edge null, [new SerializableEvent {_constructor-name: \MouseEvent, target: '/html/body/ul/*[1]', type: \click, which: 1, bubbles: true, cancelable: true}]
+      new RenderGraph.Edge null, [new SerializableEvent {_constructor-name: \MouseEvent, target: '/html/body/ul/*[2]', type: \click, which: 1, bubbles: true, cancelable: true}]
 
     # Use http://127.0.0.1 instead of http://localhost to simulate cross-origin scenario
     #
     ({page-diff, mapping}) <- renderer.applyHTML "http://127.0.0.1:#{location.port}/base/test/served/renderer-html-click-test-src.html", Promise.resolve(edges) .then
+
+    expect page-diff .to.be null
+
+  it 'takes correct snapshots even if there are transitions', ->
+    renderer = new Renderer (new PageData html: __html__['test/fixtures/renderer-html-transition-test-state1.html'])
+
+    <- renderer.render document.body .then
+
+    edges =
+      new RenderGraph.Edge null, [new SerializableEvent {_constructor-name: \MouseEvent, target: '/html/body/*[1]', type: \click, which: 1, bubbles: true, cancelable: true}]
+      ...
+
+    ({page-diff, mapping}) <- renderer.applyHTML "http://127.0.0.1:#{location.port}/base/test/served/renderer-html-transition-test-state0.html", Promise.resolve(edges) .then
 
     expect page-diff .to.be null
 
@@ -284,7 +297,6 @@ describe '#applyHTML', (...) !->
   it 'executes event stream of consecutive input events'
   # Should record real keyboard data here. Too much!
 
-  it 'waits for transition animations before taking new snapshots'
 
   function feed-test-file-to-source-renderer testfile
     renderer = new Renderer(new PageData html: __html__["test/fixtures/#{testfile}-before.html"])
