@@ -80,7 +80,7 @@ do !->
 
     # Send PAGE_DATA event to parent (background script) after executing all edges
     #
-    event-execute-chain.then ->
+    event-execute-chain.then !->
       # All events are executed, this <style> is no longer needed.
       # Remove it so that it does not interfere with xdiff process.
       disable-duration-style-elem.remove!
@@ -98,7 +98,11 @@ do !->
             system-id: document.doctype?system-id
         \*
 
-    .catch (reason) ->
+    .catch (reason) !->
+      # Post-message cannot serialize Error instances
+      reason = reason.message if reason instanceof Error
+
       window.parent.post-message do
         type: \ERROR
         data: reason
+        \*

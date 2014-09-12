@@ -114,7 +114,7 @@ class Renderer
       # The promise resolves to the page sanpshot.
       #
       new Promise (resolve, reject) !~>
-        callback = (event) ~>
+        callback = (event) !~>
           return if event.source isnt @iframe.content-window
 
           switch event.data.type
