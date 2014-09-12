@@ -9,6 +9,19 @@ module.exports =
 
     return iframe
 
+  set-document: (old-document, new-document, new-doctype='') ->
+    # Set document doctype.
+    # Since neither old-document.insert-before nor replace-child changes the document.compatMode,
+    # document.write may be the only way to quit browser's quirks mode.
+    #
+    old-document.open!
+    old-document.write new-doctype
+    old-document.close!
+
+    # Set document content, the assets inside new document starts to load.
+    old-document.replace-child new-document.document-element, old-document.document-element
+
+
   # Returns a promise that resolves when all assets are loaded
   #
   wait-for-assets: (doc) ->
