@@ -15,7 +15,7 @@ const EVENTS_OF_INTEREST = <[focus blur change click mouseover mouseleave scroll
 #
 var my-state
 
-var is-first-page-data = true
+is-first-page-data = true
 
 # Mutation observer instance, only populated when my-state is on for the tab.
 #
@@ -23,7 +23,8 @@ var mutation-observer, debounce-timeout-handle
 
 # Records the user interaction event
 #
-var last-events = [], wait-timestamp
+var wait-timestamp
+last-events = []
 
 !function record-event(evt)
   last-events.push new SerializableEvent evt, window
