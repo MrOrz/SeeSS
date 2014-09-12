@@ -374,6 +374,24 @@ describe '#applyHTML', (...) !->
 
     expect page-diff .to.be null
 
+  it 'handles cross-origin CSS', ->
+
+    # Assume a renderer rendering a page that is 2 clicks away from source.
+    #
+    # renderer-html-click-test-src --- 2 clicks --> renderer-html-click-test-state1
+    #
+    renderer = new Renderer (new PageData html: __html__['test/fixtures/renderer-html-cross-origin.html'], url: "http://127.0.0.1:#{location.port}")
+
+    <- renderer.render document.body .then
+
+    # Use http://127.0.0.1 instead of http://localhost to simulate cross-origin scenario
+    #
+    ({page-diff, mapping}) <- renderer.applyHTML "http://127.0.0.1:#{location.port}/base/test/served/renderer-html-cross-origin.html", Promise.resolve([]) .then
+
+    expect page-diff .to.be null
+
+
+
 
   it 'rejects promise when events could not be replayed'
 
