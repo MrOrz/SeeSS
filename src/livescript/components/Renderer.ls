@@ -104,9 +104,10 @@ class Renderer
         @iframe.onload = null
         resolve!
 
+    # Kick start the new iframe loading.
     old-iframe.parent-node.insert-before @iframe, old-iframe
+    @iframe.src = src
 
-    new-doc = @iframe.content-window.document
     process-promise = Promise.all [iframe-promise, edges-promise] .spread (..., edges) ~>
 
       # Wait for @renderer executes through the edges.
@@ -114,18 +115,23 @@ class Renderer
       #
       new Promise (resolve, reject) !~>
         callback = (event) ~>
-          return if event.source isnt @iframe.content-window and
-                    event.data.type isnt \PAGE_DATA
-          window.remove-event-listener \message, callback
+          return if event.source isnt @iframe.content-window
 
-          page-data = new PageData event.data.data
+          switch event.data.type
+          case \PAGE_DATA
+            window.remove-event-listener \message, callback
 
-          # Remove src attribute, then load page data & take snapshot.
-          @iframe.onload = ~>
-            @iframe.onload = null
-            load-and-snapshot-page-data page-data, @iframe .then resolve
+            page-data = new PageData event.data.data
 
-          @iframe.remove-attribute \src
+            # Remove src attribute, then load page data & take snapshot.
+            @iframe.onload = ~>
+              @iframe.onload = null
+              load-and-snapshot-page-data page-data, @iframe .then resolve
+
+            @iframe.remove-attribute \src
+
+          case \ERROR
+            reject "Cannot reach state for reason: #{event.data.data}"
 
         window.add-event-listener \message, callback
 
@@ -218,9 +224,6 @@ class Renderer
             page-data: @iframe.page-data
           mapping: ttmap
         }
-
-    # Kick start the new iframe loading.
-    @iframe.src = src
 
     return process-promise
 
