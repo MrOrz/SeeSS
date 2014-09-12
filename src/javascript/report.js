@@ -48,7 +48,25 @@ var DiffList = React.createClass({
         console.log("<Message> Data arrived from background script", pageDiff);
         
         var newData = that.state.data;
-        newData.push(pageDiff);
+        
+        for(var diff in pageDiff.diffs){
+          
+          //Calculate BoundingBox, decide which is to push
+
+          var diffPack={ 
+            domWidth: pageDiff.width,
+            domHeight: pageDiff.height,
+            boxWidth: 100,
+            boxHeight: 100,
+            boxLeft: 100,
+            boxTop: 100, 
+            dom: pageDiff.dom(),
+            url: pageDiff.url
+          };
+
+          newData.push(diffPack);
+        }
+
         that.setState({data: newData});
 
         // For debug.
@@ -62,10 +80,14 @@ var DiffList = React.createClass({
 
   render: function(){
     var DiffArray = this.state.data.map(function(diff){
-      console.log(diff.dom());
-      return (<Diff dom={diff.dom()}></Diff>);
+        return (<Diff domWidth={diff.domWidth} domHeight={diff.domHeight} 
+                      boxWidth={diff.boxWidth} boxHeight={diff.boxHeight}
+                      boxLeft={diff.boxLeft} boxTop={diff.boxTop} 
+                      dom={diff.dom} url={diff.url}></Diff>);
+    
     });
 
+    
     return (
       <div className="difflist">
         {DiffArray}
@@ -77,11 +99,28 @@ var DiffList = React.createClass({
 
 var Diff = React.createClass({
   render: function(){
+    //var cropSize = document.getElementById('fakecrop').style.width;
+    var cropSize = window.getComputedStyle(document.getElementById('fakecrop')).getPropertyValue('width');
+    console.log(cropSize);
+
+    var transformString = 'translate(';
+
+
+    var iframeStyle={
+      width: this.props.domWidth,
+      height: this.props.domHeight,
+      transform: 'translate(' + this.props.boxLeft*(-1) + 'px,' + this.props.boxTop*(-1) + 'px)'
+    };
+
     return (
       <div className="diff">
-          <iframe src="http://www.ntu.edu.tw"></iframe>
+        <div className="crop">
+          <iframe style={iframeStyle} src="http://www.ntu.edu.tw"></iframe>
+        </div>
+        <p className ="url"> {this.props.url} </p>
       </div>
     );
+
   }
 });
 
