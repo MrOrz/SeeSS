@@ -75,12 +75,10 @@ class SerializableEvent
     @timeout = Date.now! - timestamp
 
   _setup-dom-event: (evt, event-window) !->
-    for property, value of evt when is-relevant(property, value)
-      @[property] = if value instanceof event-window.Element
-        generate-x-path value
-      else
-        value
+    for property, value of evt when is-relevant(property, value, event-window)
+      @[property] = value
 
+    @target = generate-x-path evt.target
     if evt.type is \input
       @_input-value = evt.target.value
 
@@ -93,12 +91,12 @@ class SerializableEvent
   function is-dom-event (evt)
     !evt._constructor-name
 
-  function is-relevant prop, value
+  function is-relevant prop, value, event-window
     # Irrelevant event properties:
     #
     # view: a window object, but not necessarily the window object where the event is triggered
     # path: not sure what it is, just a NodeList
     #
-    not (typeof value is \function || value is undefined || prop in <[view path]> )
+    not (typeof value is \function || value instanceof event-window.Element || value is undefined || prop in <[view path]> )
 
 module.exports = SerializableEvent
