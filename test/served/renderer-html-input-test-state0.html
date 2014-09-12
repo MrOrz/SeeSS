@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="/base/src/livescript/rendererScript.ls" unsafe></script>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+</head>
+<body>
+  <input type="text">
+  <ul></ul>
+
+  <script>
+    var input = document.querySelector('input');
+    var ul = document.querySelector('ul');
+
+    input.addEventListener('keydown', function(e){
+      var newLi;
+      if(e.which === 13){
+         newLi = document.createElement('li');
+         newLi.innerText = input.value;
+         ul.insertBefore(newLi, null);
+         input.value = ""
+      }
+    });
+  </script>
+</body>
+</html>

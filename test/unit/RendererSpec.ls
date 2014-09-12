@@ -292,10 +292,90 @@ describe '#applyHTML', (...) !->
 
     expect page-diff .to.be null
 
-  it 'rejects promise when events could not be replayed'
+  it 'executes event stream of consecutive input events' ->
+    events =
+      * _constructor-name: \MouseEvent
+        type: \click
+        which: 1
+      * _constructor-name: \FocusEvent
+        type: \focus
+      * _constructor-name: \KeyboardEvent # shift
+        type: \keydown
+        which: 16
+        shift-key: true
+        key-code: 16
+      * _constructor-name: \KeyboardEvent # X
+        type: \keydown
+        which: 88
+        key-code: 88
+        shift-key: true
+      * _constructor-name: \KeyboardEvent # X
+        type: \keypress
+        which: 88
+        shift-key: true
+        key-code: 88
+      * _constructor-name: \Event # X
+        type: \input
+        _input-value: \X
+      * _constructor-name: \KeyboardEvent # X
+        type: \keyup
+        which: 88
+        shift-key: true
+        key-code: 88
+      * _constructor-name: \KeyboardEvent # D
+        type: \keydown
+        which: 68
+        shift-key: true
+        key-code: 68
+      * _constructor-name: \KeyboardEvent # D
+        type: \keypress
+        which: 68
+        shift-key: true
+        key-code: 68
+      * _constructor-name: \Event # D
+        type: \input
+        _input-value: \XD
+      * _constructor-name: \KeyboardEvent # D
+        type: \keyup
+        which: 68
+        shift-key: true
+        key-code: 68
+      * _constructor-name: \KeyboardEvent # shift
+        type: \keyup
+        which: 16
+        shift-key: false
+        key-code: 16
+      * _constructor-name: \KeyboardEvent # Enter
+        type: \keydown
+        which: 13
+        key-code: 13
+      * _constructor-name: \KeyboardEvent # Press
+        type: \keypress
+        which: 13
+        key-code: 13
+      * _constructor-name: \KeyboardEvent # Enter
+        type: \keyup
+        which: 13
+        key-code: 13
 
-  it 'executes event stream of consecutive input events'
-  # Should record real keyboard data here. Too much!
+    serializable-events = for evt in events
+      evt <<< {+cancelable, +bubbles, target: '/html/body/*[1]'}
+      new SerializableEvent evt
+
+    renderer = new Renderer (new PageData html: __html__['test/fixtures/renderer-html-input-test-state1.html'])
+
+    <- renderer.render document.body .then
+
+    edges =
+      new RenderGraph.Edge null, serializable-events
+      ...
+
+    ({page-diff, mapping}) <- renderer.applyHTML "http://127.0.0.1:#{location.port}/base/test/served/renderer-html-input-test-state0.html", Promise.resolve(edges) .then
+
+    expect page-diff .to.be null
+
+
+  it 'rejects promise when events could not be replayed'
 
 
   function feed-test-file-to-source-renderer testfile

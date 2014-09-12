@@ -48,7 +48,22 @@ class SerializableEvent
       if @type is \input
         target-elem.value = @_input-value
 
+      # Make sure event properties are identical to serialiableEvent.
+      #
+      # Specific values (such as .which in KeyboardEvent) cannot be set via
+      # the constructor of the event.
+      #
+      # References:
+      # http://stackoverflow.com/questions/10455626/keydown-simulation-in-chrome-fires-normally-but-not-the-correct-key
+      # https://gist.github.com/termi/4654819
       evt = new win[@_constructor-name] @type, @
+      for own key, value of @ when key not in <[_constructorName _inputValue target]> and evt[key] isnt value
+        try
+          delete evt[key]
+          Object.define-property evt, key, writable: true, value: value
+        catch e
+          # Some properties is read-only
+
       target-elem.dispatch-event evt
 
 
