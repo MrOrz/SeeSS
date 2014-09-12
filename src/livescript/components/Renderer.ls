@@ -235,21 +235,8 @@ class Renderer
         # Unset onload callback, because document.close will trigger onload again.
         iframe.onload = null
 
-        iframe-document = iframe.content-window.document
-
-        # Set document doctype.
-        # Since neither iframe-document.insert-before nor replace-child changes the document.compatMode,
-        # document.write may be the only way to leave browser's quirks mode.
-        #
-        iframe-document.open!
-        iframe-document.write page-data.doctype
-        iframe-document.close!
-
-        # Set document content, the assets inside iframe document starts to load.
-        iframe-document.replace-child page-data.dom.document-element, iframe-document.document-element
-
-        # Register load callback
-        IframeUtil.wait-for-assets iframe-document .then resolve
+        IframeUtil.set-document iframe.content-document, page-data.dom, page-data.doctype
+        IframeUtil.wait-for-assets iframe.content-document .then resolve
 
       if !iframe.content-window
         # If the iframe.content-window is not ready yet, wait until it's ready
