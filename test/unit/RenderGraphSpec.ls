@@ -126,9 +126,9 @@ describe '#refresh', (...) !->
       expect page-diff.diffs.0.computed.color.before .to.be "rgb(0, 0, 255)"
       expect page-diff.diffs.0.computed.color.after .to.be "rgb(255, 0, 0)"
 
-  it 'refreshes all iframe when HTML changed, and outputs difference', ->
+  it 'refreshes all iframe when HTML changed, and outputs difference', !->
     graph = new RenderGraph document.body
-    filename = "base/test/served/renderer-html-click-test-src-changed.html"
+    const filename = "base/test/served/renderer-html-click-test-src-changed.html"
 
     # Use http://127.0.0.1 instead of http://localhost to simulate cross-origin scenario
     #
@@ -145,9 +145,14 @@ describe '#refresh', (...) !->
     edge-state1-state2 = new RenderGraph.Edge state1, [new SerializableEvent({type: \click, _constructor-name: \MouseEvent, target: '/html/body/ul/*[3]'})]
     state2 = graph.add (new PageData html: __html__['test/fixtures/renderer-html-click-test-state2.html'], url: url), edge-state1-state2
 
-    promises <- Promise.all graph.refresh(filename) .then
+    results <- Promise.all graph.refresh(filename) .then
 
-    expect promises .to.have.length 4
+    expect results .to.have.length 4
+    for page-diff, idx in results
+      # Number of Color change: root has 2 (ul and li), state0 has 3 (ul and li*2), and vice versa
+      expect page-diff.diffs .to.have.length idx + 2
+
+  it 'can be executed multiple times'
 
   function load-css doc, new-filename, old-filename = \PLACEHOLDER
     # Hack: Change the CSS filename inside renderer iframe to simulate CSS file change
