@@ -6,16 +6,8 @@ var IframeUtil = require('../livescript/components/IframeUtil.ls');
 
 console.log('React', React);
 console.log('chrome', chrome);
-/*
-var HelloMessage = React.createClass({
-  render: function(){
-    return <div>Hello {this.props.name}</div>;
-  }
-});
 
-React.renderComponent(<HelloMessage name="Jacky"/>,
-  document.getElementById('body'));
-*/
+
 window.pageDiffs = [];
 
 var DiffList = React.createClass({
@@ -40,6 +32,7 @@ var DiffList = React.createClass({
         //
         case "PROCESS_END":
         console.log("<Message> Background script processing end");
+        document.getElementById('loading').style.display = 'none';
         break;
 
         // The background script passes a SerializablePageDiff instance here.
@@ -56,10 +49,10 @@ var DiffList = React.createClass({
           var diffPack={ 
             domWidth: pageDiff.width,
             domHeight: pageDiff.height,
-            boxWidth: 100,
+            boxWidth: 400,
             boxHeight: 100,
-            boxLeft: 100,
-            boxTop: 100, 
+            boxLeft: 200,
+            boxTop: 200, 
             dom: pageDiff.dom(),
             url: pageDiff.url
           };
@@ -86,7 +79,6 @@ var DiffList = React.createClass({
                       dom={diff.dom} url={diff.url}></Diff>);
     
     });
-
     
     return (
       <div className="difflist">
@@ -101,15 +93,31 @@ var Diff = React.createClass({
   render: function(){
     //var cropSize = document.getElementById('fakecrop').style.width;
     var cropSize = window.getComputedStyle(document.getElementById('fakecrop')).getPropertyValue('width');
-    console.log(cropSize);
+    cropSize = parseInt(cropSize, 10);
+    
+console.log('BBwidth: ' + this.props.boxWidth + '\nBBheight: ' + this.props.boxHeight);
 
-    var transformString = 'translate(';
+    var scale = '', translate = '', origin = '';
+    var scaleX = cropSize / this.props.boxWidth;
+    var scaleY = cropSize / this.props.boxHeight;
 
+    if(scaleX < 1 || scaleY < 1){
+      var scaleMin;
+      if(scaleX < scaleY)
+        scaleMin = scaleX;
+      else
+        scaleMin = scaleY;
+      scale = 'scale(' + scaleMin + ',' + scaleMin + ')';
+    }
+
+    translate = 'translate(' + this.props.boxLeft*(-1) + 'px,' + this.props.boxTop*(-1) + 'px)';
+    origin = this.props.domWidth/2 + ' ' + this.props.domHeight/2;
 
     var iframeStyle={
       width: this.props.domWidth,
       height: this.props.domHeight,
-      transform: 'translate(' + this.props.boxLeft*(-1) + 'px,' + this.props.boxTop*(-1) + 'px)'
+      transform: scale + ' ' +translate,
+      transformOrigin: origin
     };
 
     return (
