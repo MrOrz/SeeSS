@@ -20,7 +20,8 @@ do !->
 
   dom-preprocess-promise = new Promise (resolve, reject) ->
     window.add-event-listener \load, resolve
-  .then function disable-duration
+  .then !->
+    # Disable transitions using <style>
     selectors = []
 
     for stylesheet in document.style-sheets
@@ -49,25 +50,25 @@ do !->
     event-execute-chain = dom-preprocess-promise
 
     for let evt in events
-      event-execute-chain .= then ->
-        evt.dispatch-in-window window
+      <- event-execute-chain .= then
+      evt.dispatch-in-window window
 
     # Send PAGE_DATA event to parent (background script) after executing all edges
     #
-    event-execute-chain.then ->
-      # All events are executed, this <style> is no longer needed.
-      # Remove it so that it does not interfere with xdiff process.
-      disable-duration-style-elem.remove!
+    <- event-execute-chain.then
+    # All events are executed, this <style> is no longer needed.
+    # Remove it so that it does not interfere with xdiff process.
+    disable-duration-style-elem.remove!
 
-      window.parent.post-message do
-        type: \PAGE_DATA
-        data:
-          html: document.document-element.outerHTML
-          url: location.href
-          width: window.inner-width
-          height: window.inner-height
-          scroll-top: document.body.scroll-top
-          doctype:
-            public-id: document.doctype?public-id
-            system-id: document.doctype?system-id
-        \*
+    window.parent.post-message do
+      type: \PAGE_DATA
+      data:
+        html: document.document-element.outerHTML
+        url: location.href
+        width: window.inner-width
+        height: window.inner-height
+        scroll-top: document.body.scroll-top
+        doctype:
+          public-id: document.doctype?public-id
+          system-id: document.doctype?system-id
+      \*
