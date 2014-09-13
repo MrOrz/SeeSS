@@ -28,7 +28,6 @@ before (cb) ->
     # The manually-built event that we use to trigger mouse event
     #
     manual-click-event = new MouseEvent \click, do
-      view: window
       bubbles: true
       cancelable: true
       which: 1
@@ -37,7 +36,6 @@ before (cb) ->
       clientY: 3
 
     manual-input-event = new Event \input, do
-      view: window
       bubbles: true
       cancelable: true
 
@@ -69,12 +67,12 @@ before (cb) ->
 describe '#constructor', (...) !->
 
   it 'is serializable', ->
-    sevt = new SerializableEvent mouse-event, iframe.content-window
+    sevt = new SerializableEvent mouse-event
 
     expect JSON.stringify(sevt) .to.be.a \string
 
   it 'recovers from unserialization', ->
-    sevt = new SerializableEvent mouse-event, iframe.content-window
+    sevt = new SerializableEvent mouse-event
 
     deserialized = JSON.parse JSON.stringify sevt
 
@@ -83,7 +81,7 @@ describe '#constructor', (...) !->
     expect recovered-sevt .to.eql sevt
 
   it 'converts event target to correct XPath', ->
-    sevt = new SerializableEvent mouse-event, iframe.content-window
+    sevt = new SerializableEvent mouse-event
     recovered-sevt = new SerializableEvent JSON.parse JSON.stringify sevt
     recovered-target = iframe.content-window.document `query-x-path` recovered-sevt.target
 
@@ -99,7 +97,7 @@ describe '#dispatch-in-window', (...) !->
 
   it 'dispatches DOM events', ->
 
-    sevt = new SerializableEvent mouse-event, iframe.content-window
+    sevt = new SerializableEvent mouse-event
     spy = sinon.spy!
 
     target = iframe-doc.get-element-by-id \click-target
@@ -112,7 +110,7 @@ describe '#dispatch-in-window', (...) !->
   it 'dispatches wait events'
 
   it 'rejects when event target not found', ->
-    sevt = new SerializableEvent mouse-event, iframe.content-window
+    sevt = new SerializableEvent mouse-event
 
     resolve-spy = sinon.spy!
     reject-spy = sinon.spy!
@@ -129,7 +127,7 @@ describe '#dispatch-in-window', (...) !->
   it 'serializes and dispatches input events along with input content', ->
     input-target = iframe.content-document.get-element-by-id \input-target
 
-    sevt = new SerializableEvent input-event, iframe.content-window
+    sevt = new SerializableEvent input-event
 
     # Unset the input-target's value
     input-target.value = ''

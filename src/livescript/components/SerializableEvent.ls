@@ -13,15 +13,17 @@ class SerializableEvent
   # or a serailzable event object just deserialized from JSON,
   # or a timestamp from the last event.
   #
-  (timestamp-or-event, event-window) ->
+  (timestamp-or-event) ->
     if typeof timestamp-or-event is \number
+      # timestamp-or-event is a timestamp
       @_setup-wait-event timestamp-or-event
 
     else
+      # timestamp-or-event is an event
       @_constructor-name = timestamp-or-event._constructor-name || timestamp-or-event.constructor.name
 
       if is-dom-event timestamp-or-event
-        @_setup-dom-event timestamp-or-event, event-window
+        @_setup-dom-event timestamp-or-event
 
       else
         @_recover-from-json timestamp-or-event
@@ -74,7 +76,8 @@ class SerializableEvent
     @type = \WAIT
     @timeout = Date.now! - timestamp
 
-  _setup-dom-event: (evt, event-window) !->
+  _setup-dom-event: (evt) !->
+    event-window = evt.target.owner-document.default-view
     for property, value of evt when is-relevant(property, value, event-window)
       @[property] = value
 

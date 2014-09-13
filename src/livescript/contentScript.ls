@@ -26,7 +26,7 @@ var wait-timestamp
 last-events = []
 
 !function record-event(evt)
-  last-events.push new SerializableEvent evt, window
+  last-events.push new SerializableEvent evt
 
 
 # Register message listeners from background script
