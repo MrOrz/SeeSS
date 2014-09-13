@@ -20,7 +20,7 @@ before (cb) ->
   #
   iframe.onload = ->
     iframe.onload = null
-    iframe-doc := iframe.content-window.document
+    iframe-doc := iframe.content-document
 
     iframe-doc.write '<div id="click-target">SerializableEvent click target</div><input type="text" id="input-target" value="test">'
     iframe-doc.close!
@@ -92,6 +92,31 @@ describe '#constructor', (...) !->
 
     expect sevt.type .to.be \WAIT
     expect sevt.timeout .to.be.less-than 5ms # 5ms should be long enough
+
+
+  it 'can serialize events dispatched to document element', (cb) ->
+    document-event-handler = (evt) ->
+      iframe-doc.remove-event-listener \click, document-event-handler
+      sevt = new SerializableEvent evt
+
+      expect JSON.stringify(sevt) .to.be.a \string
+
+      cb!
+
+    iframe-doc.add-event-listener \click, document-event-handler
+    iframe-doc.dispatch-event mouse-event
+
+  it 'serializes events dispatched to window', (cb) ->
+    window-event-handler = (evt) ->
+      iframe.content-window.remove-event-listener \click, window-event-handler
+      sevt = new SerializableEvent evt
+
+      expect JSON.stringify(sevt) .to.be.a \string
+
+      cb!
+
+    iframe.content-window.add-event-listener \click, window-event-handler
+    iframe.content-window.dispatch-event mouse-event
 
 describe '#dispatch-in-window', (...) !->
 
