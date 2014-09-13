@@ -1,5 +1,4 @@
 require! {
-  './components/ContentScriptStorage.ls'
   './components/Message.ls'
   './components/SerializableEvent.ls'
 }
@@ -43,6 +42,9 @@ chrome.runtime.on-message.add-listener ({type, data}, sender, send-response) ->
       # Instantiate the mutation observer and start observing
       mutation-observer := new MutationObserver (records) ->
 
+        # TODO:
+        # Rule out livereload script tag insertion
+
         clear-timeout debounce-timeout-handle
         debounce-timeout-handle := set-timeout send-page-data, MUTATION_DEBOUNCE_PERIOD
 
@@ -80,10 +82,6 @@ function send-page-data
         system-id: document.doctype.system-id
 
     events: last-events
-
-  if is-first-page-data
-    data-to-transfer.local-storage = ContentScriptStorage.get-item \localStorage
-    is-first-page-data := false
 
   msg = new Message \PAGE_DATA, data-to-transfer
   msg.send!
