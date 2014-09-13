@@ -96,6 +96,8 @@ describe '#constructor', (...) !->
 
   it 'can serialize events dispatched to document element', (cb) ->
     document-event-handler = (evt) ->
+      return if evt.target isnt iframe-doc
+
       iframe-doc.remove-event-listener \click, document-event-handler
       sevt = new SerializableEvent evt
 
@@ -104,10 +106,15 @@ describe '#constructor', (...) !->
       cb!
 
     iframe-doc.add-event-listener \click, document-event-handler
-    iframe-doc.dispatch-event mouse-event
+
+    # Clone mouse-event so that mouse-event.target don't get changed by this test
+    mouse-event-clone = new MouseEvent \click, mouse-event
+    iframe-doc.dispatch-event mouse-event-clone
 
   it 'serializes events dispatched to window', (cb) ->
     window-event-handler = (evt) ->
+      return if evt.target isnt iframe.content-window
+
       iframe.content-window.remove-event-listener \click, window-event-handler
       sevt = new SerializableEvent evt
 
@@ -116,7 +123,10 @@ describe '#constructor', (...) !->
       cb!
 
     iframe.content-window.add-event-listener \click, window-event-handler
-    iframe.content-window.dispatch-event mouse-event
+
+    # Clone mouse-event so that mouse-event.target don't get changed by this test
+    mouse-event-clone = new MouseEvent \click, mouse-event
+    iframe.content-window.dispatch-event mouse-event-clone
 
 describe '#dispatch-in-window', (...) !->
 

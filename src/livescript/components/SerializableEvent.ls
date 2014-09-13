@@ -77,13 +77,21 @@ class SerializableEvent
     @timeout = Date.now! - timestamp
 
   _setup-dom-event: (evt) !->
-    event-window = evt.target.owner-document.default-view
+    target = evt.target
+
+    if target.node-type is Node.DOCUMENT_NODE
+      event-window = target.default-view
+    else if target.constructor.name is \Window
+      event-window = target
+    else
+      event-window = target.owner-document.default-view
+
     for property, value of evt when is-relevant(property, value, event-window)
       @[property] = value
 
-    @target = generate-x-path evt.target
+    @target = generate-x-path target
     if evt.type is \input
-      @_input-value = evt.target.value
+      @_input-value = target.value
 
   _recover-from-json: (evt) !->
     @ <<< evt
@@ -100,6 +108,8 @@ class SerializableEvent
     # view: a window object, but not necessarily the window object where the event is triggered
     # path: not sure what it is, just a NodeList
     #
-    not (typeof value is \function || value instanceof event-window.Element || value is undefined || prop in <[view path]> )
+    not (typeof value is \function || value instanceof event-window.Element ||
+         value is event-window || value is event-window.document ||
+         value is undefined || prop in <[view path]> )
 
 module.exports = SerializableEvent
