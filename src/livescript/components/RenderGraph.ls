@@ -140,9 +140,10 @@ class RenderGraph
                 for old-target, idx in child.renderer._graph-prop.bfs-old-event-targets
 
                   new-target = if old-target.node-type is Node.DOCUMENT_NODE or
-                                  old-target.constructor.name is \Window
-                    # Document node or window node will not appear in mapping,
-                    # but always mapped to the new document / window.
+                                  old-target.constructor.name is \Window or
+                                  old-target.node-name in <[HTML BODY]>
+                    # Document node, window node, <html> and <body> will not appear in mapping,
+                    # but always mapped to the respective elements in the updated renderer
                     #
                     old-target
                   else

@@ -153,7 +153,7 @@ describe '#refresh', (...) !->
       # Number of Color change: root has 2 (ul and li), state0 has 3 (ul and li*2), and vice versa
       expect page-diff.diffs .to.have.length idx + 2
 
-  it 'refreshes when edges contains events targeting document & window', ->
+  it 'refreshes when edges contains events targeting document, window, <html> and <body>.', ->
     graph = new RenderGraph document.body
     const filename = "base/test/served/renderer-html-doc-click-test-state0.html"
 
@@ -169,8 +169,11 @@ describe '#refresh', (...) !->
     edge-state1-state2 = new RenderGraph.Edge state1, [new SerializableEvent({type: \click, _constructor-name: \MouseEvent, target: generate-x-path(state1.iframe.content-document), bubbles: true})]
     state2 = graph.add (new PageData html: __html__['test/fixtures/renderer-html-doc-click-test-state2.html'], url: url), edge-state1-state2
 
+    edge-state2-state3 = new RenderGraph.Edge state2, [new SerializableEvent({type: \click, _constructor-name: \MouseEvent, target: '/html/body', bubbles: true})]
+    state3 = graph.add (new PageData html: __html__['test/fixtures/renderer-html-doc-click-test-state3.html'], url: url), edge-state2-state3
+
     results <- Promise.all graph.refresh(filename) .then
-    expect results .to.eql [null, null, null]
+    expect results .to.eql [null, null, null, null]
 
   it 'can be executed multiple times'
 
