@@ -138,7 +138,15 @@ class RenderGraph
             for child in children
               if child.in-edge.has-event-targets!
                 for old-target, idx in child.renderer._graph-prop.bfs-old-event-targets
-                  new-target = mapping.get-node-from old-target
+
+                  new-target = if old-target.node-type is Node.DOCUMENT_NODE or
+                                  old-target.constructor.name is \Window
+                    # Document node or window node will not appear in mapping,
+                    # but always mapped to the new document / window.
+                    #
+                    old-target
+                  else
+                    mapping.get-node-from old-target
 
                   if new-target
                     child.in-edge.events[idx].target = generate-x-path new-target

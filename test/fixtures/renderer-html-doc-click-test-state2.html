@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="/base/src/livescript/rendererScript.ls" unsafe></script>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h1>Document/Window click test</h1>
+  <script>
+    document.addEventListener('click', function(){
+      var newPragraph = document.createElement('p');
+      newPragraph.classList.add('is-document-clicked');
+      newPragraph.innerText = 'Document click dispatched';
+      document.body.insertBefore(newPragraph, null);
+    });
+    window.addEventListener('click', function(){
+      var newPragraph = document.createElement('p');
+      newPragraph.classList.add('is-window-clicked');
+      newPragraph.innerText = 'Window click dispatched';
+      document.body.insertBefore(newPragraph, null);
+    });
+  </script>
+
+  <p class="is-window-clicked">Window click dispatched</p>
+  <p class="is-document-clicked">Document click dispatched</p>
+  <p class="is-window-clicked">Window click dispatched</p>
+</body>
+</html>

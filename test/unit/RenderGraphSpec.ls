@@ -3,6 +3,7 @@ require! {
   '../../src/livescript/components/PageData.ls'
   '../../src/livescript/components/RenderGraph.ls'
   '../../src/livescript/components/SerializableEvent.ls'
+  '../../src/livescript/components/XPathUtil.ls'.generate-x-path
 }
 
 # A Renderer mock that only stores fake page data, without creating additional iframes
@@ -151,6 +152,25 @@ describe '#refresh', (...) !->
     for page-diff, idx in results
       # Number of Color change: root has 2 (ul and li), state0 has 3 (ul and li*2), and vice versa
       expect page-diff.diffs .to.have.length idx + 2
+
+  it 'refreshes when edges contains events targeting document & window', ->
+    graph = new RenderGraph document.body
+    const filename = "base/test/served/renderer-html-doc-click-test-state0.html"
+
+    # Use http://127.0.0.1 instead of http://localhost to simulate cross-origin scenario
+    #
+    url = "http://127.0.0.1:#{location.port}/#{filename}"
+
+    root = graph.add (new PageData html: __html__['test/fixtures/renderer-html-doc-click-test-state0.html'], url: url)
+
+    edge-root-state1 = new RenderGraph.Edge root, [new SerializableEvent({type: \click, _constructor-name: \MouseEvent, target: generate-x-path(root.iframe.content-window), bubbles: true})]
+    state1 = graph.add (new PageData html: __html__['test/fixtures/renderer-html-doc-click-test-state1.html'], url: url), edge-root-state1
+
+    edge-state1-state2 = new RenderGraph.Edge state1, [new SerializableEvent({type: \click, _constructor-name: \MouseEvent, target: generate-x-path(state1.iframe.content-document), bubbles: true})]
+    state2 = graph.add (new PageData html: __html__['test/fixtures/renderer-html-doc-click-test-state2.html'], url: url), edge-state1-state2
+
+    results <- Promise.all graph.refresh(filename) .then
+    expect results .to.eql [null, null, null]
 
   it 'can be executed multiple times'
 

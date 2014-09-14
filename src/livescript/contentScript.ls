@@ -53,12 +53,12 @@ chrome.runtime.on-message.add-listener ({type, data}, sender, send-response) ->
       # Capture the event recorders on document body at capturing phase
       #
       for evt in EVENTS_OF_INTEREST
-        document.body.add-event-listener evt, record-event, true
+        window.add-event-listener evt, record-event, true
 
     else
       mutation-observer.disconnect! if mutation-observer
       for evt in EVENTS_OF_INTEREST
-        document.body.remove-event-listener evt, record-event, true
+        window.remove-event-listener evt, record-event, true
 
 
 # On startup, fetch tab status.
