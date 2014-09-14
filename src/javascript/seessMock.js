@@ -10,25 +10,34 @@ var localStorageData = JSON.stringify(localStorage),
     sessionStorageData = JSON.stringify(sessionStorage);
 
 var storeFactory = function(jsonData) {
-  var store = {};
-  if(jsonData) {
+  var store;
+
+  if(jsonData){
     store = JSON.parse(jsonData);
+  }else{
+    store = {};
   }
 
-  return {
-    getItem: function(key) {
-      return store[key];
-    },
-    setItem: function(key, value) {
-      store[key] = value.toString();
-    },
-    clear: function() {
-      store = {};
-    },
-    removeItem: function(key){
-      store[key] = undefined;
+  store.getItem = function(key) {
+    return this[key];
+  };
+  store.setItem = function(key, value) {
+    this[key] = value.toString();
+  };
+  store.clear = function() {
+    var key;
+    for(key in this){
+      if(this.hasOwnProperty(key) && key !== 'setItem' && key !== 'getItem' &&
+         key !== 'clear' && key !== 'removeItem'){
+        this[key] = undefined;
+      }
     }
   };
+  store.removeItem = function(key){
+    this[key] = undefined;
+  };
+
+  return store;
 };
 
 Object.defineProperty(window, 'localStorage', { value: storeFactory(localStorageData) });
