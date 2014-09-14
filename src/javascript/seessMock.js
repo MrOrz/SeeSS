@@ -54,3 +54,13 @@ Math.random = (function() {
     return (seed & 0xFFFFFFF) / 0x10000000;
   };
 }());
+
+
+/*
+  Mock requestAnimationFrame so that the callbacks can get fired even when the page
+  is rendered inside an iframe in the background page
+*/
+
+window.requestAnimationFrame = window.webkitRequestAnimationFrame = function(callback){
+  setTimeout(callback, 0);
+};
