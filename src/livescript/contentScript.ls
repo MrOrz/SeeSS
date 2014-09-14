@@ -4,7 +4,7 @@ require! {
 }
 
 const MUTATION_DEBOUNCE_PERIOD = 500ms
-const EVENTS_OF_INTEREST = <[focus blur change click mouseover mouseleave scroll keydown keypress input keyup]>
+const EVENTS_OF_INTEREST = <[focus blur change click mouseover mouseleave scroll keydown keypress input keyup submit]>
 
 # The state of current tab
 #
