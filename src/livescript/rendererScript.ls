@@ -54,7 +54,11 @@ do !->
       disable-duration-style-elem := document.create-element \style
       disable-duration-style-elem.innerHTML = "#{selectors.join(',')}{transition-duration: 0; -webkit-animation-duration: 0;}"
       document.body.insert-before disable-duration-style-elem, null
+  .then defer-for-callbacks
 
+  function defer-for-callbacks
+    return new Promise (resolve, reject) ->
+      set-timeout resolve, 0
 
   (event) <-! window.add-event-listener \message, _
 
@@ -65,8 +69,9 @@ do !->
     event-execute-chain = dom-preprocess-promise
 
     for let evt in events
-      <- event-execute-chain .= then
-      evt.dispatch-in-window window
+      event-execute-chain .= then ->
+        evt.dispatch-in-window window
+      .then defer-for-callbacks
 
     # Send PAGE_DATA event to parent (background script) after executing all edges
     #
