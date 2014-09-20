@@ -32,6 +32,10 @@ describe '#constructor', (...) !->
     page-diff = new SerializablePageDiff(dom: body-elem, diffs: <[foo]>)
     expect page-diff.html .to.eql body-string
 
+describe '#dom', (...) !->
+  it 'returns a document element', ->
+    page-diff = new SerializablePageDiff html: '<body><h1>Test</h1></body>', diffs: <[foo]>
+    expect page-diff.dom!node-type .to.be Node.DOCUMENT_NODE
 
 describe '#toJSON', (...) !->
   it 'should be serializable', ->
@@ -45,7 +49,7 @@ describe '#toJSON', (...) !->
     restored-page-diff = new SerializablePageDiff restored
 
     # Invoke @dom() on restored-page-diff
-    expect restored-page-diff.dom!child-nodes.length .to.be page-diff.dom!child-nodes.length
+    expect restored-page-diff.dom!document-element.child-nodes.length .to.be page-diff.dom!document-element.child-nodes.length
 
 describe '#query-diff-id', (...) !->
 

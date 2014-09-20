@@ -59,7 +59,7 @@ class SerializablePageDiff
   # Generate @_dom only when methods that requires @_dom is invoked
   #
   _generate-dom: !->
-    @_dom = parser.parse-from-string @html, 'text/html' .document-element
+    @_dom = parser.parse-from-string @html, 'text/html'
 
   # Method called by JSON.stringify(...).
   # Just include the minimum items needed to re-construct the SerializablePageDiff instance.
