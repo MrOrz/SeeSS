@@ -119,7 +119,7 @@ var Diff = React.createClass({
     IframeUtil.waitForAssets(iframe.contentDocument).then(function(){
       var divElem,
           currentRect,
-          beforeRules, afterRules,
+          beforeRulesData, beforeRules, afterRules,
           elem = iframeDoc.querySelector('['+SerializablePageDiff.DIFF_ID_ATTR+'~="'+diffId+'"]');
 
       if(diff.type === ElementDifference.TYPE_MOD){
@@ -129,25 +129,39 @@ var Diff = React.createClass({
           divElem = iframeDoc.createElement('div');
           divElem.id = "SEESS_POSITION_ANIMATE";
 
-          afterRules =
-            "left:" + currentRect.left + 'px;' +
-            "top:" + currentRect.top + 'px;' +
-            "width:" + currentRect.width + 'px;' +
-            "height:" + currentRect.height + 'px;';
+
+          beforeRuleData = {
+            left: (diff.rect.left && diff.rect.left.before) || currentRect.left,
+            top: (diff.rect.top && diff.rect.top.before) || currentRect.top,
+            width: (diff.rect.width && diff.rect.width.before) || currentRect.width,
+            height: (diff.rect.height && diff.rect.height.before) || currentRect.height
+          };
 
           beforeRules =
-            "left:" + ((diff.rect.left && diff.rect.left.before) || currentRect.left) + 'px;' +
-            "top:" + ((diff.rect.top && diff.rect.top.before) || currentRect.top) + 'px;' +
-            "width:" + ((diff.rect.width && diff.rect.width.before) || currentRect.width) + 'px;' +
-            "height:" + ((diff.rect.height && diff.rect.height.before) || currentRect.height) + 'px;';
+            "left: " + beforeRuleData.left + 'px;' +
+            "top: " + beforeRuleData.top + 'px;' +
+            "width: " + beforeRuleData.width + 'px;' +
+            "height: " + beforeRuleData.height + 'px;';
+
+          afterRules =
+            "transform: translate(" + (currentRect.left-beforeRuleData.left) + 'px,' +
+                                    (currentRect.top-beforeRuleData.top) + 'px) ' +
+                       "scale(" + (currentRect.width / beforeRuleData.width) + ',' +
+                                  (currentRect.height / beforeRuleData.height) + ');';
 
 
-          styleElem.innerHTML += "#SEESS_POSITION_ANIMATE{z-index: 99999; box-sizing: border-box; position: fixed; border: 1px dashed red; background:rgba(255,0,0,0.1); -webkit-animation: SEESS_POSITION 3s ease-in-out 0s infinite; will-change: left top width height;}\n" +
-            "@-webkit-keyframes SEESS_POSITION {from{"+beforeRules+"} to {"+afterRules+"}}";
+          styleElem.innerHTML += "#SEESS_POSITION_ANIMATE{" +
+              "z-index: 99999; box-sizing: border-box; position: fixed; " +
+              "border: 1px dashed red; background:rgba(255,0,0,0.1);" +
+              "transform-origin: left top;" +
+              "-webkit-animation: SEESS_POSITION 3s ease-in-out 0s infinite;" +
+              "will-change: transform; " + beforeRules +
+            "}\n" +
+            "@-webkit-keyframes SEESS_POSITION {to {"+afterRules+"}}";
 
           iframeDoc.body.appendChild(divElem);
         }
-        iframeDoc.body.appendChild(styleElem)
+        iframeDoc.body.appendChild(styleElem);
       }
     });
 
