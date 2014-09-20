@@ -1,393 +1,23 @@
 [
   {
-    "html": "<html lang=\"en\"><head>\n    <meta charset=\"utf-8\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"\">\n    <meta name=\"author\" content=\"\">\n\n    <title>Jumbotron Template for Bootstrap</title>\n\n    <!-- Bootstrap core CSS -->\n    <link href=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css\" rel=\"stylesheet\">\n\n    <!-- Custom styles for this template -->\n    <link href=\"http://localhost:3000/jumbotron.css\" rel=\"stylesheet\">\n\n  </head>\n\n  <body>\n\n    <div class=\"navbar navbar-inverse navbar-fixed-top\" role=\"navigation\" __seess_diff_id__=\"0\">\n      <div class=\"container\" __seess_diff_id__=\"1\">\n        <div class=\"navbar-header\" __seess_diff_id__=\"2\">\n          <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n            <span class=\"sr-only\">Toggle navigation</span>\n            <span class=\"icon-bar\"></span>\n            <span class=\"icon-bar\"></span>\n            <span class=\"icon-bar\"></span>\n          </button>\n          <a class=\"navbar-brand\" href=\"#\" __seess_diff_id__=\"3\">Project name</a>\n        </div>\n        <div class=\"navbar-collapse collapse\" __seess_diff_id__=\"4\">\n          <ul class=\"nav navbar-nav\" __seess_diff_id__=\"5\">\n            <li class=\"dropdown\" __seess_diff_id__=\"6\">\n              <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" __seess_diff_id__=\"7\">Dropdown <span class=\"caret\" __seess_diff_id__=\"8\"></span></a>\n              <ul class=\"dropdown-menu\" role=\"menu\">\n                <li><a href=\"#\">Action</a></li>\n                <li><a href=\"#\">Another action</a></li>\n                <li><a href=\"#\">Something else here</a></li>\n                <li class=\"divider\"></li>\n                <li><a href=\"#\">Separated link</a></li>\n              </ul>\n            </li>\n          </ul>\n          <form class=\"navbar-form navbar-right\" role=\"form\" __seess_diff_id__=\"9\">\n            <div class=\"form-group\" __seess_diff_id__=\"10\">\n              <input type=\"text\" placeholder=\"Email\" class=\"form-control\" __seess_diff_id__=\"11\">\n            </div>\n            <div class=\"form-group\" __seess_diff_id__=\"12\">\n              <input type=\"password\" placeholder=\"Password\" class=\"form-control\" __seess_diff_id__=\"13\">\n            </div>\n            <button type=\"submit\" class=\"btn btn-success\" __seess_diff_id__=\"14\">Sign in</button>\n          </form>\n        </div><!--/.navbar-collapse -->\n      </div>\n    </div>\n\n    <!-- Main jumbotron for a primary marketing message or call to action -->\n    <div class=\"jumbotron\" __seess_diff_id__=\"15\">\n      <div class=\"container\" __seess_diff_id__=\"16\">\n        <h1 __seess_diff_id__=\"17\">Hello, world!</h1>\n        <p __seess_diff_id__=\"18\">This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>\n        <p __seess_diff_id__=\"19\"><a class=\"btn btn-primary btn-lg\" role=\"button\">Learn more »</a></p>\n      </div>\n    </div>\n\n      <!-- Example row of columns -->\n      <div class=\"container\" __seess_diff_id__=\"20\">\n        <div class=\"row\" __seess_diff_id__=\"21\">\n          <div class=\"col-md-4\" __seess_diff_id__=\"22\">\n            <h2 __seess_diff_id__=\"23\">Heading</h2>\n            <p __seess_diff_id__=\"24\">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>\n            <p __seess_diff_id__=\"25\"><a class=\"btn btn-default\" href=\"#\" role=\"button\" __seess_diff_id__=\"26\">View details »</a></p>\n\n          </div>\n          <div class=\"col-md-4\" __seess_diff_id__=\"27\">\n            <h2 __seess_diff_id__=\"28\">Heading</h2>\n            <p __seess_diff_id__=\"29\">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>\n            <p __seess_diff_id__=\"30\"><a class=\"btn btn-default\" href=\"#\" role=\"button\" __seess_diff_id__=\"31\">View details »</a></p>\n\n          </div>\n          <div class=\"col-md-4\" __seess_diff_id__=\"32\">\n            <h2 __seess_diff_id__=\"33\">Heading</h2>\n            <p __seess_diff_id__=\"34\">Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>\n            <p __seess_diff_id__=\"35\"><a class=\"btn btn-default\" href=\"#\" role=\"button\" __seess_diff_id__=\"36\">View details »</a></p>\n\n          </div>\n        </div>\n      </div>\n\n      <hr __seess_diff_id__=\"37\">\n\n      <footer __seess_diff_id__=\"38\">\n        <p __seess_diff_id__=\"39\">© Company 2014</p>\n      </footer>\n     <!-- /container -->\n\n\n    <!-- Bootstrap core JavaScript\n    ================================================== -->\n    <!-- Placed at the end of the document so the pages load faster -->\n    \n    \n  \n\n\n</body></html>",
+    "html": "<html lang=\"en\"><head>\n    <meta charset=\"utf-8\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"\">\n    <meta name=\"author\" content=\"\">\n\n    <title>Jumbotron Template for Bootstrap</title>\n\n    <!-- Bootstrap core CSS -->\n    <link href=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css\" rel=\"stylesheet\" crossorigin=\"anonymous\">\n\n    <!-- Custom styles for this template -->\n    <style>\n      /* Move down content because we have a fixed navbar that is 50px tall */\n      body {\n        padding-top: 50px;\n        padding-bottom: 20px;\n      }\n    </style>\n\n  </head>\n\n  <body>\n\n    <div class=\"navbar navbar-inverse navbar-fixed-top\" role=\"navigation\">\n      <div class=\"container\">\n        <div class=\"navbar-header\">\n          <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n            <span class=\"sr-only\">Toggle navigation</span>\n            <span class=\"icon-bar\"></span>\n            <span class=\"icon-bar\"></span>\n            <span class=\"icon-bar\"></span>\n          </button>\n          <a class=\"navbar-brand\" href=\"#\">Project name</a>\n        </div>\n        <div class=\"navbar-collapse collapse\">\n          <ul class=\"nav navbar-nav\">\n            <li class=\"dropdown\">\n              <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Dropdown <span class=\"caret\"></span></a>\n              <ul class=\"dropdown-menu\" role=\"menu\">\n                <li><a href=\"#\">Action</a></li>\n                <li><a href=\"#\">Another action</a></li>\n                <li><a href=\"#\">Something else here</a></li>\n                <li class=\"divider\"></li>\n                <li><a href=\"#\">Separated link</a></li>\n              </ul>\n            </li>\n          </ul>\n          <form class=\"navbar-form navbar-right\" role=\"form\">\n            <div class=\"form-group\">\n              <input type=\"text\" placeholder=\"Email\" class=\"form-control\">\n            </div>\n            <div class=\"form-group\">\n              <input type=\"password\" placeholder=\"Password\" class=\"form-control\">\n            </div>\n            <button type=\"submit\" class=\"btn btn-success\">Sign in</button>\n          </form>\n        </div><!--/.navbar-collapse -->\n      </div>\n    </div>\n\n    <!-- Main jumbotron for a primary marketing message or call to action -->\n    <div class=\"jumbotron\">\n      <div class=\"container\">\n        <h1>Hello World 21</h1>\n        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>\n        <p><a class=\"btn btn-primary btn-lg\" role=\"button\">Learn more »</a></p>\n      </div>\n    </div>\n\n      <!-- Example row of columns -->\n      <div class=\"container\" __seess_diff_id__=\"0\">\n        <div class=\"row\" __seess_diff_id__=\"1\">\n          <div class=\"col-md-4\" __seess_diff_id__=\"2\">\n            <h2 __seess_diff_id__=\"3\">Heading</h2>\n            <p __seess_diff_id__=\"4\">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>\n            <p __seess_diff_id__=\"5\"><a class=\"btn btn-default\" href=\"#\" role=\"button\" __seess_diff_id__=\"6\">View details »</a></p>\n\n          </div>\n          <div class=\"col-md-4\" __seess_diff_id__=\"7\">\n            <h2 __seess_diff_id__=\"8\">Heading</h2>\n            <p __seess_diff_id__=\"9\">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>\n            <p __seess_diff_id__=\"10\"><a class=\"btn btn-default\" href=\"#\" role=\"button\" __seess_diff_id__=\"11\">View details »</a></p>\n\n          </div>\n          <div class=\"col-md-4\" __seess_diff_id__=\"12\">\n            <h2 __seess_diff_id__=\"13\">Heading</h2>\n            <p __seess_diff_id__=\"14\">Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>\n            <p __seess_diff_id__=\"15\"><a class=\"btn btn-default\" href=\"#\" role=\"button\" __seess_diff_id__=\"16\">View details »</a></p>\n\n          </div>\n        </div>\n      </div>\n\n      <hr __seess_diff_id__=\"17\">\n\n      <footer __seess_diff_id__=\"18\">\n        <p __seess_diff_id__=\"19\">© Company 2014</p>\n      </footer>\n     <!-- /container -->\n\n\n    <!-- Bootstrap core JavaScript\n    ================================================== -->\n    <!-- Placed at the end of the document so the pages load faster -->\n    \n    \n  \n\n\n</body></html>",
     "diffs": [
       {
         "type": 0,
-        "rect": {
-          "width": {
-            "before": 1206,
-            "after": 1221
-          },
-          "right": {
-            "before": 1206,
-            "after": 1221
-          }
+        "boundingBox": {
+          "left": 375,
+          "right": 1545,
+          "top": 410,
+          "bottom": 861
         },
-        "computed": {
-          "perspective-origin": {
-            "before": "603px 25.5px",
-            "after": "610.5px 25.5px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "603px 25.5px",
-            "after": "610.5px 25.5px"
-          },
-          "transform-origin": {
-            "before": "603px 25.5px",
-            "after": "610.5px 25.5px"
-          },
-          "-webkit-transform-origin": {
-            "before": "603px 25.5px",
-            "after": "610.5px 25.5px"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 18,
-            "after": 25.5
-          },
-          "right": {
-            "before": 1188,
-            "after": 1195.5
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 33,
-            "after": 40.5
-          },
-          "right": {
-            "before": 154.6875,
-            "after": 162.1875
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 18,
-            "after": 25.5
-          },
-          "right": {
-            "before": 154.6875,
-            "after": 162.1875
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 33,
-            "after": 40.5
-          },
-          "right": {
-            "before": 1173,
-            "after": 1180.5
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 154.6875,
-            "after": 162.1875
-          },
-          "right": {
-            "before": 264.171875,
-            "after": 271.671875
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 154.6875,
-            "after": 162.1875
-          },
-          "right": {
-            "before": 264.171875,
-            "after": 271.671875
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 154.6875,
-            "after": 162.1875
-          },
-          "right": {
-            "before": 264.171875,
-            "after": 271.671875
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 241.15625,
-            "after": 248.65625
-          },
-          "right": {
-            "before": 249.15625,
-            "after": 256.65625
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 733.40625,
-            "after": 740.90625
-          },
-          "right": {
-            "before": 1188,
-            "after": 1195.5
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 748.40625,
-            "after": 755.90625
-          },
-          "right": {
-            "before": 922.40625,
-            "after": 929.90625
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 748.40625,
-            "after": 755.90625
-          },
-          "right": {
-            "before": 922.40625,
-            "after": 929.90625
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 926.296875,
-            "after": 933.796875
-          },
-          "right": {
-            "before": 1100.296875,
-            "after": 1107.796875
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 926.296875,
-            "after": 933.796875
-          },
-          "right": {
-            "before": 1100.296875,
-            "after": 1107.796875
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 1104.1875,
-            "after": 1111.6875
-          },
-          "right": {
-            "before": 1172.984375,
-            "after": 1180.484375
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "width": {
-            "before": 1206,
-            "after": 1221
-          },
-          "right": {
-            "before": 1206,
-            "after": 1221
-          }
-        },
-        "computed": {
-          "perspective-origin": {
-            "before": "603px 165px",
-            "after": "610.5px 165px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "603px 165px",
-            "after": "610.5px 165px"
-          },
-          "transform-origin": {
-            "before": "603px 165px",
-            "after": "610.5px 165px"
-          },
-          "-webkit-transform-origin": {
-            "before": "603px 165px",
-            "after": "610.5px 165px"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "width": {
-            "before": 1146,
-            "after": 1161
-          },
-          "right": {
-            "before": 1176,
-            "after": 1191
-          }
-        },
-        "computed": {
-          "perspective-origin": {
-            "before": "573px 117px",
-            "after": "580.5px 117px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "573px 117px",
-            "after": "580.5px 117px"
-          },
-          "transform-origin": {
-            "before": "573px 117px",
-            "after": "580.5px 117px"
-          },
-          "-webkit-transform-origin": {
-            "before": "573px 117px",
-            "after": "580.5px 117px"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "width": {
-            "before": 1116,
-            "after": 1131
-          },
-          "right": {
-            "before": 1161,
-            "after": 1176
-          }
-        },
-        "computed": {
-          "perspective-origin": {
-            "before": "558px 34.5px",
-            "after": "565.5px 34.5px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "558px 34.5px",
-            "after": "565.5px 34.5px"
-          },
-          "transform-origin": {
-            "before": "558px 34.5px",
-            "after": "565.5px 34.5px"
-          },
-          "-webkit-transform-origin": {
-            "before": "558px 34.5px",
-            "after": "565.5px 34.5px"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "width": {
-            "before": 1116,
-            "after": 1131
-          },
-          "right": {
-            "before": 1161,
-            "after": 1176
-          }
-        },
-        "computed": {
-          "perspective-origin": {
-            "before": "558px 30px",
-            "after": "565.5px 30px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "558px 30px",
-            "after": "565.5px 30px"
-          },
-          "transform-origin": {
-            "before": "558px 30px",
-            "after": "565.5px 30px"
-          },
-          "-webkit-transform-origin": {
-            "before": "558px 30px",
-            "after": "565.5px 30px"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "width": {
-            "before": 1116,
-            "after": 1131
-          },
-          "right": {
-            "before": 1161,
-            "after": 1176
-          }
-        },
-        "computed": {
-          "perspective-origin": {
-            "before": "558px 22.5px",
-            "after": "565.5px 22.5px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "558px 22.5px",
-            "after": "565.5px 22.5px"
-          },
-          "transform-origin": {
-            "before": "558px 22.5px",
-            "after": "565.5px 22.5px"
-          },
-          "-webkit-transform-origin": {
-            "before": "558px 22.5px",
-            "after": "565.5px 22.5px"
-          }
-        }
-      },
-      {
-        "type": 0,
         "rect": {
           "height": {
             "before": 451,
             "after": 217
           },
-          "left": {
-            "before": 18,
-            "after": 25.5
-          },
           "bottom": {
             "before": 861,
             "after": 627
-          },
-          "right": {
-            "before": 1188,
-            "after": 1195.5
           }
         },
         "computed": {
@@ -414,43 +44,57 @@
         "rect": {
           "height": 217,
           "width": 1170,
-          "left": 25.5,
+          "left": 375,
           "bottom": 627,
-          "right": 1195.5,
+          "right": 1545,
           "top": 410
         },
         "computed": "background-attachment: scroll; background-blend-mode: normal; background-clip: border-box; background-color: rgba(0, 0, 0, 0); background-image: none; background-origin: padding-box; background-position: 0% 0%; background-repeat: repeat; background-size: auto; border-bottom-color: rgb(51, 51, 51); border-bottom-left-radius: 0px; border-bottom-right-radius: 0px; border-bottom-style: none; border-bottom-width: 0px; border-collapse: separate; border-image-outset: 0px; border-image-repeat: stretch; border-image-slice: 100%; border-image-source: none; border-image-width: 1; border-left-color: rgb(51, 51, 51); border-left-style: none; border-left-width: 0px; border-right-color: rgb(51, 51, 51); border-right-style: none; border-right-width: 0px; border-top-color: rgb(51, 51, 51); border-top-left-radius: 0px; border-top-right-radius: 0px; border-top-style: none; border-top-width: 0px; bottom: auto; box-shadow: none; box-sizing: border-box; caption-side: top; clear: none; clip: auto; color: rgb(51, 51, 51); cursor: auto; direction: ltr; display: block; empty-cells: show; float: none; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-kerning: auto; font-size: 14px; font-style: normal; font-variant: normal; font-variant-ligatures: normal; font-weight: normal; height: 217px; image-rendering: auto; left: auto; letter-spacing: normal; line-height: 20px; list-style-image: none; list-style-position: outside; list-style-type: disc; margin-bottom: 0px; margin-left: -15px; margin-right: -15px; margin-top: 0px; max-height: none; max-width: none; min-height: 0px; min-width: 0px; object-fit: fill; object-position: 50% 50%; opacity: 1; orphans: auto; outline-color: rgb(51, 51, 51); outline-offset: 0px; outline-style: none; outline-width: 0px; overflow-wrap: normal; overflow-x: visible; overflow-y: visible; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px; page-break-after: auto; page-break-before: auto; page-break-inside: auto; pointer-events: auto; position: static; resize: none; right: auto; speak: normal; table-layout: auto; tab-size: 8; text-align: start; text-decoration: none; text-indent: 0px; text-rendering: auto; text-shadow: none; text-overflow: clip; text-transform: none; top: auto; touch-action: auto; transition-delay: 0s; transition-duration: 0s; transition-property: all; transition-timing-function: ease; unicode-bidi: normal; vertical-align: baseline; visibility: visible; white-space: normal; widows: auto; width: 1170px; will-change: auto; word-break: normal; word-spacing: 0px; word-wrap: normal; z-index: auto; zoom: 1; -webkit-animation-delay: 0s; -webkit-animation-direction: normal; -webkit-animation-duration: 0s; -webkit-animation-fill-mode: none; -webkit-animation-iteration-count: 1; -webkit-animation-name: none; -webkit-animation-play-state: running; -webkit-animation-timing-function: ease; -webkit-appearance: none; backface-visibility: visible; -webkit-backface-visibility: visible; -webkit-background-clip: border-box; -webkit-background-composite: source-over; -webkit-background-origin: padding-box; -webkit-background-size: auto; -webkit-border-fit: border; -webkit-border-horizontal-spacing: 0px; -webkit-border-image: none; -webkit-border-vertical-spacing: 0px; -webkit-box-align: stretch; -webkit-box-decoration-break: slice; -webkit-box-direction: normal; -webkit-box-flex: 0; -webkit-box-flex-group: 1; -webkit-box-lines: single; -webkit-box-ordinal-group: 1; -webkit-box-orient: horizontal; -webkit-box-pack: start; -webkit-box-reflect: none; -webkit-box-shadow: none; -webkit-clip-path: none; -webkit-column-break-after: auto; -webkit-column-break-before: auto; -webkit-column-break-inside: auto; -webkit-column-count: auto; -webkit-column-gap: normal; -webkit-column-rule-color: rgb(51, 51, 51); -webkit-column-rule-style: none; -webkit-column-rule-width: 0px; -webkit-column-span: none; -webkit-column-width: auto; -webkit-filter: none; align-content: stretch; align-items: stretch; align-self: stretch; flex-basis: auto; flex-grow: 0; flex-shrink: 1; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; -webkit-font-smoothing: auto; -webkit-highlight: none; -webkit-hyphenate-character: auto; -webkit-line-box-contain: block inline replaced; -webkit-line-break: auto; -webkit-line-clamp: none; -webkit-locale: en; -webkit-margin-before-collapse: collapse; -webkit-margin-after-collapse: collapse; -webkit-mask-box-image: none; -webkit-mask-box-image-outset: 0px; -webkit-mask-box-image-repeat: stretch; -webkit-mask-box-image-slice: 0 fill; -webkit-mask-box-image-source: none; -webkit-mask-box-image-width: auto; -webkit-mask-clip: border-box; -webkit-mask-composite: source-over; -webkit-mask-image: none; -webkit-mask-origin: border-box; -webkit-mask-position: 0% 0%; -webkit-mask-repeat: repeat; -webkit-mask-size: auto; order: 0; perspective: none; -webkit-perspective: none; perspective-origin: 585px 108.5px; -webkit-perspective-origin: 585px 108.5px; -webkit-print-color-adjust: economy; -webkit-rtl-ordering: logical; shape-outside: none; shape-image-threshold: 0; shape-margin: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-text-combine: none; -webkit-text-decorations-in-effect: none; -webkit-text-emphasis-color: rgb(51, 51, 51); -webkit-text-emphasis-position: over; -webkit-text-emphasis-style: none; -webkit-text-fill-color: rgb(51, 51, 51); -webkit-text-orientation: vertical-right; -webkit-text-security: none; -webkit-text-stroke-color: rgb(51, 51, 51); -webkit-text-stroke-width: 0px; transform: none; -webkit-transform: none; transform-origin: 585px 108.5px; -webkit-transform-origin: 585px 108.5px; transform-style: flat; -webkit-transform-style: flat; -webkit-transition-delay: 0s; -webkit-transition-duration: 0s; -webkit-transition-property: all; -webkit-transition-timing-function: ease; -webkit-user-drag: auto; -webkit-user-modify: read-only; -webkit-user-select: text; -webkit-writing-mode: horizontal-tb; -webkit-app-region: no-drag; buffered-rendering: auto; clip-path: none; clip-rule: nonzero; mask: none; filter: none; flood-color: rgb(0, 0, 0); flood-opacity: 1; lighting-color: rgb(255, 255, 255); stop-color: rgb(0, 0, 0); stop-opacity: 1; color-interpolation: srgb; color-interpolation-filters: linearrgb; color-rendering: auto; fill: rgb(0, 0, 0); fill-opacity: 1; fill-rule: nonzero; marker-end: none; marker-mid: none; marker-start: none; mask-type: luminance; shape-rendering: auto; stroke: none; stroke-dasharray: none; stroke-dashoffset: 0; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-opacity: 1; stroke-width: 1; alignment-baseline: auto; baseline-shift: baseline; dominant-baseline: auto; text-anchor: start; writing-mode: lr-tb; glyph-orientation-horizontal: 0deg; glyph-orientation-vertical: auto; vector-effect: none; paint-order: fill stroke markers;",
         "beforeElem": "background-attachment: scroll; background-blend-mode: normal; background-clip: border-box; background-color: rgba(0, 0, 0, 0); background-image: none; background-origin: padding-box; background-position: 0% 0%; background-repeat: repeat; background-size: auto; border-bottom-color: rgb(51, 51, 51); border-bottom-left-radius: 0px; border-bottom-right-radius: 0px; border-bottom-style: none; border-bottom-width: 0px; border-collapse: separate; border-image-outset: 0px; border-image-repeat: stretch; border-image-slice: 100%; border-image-source: none; border-image-width: 1; border-left-color: rgb(51, 51, 51); border-left-style: none; border-left-width: 0px; border-right-color: rgb(51, 51, 51); border-right-style: none; border-right-width: 0px; border-top-color: rgb(51, 51, 51); border-top-left-radius: 0px; border-top-right-radius: 0px; border-top-style: none; border-top-width: 0px; bottom: auto; box-shadow: none; box-sizing: border-box; caption-side: top; clear: none; clip: auto; color: rgb(51, 51, 51); cursor: auto; direction: ltr; display: table; empty-cells: show; float: none; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-kerning: auto; font-size: 14px; font-style: normal; font-variant: normal; font-variant-ligatures: normal; font-weight: normal; height: 0px; image-rendering: auto; left: auto; letter-spacing: normal; line-height: 20px; list-style-image: none; list-style-position: outside; list-style-type: disc; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px; max-height: none; max-width: none; min-height: 0px; min-width: 0px; object-fit: fill; object-position: 50% 50%; opacity: 1; orphans: auto; outline-color: rgb(51, 51, 51); outline-offset: 0px; outline-style: none; outline-width: 0px; overflow-wrap: normal; overflow-x: visible; overflow-y: visible; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px; page-break-after: auto; page-break-before: auto; page-break-inside: auto; pointer-events: auto; position: static; resize: none; right: auto; speak: normal; table-layout: auto; tab-size: 8; text-align: start; text-decoration: none; text-indent: 0px; text-rendering: auto; text-shadow: none; text-overflow: clip; text-transform: none; top: auto; touch-action: auto; transition-delay: 0s; transition-duration: 0s; transition-property: all; transition-timing-function: ease; unicode-bidi: normal; vertical-align: baseline; visibility: visible; white-space: normal; widows: auto; width: 1px; will-change: auto; word-break: normal; word-spacing: 0px; word-wrap: normal; z-index: auto; zoom: 1; -webkit-animation-delay: 0s; -webkit-animation-direction: normal; -webkit-animation-duration: 0s; -webkit-animation-fill-mode: none; -webkit-animation-iteration-count: 1; -webkit-animation-name: none; -webkit-animation-play-state: running; -webkit-animation-timing-function: ease; -webkit-appearance: none; backface-visibility: visible; -webkit-backface-visibility: visible; -webkit-background-clip: border-box; -webkit-background-composite: source-over; -webkit-background-origin: padding-box; -webkit-background-size: auto; -webkit-border-fit: border; -webkit-border-horizontal-spacing: 0px; -webkit-border-image: none; -webkit-border-vertical-spacing: 0px; -webkit-box-align: stretch; -webkit-box-decoration-break: slice; -webkit-box-direction: normal; -webkit-box-flex: 0; -webkit-box-flex-group: 1; -webkit-box-lines: single; -webkit-box-ordinal-group: 1; -webkit-box-orient: horizontal; -webkit-box-pack: start; -webkit-box-reflect: none; -webkit-box-shadow: none; -webkit-clip-path: none; -webkit-column-break-after: auto; -webkit-column-break-before: auto; -webkit-column-break-inside: auto; -webkit-column-count: auto; -webkit-column-gap: normal; -webkit-column-rule-color: rgb(51, 51, 51); -webkit-column-rule-style: none; -webkit-column-rule-width: 0px; -webkit-column-span: none; -webkit-column-width: auto; -webkit-filter: none; align-content: stretch; align-items: stretch; align-self: stretch; flex-basis: auto; flex-grow: 0; flex-shrink: 1; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; -webkit-font-smoothing: auto; -webkit-highlight: none; -webkit-hyphenate-character: auto; -webkit-line-box-contain: block inline replaced; -webkit-line-break: auto; -webkit-line-clamp: none; -webkit-locale: en; -webkit-margin-before-collapse: collapse; -webkit-margin-after-collapse: collapse; -webkit-mask-box-image: none; -webkit-mask-box-image-outset: 0px; -webkit-mask-box-image-repeat: stretch; -webkit-mask-box-image-slice: 0 fill; -webkit-mask-box-image-source: none; -webkit-mask-box-image-width: auto; -webkit-mask-clip: border-box; -webkit-mask-composite: source-over; -webkit-mask-image: none; -webkit-mask-origin: border-box; -webkit-mask-position: 0% 0%; -webkit-mask-repeat: repeat; -webkit-mask-size: auto; order: 0; perspective: none; -webkit-perspective: none; perspective-origin: 0.5px 0px; -webkit-perspective-origin: 0.5px 0px; -webkit-print-color-adjust: economy; -webkit-rtl-ordering: logical; shape-outside: none; shape-image-threshold: 0; shape-margin: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-text-combine: none; -webkit-text-decorations-in-effect: none; -webkit-text-emphasis-color: rgb(51, 51, 51); -webkit-text-emphasis-position: over; -webkit-text-emphasis-style: none; -webkit-text-fill-color: rgb(51, 51, 51); -webkit-text-orientation: vertical-right; -webkit-text-security: none; -webkit-text-stroke-color: rgb(51, 51, 51); -webkit-text-stroke-width: 0px; transform: none; -webkit-transform: none; transform-origin: 0.5px 0px; -webkit-transform-origin: 0.5px 0px; transform-style: flat; -webkit-transform-style: flat; -webkit-transition-delay: 0s; -webkit-transition-duration: 0s; -webkit-transition-property: all; -webkit-transition-timing-function: ease; -webkit-user-drag: auto; -webkit-user-modify: read-only; -webkit-user-select: text; -webkit-writing-mode: horizontal-tb; -webkit-app-region: no-drag; buffered-rendering: auto; clip-path: none; clip-rule: nonzero; mask: none; filter: none; flood-color: rgb(0, 0, 0); flood-opacity: 1; lighting-color: rgb(255, 255, 255); stop-color: rgb(0, 0, 0); stop-opacity: 1; color-interpolation: srgb; color-interpolation-filters: linearrgb; color-rendering: auto; fill: rgb(0, 0, 0); fill-opacity: 1; fill-rule: nonzero; marker-end: none; marker-mid: none; marker-start: none; mask-type: luminance; shape-rendering: auto; stroke: none; stroke-dasharray: none; stroke-dashoffset: 0; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-opacity: 1; stroke-width: 1; alignment-baseline: auto; baseline-shift: baseline; dominant-baseline: auto; text-anchor: start; writing-mode: lr-tb; glyph-orientation-horizontal: 0deg; glyph-orientation-vertical: auto; vector-effect: none; paint-order: fill stroke markers;",
-        "afterElem": "background-attachment: scroll; background-blend-mode: normal; background-clip: border-box; background-color: rgba(0, 0, 0, 0); background-image: none; background-origin: padding-box; background-position: 0% 0%; background-repeat: repeat; background-size: auto; border-bottom-color: rgb(51, 51, 51); border-bottom-left-radius: 0px; border-bottom-right-radius: 0px; border-bottom-style: none; border-bottom-width: 0px; border-collapse: separate; border-image-outset: 0px; border-image-repeat: stretch; border-image-slice: 100%; border-image-source: none; border-image-width: 1; border-left-color: rgb(51, 51, 51); border-left-style: none; border-left-width: 0px; border-right-color: rgb(51, 51, 51); border-right-style: none; border-right-width: 0px; border-top-color: rgb(51, 51, 51); border-top-left-radius: 0px; border-top-right-radius: 0px; border-top-style: none; border-top-width: 0px; bottom: auto; box-shadow: none; box-sizing: border-box; caption-side: top; clear: both; clip: auto; color: rgb(51, 51, 51); cursor: auto; direction: ltr; display: table; empty-cells: show; float: none; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-kerning: auto; font-size: 14px; font-style: normal; font-variant: normal; font-variant-ligatures: normal; font-weight: normal; height: 0px; image-rendering: auto; left: auto; letter-spacing: normal; line-height: 20px; list-style-image: none; list-style-position: outside; list-style-type: disc; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px; max-height: none; max-width: none; min-height: 0px; min-width: 0px; object-fit: fill; object-position: 50% 50%; opacity: 1; orphans: auto; outline-color: rgb(51, 51, 51); outline-offset: 0px; outline-style: none; outline-width: 0px; overflow-wrap: normal; overflow-x: visible; overflow-y: visible; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px; page-break-after: auto; page-break-before: auto; page-break-inside: auto; pointer-events: auto; position: static; resize: none; right: auto; speak: normal; table-layout: auto; tab-size: 8; text-align: start; text-decoration: none; text-indent: 0px; text-rendering: auto; text-shadow: none; text-overflow: clip; text-transform: none; top: auto; touch-action: auto; transition-delay: 0s; transition-duration: 0s; transition-property: all; transition-timing-function: ease; unicode-bidi: normal; vertical-align: baseline; visibility: visible; white-space: normal; widows: auto; width: 1px; will-change: auto; word-break: normal; word-spacing: 0px; word-wrap: normal; z-index: auto; zoom: 1; -webkit-animation-delay: 0s; -webkit-animation-direction: normal; -webkit-animation-duration: 0s; -webkit-animation-fill-mode: none; -webkit-animation-iteration-count: 1; -webkit-animation-name: none; -webkit-animation-play-state: running; -webkit-animation-timing-function: ease; -webkit-appearance: none; backface-visibility: visible; -webkit-backface-visibility: visible; -webkit-background-clip: border-box; -webkit-background-composite: source-over; -webkit-background-origin: padding-box; -webkit-background-size: auto; -webkit-border-fit: border; -webkit-border-horizontal-spacing: 0px; -webkit-border-image: none; -webkit-border-vertical-spacing: 0px; -webkit-box-align: stretch; -webkit-box-decoration-break: slice; -webkit-box-direction: normal; -webkit-box-flex: 0; -webkit-box-flex-group: 1; -webkit-box-lines: single; -webkit-box-ordinal-group: 1; -webkit-box-orient: horizontal; -webkit-box-pack: start; -webkit-box-reflect: none; -webkit-box-shadow: none; -webkit-clip-path: none; -webkit-column-break-after: auto; -webkit-column-break-before: auto; -webkit-column-break-inside: auto; -webkit-column-count: auto; -webkit-column-gap: normal; -webkit-column-rule-color: rgb(51, 51, 51); -webkit-column-rule-style: none; -webkit-column-rule-width: 0px; -webkit-column-span: none; -webkit-column-width: auto; -webkit-filter: none; align-content: stretch; align-items: stretch; align-self: stretch; flex-basis: auto; flex-grow: 0; flex-shrink: 1; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; -webkit-font-smoothing: auto; -webkit-highlight: none; -webkit-hyphenate-character: auto; -webkit-line-box-contain: block inline replaced; -webkit-line-break: auto; -webkit-line-clamp: none; -webkit-locale: en; -webkit-margin-before-collapse: collapse; -webkit-margin-after-collapse: collapse; -webkit-mask-box-image: none; -webkit-mask-box-image-outset: 0px; -webkit-mask-box-image-repeat: stretch; -webkit-mask-box-image-slice: 0 fill; -webkit-mask-box-image-source: none; -webkit-mask-box-image-width: auto; -webkit-mask-clip: border-box; -webkit-mask-composite: source-over; -webkit-mask-image: none; -webkit-mask-origin: border-box; -webkit-mask-position: 0% 0%; -webkit-mask-repeat: repeat; -webkit-mask-size: auto; order: 0; perspective: none; -webkit-perspective: none; perspective-origin: 0.5px 0px; -webkit-perspective-origin: 0.5px 0px; -webkit-print-color-adjust: economy; -webkit-rtl-ordering: logical; shape-outside: none; shape-image-threshold: 0; shape-margin: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-text-combine: none; -webkit-text-decorations-in-effect: none; -webkit-text-emphasis-color: rgb(51, 51, 51); -webkit-text-emphasis-position: over; -webkit-text-emphasis-style: none; -webkit-text-fill-color: rgb(51, 51, 51); -webkit-text-orientation: vertical-right; -webkit-text-security: none; -webkit-text-stroke-color: rgb(51, 51, 51); -webkit-text-stroke-width: 0px; transform: none; -webkit-transform: none; transform-origin: 0.5px 0px; -webkit-transform-origin: 0.5px 0px; transform-style: flat; -webkit-transform-style: flat; -webkit-transition-delay: 0s; -webkit-transition-duration: 0s; -webkit-transition-property: all; -webkit-transition-timing-function: ease; -webkit-user-drag: auto; -webkit-user-modify: read-only; -webkit-user-select: text; -webkit-writing-mode: horizontal-tb; -webkit-app-region: no-drag; buffered-rendering: auto; clip-path: none; clip-rule: nonzero; mask: none; filter: none; flood-color: rgb(0, 0, 0); flood-opacity: 1; lighting-color: rgb(255, 255, 255); stop-color: rgb(0, 0, 0); stop-opacity: 1; color-interpolation: srgb; color-interpolation-filters: linearrgb; color-rendering: auto; fill: rgb(0, 0, 0); fill-opacity: 1; fill-rule: nonzero; marker-end: none; marker-mid: none; marker-start: none; mask-type: luminance; shape-rendering: auto; stroke: none; stroke-dasharray: none; stroke-dashoffset: 0; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-opacity: 1; stroke-width: 1; alignment-baseline: auto; baseline-shift: baseline; dominant-baseline: auto; text-anchor: start; writing-mode: lr-tb; glyph-orientation-horizontal: 0deg; glyph-orientation-vertical: auto; vector-effect: none; paint-order: fill stroke markers;"
+        "afterElem": "background-attachment: scroll; background-blend-mode: normal; background-clip: border-box; background-color: rgba(0, 0, 0, 0); background-image: none; background-origin: padding-box; background-position: 0% 0%; background-repeat: repeat; background-size: auto; border-bottom-color: rgb(51, 51, 51); border-bottom-left-radius: 0px; border-bottom-right-radius: 0px; border-bottom-style: none; border-bottom-width: 0px; border-collapse: separate; border-image-outset: 0px; border-image-repeat: stretch; border-image-slice: 100%; border-image-source: none; border-image-width: 1; border-left-color: rgb(51, 51, 51); border-left-style: none; border-left-width: 0px; border-right-color: rgb(51, 51, 51); border-right-style: none; border-right-width: 0px; border-top-color: rgb(51, 51, 51); border-top-left-radius: 0px; border-top-right-radius: 0px; border-top-style: none; border-top-width: 0px; bottom: auto; box-shadow: none; box-sizing: border-box; caption-side: top; clear: both; clip: auto; color: rgb(51, 51, 51); cursor: auto; direction: ltr; display: table; empty-cells: show; float: none; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-kerning: auto; font-size: 14px; font-style: normal; font-variant: normal; font-variant-ligatures: normal; font-weight: normal; height: 0px; image-rendering: auto; left: auto; letter-spacing: normal; line-height: 20px; list-style-image: none; list-style-position: outside; list-style-type: disc; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px; max-height: none; max-width: none; min-height: 0px; min-width: 0px; object-fit: fill; object-position: 50% 50%; opacity: 1; orphans: auto; outline-color: rgb(51, 51, 51); outline-offset: 0px; outline-style: none; outline-width: 0px; overflow-wrap: normal; overflow-x: visible; overflow-y: visible; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px; page-break-after: auto; page-break-before: auto; page-break-inside: auto; pointer-events: auto; position: static; resize: none; right: auto; speak: normal; table-layout: auto; tab-size: 8; text-align: start; text-decoration: none; text-indent: 0px; text-rendering: auto; text-shadow: none; text-overflow: clip; text-transform: none; top: auto; touch-action: auto; transition-delay: 0s; transition-duration: 0s; transition-property: all; transition-timing-function: ease; unicode-bidi: normal; vertical-align: baseline; visibility: visible; white-space: normal; widows: auto; width: 1px; will-change: auto; word-break: normal; word-spacing: 0px; word-wrap: normal; z-index: auto; zoom: 1; -webkit-animation-delay: 0s; -webkit-animation-direction: normal; -webkit-animation-duration: 0s; -webkit-animation-fill-mode: none; -webkit-animation-iteration-count: 1; -webkit-animation-name: none; -webkit-animation-play-state: running; -webkit-animation-timing-function: ease; -webkit-appearance: none; backface-visibility: visible; -webkit-backface-visibility: visible; -webkit-background-clip: border-box; -webkit-background-composite: source-over; -webkit-background-origin: padding-box; -webkit-background-size: auto; -webkit-border-fit: border; -webkit-border-horizontal-spacing: 0px; -webkit-border-image: none; -webkit-border-vertical-spacing: 0px; -webkit-box-align: stretch; -webkit-box-decoration-break: slice; -webkit-box-direction: normal; -webkit-box-flex: 0; -webkit-box-flex-group: 1; -webkit-box-lines: single; -webkit-box-ordinal-group: 1; -webkit-box-orient: horizontal; -webkit-box-pack: start; -webkit-box-reflect: none; -webkit-box-shadow: none; -webkit-clip-path: none; -webkit-column-break-after: auto; -webkit-column-break-before: auto; -webkit-column-break-inside: auto; -webkit-column-count: auto; -webkit-column-gap: normal; -webkit-column-rule-color: rgb(51, 51, 51); -webkit-column-rule-style: none; -webkit-column-rule-width: 0px; -webkit-column-span: none; -webkit-column-width: auto; -webkit-filter: none; align-content: stretch; align-items: stretch; align-self: stretch; flex-basis: auto; flex-grow: 0; flex-shrink: 1; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; -webkit-font-smoothing: auto; -webkit-highlight: none; -webkit-hyphenate-character: auto; -webkit-line-box-contain: block inline replaced; -webkit-line-break: auto; -webkit-line-clamp: none; -webkit-locale: en; -webkit-margin-before-collapse: collapse; -webkit-margin-after-collapse: collapse; -webkit-mask-box-image: none; -webkit-mask-box-image-outset: 0px; -webkit-mask-box-image-repeat: stretch; -webkit-mask-box-image-slice: 0 fill; -webkit-mask-box-image-source: none; -webkit-mask-box-image-width: auto; -webkit-mask-clip: border-box; -webkit-mask-composite: source-over; -webkit-mask-image: none; -webkit-mask-origin: border-box; -webkit-mask-position: 0% 0%; -webkit-mask-repeat: repeat; -webkit-mask-size: auto; order: 0; perspective: none; -webkit-perspective: none; perspective-origin: 0.5px 0px; -webkit-perspective-origin: 0.5px 0px; -webkit-print-color-adjust: economy; -webkit-rtl-ordering: logical; shape-outside: none; shape-image-threshold: 0; shape-margin: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-text-combine: none; -webkit-text-decorations-in-effect: none; -webkit-text-emphasis-color: rgb(51, 51, 51); -webkit-text-emphasis-position: over; -webkit-text-emphasis-style: none; -webkit-text-fill-color: rgb(51, 51, 51); -webkit-text-orientation: vertical-right; -webkit-text-security: none; -webkit-text-stroke-color: rgb(51, 51, 51); -webkit-text-stroke-width: 0px; transform: none; -webkit-transform: none; transform-origin: 0.5px 0px; -webkit-transform-origin: 0.5px 0px; transform-style: flat; -webkit-transform-style: flat; -webkit-transition-delay: 0s; -webkit-transition-duration: 0s; -webkit-transition-property: all; -webkit-transition-timing-function: ease; -webkit-user-drag: auto; -webkit-user-modify: read-only; -webkit-user-select: text; -webkit-writing-mode: horizontal-tb; -webkit-app-region: no-drag; buffered-rendering: auto; clip-path: none; clip-rule: nonzero; mask: none; filter: none; flood-color: rgb(0, 0, 0); flood-opacity: 1; lighting-color: rgb(255, 255, 255); stop-color: rgb(0, 0, 0); stop-opacity: 1; color-interpolation: srgb; color-interpolation-filters: linearrgb; color-rendering: auto; fill: rgb(0, 0, 0); fill-opacity: 1; fill-rule: nonzero; marker-end: none; marker-mid: none; marker-start: none; mask-type: luminance; shape-rendering: auto; stroke: none; stroke-dasharray: none; stroke-dashoffset: 0; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-opacity: 1; stroke-width: 1; alignment-baseline: auto; baseline-shift: baseline; dominant-baseline: auto; text-anchor: start; writing-mode: lr-tb; glyph-orientation-horizontal: 0deg; glyph-orientation-vertical: auto; vector-effect: none; paint-order: fill stroke markers;",
+        "boundingBox": {
+          "left": 375,
+          "right": 1545,
+          "top": 410,
+          "bottom": 627
+        }
       },
       {
         "type": 1,
         "rect": {
           "height": 217,
           "width": 390,
-          "left": 25.5,
+          "left": 375,
           "bottom": 627,
-          "right": 415.5,
+          "right": 765,
           "top": 410
         },
         "computed": "background-attachment: scroll; background-blend-mode: normal; background-clip: border-box; background-color: rgba(0, 0, 0, 0); background-image: none; background-origin: padding-box; background-position: 0% 0%; background-repeat: repeat; background-size: auto; border-bottom-color: rgb(51, 51, 51); border-bottom-left-radius: 0px; border-bottom-right-radius: 0px; border-bottom-style: none; border-bottom-width: 0px; border-collapse: separate; border-image-outset: 0px; border-image-repeat: stretch; border-image-slice: 100%; border-image-source: none; border-image-width: 1; border-left-color: rgb(51, 51, 51); border-left-style: none; border-left-width: 0px; border-right-color: rgb(51, 51, 51); border-right-style: none; border-right-width: 0px; border-top-color: rgb(51, 51, 51); border-top-left-radius: 0px; border-top-right-radius: 0px; border-top-style: none; border-top-width: 0px; bottom: auto; box-shadow: none; box-sizing: border-box; caption-side: top; clear: none; clip: auto; color: rgb(51, 51, 51); cursor: auto; direction: ltr; display: block; empty-cells: show; float: left; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-kerning: auto; font-size: 14px; font-style: normal; font-variant: normal; font-variant-ligatures: normal; font-weight: normal; height: 217px; image-rendering: auto; left: auto; letter-spacing: normal; line-height: 20px; list-style-image: none; list-style-position: outside; list-style-type: disc; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px; max-height: none; max-width: none; min-height: 1px; min-width: 0px; object-fit: fill; object-position: 50% 50%; opacity: 1; orphans: auto; outline-color: rgb(51, 51, 51); outline-offset: 0px; outline-style: none; outline-width: 0px; overflow-wrap: normal; overflow-x: visible; overflow-y: visible; padding-bottom: 0px; padding-left: 15px; padding-right: 15px; padding-top: 0px; page-break-after: auto; page-break-before: auto; page-break-inside: auto; pointer-events: auto; position: relative; resize: none; right: auto; speak: normal; table-layout: auto; tab-size: 8; text-align: start; text-decoration: none; text-indent: 0px; text-rendering: auto; text-shadow: none; text-overflow: clip; text-transform: none; top: auto; touch-action: auto; transition-delay: 0s; transition-duration: 0s; transition-property: all; transition-timing-function: ease; unicode-bidi: normal; vertical-align: baseline; visibility: visible; white-space: normal; widows: auto; width: 390px; will-change: auto; word-break: normal; word-spacing: 0px; word-wrap: normal; z-index: auto; zoom: 1; -webkit-animation-delay: 0s; -webkit-animation-direction: normal; -webkit-animation-duration: 0s; -webkit-animation-fill-mode: none; -webkit-animation-iteration-count: 1; -webkit-animation-name: none; -webkit-animation-play-state: running; -webkit-animation-timing-function: ease; -webkit-appearance: none; backface-visibility: visible; -webkit-backface-visibility: visible; -webkit-background-clip: border-box; -webkit-background-composite: source-over; -webkit-background-origin: padding-box; -webkit-background-size: auto; -webkit-border-fit: border; -webkit-border-horizontal-spacing: 0px; -webkit-border-image: none; -webkit-border-vertical-spacing: 0px; -webkit-box-align: stretch; -webkit-box-decoration-break: slice; -webkit-box-direction: normal; -webkit-box-flex: 0; -webkit-box-flex-group: 1; -webkit-box-lines: single; -webkit-box-ordinal-group: 1; -webkit-box-orient: horizontal; -webkit-box-pack: start; -webkit-box-reflect: none; -webkit-box-shadow: none; -webkit-clip-path: none; -webkit-column-break-after: auto; -webkit-column-break-before: auto; -webkit-column-break-inside: auto; -webkit-column-count: auto; -webkit-column-gap: normal; -webkit-column-rule-color: rgb(51, 51, 51); -webkit-column-rule-style: none; -webkit-column-rule-width: 0px; -webkit-column-span: none; -webkit-column-width: auto; -webkit-filter: none; align-content: stretch; align-items: stretch; align-self: stretch; flex-basis: auto; flex-grow: 0; flex-shrink: 1; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; -webkit-font-smoothing: auto; -webkit-highlight: none; -webkit-hyphenate-character: auto; -webkit-line-box-contain: block inline replaced; -webkit-line-break: auto; -webkit-line-clamp: none; -webkit-locale: en; -webkit-margin-before-collapse: collapse; -webkit-margin-after-collapse: collapse; -webkit-mask-box-image: none; -webkit-mask-box-image-outset: 0px; -webkit-mask-box-image-repeat: stretch; -webkit-mask-box-image-slice: 0 fill; -webkit-mask-box-image-source: none; -webkit-mask-box-image-width: auto; -webkit-mask-clip: border-box; -webkit-mask-composite: source-over; -webkit-mask-image: none; -webkit-mask-origin: border-box; -webkit-mask-position: 0% 0%; -webkit-mask-repeat: repeat; -webkit-mask-size: auto; order: 0; perspective: none; -webkit-perspective: none; perspective-origin: 195px 108.5px; -webkit-perspective-origin: 195px 108.5px; -webkit-print-color-adjust: economy; -webkit-rtl-ordering: logical; shape-outside: none; shape-image-threshold: 0; shape-margin: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-text-combine: none; -webkit-text-decorations-in-effect: none; -webkit-text-emphasis-color: rgb(51, 51, 51); -webkit-text-emphasis-position: over; -webkit-text-emphasis-style: none; -webkit-text-fill-color: rgb(51, 51, 51); -webkit-text-orientation: vertical-right; -webkit-text-security: none; -webkit-text-stroke-color: rgb(51, 51, 51); -webkit-text-stroke-width: 0px; transform: none; -webkit-transform: none; transform-origin: 195px 108.5px; -webkit-transform-origin: 195px 108.5px; transform-style: flat; -webkit-transform-style: flat; -webkit-transition-delay: 0s; -webkit-transition-duration: 0s; -webkit-transition-property: all; -webkit-transition-timing-function: ease; -webkit-user-drag: auto; -webkit-user-modify: read-only; -webkit-user-select: text; -webkit-writing-mode: horizontal-tb; -webkit-app-region: no-drag; buffered-rendering: auto; clip-path: none; clip-rule: nonzero; mask: none; filter: none; flood-color: rgb(0, 0, 0); flood-opacity: 1; lighting-color: rgb(255, 255, 255); stop-color: rgb(0, 0, 0); stop-opacity: 1; color-interpolation: srgb; color-interpolation-filters: linearrgb; color-rendering: auto; fill: rgb(0, 0, 0); fill-opacity: 1; fill-rule: nonzero; marker-end: none; marker-mid: none; marker-start: none; mask-type: luminance; shape-rendering: auto; stroke: none; stroke-dasharray: none; stroke-dashoffset: 0; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-opacity: 1; stroke-width: 1; alignment-baseline: auto; baseline-shift: baseline; dominant-baseline: auto; text-anchor: start; writing-mode: lr-tb; glyph-orientation-horizontal: 0deg; glyph-orientation-vertical: auto; vector-effect: none; paint-order: fill stroke markers;",
         "beforeElem": "",
-        "afterElem": ""
+        "afterElem": "",
+        "boundingBox": {
+          "left": 375,
+          "right": 765,
+          "top": 410,
+          "bottom": 627
+        }
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 390,
+          "right": 1530,
+          "top": 430,
+          "bottom": 463
+        },
         "rect": {
           "width": {
             "before": 1140,
             "after": 360
           },
-          "left": {
-            "before": 33,
-            "after": 40.5
-          },
           "right": {
-            "before": 1173,
-            "after": 400.5
+            "before": 1530,
+            "after": 750
           }
         },
         "computed": {
@@ -474,6 +118,12 @@
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 390,
+          "right": 1530,
+          "top": 473,
+          "bottom": 573
+        },
         "rect": {
           "height": {
             "before": 40,
@@ -483,17 +133,13 @@
             "before": 1140,
             "after": 360
           },
-          "left": {
-            "before": 33,
-            "after": 40.5
-          },
           "bottom": {
             "before": 513,
             "after": 573
           },
           "right": {
-            "before": 1173,
-            "after": 400.5
+            "before": 1530,
+            "after": 750
           }
         },
         "computed": {
@@ -517,22 +163,24 @@
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 390,
+          "right": 1530,
+          "top": 523,
+          "bottom": 617
+        },
         "rect": {
           "width": {
             "before": 1140,
             "after": 360
-          },
-          "left": {
-            "before": 33,
-            "after": 40.5
           },
           "bottom": {
             "before": 557,
             "after": 617
           },
           "right": {
-            "before": 1173,
-            "after": 400.5
+            "before": 1530,
+            "after": 750
           },
           "top": {
             "before": 523,
@@ -560,18 +208,16 @@
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 390,
+          "right": 501.03125,
+          "top": 523,
+          "bottom": 617
+        },
         "rect": {
-          "left": {
-            "before": 33,
-            "after": 40.5
-          },
           "bottom": {
             "before": 557,
             "after": 617
-          },
-          "right": {
-            "before": 144.03125,
-            "after": 151.53125
           },
           "top": {
             "before": 523,
@@ -584,33 +230,45 @@
         "rect": {
           "height": 217,
           "width": 390,
-          "left": 415.5,
+          "left": 765,
           "bottom": 627,
-          "right": 805.5,
+          "right": 1155,
           "top": 410
         },
         "computed": "background-attachment: scroll; background-blend-mode: normal; background-clip: border-box; background-color: rgba(0, 0, 0, 0); background-image: none; background-origin: padding-box; background-position: 0% 0%; background-repeat: repeat; background-size: auto; border-bottom-color: rgb(51, 51, 51); border-bottom-left-radius: 0px; border-bottom-right-radius: 0px; border-bottom-style: none; border-bottom-width: 0px; border-collapse: separate; border-image-outset: 0px; border-image-repeat: stretch; border-image-slice: 100%; border-image-source: none; border-image-width: 1; border-left-color: rgb(51, 51, 51); border-left-style: none; border-left-width: 0px; border-right-color: rgb(51, 51, 51); border-right-style: none; border-right-width: 0px; border-top-color: rgb(51, 51, 51); border-top-left-radius: 0px; border-top-right-radius: 0px; border-top-style: none; border-top-width: 0px; bottom: auto; box-shadow: none; box-sizing: border-box; caption-side: top; clear: none; clip: auto; color: rgb(51, 51, 51); cursor: auto; direction: ltr; display: block; empty-cells: show; float: left; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-kerning: auto; font-size: 14px; font-style: normal; font-variant: normal; font-variant-ligatures: normal; font-weight: normal; height: 217px; image-rendering: auto; left: auto; letter-spacing: normal; line-height: 20px; list-style-image: none; list-style-position: outside; list-style-type: disc; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px; max-height: none; max-width: none; min-height: 1px; min-width: 0px; object-fit: fill; object-position: 50% 50%; opacity: 1; orphans: auto; outline-color: rgb(51, 51, 51); outline-offset: 0px; outline-style: none; outline-width: 0px; overflow-wrap: normal; overflow-x: visible; overflow-y: visible; padding-bottom: 0px; padding-left: 15px; padding-right: 15px; padding-top: 0px; page-break-after: auto; page-break-before: auto; page-break-inside: auto; pointer-events: auto; position: relative; resize: none; right: auto; speak: normal; table-layout: auto; tab-size: 8; text-align: start; text-decoration: none; text-indent: 0px; text-rendering: auto; text-shadow: none; text-overflow: clip; text-transform: none; top: auto; touch-action: auto; transition-delay: 0s; transition-duration: 0s; transition-property: all; transition-timing-function: ease; unicode-bidi: normal; vertical-align: baseline; visibility: visible; white-space: normal; widows: auto; width: 390px; will-change: auto; word-break: normal; word-spacing: 0px; word-wrap: normal; z-index: auto; zoom: 1; -webkit-animation-delay: 0s; -webkit-animation-direction: normal; -webkit-animation-duration: 0s; -webkit-animation-fill-mode: none; -webkit-animation-iteration-count: 1; -webkit-animation-name: none; -webkit-animation-play-state: running; -webkit-animation-timing-function: ease; -webkit-appearance: none; backface-visibility: visible; -webkit-backface-visibility: visible; -webkit-background-clip: border-box; -webkit-background-composite: source-over; -webkit-background-origin: padding-box; -webkit-background-size: auto; -webkit-border-fit: border; -webkit-border-horizontal-spacing: 0px; -webkit-border-image: none; -webkit-border-vertical-spacing: 0px; -webkit-box-align: stretch; -webkit-box-decoration-break: slice; -webkit-box-direction: normal; -webkit-box-flex: 0; -webkit-box-flex-group: 1; -webkit-box-lines: single; -webkit-box-ordinal-group: 1; -webkit-box-orient: horizontal; -webkit-box-pack: start; -webkit-box-reflect: none; -webkit-box-shadow: none; -webkit-clip-path: none; -webkit-column-break-after: auto; -webkit-column-break-before: auto; -webkit-column-break-inside: auto; -webkit-column-count: auto; -webkit-column-gap: normal; -webkit-column-rule-color: rgb(51, 51, 51); -webkit-column-rule-style: none; -webkit-column-rule-width: 0px; -webkit-column-span: none; -webkit-column-width: auto; -webkit-filter: none; align-content: stretch; align-items: stretch; align-self: stretch; flex-basis: auto; flex-grow: 0; flex-shrink: 1; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; -webkit-font-smoothing: auto; -webkit-highlight: none; -webkit-hyphenate-character: auto; -webkit-line-box-contain: block inline replaced; -webkit-line-break: auto; -webkit-line-clamp: none; -webkit-locale: en; -webkit-margin-before-collapse: collapse; -webkit-margin-after-collapse: collapse; -webkit-mask-box-image: none; -webkit-mask-box-image-outset: 0px; -webkit-mask-box-image-repeat: stretch; -webkit-mask-box-image-slice: 0 fill; -webkit-mask-box-image-source: none; -webkit-mask-box-image-width: auto; -webkit-mask-clip: border-box; -webkit-mask-composite: source-over; -webkit-mask-image: none; -webkit-mask-origin: border-box; -webkit-mask-position: 0% 0%; -webkit-mask-repeat: repeat; -webkit-mask-size: auto; order: 0; perspective: none; -webkit-perspective: none; perspective-origin: 195px 108.5px; -webkit-perspective-origin: 195px 108.5px; -webkit-print-color-adjust: economy; -webkit-rtl-ordering: logical; shape-outside: none; shape-image-threshold: 0; shape-margin: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-text-combine: none; -webkit-text-decorations-in-effect: none; -webkit-text-emphasis-color: rgb(51, 51, 51); -webkit-text-emphasis-position: over; -webkit-text-emphasis-style: none; -webkit-text-fill-color: rgb(51, 51, 51); -webkit-text-orientation: vertical-right; -webkit-text-security: none; -webkit-text-stroke-color: rgb(51, 51, 51); -webkit-text-stroke-width: 0px; transform: none; -webkit-transform: none; transform-origin: 195px 108.5px; -webkit-transform-origin: 195px 108.5px; transform-style: flat; -webkit-transform-style: flat; -webkit-transition-delay: 0s; -webkit-transition-duration: 0s; -webkit-transition-property: all; -webkit-transition-timing-function: ease; -webkit-user-drag: auto; -webkit-user-modify: read-only; -webkit-user-select: text; -webkit-writing-mode: horizontal-tb; -webkit-app-region: no-drag; buffered-rendering: auto; clip-path: none; clip-rule: nonzero; mask: none; filter: none; flood-color: rgb(0, 0, 0); flood-opacity: 1; lighting-color: rgb(255, 255, 255); stop-color: rgb(0, 0, 0); stop-opacity: 1; color-interpolation: srgb; color-interpolation-filters: linearrgb; color-rendering: auto; fill: rgb(0, 0, 0); fill-opacity: 1; fill-rule: nonzero; marker-end: none; marker-mid: none; marker-start: none; mask-type: luminance; shape-rendering: auto; stroke: none; stroke-dasharray: none; stroke-dashoffset: 0; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-opacity: 1; stroke-width: 1; alignment-baseline: auto; baseline-shift: baseline; dominant-baseline: auto; text-anchor: start; writing-mode: lr-tb; glyph-orientation-horizontal: 0deg; glyph-orientation-vertical: auto; vector-effect: none; paint-order: fill stroke markers;",
         "beforeElem": "",
-        "afterElem": ""
+        "afterElem": "",
+        "boundingBox": {
+          "left": 765,
+          "right": 1155,
+          "top": 410,
+          "bottom": 627
+        }
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 390,
+          "right": 1530,
+          "top": 430,
+          "bottom": 610
+        },
         "rect": {
           "width": {
             "before": 1140,
             "after": 360
           },
           "left": {
-            "before": 33,
-            "after": 430.5
+            "before": 390,
+            "after": 780
           },
           "bottom": {
             "before": 610,
             "after": 463
           },
           "right": {
-            "before": 1173,
-            "after": 790.5
+            "before": 1530,
+            "after": 1140
           },
           "top": {
             "before": 577,
@@ -638,6 +296,12 @@
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 390,
+          "right": 1530,
+          "top": 473,
+          "bottom": 660
+        },
         "rect": {
           "height": {
             "before": 40,
@@ -648,16 +312,16 @@
             "after": 360
           },
           "left": {
-            "before": 33,
-            "after": 430.5
+            "before": 390,
+            "after": 780
           },
           "bottom": {
             "before": 660,
             "after": 573
           },
           "right": {
-            "before": 1173,
-            "after": 790.5
+            "before": 1530,
+            "after": 1140
           },
           "top": {
             "before": 620,
@@ -685,22 +349,28 @@
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 390,
+          "right": 1530,
+          "top": 583,
+          "bottom": 704
+        },
         "rect": {
           "width": {
             "before": 1140,
             "after": 360
           },
           "left": {
-            "before": 33,
-            "after": 430.5
+            "before": 390,
+            "after": 780
           },
           "bottom": {
             "before": 704,
             "after": 617
           },
           "right": {
-            "before": 1173,
-            "after": 790.5
+            "before": 1530,
+            "after": 1140
           },
           "top": {
             "before": 670,
@@ -728,18 +398,24 @@
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 390,
+          "right": 891.03125,
+          "top": 583,
+          "bottom": 704
+        },
         "rect": {
           "left": {
-            "before": 33,
-            "after": 430.5
+            "before": 390,
+            "after": 780
           },
           "bottom": {
             "before": 704,
             "after": 617
           },
           "right": {
-            "before": 144.03125,
-            "after": 541.53125
+            "before": 501.03125,
+            "after": 891.03125
           },
           "top": {
             "before": 670,
@@ -752,33 +428,41 @@
         "rect": {
           "height": 217,
           "width": 390,
-          "left": 805.5,
+          "left": 1155,
           "bottom": 627,
-          "right": 1195.5,
+          "right": 1545,
           "top": 410
         },
         "computed": "background-attachment: scroll; background-blend-mode: normal; background-clip: border-box; background-color: rgba(0, 0, 0, 0); background-image: none; background-origin: padding-box; background-position: 0% 0%; background-repeat: repeat; background-size: auto; border-bottom-color: rgb(51, 51, 51); border-bottom-left-radius: 0px; border-bottom-right-radius: 0px; border-bottom-style: none; border-bottom-width: 0px; border-collapse: separate; border-image-outset: 0px; border-image-repeat: stretch; border-image-slice: 100%; border-image-source: none; border-image-width: 1; border-left-color: rgb(51, 51, 51); border-left-style: none; border-left-width: 0px; border-right-color: rgb(51, 51, 51); border-right-style: none; border-right-width: 0px; border-top-color: rgb(51, 51, 51); border-top-left-radius: 0px; border-top-right-radius: 0px; border-top-style: none; border-top-width: 0px; bottom: auto; box-shadow: none; box-sizing: border-box; caption-side: top; clear: none; clip: auto; color: rgb(51, 51, 51); cursor: auto; direction: ltr; display: block; empty-cells: show; float: left; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-kerning: auto; font-size: 14px; font-style: normal; font-variant: normal; font-variant-ligatures: normal; font-weight: normal; height: 217px; image-rendering: auto; left: auto; letter-spacing: normal; line-height: 20px; list-style-image: none; list-style-position: outside; list-style-type: disc; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px; max-height: none; max-width: none; min-height: 1px; min-width: 0px; object-fit: fill; object-position: 50% 50%; opacity: 1; orphans: auto; outline-color: rgb(51, 51, 51); outline-offset: 0px; outline-style: none; outline-width: 0px; overflow-wrap: normal; overflow-x: visible; overflow-y: visible; padding-bottom: 0px; padding-left: 15px; padding-right: 15px; padding-top: 0px; page-break-after: auto; page-break-before: auto; page-break-inside: auto; pointer-events: auto; position: relative; resize: none; right: auto; speak: normal; table-layout: auto; tab-size: 8; text-align: start; text-decoration: none; text-indent: 0px; text-rendering: auto; text-shadow: none; text-overflow: clip; text-transform: none; top: auto; touch-action: auto; transition-delay: 0s; transition-duration: 0s; transition-property: all; transition-timing-function: ease; unicode-bidi: normal; vertical-align: baseline; visibility: visible; white-space: normal; widows: auto; width: 390px; will-change: auto; word-break: normal; word-spacing: 0px; word-wrap: normal; z-index: auto; zoom: 1; -webkit-animation-delay: 0s; -webkit-animation-direction: normal; -webkit-animation-duration: 0s; -webkit-animation-fill-mode: none; -webkit-animation-iteration-count: 1; -webkit-animation-name: none; -webkit-animation-play-state: running; -webkit-animation-timing-function: ease; -webkit-appearance: none; backface-visibility: visible; -webkit-backface-visibility: visible; -webkit-background-clip: border-box; -webkit-background-composite: source-over; -webkit-background-origin: padding-box; -webkit-background-size: auto; -webkit-border-fit: border; -webkit-border-horizontal-spacing: 0px; -webkit-border-image: none; -webkit-border-vertical-spacing: 0px; -webkit-box-align: stretch; -webkit-box-decoration-break: slice; -webkit-box-direction: normal; -webkit-box-flex: 0; -webkit-box-flex-group: 1; -webkit-box-lines: single; -webkit-box-ordinal-group: 1; -webkit-box-orient: horizontal; -webkit-box-pack: start; -webkit-box-reflect: none; -webkit-box-shadow: none; -webkit-clip-path: none; -webkit-column-break-after: auto; -webkit-column-break-before: auto; -webkit-column-break-inside: auto; -webkit-column-count: auto; -webkit-column-gap: normal; -webkit-column-rule-color: rgb(51, 51, 51); -webkit-column-rule-style: none; -webkit-column-rule-width: 0px; -webkit-column-span: none; -webkit-column-width: auto; -webkit-filter: none; align-content: stretch; align-items: stretch; align-self: stretch; flex-basis: auto; flex-grow: 0; flex-shrink: 1; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; -webkit-font-smoothing: auto; -webkit-highlight: none; -webkit-hyphenate-character: auto; -webkit-line-box-contain: block inline replaced; -webkit-line-break: auto; -webkit-line-clamp: none; -webkit-locale: en; -webkit-margin-before-collapse: collapse; -webkit-margin-after-collapse: collapse; -webkit-mask-box-image: none; -webkit-mask-box-image-outset: 0px; -webkit-mask-box-image-repeat: stretch; -webkit-mask-box-image-slice: 0 fill; -webkit-mask-box-image-source: none; -webkit-mask-box-image-width: auto; -webkit-mask-clip: border-box; -webkit-mask-composite: source-over; -webkit-mask-image: none; -webkit-mask-origin: border-box; -webkit-mask-position: 0% 0%; -webkit-mask-repeat: repeat; -webkit-mask-size: auto; order: 0; perspective: none; -webkit-perspective: none; perspective-origin: 195px 108.5px; -webkit-perspective-origin: 195px 108.5px; -webkit-print-color-adjust: economy; -webkit-rtl-ordering: logical; shape-outside: none; shape-image-threshold: 0; shape-margin: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-text-combine: none; -webkit-text-decorations-in-effect: none; -webkit-text-emphasis-color: rgb(51, 51, 51); -webkit-text-emphasis-position: over; -webkit-text-emphasis-style: none; -webkit-text-fill-color: rgb(51, 51, 51); -webkit-text-orientation: vertical-right; -webkit-text-security: none; -webkit-text-stroke-color: rgb(51, 51, 51); -webkit-text-stroke-width: 0px; transform: none; -webkit-transform: none; transform-origin: 195px 108.5px; -webkit-transform-origin: 195px 108.5px; transform-style: flat; -webkit-transform-style: flat; -webkit-transition-delay: 0s; -webkit-transition-duration: 0s; -webkit-transition-property: all; -webkit-transition-timing-function: ease; -webkit-user-drag: auto; -webkit-user-modify: read-only; -webkit-user-select: text; -webkit-writing-mode: horizontal-tb; -webkit-app-region: no-drag; buffered-rendering: auto; clip-path: none; clip-rule: nonzero; mask: none; filter: none; flood-color: rgb(0, 0, 0); flood-opacity: 1; lighting-color: rgb(255, 255, 255); stop-color: rgb(0, 0, 0); stop-opacity: 1; color-interpolation: srgb; color-interpolation-filters: linearrgb; color-rendering: auto; fill: rgb(0, 0, 0); fill-opacity: 1; fill-rule: nonzero; marker-end: none; marker-mid: none; marker-start: none; mask-type: luminance; shape-rendering: auto; stroke: none; stroke-dasharray: none; stroke-dashoffset: 0; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-opacity: 1; stroke-width: 1; alignment-baseline: auto; baseline-shift: baseline; dominant-baseline: auto; text-anchor: start; writing-mode: lr-tb; glyph-orientation-horizontal: 0deg; glyph-orientation-vertical: auto; vector-effect: none; paint-order: fill stroke markers;",
         "beforeElem": "",
-        "afterElem": ""
+        "afterElem": "",
+        "boundingBox": {
+          "left": 1155,
+          "right": 1545,
+          "top": 410,
+          "bottom": 627
+        }
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 390,
+          "right": 1530,
+          "top": 430,
+          "bottom": 757
+        },
         "rect": {
           "width": {
             "before": 1140,
             "after": 360
           },
           "left": {
-            "before": 33,
-            "after": 820.5
+            "before": 390,
+            "after": 1170
           },
           "bottom": {
             "before": 757,
             "after": 463
-          },
-          "right": {
-            "before": 1173,
-            "after": 1180.5
           },
           "top": {
             "before": 724,
@@ -806,6 +490,12 @@
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 390,
+          "right": 1530,
+          "top": 473,
+          "bottom": 807
+        },
         "rect": {
           "height": {
             "before": 40,
@@ -816,16 +506,12 @@
             "after": 360
           },
           "left": {
-            "before": 33,
-            "after": 820.5
+            "before": 390,
+            "after": 1170
           },
           "bottom": {
             "before": 807,
             "after": 573
-          },
-          "right": {
-            "before": 1173,
-            "after": 1180.5
           },
           "top": {
             "before": 767,
@@ -853,22 +539,24 @@
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 390,
+          "right": 1530,
+          "top": 583,
+          "bottom": 851
+        },
         "rect": {
           "width": {
             "before": 1140,
             "after": 360
           },
           "left": {
-            "before": 33,
-            "after": 820.5
+            "before": 390,
+            "after": 1170
           },
           "bottom": {
             "before": 851,
             "after": 617
-          },
-          "right": {
-            "before": 1173,
-            "after": 1180.5
           },
           "top": {
             "before": 817,
@@ -896,18 +584,24 @@
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 390,
+          "right": 1281.03125,
+          "top": 583,
+          "bottom": 851
+        },
         "rect": {
           "left": {
-            "before": 33,
-            "after": 820.5
+            "before": 390,
+            "after": 1170
           },
           "bottom": {
             "before": 851,
             "after": 617
           },
           "right": {
-            "before": 144.03125,
-            "after": 931.53125
+            "before": 501.03125,
+            "after": 1281.03125
           },
           "top": {
             "before": 817,
@@ -917,1072 +611,88 @@
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 0,
+          "right": 1920,
+          "top": 647,
+          "bottom": 882
+        },
         "rect": {
-          "width": {
-            "before": 1206,
-            "after": 1221
-          },
           "bottom": {
             "before": 882,
             "after": 648
-          },
-          "right": {
-            "before": 1206,
-            "after": 1221
           },
           "top": {
             "before": 881,
             "after": 647
           }
-        },
-        "computed": {
-          "perspective-origin": {
-            "before": "603px 0.5px",
-            "after": "610.5px 0.5px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "603px 0.5px",
-            "after": "610.5px 0.5px"
-          },
-          "transform-origin": {
-            "before": "603px 0.5px",
-            "after": "610.5px 0.5px"
-          },
-          "-webkit-transform-origin": {
-            "before": "603px 0.5px",
-            "after": "610.5px 0.5px"
-          }
         }
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 0,
+          "right": 1920,
+          "top": 668,
+          "bottom": 922
+        },
         "rect": {
-          "width": {
-            "before": 1206,
-            "after": 1221
-          },
           "bottom": {
             "before": 922,
             "after": 688
-          },
-          "right": {
-            "before": 1206,
-            "after": 1221
           },
           "top": {
             "before": 902,
             "after": 668
           }
-        },
-        "computed": {
-          "perspective-origin": {
-            "before": "603px 10px",
-            "after": "610.5px 10px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "603px 10px",
-            "after": "610.5px 10px"
-          },
-          "transform-origin": {
-            "before": "603px 10px",
-            "after": "610.5px 10px"
-          },
-          "-webkit-transform-origin": {
-            "before": "603px 10px",
-            "after": "610.5px 10px"
-          }
         }
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 0,
+          "right": 1920,
+          "top": 668,
+          "bottom": 922
+        },
         "rect": {
-          "width": {
-            "before": 1206,
-            "after": 1221
-          },
           "bottom": {
             "before": 922,
             "after": 688
           },
-          "right": {
-            "before": 1206,
-            "after": 1221
-          },
           "top": {
             "before": 902,
             "after": 668
-          }
-        },
-        "computed": {
-          "perspective-origin": {
-            "before": "603px 10px",
-            "after": "610.5px 10px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "603px 10px",
-            "after": "610.5px 10px"
-          },
-          "transform-origin": {
-            "before": "603px 10px",
-            "after": "610.5px 10px"
-          },
-          "-webkit-transform-origin": {
-            "before": "603px 10px",
-            "after": "610.5px 10px"
           }
         }
       }
     ],
     "order": [],
-    "doctype": "<!doctype html>",
-    "width": 1230,
-    "height": 948,
+    "width": 1920,
+    "height": 1106,
     "scrollTop": 0,
-    "url": "http://localhost:3000"
+    "url": "http://localhost:3000/",
+    "doctype": "<!doctype html>"
   },
   {
-    "html": "<html lang=\"en\"><head>\n    <meta charset=\"utf-8\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"\">\n    <meta name=\"author\" content=\"\">\n\n    <title>Jumbotron Template for Bootstrap</title>\n\n    <!-- Bootstrap core CSS -->\n    <link href=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css\" rel=\"stylesheet\">\n\n    <!-- Custom styles for this template -->\n    <link href=\"http://localhost:3000/jumbotron.css\" rel=\"stylesheet\">\n\n  </head>\n\n  <body>\n\n    <div class=\"navbar navbar-inverse navbar-fixed-top\" role=\"navigation\" __seess_diff_id__=\"0\">\n      <div class=\"container\" __seess_diff_id__=\"1\">\n        <div class=\"navbar-header\" __seess_diff_id__=\"2\">\n          <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n            <span class=\"sr-only\">Toggle navigation</span>\n            <span class=\"icon-bar\"></span>\n            <span class=\"icon-bar\"></span>\n            <span class=\"icon-bar\"></span>\n          </button>\n          <a class=\"navbar-brand\" href=\"#\" __seess_diff_id__=\"3\">Project name</a>\n        </div>\n        <div class=\"navbar-collapse collapse\" __seess_diff_id__=\"4\">\n          <ul class=\"nav navbar-nav\" __seess_diff_id__=\"5\">\n            <li class=\"dropdown\" __seess_diff_id__=\"6\">\n              <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" __seess_diff_id__=\"7\">Dropdown <span class=\"caret\" __seess_diff_id__=\"8\"></span></a>\n              <ul class=\"dropdown-menu\" role=\"menu\" __seess_diff_id__=\"9\">\n                <li __seess_diff_id__=\"10\"><a href=\"#\" __seess_diff_id__=\"11\">Action</a></li>\n                <li __seess_diff_id__=\"12\"><a href=\"#\" __seess_diff_id__=\"13\">Another action</a></li>\n                <li __seess_diff_id__=\"14\"><a href=\"#\" __seess_diff_id__=\"15\">Something else here</a></li>\n                <li class=\"divider\" __seess_diff_id__=\"16\"></li>\n                <li __seess_diff_id__=\"17\"><a href=\"#\" __seess_diff_id__=\"18\">Separated link</a></li>\n              </ul>\n            </li>\n          </ul>\n          <form class=\"navbar-form navbar-right\" role=\"form\" __seess_diff_id__=\"19\">\n            <div class=\"form-group\" __seess_diff_id__=\"20\">\n              <input type=\"text\" placeholder=\"Email\" class=\"form-control\" __seess_diff_id__=\"21\">\n            </div>\n            <div class=\"form-group\" __seess_diff_id__=\"22\">\n              <input type=\"password\" placeholder=\"Password\" class=\"form-control\" __seess_diff_id__=\"23\">\n            </div>\n            <button type=\"submit\" class=\"btn btn-success\" __seess_diff_id__=\"24\">Sign in</button>\n          </form>\n        </div><!--/.navbar-collapse -->\n      </div>\n    </div>\n\n    <!-- Main jumbotron for a primary marketing message or call to action -->\n    <div class=\"jumbotron\" __seess_diff_id__=\"25\">\n      <div class=\"container\" __seess_diff_id__=\"26\">\n        <h1 __seess_diff_id__=\"27\">Hello, world!</h1>\n        <p __seess_diff_id__=\"28\">This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>\n        <p __seess_diff_id__=\"29\"><a class=\"btn btn-primary btn-lg\" role=\"button\">Learn more »</a></p>\n      </div>\n    </div>\n\n      <!-- Example row of columns -->\n      <div class=\"container\" __seess_diff_id__=\"30\">\n        <div class=\"row\" __seess_diff_id__=\"31\">\n          <div class=\"col-md-4\" __seess_diff_id__=\"32\">\n            <h2 __seess_diff_id__=\"33\">Heading</h2>\n            <p __seess_diff_id__=\"34\">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>\n            <p __seess_diff_id__=\"35\"><a class=\"btn btn-default\" href=\"#\" role=\"button\" __seess_diff_id__=\"36\">View details »</a></p>\n\n          </div>\n          <div class=\"col-md-4\" __seess_diff_id__=\"37\">\n            <h2 __seess_diff_id__=\"38\">Heading</h2>\n            <p __seess_diff_id__=\"39\">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>\n            <p __seess_diff_id__=\"40\"><a class=\"btn btn-default\" href=\"#\" role=\"button\" __seess_diff_id__=\"41\">View details »</a></p>\n\n          </div>\n          <div class=\"col-md-4\" __seess_diff_id__=\"42\">\n            <h2 __seess_diff_id__=\"43\">Heading</h2>\n            <p __seess_diff_id__=\"44\">Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>\n            <p __seess_diff_id__=\"45\"><a class=\"btn btn-default\" href=\"#\" role=\"button\" __seess_diff_id__=\"46\">View details »</a></p>\n\n          </div>\n        </div>\n      </div>\n\n      <hr __seess_diff_id__=\"47\">\n\n      <footer __seess_diff_id__=\"48\">\n        <p __seess_diff_id__=\"49\">© Company 2014</p>\n      </footer>\n     <!-- /container -->\n\n\n    <!-- Bootstrap core JavaScript\n    ================================================== -->\n    <!-- Placed at the end of the document so the pages load faster -->\n    \n    \n  \n\n\n</body></html>",
+    "html": "<html lang=\"en\"><head>\n    <meta charset=\"utf-8\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"description\" content=\"\">\n    <meta name=\"author\" content=\"\">\n\n    <title>Jumbotron Template for Bootstrap</title>\n\n    <!-- Bootstrap core CSS -->\n    <link href=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css\" rel=\"stylesheet\" crossorigin=\"anonymous\">\n\n    <!-- Custom styles for this template -->\n    <style>\n      /* Move down content because we have a fixed navbar that is 50px tall */\n      body {\n        padding-top: 50px;\n        padding-bottom: 20px;\n      }\n    </style>\n\n  </head>\n\n  <body>\n\n    <div class=\"navbar navbar-inverse navbar-fixed-top\" role=\"navigation\">\n      <div class=\"container\">\n        <div class=\"navbar-header\">\n          <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n            <span class=\"sr-only\">Toggle navigation</span>\n            <span class=\"icon-bar\"></span>\n            <span class=\"icon-bar\"></span>\n            <span class=\"icon-bar\"></span>\n          </button>\n          <a class=\"navbar-brand\" href=\"#\">Project name</a>\n        </div>\n        <div class=\"navbar-collapse collapse\">\n          <ul class=\"nav navbar-nav\">\n            <li class=\"dropdown open\">\n              <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Dropdown <span class=\"caret\"></span></a>\n              <ul class=\"dropdown-menu\" role=\"menu\">\n                <li><a href=\"#\">Action</a></li>\n                <li><a href=\"#\">Another action</a></li>\n                <li><a href=\"#\">Something else here</a></li>\n                <li class=\"divider\"></li>\n                <li><a href=\"#\">Separated link</a></li>\n              </ul>\n            </li>\n          </ul>\n          <form class=\"navbar-form navbar-right\" role=\"form\">\n            <div class=\"form-group\">\n              <input type=\"text\" placeholder=\"Email\" class=\"form-control\">\n            </div>\n            <div class=\"form-group\">\n              <input type=\"password\" placeholder=\"Password\" class=\"form-control\">\n            </div>\n            <button type=\"submit\" class=\"btn btn-success\">Sign in</button>\n          </form>\n        </div><!--/.navbar-collapse -->\n      </div>\n    </div>\n\n    <!-- Main jumbotron for a primary marketing message or call to action -->\n    <div class=\"jumbotron\">\n      <div class=\"container\">\n        <h1>Hello World 21</h1>\n        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>\n        <p><a class=\"btn btn-primary btn-lg\" role=\"button\">Learn more »</a></p>\n      </div>\n    </div>\n\n      <!-- Example row of columns -->\n      <div class=\"container\" __seess_diff_id__=\"0\">\n        <div class=\"row\" __seess_diff_id__=\"1\">\n          <div class=\"col-md-4\" __seess_diff_id__=\"2\">\n            <h2 __seess_diff_id__=\"3\">Heading</h2>\n            <p __seess_diff_id__=\"4\">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>\n            <p __seess_diff_id__=\"5\"><a class=\"btn btn-default\" href=\"#\" role=\"button\" __seess_diff_id__=\"6\">View details »</a></p>\n\n          </div>\n          <div class=\"col-md-4\" __seess_diff_id__=\"7\">\n            <h2 __seess_diff_id__=\"8\">Heading</h2>\n            <p __seess_diff_id__=\"9\">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>\n            <p __seess_diff_id__=\"10\"><a class=\"btn btn-default\" href=\"#\" role=\"button\" __seess_diff_id__=\"11\">View details »</a></p>\n\n          </div>\n          <div class=\"col-md-4\" __seess_diff_id__=\"12\">\n            <h2 __seess_diff_id__=\"13\">Heading</h2>\n            <p __seess_diff_id__=\"14\">Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>\n            <p __seess_diff_id__=\"15\"><a class=\"btn btn-default\" href=\"#\" role=\"button\" __seess_diff_id__=\"16\">View details »</a></p>\n\n          </div>\n        </div>\n      </div>\n\n      <hr __seess_diff_id__=\"17\">\n\n      <footer __seess_diff_id__=\"18\">\n        <p __seess_diff_id__=\"19\">© Company 2014</p>\n      </footer>\n     <!-- /container -->\n\n\n    <!-- Bootstrap core JavaScript\n    ================================================== -->\n    <!-- Placed at the end of the document so the pages load faster -->\n    \n    \n  \n\n\n</body></html>",
     "diffs": [
       {
         "type": 0,
-        "rect": {
-          "width": {
-            "before": 1206,
-            "after": 1221
-          },
-          "right": {
-            "before": 1206,
-            "after": 1221
-          }
+        "boundingBox": {
+          "left": 375,
+          "right": 1545,
+          "top": 410,
+          "bottom": 861
         },
-        "computed": {
-          "perspective-origin": {
-            "before": "603px 25.5px",
-            "after": "610.5px 25.5px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "603px 25.5px",
-            "after": "610.5px 25.5px"
-          },
-          "transform-origin": {
-            "before": "603px 25.5px",
-            "after": "610.5px 25.5px"
-          },
-          "-webkit-transform-origin": {
-            "before": "603px 25.5px",
-            "after": "610.5px 25.5px"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 18,
-            "after": 25.5
-          },
-          "right": {
-            "before": 1188,
-            "after": 1195.5
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 33,
-            "after": 40.5
-          },
-          "right": {
-            "before": 154.6875,
-            "after": 162.1875
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 18,
-            "after": 25.5
-          },
-          "right": {
-            "before": 154.6875,
-            "after": 162.1875
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 33,
-            "after": 40.5
-          },
-          "right": {
-            "before": 1173,
-            "after": 1180.5
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 154.6875,
-            "after": 162.1875
-          },
-          "right": {
-            "before": 264.171875,
-            "after": 271.671875
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 154.6875,
-            "after": 162.1875
-          },
-          "right": {
-            "before": 264.171875,
-            "after": 271.671875
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 154.6875,
-            "after": 162.1875
-          },
-          "right": {
-            "before": 264.171875,
-            "after": 271.671875
-          }
-        },
-        "computed": {
-          "background-color": {
-            "before": "rgb(8, 8, 8)",
-            "after": "rgba(0, 0, 0, 0)"
-          },
-          "border-bottom-color": {
-            "before": "rgb(66, 139, 202)",
-            "after": "rgb(119, 119, 119)"
-          },
-          "border-left-color": {
-            "before": "rgb(66, 139, 202)",
-            "after": "rgb(119, 119, 119)"
-          },
-          "border-right-color": {
-            "before": "rgb(66, 139, 202)",
-            "after": "rgb(119, 119, 119)"
-          },
-          "border-top-color": {
-            "before": "rgb(66, 139, 202)",
-            "after": "rgb(119, 119, 119)"
-          },
-          "color": {
-            "before": "rgb(255, 255, 255)",
-            "after": "rgb(119, 119, 119)"
-          },
-          "outline-color": {
-            "before": "rgb(255, 255, 255)",
-            "after": "rgb(119, 119, 119)"
-          },
-          "-webkit-column-rule-color": {
-            "before": "rgb(255, 255, 255)",
-            "after": "rgb(119, 119, 119)"
-          },
-          "-webkit-text-emphasis-color": {
-            "before": "rgb(255, 255, 255)",
-            "after": "rgb(119, 119, 119)"
-          },
-          "-webkit-text-fill-color": {
-            "before": "rgb(255, 255, 255)",
-            "after": "rgb(119, 119, 119)"
-          },
-          "-webkit-text-stroke-color": {
-            "before": "rgb(255, 255, 255)",
-            "after": "rgb(119, 119, 119)"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 241.15625,
-            "after": 248.65625
-          },
-          "right": {
-            "before": 249.15625,
-            "after": 256.65625
-          }
-        },
-        "computed": {
-          "border-bottom-color": {
-            "before": "rgb(255, 255, 255)",
-            "after": "rgb(119, 119, 119)"
-          },
-          "border-top-color": {
-            "before": "rgb(255, 255, 255)",
-            "after": "rgb(119, 119, 119)"
-          },
-          "color": {
-            "before": "rgb(255, 255, 255)",
-            "after": "rgb(119, 119, 119)"
-          },
-          "outline-color": {
-            "before": "rgb(255, 255, 255)",
-            "after": "rgb(119, 119, 119)"
-          },
-          "-webkit-column-rule-color": {
-            "before": "rgb(255, 255, 255)",
-            "after": "rgb(119, 119, 119)"
-          },
-          "-webkit-text-emphasis-color": {
-            "before": "rgb(255, 255, 255)",
-            "after": "rgb(119, 119, 119)"
-          },
-          "-webkit-text-fill-color": {
-            "before": "rgb(255, 255, 255)",
-            "after": "rgb(119, 119, 119)"
-          },
-          "-webkit-text-stroke-color": {
-            "before": "rgb(255, 255, 255)",
-            "after": "rgb(119, 119, 119)"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "height": {
-            "before": 135,
-            "after": 0
-          },
-          "width": {
-            "before": 170.109375,
-            "after": 0
-          },
-          "left": {
-            "before": 154.6875,
-            "after": 0
-          },
-          "bottom": {
-            "before": 185,
-            "after": 0
-          },
-          "right": {
-            "before": 324.796875,
-            "after": 0
-          },
-          "top": {
-            "before": 50,
-            "after": 0
-          }
-        },
-        "computed": {
-          "display": {
-            "before": "block",
-            "after": "none"
-          },
-          "perspective-origin": {
-            "before": "85.046875px 67.5px",
-            "after": "50% 50%"
-          },
-          "-webkit-perspective-origin": {
-            "before": "85.046875px 67.5px",
-            "after": "50% 50%"
-          },
-          "transform-origin": {
-            "before": "85.046875px 67.5px",
-            "after": "50% 50%"
-          },
-          "-webkit-transform-origin": {
-            "before": "85.046875px 67.5px",
-            "after": "50% 50%"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "height": {
-            "before": 26,
-            "after": 0
-          },
-          "width": {
-            "before": 168.109375,
-            "after": 0
-          },
-          "left": {
-            "before": 155.6875,
-            "after": 0
-          },
-          "bottom": {
-            "before": 82,
-            "after": 0
-          },
-          "right": {
-            "before": 323.796875,
-            "after": 0
-          },
-          "top": {
-            "before": 56,
-            "after": 0
-          }
-        },
-        "computed": {
-          "perspective-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          },
-          "-webkit-perspective-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          },
-          "transform-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          },
-          "-webkit-transform-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "height": {
-            "before": 26,
-            "after": 0
-          },
-          "width": {
-            "before": 168.109375,
-            "after": 0
-          },
-          "left": {
-            "before": 155.6875,
-            "after": 0
-          },
-          "bottom": {
-            "before": 82,
-            "after": 0
-          },
-          "right": {
-            "before": 323.796875,
-            "after": 0
-          },
-          "top": {
-            "before": 56,
-            "after": 0
-          }
-        },
-        "computed": {
-          "perspective-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          },
-          "-webkit-perspective-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          },
-          "transform-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          },
-          "-webkit-transform-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "height": {
-            "before": 26,
-            "after": 0
-          },
-          "width": {
-            "before": 168.109375,
-            "after": 0
-          },
-          "left": {
-            "before": 155.6875,
-            "after": 0
-          },
-          "bottom": {
-            "before": 108,
-            "after": 0
-          },
-          "right": {
-            "before": 323.796875,
-            "after": 0
-          },
-          "top": {
-            "before": 82,
-            "after": 0
-          }
-        },
-        "computed": {
-          "perspective-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          },
-          "-webkit-perspective-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          },
-          "transform-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          },
-          "-webkit-transform-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "height": {
-            "before": 26,
-            "after": 0
-          },
-          "width": {
-            "before": 168.109375,
-            "after": 0
-          },
-          "left": {
-            "before": 155.6875,
-            "after": 0
-          },
-          "bottom": {
-            "before": 108,
-            "after": 0
-          },
-          "right": {
-            "before": 323.796875,
-            "after": 0
-          },
-          "top": {
-            "before": 82,
-            "after": 0
-          }
-        },
-        "computed": {
-          "perspective-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          },
-          "-webkit-perspective-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          },
-          "transform-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          },
-          "-webkit-transform-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "height": {
-            "before": 26,
-            "after": 0
-          },
-          "width": {
-            "before": 168.109375,
-            "after": 0
-          },
-          "left": {
-            "before": 155.6875,
-            "after": 0
-          },
-          "bottom": {
-            "before": 134,
-            "after": 0
-          },
-          "right": {
-            "before": 323.796875,
-            "after": 0
-          },
-          "top": {
-            "before": 108,
-            "after": 0
-          }
-        },
-        "computed": {
-          "perspective-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          },
-          "-webkit-perspective-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          },
-          "transform-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          },
-          "-webkit-transform-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "height": {
-            "before": 26,
-            "after": 0
-          },
-          "width": {
-            "before": 168.109375,
-            "after": 0
-          },
-          "left": {
-            "before": 155.6875,
-            "after": 0
-          },
-          "bottom": {
-            "before": 134,
-            "after": 0
-          },
-          "right": {
-            "before": 323.796875,
-            "after": 0
-          },
-          "top": {
-            "before": 108,
-            "after": 0
-          }
-        },
-        "computed": {
-          "perspective-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          },
-          "-webkit-perspective-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          },
-          "transform-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          },
-          "-webkit-transform-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "height": {
-            "before": 1,
-            "after": 0
-          },
-          "width": {
-            "before": 168.109375,
-            "after": 0
-          },
-          "left": {
-            "before": 155.6875,
-            "after": 0
-          },
-          "bottom": {
-            "before": 144,
-            "after": 0
-          },
-          "right": {
-            "before": 323.796875,
-            "after": 0
-          },
-          "top": {
-            "before": 143,
-            "after": 0
-          }
-        },
-        "computed": {
-          "perspective-origin": {
-            "before": "84.046875px 0.5px",
-            "after": "50% 50%"
-          },
-          "-webkit-perspective-origin": {
-            "before": "84.046875px 0.5px",
-            "after": "50% 50%"
-          },
-          "transform-origin": {
-            "before": "84.046875px 0.5px",
-            "after": "50% 50%"
-          },
-          "-webkit-transform-origin": {
-            "before": "84.046875px 0.5px",
-            "after": "50% 50%"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "height": {
-            "before": 26,
-            "after": 0
-          },
-          "width": {
-            "before": 168.109375,
-            "after": 0
-          },
-          "left": {
-            "before": 155.6875,
-            "after": 0
-          },
-          "bottom": {
-            "before": 179,
-            "after": 0
-          },
-          "right": {
-            "before": 323.796875,
-            "after": 0
-          },
-          "top": {
-            "before": 153,
-            "after": 0
-          }
-        },
-        "computed": {
-          "perspective-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          },
-          "-webkit-perspective-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          },
-          "transform-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          },
-          "-webkit-transform-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "height": {
-            "before": 26,
-            "after": 0
-          },
-          "width": {
-            "before": 168.109375,
-            "after": 0
-          },
-          "left": {
-            "before": 155.6875,
-            "after": 0
-          },
-          "bottom": {
-            "before": 179,
-            "after": 0
-          },
-          "right": {
-            "before": 323.796875,
-            "after": 0
-          },
-          "top": {
-            "before": 153,
-            "after": 0
-          }
-        },
-        "computed": {
-          "perspective-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          },
-          "-webkit-perspective-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          },
-          "transform-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          },
-          "-webkit-transform-origin": {
-            "before": "84.046875px 13px",
-            "after": "50% 50%"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 733.40625,
-            "after": 740.90625
-          },
-          "right": {
-            "before": 1188,
-            "after": 1195.5
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 748.40625,
-            "after": 755.90625
-          },
-          "right": {
-            "before": 922.40625,
-            "after": 929.90625
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 748.40625,
-            "after": 755.90625
-          },
-          "right": {
-            "before": 922.40625,
-            "after": 929.90625
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 926.296875,
-            "after": 933.796875
-          },
-          "right": {
-            "before": 1100.296875,
-            "after": 1107.796875
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 926.296875,
-            "after": 933.796875
-          },
-          "right": {
-            "before": 1100.296875,
-            "after": 1107.796875
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "left": {
-            "before": 1104.1875,
-            "after": 1111.6875
-          },
-          "right": {
-            "before": 1172.984375,
-            "after": 1180.484375
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "width": {
-            "before": 1206,
-            "after": 1221
-          },
-          "right": {
-            "before": 1206,
-            "after": 1221
-          }
-        },
-        "computed": {
-          "perspective-origin": {
-            "before": "603px 165px",
-            "after": "610.5px 165px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "603px 165px",
-            "after": "610.5px 165px"
-          },
-          "transform-origin": {
-            "before": "603px 165px",
-            "after": "610.5px 165px"
-          },
-          "-webkit-transform-origin": {
-            "before": "603px 165px",
-            "after": "610.5px 165px"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "width": {
-            "before": 1146,
-            "after": 1161
-          },
-          "right": {
-            "before": 1176,
-            "after": 1191
-          }
-        },
-        "computed": {
-          "perspective-origin": {
-            "before": "573px 117px",
-            "after": "580.5px 117px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "573px 117px",
-            "after": "580.5px 117px"
-          },
-          "transform-origin": {
-            "before": "573px 117px",
-            "after": "580.5px 117px"
-          },
-          "-webkit-transform-origin": {
-            "before": "573px 117px",
-            "after": "580.5px 117px"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "width": {
-            "before": 1116,
-            "after": 1131
-          },
-          "right": {
-            "before": 1161,
-            "after": 1176
-          }
-        },
-        "computed": {
-          "perspective-origin": {
-            "before": "558px 34.5px",
-            "after": "565.5px 34.5px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "558px 34.5px",
-            "after": "565.5px 34.5px"
-          },
-          "transform-origin": {
-            "before": "558px 34.5px",
-            "after": "565.5px 34.5px"
-          },
-          "-webkit-transform-origin": {
-            "before": "558px 34.5px",
-            "after": "565.5px 34.5px"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "width": {
-            "before": 1116,
-            "after": 1131
-          },
-          "right": {
-            "before": 1161,
-            "after": 1176
-          }
-        },
-        "computed": {
-          "perspective-origin": {
-            "before": "558px 30px",
-            "after": "565.5px 30px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "558px 30px",
-            "after": "565.5px 30px"
-          },
-          "transform-origin": {
-            "before": "558px 30px",
-            "after": "565.5px 30px"
-          },
-          "-webkit-transform-origin": {
-            "before": "558px 30px",
-            "after": "565.5px 30px"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "width": {
-            "before": 1116,
-            "after": 1131
-          },
-          "right": {
-            "before": 1161,
-            "after": 1176
-          }
-        },
-        "computed": {
-          "perspective-origin": {
-            "before": "558px 22.5px",
-            "after": "565.5px 22.5px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "558px 22.5px",
-            "after": "565.5px 22.5px"
-          },
-          "transform-origin": {
-            "before": "558px 22.5px",
-            "after": "565.5px 22.5px"
-          },
-          "-webkit-transform-origin": {
-            "before": "558px 22.5px",
-            "after": "565.5px 22.5px"
-          }
-        }
-      },
-      {
-        "type": 0,
         "rect": {
           "height": {
             "before": 451,
             "after": 217
           },
-          "left": {
-            "before": 18,
-            "after": 25.5
-          },
           "bottom": {
             "before": 861,
             "after": 627
-          },
-          "right": {
-            "before": 1188,
-            "after": 1195.5
           }
         },
         "computed": {
@@ -2009,43 +719,57 @@
         "rect": {
           "height": 217,
           "width": 1170,
-          "left": 25.5,
+          "left": 375,
           "bottom": 627,
-          "right": 1195.5,
+          "right": 1545,
           "top": 410
         },
         "computed": "background-attachment: scroll; background-blend-mode: normal; background-clip: border-box; background-color: rgba(0, 0, 0, 0); background-image: none; background-origin: padding-box; background-position: 0% 0%; background-repeat: repeat; background-size: auto; border-bottom-color: rgb(51, 51, 51); border-bottom-left-radius: 0px; border-bottom-right-radius: 0px; border-bottom-style: none; border-bottom-width: 0px; border-collapse: separate; border-image-outset: 0px; border-image-repeat: stretch; border-image-slice: 100%; border-image-source: none; border-image-width: 1; border-left-color: rgb(51, 51, 51); border-left-style: none; border-left-width: 0px; border-right-color: rgb(51, 51, 51); border-right-style: none; border-right-width: 0px; border-top-color: rgb(51, 51, 51); border-top-left-radius: 0px; border-top-right-radius: 0px; border-top-style: none; border-top-width: 0px; bottom: auto; box-shadow: none; box-sizing: border-box; caption-side: top; clear: none; clip: auto; color: rgb(51, 51, 51); cursor: auto; direction: ltr; display: block; empty-cells: show; float: none; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-kerning: auto; font-size: 14px; font-style: normal; font-variant: normal; font-variant-ligatures: normal; font-weight: normal; height: 217px; image-rendering: auto; left: auto; letter-spacing: normal; line-height: 20px; list-style-image: none; list-style-position: outside; list-style-type: disc; margin-bottom: 0px; margin-left: -15px; margin-right: -15px; margin-top: 0px; max-height: none; max-width: none; min-height: 0px; min-width: 0px; object-fit: fill; object-position: 50% 50%; opacity: 1; orphans: auto; outline-color: rgb(51, 51, 51); outline-offset: 0px; outline-style: none; outline-width: 0px; overflow-wrap: normal; overflow-x: visible; overflow-y: visible; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px; page-break-after: auto; page-break-before: auto; page-break-inside: auto; pointer-events: auto; position: static; resize: none; right: auto; speak: normal; table-layout: auto; tab-size: 8; text-align: start; text-decoration: none; text-indent: 0px; text-rendering: auto; text-shadow: none; text-overflow: clip; text-transform: none; top: auto; touch-action: auto; transition-delay: 0s; transition-duration: 0s; transition-property: all; transition-timing-function: ease; unicode-bidi: normal; vertical-align: baseline; visibility: visible; white-space: normal; widows: auto; width: 1170px; will-change: auto; word-break: normal; word-spacing: 0px; word-wrap: normal; z-index: auto; zoom: 1; -webkit-animation-delay: 0s; -webkit-animation-direction: normal; -webkit-animation-duration: 0s; -webkit-animation-fill-mode: none; -webkit-animation-iteration-count: 1; -webkit-animation-name: none; -webkit-animation-play-state: running; -webkit-animation-timing-function: ease; -webkit-appearance: none; backface-visibility: visible; -webkit-backface-visibility: visible; -webkit-background-clip: border-box; -webkit-background-composite: source-over; -webkit-background-origin: padding-box; -webkit-background-size: auto; -webkit-border-fit: border; -webkit-border-horizontal-spacing: 0px; -webkit-border-image: none; -webkit-border-vertical-spacing: 0px; -webkit-box-align: stretch; -webkit-box-decoration-break: slice; -webkit-box-direction: normal; -webkit-box-flex: 0; -webkit-box-flex-group: 1; -webkit-box-lines: single; -webkit-box-ordinal-group: 1; -webkit-box-orient: horizontal; -webkit-box-pack: start; -webkit-box-reflect: none; -webkit-box-shadow: none; -webkit-clip-path: none; -webkit-column-break-after: auto; -webkit-column-break-before: auto; -webkit-column-break-inside: auto; -webkit-column-count: auto; -webkit-column-gap: normal; -webkit-column-rule-color: rgb(51, 51, 51); -webkit-column-rule-style: none; -webkit-column-rule-width: 0px; -webkit-column-span: none; -webkit-column-width: auto; -webkit-filter: none; align-content: stretch; align-items: stretch; align-self: stretch; flex-basis: auto; flex-grow: 0; flex-shrink: 1; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; -webkit-font-smoothing: auto; -webkit-highlight: none; -webkit-hyphenate-character: auto; -webkit-line-box-contain: block inline replaced; -webkit-line-break: auto; -webkit-line-clamp: none; -webkit-locale: en; -webkit-margin-before-collapse: collapse; -webkit-margin-after-collapse: collapse; -webkit-mask-box-image: none; -webkit-mask-box-image-outset: 0px; -webkit-mask-box-image-repeat: stretch; -webkit-mask-box-image-slice: 0 fill; -webkit-mask-box-image-source: none; -webkit-mask-box-image-width: auto; -webkit-mask-clip: border-box; -webkit-mask-composite: source-over; -webkit-mask-image: none; -webkit-mask-origin: border-box; -webkit-mask-position: 0% 0%; -webkit-mask-repeat: repeat; -webkit-mask-size: auto; order: 0; perspective: none; -webkit-perspective: none; perspective-origin: 585px 108.5px; -webkit-perspective-origin: 585px 108.5px; -webkit-print-color-adjust: economy; -webkit-rtl-ordering: logical; shape-outside: none; shape-image-threshold: 0; shape-margin: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-text-combine: none; -webkit-text-decorations-in-effect: none; -webkit-text-emphasis-color: rgb(51, 51, 51); -webkit-text-emphasis-position: over; -webkit-text-emphasis-style: none; -webkit-text-fill-color: rgb(51, 51, 51); -webkit-text-orientation: vertical-right; -webkit-text-security: none; -webkit-text-stroke-color: rgb(51, 51, 51); -webkit-text-stroke-width: 0px; transform: none; -webkit-transform: none; transform-origin: 585px 108.5px; -webkit-transform-origin: 585px 108.5px; transform-style: flat; -webkit-transform-style: flat; -webkit-transition-delay: 0s; -webkit-transition-duration: 0s; -webkit-transition-property: all; -webkit-transition-timing-function: ease; -webkit-user-drag: auto; -webkit-user-modify: read-only; -webkit-user-select: text; -webkit-writing-mode: horizontal-tb; -webkit-app-region: no-drag; buffered-rendering: auto; clip-path: none; clip-rule: nonzero; mask: none; filter: none; flood-color: rgb(0, 0, 0); flood-opacity: 1; lighting-color: rgb(255, 255, 255); stop-color: rgb(0, 0, 0); stop-opacity: 1; color-interpolation: srgb; color-interpolation-filters: linearrgb; color-rendering: auto; fill: rgb(0, 0, 0); fill-opacity: 1; fill-rule: nonzero; marker-end: none; marker-mid: none; marker-start: none; mask-type: luminance; shape-rendering: auto; stroke: none; stroke-dasharray: none; stroke-dashoffset: 0; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-opacity: 1; stroke-width: 1; alignment-baseline: auto; baseline-shift: baseline; dominant-baseline: auto; text-anchor: start; writing-mode: lr-tb; glyph-orientation-horizontal: 0deg; glyph-orientation-vertical: auto; vector-effect: none; paint-order: fill stroke markers;",
         "beforeElem": "background-attachment: scroll; background-blend-mode: normal; background-clip: border-box; background-color: rgba(0, 0, 0, 0); background-image: none; background-origin: padding-box; background-position: 0% 0%; background-repeat: repeat; background-size: auto; border-bottom-color: rgb(51, 51, 51); border-bottom-left-radius: 0px; border-bottom-right-radius: 0px; border-bottom-style: none; border-bottom-width: 0px; border-collapse: separate; border-image-outset: 0px; border-image-repeat: stretch; border-image-slice: 100%; border-image-source: none; border-image-width: 1; border-left-color: rgb(51, 51, 51); border-left-style: none; border-left-width: 0px; border-right-color: rgb(51, 51, 51); border-right-style: none; border-right-width: 0px; border-top-color: rgb(51, 51, 51); border-top-left-radius: 0px; border-top-right-radius: 0px; border-top-style: none; border-top-width: 0px; bottom: auto; box-shadow: none; box-sizing: border-box; caption-side: top; clear: none; clip: auto; color: rgb(51, 51, 51); cursor: auto; direction: ltr; display: table; empty-cells: show; float: none; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-kerning: auto; font-size: 14px; font-style: normal; font-variant: normal; font-variant-ligatures: normal; font-weight: normal; height: 0px; image-rendering: auto; left: auto; letter-spacing: normal; line-height: 20px; list-style-image: none; list-style-position: outside; list-style-type: disc; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px; max-height: none; max-width: none; min-height: 0px; min-width: 0px; object-fit: fill; object-position: 50% 50%; opacity: 1; orphans: auto; outline-color: rgb(51, 51, 51); outline-offset: 0px; outline-style: none; outline-width: 0px; overflow-wrap: normal; overflow-x: visible; overflow-y: visible; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px; page-break-after: auto; page-break-before: auto; page-break-inside: auto; pointer-events: auto; position: static; resize: none; right: auto; speak: normal; table-layout: auto; tab-size: 8; text-align: start; text-decoration: none; text-indent: 0px; text-rendering: auto; text-shadow: none; text-overflow: clip; text-transform: none; top: auto; touch-action: auto; transition-delay: 0s; transition-duration: 0s; transition-property: all; transition-timing-function: ease; unicode-bidi: normal; vertical-align: baseline; visibility: visible; white-space: normal; widows: auto; width: 1px; will-change: auto; word-break: normal; word-spacing: 0px; word-wrap: normal; z-index: auto; zoom: 1; -webkit-animation-delay: 0s; -webkit-animation-direction: normal; -webkit-animation-duration: 0s; -webkit-animation-fill-mode: none; -webkit-animation-iteration-count: 1; -webkit-animation-name: none; -webkit-animation-play-state: running; -webkit-animation-timing-function: ease; -webkit-appearance: none; backface-visibility: visible; -webkit-backface-visibility: visible; -webkit-background-clip: border-box; -webkit-background-composite: source-over; -webkit-background-origin: padding-box; -webkit-background-size: auto; -webkit-border-fit: border; -webkit-border-horizontal-spacing: 0px; -webkit-border-image: none; -webkit-border-vertical-spacing: 0px; -webkit-box-align: stretch; -webkit-box-decoration-break: slice; -webkit-box-direction: normal; -webkit-box-flex: 0; -webkit-box-flex-group: 1; -webkit-box-lines: single; -webkit-box-ordinal-group: 1; -webkit-box-orient: horizontal; -webkit-box-pack: start; -webkit-box-reflect: none; -webkit-box-shadow: none; -webkit-clip-path: none; -webkit-column-break-after: auto; -webkit-column-break-before: auto; -webkit-column-break-inside: auto; -webkit-column-count: auto; -webkit-column-gap: normal; -webkit-column-rule-color: rgb(51, 51, 51); -webkit-column-rule-style: none; -webkit-column-rule-width: 0px; -webkit-column-span: none; -webkit-column-width: auto; -webkit-filter: none; align-content: stretch; align-items: stretch; align-self: stretch; flex-basis: auto; flex-grow: 0; flex-shrink: 1; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; -webkit-font-smoothing: auto; -webkit-highlight: none; -webkit-hyphenate-character: auto; -webkit-line-box-contain: block inline replaced; -webkit-line-break: auto; -webkit-line-clamp: none; -webkit-locale: en; -webkit-margin-before-collapse: collapse; -webkit-margin-after-collapse: collapse; -webkit-mask-box-image: none; -webkit-mask-box-image-outset: 0px; -webkit-mask-box-image-repeat: stretch; -webkit-mask-box-image-slice: 0 fill; -webkit-mask-box-image-source: none; -webkit-mask-box-image-width: auto; -webkit-mask-clip: border-box; -webkit-mask-composite: source-over; -webkit-mask-image: none; -webkit-mask-origin: border-box; -webkit-mask-position: 0% 0%; -webkit-mask-repeat: repeat; -webkit-mask-size: auto; order: 0; perspective: none; -webkit-perspective: none; perspective-origin: 0.5px 0px; -webkit-perspective-origin: 0.5px 0px; -webkit-print-color-adjust: economy; -webkit-rtl-ordering: logical; shape-outside: none; shape-image-threshold: 0; shape-margin: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-text-combine: none; -webkit-text-decorations-in-effect: none; -webkit-text-emphasis-color: rgb(51, 51, 51); -webkit-text-emphasis-position: over; -webkit-text-emphasis-style: none; -webkit-text-fill-color: rgb(51, 51, 51); -webkit-text-orientation: vertical-right; -webkit-text-security: none; -webkit-text-stroke-color: rgb(51, 51, 51); -webkit-text-stroke-width: 0px; transform: none; -webkit-transform: none; transform-origin: 0.5px 0px; -webkit-transform-origin: 0.5px 0px; transform-style: flat; -webkit-transform-style: flat; -webkit-transition-delay: 0s; -webkit-transition-duration: 0s; -webkit-transition-property: all; -webkit-transition-timing-function: ease; -webkit-user-drag: auto; -webkit-user-modify: read-only; -webkit-user-select: text; -webkit-writing-mode: horizontal-tb; -webkit-app-region: no-drag; buffered-rendering: auto; clip-path: none; clip-rule: nonzero; mask: none; filter: none; flood-color: rgb(0, 0, 0); flood-opacity: 1; lighting-color: rgb(255, 255, 255); stop-color: rgb(0, 0, 0); stop-opacity: 1; color-interpolation: srgb; color-interpolation-filters: linearrgb; color-rendering: auto; fill: rgb(0, 0, 0); fill-opacity: 1; fill-rule: nonzero; marker-end: none; marker-mid: none; marker-start: none; mask-type: luminance; shape-rendering: auto; stroke: none; stroke-dasharray: none; stroke-dashoffset: 0; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-opacity: 1; stroke-width: 1; alignment-baseline: auto; baseline-shift: baseline; dominant-baseline: auto; text-anchor: start; writing-mode: lr-tb; glyph-orientation-horizontal: 0deg; glyph-orientation-vertical: auto; vector-effect: none; paint-order: fill stroke markers;",
-        "afterElem": "background-attachment: scroll; background-blend-mode: normal; background-clip: border-box; background-color: rgba(0, 0, 0, 0); background-image: none; background-origin: padding-box; background-position: 0% 0%; background-repeat: repeat; background-size: auto; border-bottom-color: rgb(51, 51, 51); border-bottom-left-radius: 0px; border-bottom-right-radius: 0px; border-bottom-style: none; border-bottom-width: 0px; border-collapse: separate; border-image-outset: 0px; border-image-repeat: stretch; border-image-slice: 100%; border-image-source: none; border-image-width: 1; border-left-color: rgb(51, 51, 51); border-left-style: none; border-left-width: 0px; border-right-color: rgb(51, 51, 51); border-right-style: none; border-right-width: 0px; border-top-color: rgb(51, 51, 51); border-top-left-radius: 0px; border-top-right-radius: 0px; border-top-style: none; border-top-width: 0px; bottom: auto; box-shadow: none; box-sizing: border-box; caption-side: top; clear: both; clip: auto; color: rgb(51, 51, 51); cursor: auto; direction: ltr; display: table; empty-cells: show; float: none; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-kerning: auto; font-size: 14px; font-style: normal; font-variant: normal; font-variant-ligatures: normal; font-weight: normal; height: 0px; image-rendering: auto; left: auto; letter-spacing: normal; line-height: 20px; list-style-image: none; list-style-position: outside; list-style-type: disc; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px; max-height: none; max-width: none; min-height: 0px; min-width: 0px; object-fit: fill; object-position: 50% 50%; opacity: 1; orphans: auto; outline-color: rgb(51, 51, 51); outline-offset: 0px; outline-style: none; outline-width: 0px; overflow-wrap: normal; overflow-x: visible; overflow-y: visible; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px; page-break-after: auto; page-break-before: auto; page-break-inside: auto; pointer-events: auto; position: static; resize: none; right: auto; speak: normal; table-layout: auto; tab-size: 8; text-align: start; text-decoration: none; text-indent: 0px; text-rendering: auto; text-shadow: none; text-overflow: clip; text-transform: none; top: auto; touch-action: auto; transition-delay: 0s; transition-duration: 0s; transition-property: all; transition-timing-function: ease; unicode-bidi: normal; vertical-align: baseline; visibility: visible; white-space: normal; widows: auto; width: 1px; will-change: auto; word-break: normal; word-spacing: 0px; word-wrap: normal; z-index: auto; zoom: 1; -webkit-animation-delay: 0s; -webkit-animation-direction: normal; -webkit-animation-duration: 0s; -webkit-animation-fill-mode: none; -webkit-animation-iteration-count: 1; -webkit-animation-name: none; -webkit-animation-play-state: running; -webkit-animation-timing-function: ease; -webkit-appearance: none; backface-visibility: visible; -webkit-backface-visibility: visible; -webkit-background-clip: border-box; -webkit-background-composite: source-over; -webkit-background-origin: padding-box; -webkit-background-size: auto; -webkit-border-fit: border; -webkit-border-horizontal-spacing: 0px; -webkit-border-image: none; -webkit-border-vertical-spacing: 0px; -webkit-box-align: stretch; -webkit-box-decoration-break: slice; -webkit-box-direction: normal; -webkit-box-flex: 0; -webkit-box-flex-group: 1; -webkit-box-lines: single; -webkit-box-ordinal-group: 1; -webkit-box-orient: horizontal; -webkit-box-pack: start; -webkit-box-reflect: none; -webkit-box-shadow: none; -webkit-clip-path: none; -webkit-column-break-after: auto; -webkit-column-break-before: auto; -webkit-column-break-inside: auto; -webkit-column-count: auto; -webkit-column-gap: normal; -webkit-column-rule-color: rgb(51, 51, 51); -webkit-column-rule-style: none; -webkit-column-rule-width: 0px; -webkit-column-span: none; -webkit-column-width: auto; -webkit-filter: none; align-content: stretch; align-items: stretch; align-self: stretch; flex-basis: auto; flex-grow: 0; flex-shrink: 1; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; -webkit-font-smoothing: auto; -webkit-highlight: none; -webkit-hyphenate-character: auto; -webkit-line-box-contain: block inline replaced; -webkit-line-break: auto; -webkit-line-clamp: none; -webkit-locale: en; -webkit-margin-before-collapse: collapse; -webkit-margin-after-collapse: collapse; -webkit-mask-box-image: none; -webkit-mask-box-image-outset: 0px; -webkit-mask-box-image-repeat: stretch; -webkit-mask-box-image-slice: 0 fill; -webkit-mask-box-image-source: none; -webkit-mask-box-image-width: auto; -webkit-mask-clip: border-box; -webkit-mask-composite: source-over; -webkit-mask-image: none; -webkit-mask-origin: border-box; -webkit-mask-position: 0% 0%; -webkit-mask-repeat: repeat; -webkit-mask-size: auto; order: 0; perspective: none; -webkit-perspective: none; perspective-origin: 0.5px 0px; -webkit-perspective-origin: 0.5px 0px; -webkit-print-color-adjust: economy; -webkit-rtl-ordering: logical; shape-outside: none; shape-image-threshold: 0; shape-margin: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-text-combine: none; -webkit-text-decorations-in-effect: none; -webkit-text-emphasis-color: rgb(51, 51, 51); -webkit-text-emphasis-position: over; -webkit-text-emphasis-style: none; -webkit-text-fill-color: rgb(51, 51, 51); -webkit-text-orientation: vertical-right; -webkit-text-security: none; -webkit-text-stroke-color: rgb(51, 51, 51); -webkit-text-stroke-width: 0px; transform: none; -webkit-transform: none; transform-origin: 0.5px 0px; -webkit-transform-origin: 0.5px 0px; transform-style: flat; -webkit-transform-style: flat; -webkit-transition-delay: 0s; -webkit-transition-duration: 0s; -webkit-transition-property: all; -webkit-transition-timing-function: ease; -webkit-user-drag: auto; -webkit-user-modify: read-only; -webkit-user-select: text; -webkit-writing-mode: horizontal-tb; -webkit-app-region: no-drag; buffered-rendering: auto; clip-path: none; clip-rule: nonzero; mask: none; filter: none; flood-color: rgb(0, 0, 0); flood-opacity: 1; lighting-color: rgb(255, 255, 255); stop-color: rgb(0, 0, 0); stop-opacity: 1; color-interpolation: srgb; color-interpolation-filters: linearrgb; color-rendering: auto; fill: rgb(0, 0, 0); fill-opacity: 1; fill-rule: nonzero; marker-end: none; marker-mid: none; marker-start: none; mask-type: luminance; shape-rendering: auto; stroke: none; stroke-dasharray: none; stroke-dashoffset: 0; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-opacity: 1; stroke-width: 1; alignment-baseline: auto; baseline-shift: baseline; dominant-baseline: auto; text-anchor: start; writing-mode: lr-tb; glyph-orientation-horizontal: 0deg; glyph-orientation-vertical: auto; vector-effect: none; paint-order: fill stroke markers;"
+        "afterElem": "background-attachment: scroll; background-blend-mode: normal; background-clip: border-box; background-color: rgba(0, 0, 0, 0); background-image: none; background-origin: padding-box; background-position: 0% 0%; background-repeat: repeat; background-size: auto; border-bottom-color: rgb(51, 51, 51); border-bottom-left-radius: 0px; border-bottom-right-radius: 0px; border-bottom-style: none; border-bottom-width: 0px; border-collapse: separate; border-image-outset: 0px; border-image-repeat: stretch; border-image-slice: 100%; border-image-source: none; border-image-width: 1; border-left-color: rgb(51, 51, 51); border-left-style: none; border-left-width: 0px; border-right-color: rgb(51, 51, 51); border-right-style: none; border-right-width: 0px; border-top-color: rgb(51, 51, 51); border-top-left-radius: 0px; border-top-right-radius: 0px; border-top-style: none; border-top-width: 0px; bottom: auto; box-shadow: none; box-sizing: border-box; caption-side: top; clear: both; clip: auto; color: rgb(51, 51, 51); cursor: auto; direction: ltr; display: table; empty-cells: show; float: none; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-kerning: auto; font-size: 14px; font-style: normal; font-variant: normal; font-variant-ligatures: normal; font-weight: normal; height: 0px; image-rendering: auto; left: auto; letter-spacing: normal; line-height: 20px; list-style-image: none; list-style-position: outside; list-style-type: disc; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px; max-height: none; max-width: none; min-height: 0px; min-width: 0px; object-fit: fill; object-position: 50% 50%; opacity: 1; orphans: auto; outline-color: rgb(51, 51, 51); outline-offset: 0px; outline-style: none; outline-width: 0px; overflow-wrap: normal; overflow-x: visible; overflow-y: visible; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px; page-break-after: auto; page-break-before: auto; page-break-inside: auto; pointer-events: auto; position: static; resize: none; right: auto; speak: normal; table-layout: auto; tab-size: 8; text-align: start; text-decoration: none; text-indent: 0px; text-rendering: auto; text-shadow: none; text-overflow: clip; text-transform: none; top: auto; touch-action: auto; transition-delay: 0s; transition-duration: 0s; transition-property: all; transition-timing-function: ease; unicode-bidi: normal; vertical-align: baseline; visibility: visible; white-space: normal; widows: auto; width: 1px; will-change: auto; word-break: normal; word-spacing: 0px; word-wrap: normal; z-index: auto; zoom: 1; -webkit-animation-delay: 0s; -webkit-animation-direction: normal; -webkit-animation-duration: 0s; -webkit-animation-fill-mode: none; -webkit-animation-iteration-count: 1; -webkit-animation-name: none; -webkit-animation-play-state: running; -webkit-animation-timing-function: ease; -webkit-appearance: none; backface-visibility: visible; -webkit-backface-visibility: visible; -webkit-background-clip: border-box; -webkit-background-composite: source-over; -webkit-background-origin: padding-box; -webkit-background-size: auto; -webkit-border-fit: border; -webkit-border-horizontal-spacing: 0px; -webkit-border-image: none; -webkit-border-vertical-spacing: 0px; -webkit-box-align: stretch; -webkit-box-decoration-break: slice; -webkit-box-direction: normal; -webkit-box-flex: 0; -webkit-box-flex-group: 1; -webkit-box-lines: single; -webkit-box-ordinal-group: 1; -webkit-box-orient: horizontal; -webkit-box-pack: start; -webkit-box-reflect: none; -webkit-box-shadow: none; -webkit-clip-path: none; -webkit-column-break-after: auto; -webkit-column-break-before: auto; -webkit-column-break-inside: auto; -webkit-column-count: auto; -webkit-column-gap: normal; -webkit-column-rule-color: rgb(51, 51, 51); -webkit-column-rule-style: none; -webkit-column-rule-width: 0px; -webkit-column-span: none; -webkit-column-width: auto; -webkit-filter: none; align-content: stretch; align-items: stretch; align-self: stretch; flex-basis: auto; flex-grow: 0; flex-shrink: 1; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; -webkit-font-smoothing: auto; -webkit-highlight: none; -webkit-hyphenate-character: auto; -webkit-line-box-contain: block inline replaced; -webkit-line-break: auto; -webkit-line-clamp: none; -webkit-locale: en; -webkit-margin-before-collapse: collapse; -webkit-margin-after-collapse: collapse; -webkit-mask-box-image: none; -webkit-mask-box-image-outset: 0px; -webkit-mask-box-image-repeat: stretch; -webkit-mask-box-image-slice: 0 fill; -webkit-mask-box-image-source: none; -webkit-mask-box-image-width: auto; -webkit-mask-clip: border-box; -webkit-mask-composite: source-over; -webkit-mask-image: none; -webkit-mask-origin: border-box; -webkit-mask-position: 0% 0%; -webkit-mask-repeat: repeat; -webkit-mask-size: auto; order: 0; perspective: none; -webkit-perspective: none; perspective-origin: 0.5px 0px; -webkit-perspective-origin: 0.5px 0px; -webkit-print-color-adjust: economy; -webkit-rtl-ordering: logical; shape-outside: none; shape-image-threshold: 0; shape-margin: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-text-combine: none; -webkit-text-decorations-in-effect: none; -webkit-text-emphasis-color: rgb(51, 51, 51); -webkit-text-emphasis-position: over; -webkit-text-emphasis-style: none; -webkit-text-fill-color: rgb(51, 51, 51); -webkit-text-orientation: vertical-right; -webkit-text-security: none; -webkit-text-stroke-color: rgb(51, 51, 51); -webkit-text-stroke-width: 0px; transform: none; -webkit-transform: none; transform-origin: 0.5px 0px; -webkit-transform-origin: 0.5px 0px; transform-style: flat; -webkit-transform-style: flat; -webkit-transition-delay: 0s; -webkit-transition-duration: 0s; -webkit-transition-property: all; -webkit-transition-timing-function: ease; -webkit-user-drag: auto; -webkit-user-modify: read-only; -webkit-user-select: text; -webkit-writing-mode: horizontal-tb; -webkit-app-region: no-drag; buffered-rendering: auto; clip-path: none; clip-rule: nonzero; mask: none; filter: none; flood-color: rgb(0, 0, 0); flood-opacity: 1; lighting-color: rgb(255, 255, 255); stop-color: rgb(0, 0, 0); stop-opacity: 1; color-interpolation: srgb; color-interpolation-filters: linearrgb; color-rendering: auto; fill: rgb(0, 0, 0); fill-opacity: 1; fill-rule: nonzero; marker-end: none; marker-mid: none; marker-start: none; mask-type: luminance; shape-rendering: auto; stroke: none; stroke-dasharray: none; stroke-dashoffset: 0; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-opacity: 1; stroke-width: 1; alignment-baseline: auto; baseline-shift: baseline; dominant-baseline: auto; text-anchor: start; writing-mode: lr-tb; glyph-orientation-horizontal: 0deg; glyph-orientation-vertical: auto; vector-effect: none; paint-order: fill stroke markers;",
+        "boundingBox": {
+          "left": 375,
+          "right": 1545,
+          "top": 410,
+          "bottom": 627
+        }
       },
       {
         "type": 1,
         "rect": {
           "height": 217,
           "width": 390,
-          "left": 25.5,
+          "left": 375,
           "bottom": 627,
-          "right": 415.5,
+          "right": 765,
           "top": 410
         },
         "computed": "background-attachment: scroll; background-blend-mode: normal; background-clip: border-box; background-color: rgba(0, 0, 0, 0); background-image: none; background-origin: padding-box; background-position: 0% 0%; background-repeat: repeat; background-size: auto; border-bottom-color: rgb(51, 51, 51); border-bottom-left-radius: 0px; border-bottom-right-radius: 0px; border-bottom-style: none; border-bottom-width: 0px; border-collapse: separate; border-image-outset: 0px; border-image-repeat: stretch; border-image-slice: 100%; border-image-source: none; border-image-width: 1; border-left-color: rgb(51, 51, 51); border-left-style: none; border-left-width: 0px; border-right-color: rgb(51, 51, 51); border-right-style: none; border-right-width: 0px; border-top-color: rgb(51, 51, 51); border-top-left-radius: 0px; border-top-right-radius: 0px; border-top-style: none; border-top-width: 0px; bottom: auto; box-shadow: none; box-sizing: border-box; caption-side: top; clear: none; clip: auto; color: rgb(51, 51, 51); cursor: auto; direction: ltr; display: block; empty-cells: show; float: left; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-kerning: auto; font-size: 14px; font-style: normal; font-variant: normal; font-variant-ligatures: normal; font-weight: normal; height: 217px; image-rendering: auto; left: auto; letter-spacing: normal; line-height: 20px; list-style-image: none; list-style-position: outside; list-style-type: disc; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px; max-height: none; max-width: none; min-height: 1px; min-width: 0px; object-fit: fill; object-position: 50% 50%; opacity: 1; orphans: auto; outline-color: rgb(51, 51, 51); outline-offset: 0px; outline-style: none; outline-width: 0px; overflow-wrap: normal; overflow-x: visible; overflow-y: visible; padding-bottom: 0px; padding-left: 15px; padding-right: 15px; padding-top: 0px; page-break-after: auto; page-break-before: auto; page-break-inside: auto; pointer-events: auto; position: relative; resize: none; right: auto; speak: normal; table-layout: auto; tab-size: 8; text-align: start; text-decoration: none; text-indent: 0px; text-rendering: auto; text-shadow: none; text-overflow: clip; text-transform: none; top: auto; touch-action: auto; transition-delay: 0s; transition-duration: 0s; transition-property: all; transition-timing-function: ease; unicode-bidi: normal; vertical-align: baseline; visibility: visible; white-space: normal; widows: auto; width: 390px; will-change: auto; word-break: normal; word-spacing: 0px; word-wrap: normal; z-index: auto; zoom: 1; -webkit-animation-delay: 0s; -webkit-animation-direction: normal; -webkit-animation-duration: 0s; -webkit-animation-fill-mode: none; -webkit-animation-iteration-count: 1; -webkit-animation-name: none; -webkit-animation-play-state: running; -webkit-animation-timing-function: ease; -webkit-appearance: none; backface-visibility: visible; -webkit-backface-visibility: visible; -webkit-background-clip: border-box; -webkit-background-composite: source-over; -webkit-background-origin: padding-box; -webkit-background-size: auto; -webkit-border-fit: border; -webkit-border-horizontal-spacing: 0px; -webkit-border-image: none; -webkit-border-vertical-spacing: 0px; -webkit-box-align: stretch; -webkit-box-decoration-break: slice; -webkit-box-direction: normal; -webkit-box-flex: 0; -webkit-box-flex-group: 1; -webkit-box-lines: single; -webkit-box-ordinal-group: 1; -webkit-box-orient: horizontal; -webkit-box-pack: start; -webkit-box-reflect: none; -webkit-box-shadow: none; -webkit-clip-path: none; -webkit-column-break-after: auto; -webkit-column-break-before: auto; -webkit-column-break-inside: auto; -webkit-column-count: auto; -webkit-column-gap: normal; -webkit-column-rule-color: rgb(51, 51, 51); -webkit-column-rule-style: none; -webkit-column-rule-width: 0px; -webkit-column-span: none; -webkit-column-width: auto; -webkit-filter: none; align-content: stretch; align-items: stretch; align-self: stretch; flex-basis: auto; flex-grow: 0; flex-shrink: 1; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; -webkit-font-smoothing: auto; -webkit-highlight: none; -webkit-hyphenate-character: auto; -webkit-line-box-contain: block inline replaced; -webkit-line-break: auto; -webkit-line-clamp: none; -webkit-locale: en; -webkit-margin-before-collapse: collapse; -webkit-margin-after-collapse: collapse; -webkit-mask-box-image: none; -webkit-mask-box-image-outset: 0px; -webkit-mask-box-image-repeat: stretch; -webkit-mask-box-image-slice: 0 fill; -webkit-mask-box-image-source: none; -webkit-mask-box-image-width: auto; -webkit-mask-clip: border-box; -webkit-mask-composite: source-over; -webkit-mask-image: none; -webkit-mask-origin: border-box; -webkit-mask-position: 0% 0%; -webkit-mask-repeat: repeat; -webkit-mask-size: auto; order: 0; perspective: none; -webkit-perspective: none; perspective-origin: 195px 108.5px; -webkit-perspective-origin: 195px 108.5px; -webkit-print-color-adjust: economy; -webkit-rtl-ordering: logical; shape-outside: none; shape-image-threshold: 0; shape-margin: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-text-combine: none; -webkit-text-decorations-in-effect: none; -webkit-text-emphasis-color: rgb(51, 51, 51); -webkit-text-emphasis-position: over; -webkit-text-emphasis-style: none; -webkit-text-fill-color: rgb(51, 51, 51); -webkit-text-orientation: vertical-right; -webkit-text-security: none; -webkit-text-stroke-color: rgb(51, 51, 51); -webkit-text-stroke-width: 0px; transform: none; -webkit-transform: none; transform-origin: 195px 108.5px; -webkit-transform-origin: 195px 108.5px; transform-style: flat; -webkit-transform-style: flat; -webkit-transition-delay: 0s; -webkit-transition-duration: 0s; -webkit-transition-property: all; -webkit-transition-timing-function: ease; -webkit-user-drag: auto; -webkit-user-modify: read-only; -webkit-user-select: text; -webkit-writing-mode: horizontal-tb; -webkit-app-region: no-drag; buffered-rendering: auto; clip-path: none; clip-rule: nonzero; mask: none; filter: none; flood-color: rgb(0, 0, 0); flood-opacity: 1; lighting-color: rgb(255, 255, 255); stop-color: rgb(0, 0, 0); stop-opacity: 1; color-interpolation: srgb; color-interpolation-filters: linearrgb; color-rendering: auto; fill: rgb(0, 0, 0); fill-opacity: 1; fill-rule: nonzero; marker-end: none; marker-mid: none; marker-start: none; mask-type: luminance; shape-rendering: auto; stroke: none; stroke-dasharray: none; stroke-dashoffset: 0; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-opacity: 1; stroke-width: 1; alignment-baseline: auto; baseline-shift: baseline; dominant-baseline: auto; text-anchor: start; writing-mode: lr-tb; glyph-orientation-horizontal: 0deg; glyph-orientation-vertical: auto; vector-effect: none; paint-order: fill stroke markers;",
         "beforeElem": "",
-        "afterElem": ""
+        "afterElem": "",
+        "boundingBox": {
+          "left": 375,
+          "right": 765,
+          "top": 410,
+          "bottom": 627
+        }
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 390,
+          "right": 1530,
+          "top": 430,
+          "bottom": 463
+        },
         "rect": {
           "width": {
             "before": 1140,
             "after": 360
           },
-          "left": {
-            "before": 33,
-            "after": 40.5
-          },
           "right": {
-            "before": 1173,
-            "after": 400.5
+            "before": 1530,
+            "after": 750
           }
         },
         "computed": {
@@ -2069,6 +793,12 @@
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 390,
+          "right": 1530,
+          "top": 473,
+          "bottom": 573
+        },
         "rect": {
           "height": {
             "before": 40,
@@ -2078,17 +808,13 @@
             "before": 1140,
             "after": 360
           },
-          "left": {
-            "before": 33,
-            "after": 40.5
-          },
           "bottom": {
             "before": 513,
             "after": 573
           },
           "right": {
-            "before": 1173,
-            "after": 400.5
+            "before": 1530,
+            "after": 750
           }
         },
         "computed": {
@@ -2112,22 +838,24 @@
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 390,
+          "right": 1530,
+          "top": 523,
+          "bottom": 617
+        },
         "rect": {
           "width": {
             "before": 1140,
             "after": 360
-          },
-          "left": {
-            "before": 33,
-            "after": 40.5
           },
           "bottom": {
             "before": 557,
             "after": 617
           },
           "right": {
-            "before": 1173,
-            "after": 400.5
+            "before": 1530,
+            "after": 750
           },
           "top": {
             "before": 523,
@@ -2155,18 +883,16 @@
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 390,
+          "right": 501.03125,
+          "top": 523,
+          "bottom": 617
+        },
         "rect": {
-          "left": {
-            "before": 33,
-            "after": 40.5
-          },
           "bottom": {
             "before": 557,
             "after": 617
-          },
-          "right": {
-            "before": 144.03125,
-            "after": 151.53125
           },
           "top": {
             "before": 523,
@@ -2179,33 +905,45 @@
         "rect": {
           "height": 217,
           "width": 390,
-          "left": 415.5,
+          "left": 765,
           "bottom": 627,
-          "right": 805.5,
+          "right": 1155,
           "top": 410
         },
         "computed": "background-attachment: scroll; background-blend-mode: normal; background-clip: border-box; background-color: rgba(0, 0, 0, 0); background-image: none; background-origin: padding-box; background-position: 0% 0%; background-repeat: repeat; background-size: auto; border-bottom-color: rgb(51, 51, 51); border-bottom-left-radius: 0px; border-bottom-right-radius: 0px; border-bottom-style: none; border-bottom-width: 0px; border-collapse: separate; border-image-outset: 0px; border-image-repeat: stretch; border-image-slice: 100%; border-image-source: none; border-image-width: 1; border-left-color: rgb(51, 51, 51); border-left-style: none; border-left-width: 0px; border-right-color: rgb(51, 51, 51); border-right-style: none; border-right-width: 0px; border-top-color: rgb(51, 51, 51); border-top-left-radius: 0px; border-top-right-radius: 0px; border-top-style: none; border-top-width: 0px; bottom: auto; box-shadow: none; box-sizing: border-box; caption-side: top; clear: none; clip: auto; color: rgb(51, 51, 51); cursor: auto; direction: ltr; display: block; empty-cells: show; float: left; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-kerning: auto; font-size: 14px; font-style: normal; font-variant: normal; font-variant-ligatures: normal; font-weight: normal; height: 217px; image-rendering: auto; left: auto; letter-spacing: normal; line-height: 20px; list-style-image: none; list-style-position: outside; list-style-type: disc; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px; max-height: none; max-width: none; min-height: 1px; min-width: 0px; object-fit: fill; object-position: 50% 50%; opacity: 1; orphans: auto; outline-color: rgb(51, 51, 51); outline-offset: 0px; outline-style: none; outline-width: 0px; overflow-wrap: normal; overflow-x: visible; overflow-y: visible; padding-bottom: 0px; padding-left: 15px; padding-right: 15px; padding-top: 0px; page-break-after: auto; page-break-before: auto; page-break-inside: auto; pointer-events: auto; position: relative; resize: none; right: auto; speak: normal; table-layout: auto; tab-size: 8; text-align: start; text-decoration: none; text-indent: 0px; text-rendering: auto; text-shadow: none; text-overflow: clip; text-transform: none; top: auto; touch-action: auto; transition-delay: 0s; transition-duration: 0s; transition-property: all; transition-timing-function: ease; unicode-bidi: normal; vertical-align: baseline; visibility: visible; white-space: normal; widows: auto; width: 390px; will-change: auto; word-break: normal; word-spacing: 0px; word-wrap: normal; z-index: auto; zoom: 1; -webkit-animation-delay: 0s; -webkit-animation-direction: normal; -webkit-animation-duration: 0s; -webkit-animation-fill-mode: none; -webkit-animation-iteration-count: 1; -webkit-animation-name: none; -webkit-animation-play-state: running; -webkit-animation-timing-function: ease; -webkit-appearance: none; backface-visibility: visible; -webkit-backface-visibility: visible; -webkit-background-clip: border-box; -webkit-background-composite: source-over; -webkit-background-origin: padding-box; -webkit-background-size: auto; -webkit-border-fit: border; -webkit-border-horizontal-spacing: 0px; -webkit-border-image: none; -webkit-border-vertical-spacing: 0px; -webkit-box-align: stretch; -webkit-box-decoration-break: slice; -webkit-box-direction: normal; -webkit-box-flex: 0; -webkit-box-flex-group: 1; -webkit-box-lines: single; -webkit-box-ordinal-group: 1; -webkit-box-orient: horizontal; -webkit-box-pack: start; -webkit-box-reflect: none; -webkit-box-shadow: none; -webkit-clip-path: none; -webkit-column-break-after: auto; -webkit-column-break-before: auto; -webkit-column-break-inside: auto; -webkit-column-count: auto; -webkit-column-gap: normal; -webkit-column-rule-color: rgb(51, 51, 51); -webkit-column-rule-style: none; -webkit-column-rule-width: 0px; -webkit-column-span: none; -webkit-column-width: auto; -webkit-filter: none; align-content: stretch; align-items: stretch; align-self: stretch; flex-basis: auto; flex-grow: 0; flex-shrink: 1; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; -webkit-font-smoothing: auto; -webkit-highlight: none; -webkit-hyphenate-character: auto; -webkit-line-box-contain: block inline replaced; -webkit-line-break: auto; -webkit-line-clamp: none; -webkit-locale: en; -webkit-margin-before-collapse: collapse; -webkit-margin-after-collapse: collapse; -webkit-mask-box-image: none; -webkit-mask-box-image-outset: 0px; -webkit-mask-box-image-repeat: stretch; -webkit-mask-box-image-slice: 0 fill; -webkit-mask-box-image-source: none; -webkit-mask-box-image-width: auto; -webkit-mask-clip: border-box; -webkit-mask-composite: source-over; -webkit-mask-image: none; -webkit-mask-origin: border-box; -webkit-mask-position: 0% 0%; -webkit-mask-repeat: repeat; -webkit-mask-size: auto; order: 0; perspective: none; -webkit-perspective: none; perspective-origin: 195px 108.5px; -webkit-perspective-origin: 195px 108.5px; -webkit-print-color-adjust: economy; -webkit-rtl-ordering: logical; shape-outside: none; shape-image-threshold: 0; shape-margin: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-text-combine: none; -webkit-text-decorations-in-effect: none; -webkit-text-emphasis-color: rgb(51, 51, 51); -webkit-text-emphasis-position: over; -webkit-text-emphasis-style: none; -webkit-text-fill-color: rgb(51, 51, 51); -webkit-text-orientation: vertical-right; -webkit-text-security: none; -webkit-text-stroke-color: rgb(51, 51, 51); -webkit-text-stroke-width: 0px; transform: none; -webkit-transform: none; transform-origin: 195px 108.5px; -webkit-transform-origin: 195px 108.5px; transform-style: flat; -webkit-transform-style: flat; -webkit-transition-delay: 0s; -webkit-transition-duration: 0s; -webkit-transition-property: all; -webkit-transition-timing-function: ease; -webkit-user-drag: auto; -webkit-user-modify: read-only; -webkit-user-select: text; -webkit-writing-mode: horizontal-tb; -webkit-app-region: no-drag; buffered-rendering: auto; clip-path: none; clip-rule: nonzero; mask: none; filter: none; flood-color: rgb(0, 0, 0); flood-opacity: 1; lighting-color: rgb(255, 255, 255); stop-color: rgb(0, 0, 0); stop-opacity: 1; color-interpolation: srgb; color-interpolation-filters: linearrgb; color-rendering: auto; fill: rgb(0, 0, 0); fill-opacity: 1; fill-rule: nonzero; marker-end: none; marker-mid: none; marker-start: none; mask-type: luminance; shape-rendering: auto; stroke: none; stroke-dasharray: none; stroke-dashoffset: 0; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-opacity: 1; stroke-width: 1; alignment-baseline: auto; baseline-shift: baseline; dominant-baseline: auto; text-anchor: start; writing-mode: lr-tb; glyph-orientation-horizontal: 0deg; glyph-orientation-vertical: auto; vector-effect: none; paint-order: fill stroke markers;",
         "beforeElem": "",
-        "afterElem": ""
+        "afterElem": "",
+        "boundingBox": {
+          "left": 765,
+          "right": 1155,
+          "top": 410,
+          "bottom": 627
+        }
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 390,
+          "right": 1530,
+          "top": 430,
+          "bottom": 610
+        },
         "rect": {
           "width": {
             "before": 1140,
             "after": 360
           },
           "left": {
-            "before": 33,
-            "after": 430.5
+            "before": 390,
+            "after": 780
           },
           "bottom": {
             "before": 610,
             "after": 463
           },
           "right": {
-            "before": 1173,
-            "after": 790.5
+            "before": 1530,
+            "after": 1140
           },
           "top": {
             "before": 577,
@@ -2233,6 +971,12 @@
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 390,
+          "right": 1530,
+          "top": 473,
+          "bottom": 660
+        },
         "rect": {
           "height": {
             "before": 40,
@@ -2243,16 +987,16 @@
             "after": 360
           },
           "left": {
-            "before": 33,
-            "after": 430.5
+            "before": 390,
+            "after": 780
           },
           "bottom": {
             "before": 660,
             "after": 573
           },
           "right": {
-            "before": 1173,
-            "after": 790.5
+            "before": 1530,
+            "after": 1140
           },
           "top": {
             "before": 620,
@@ -2280,22 +1024,28 @@
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 390,
+          "right": 1530,
+          "top": 583,
+          "bottom": 704
+        },
         "rect": {
           "width": {
             "before": 1140,
             "after": 360
           },
           "left": {
-            "before": 33,
-            "after": 430.5
+            "before": 390,
+            "after": 780
           },
           "bottom": {
             "before": 704,
             "after": 617
           },
           "right": {
-            "before": 1173,
-            "after": 790.5
+            "before": 1530,
+            "after": 1140
           },
           "top": {
             "before": 670,
@@ -2323,18 +1073,24 @@
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 390,
+          "right": 891.03125,
+          "top": 583,
+          "bottom": 704
+        },
         "rect": {
           "left": {
-            "before": 33,
-            "after": 430.5
+            "before": 390,
+            "after": 780
           },
           "bottom": {
             "before": 704,
             "after": 617
           },
           "right": {
-            "before": 144.03125,
-            "after": 541.53125
+            "before": 501.03125,
+            "after": 891.03125
           },
           "top": {
             "before": 670,
@@ -2347,33 +1103,41 @@
         "rect": {
           "height": 217,
           "width": 390,
-          "left": 805.5,
+          "left": 1155,
           "bottom": 627,
-          "right": 1195.5,
+          "right": 1545,
           "top": 410
         },
         "computed": "background-attachment: scroll; background-blend-mode: normal; background-clip: border-box; background-color: rgba(0, 0, 0, 0); background-image: none; background-origin: padding-box; background-position: 0% 0%; background-repeat: repeat; background-size: auto; border-bottom-color: rgb(51, 51, 51); border-bottom-left-radius: 0px; border-bottom-right-radius: 0px; border-bottom-style: none; border-bottom-width: 0px; border-collapse: separate; border-image-outset: 0px; border-image-repeat: stretch; border-image-slice: 100%; border-image-source: none; border-image-width: 1; border-left-color: rgb(51, 51, 51); border-left-style: none; border-left-width: 0px; border-right-color: rgb(51, 51, 51); border-right-style: none; border-right-width: 0px; border-top-color: rgb(51, 51, 51); border-top-left-radius: 0px; border-top-right-radius: 0px; border-top-style: none; border-top-width: 0px; bottom: auto; box-shadow: none; box-sizing: border-box; caption-side: top; clear: none; clip: auto; color: rgb(51, 51, 51); cursor: auto; direction: ltr; display: block; empty-cells: show; float: left; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-kerning: auto; font-size: 14px; font-style: normal; font-variant: normal; font-variant-ligatures: normal; font-weight: normal; height: 217px; image-rendering: auto; left: auto; letter-spacing: normal; line-height: 20px; list-style-image: none; list-style-position: outside; list-style-type: disc; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px; max-height: none; max-width: none; min-height: 1px; min-width: 0px; object-fit: fill; object-position: 50% 50%; opacity: 1; orphans: auto; outline-color: rgb(51, 51, 51); outline-offset: 0px; outline-style: none; outline-width: 0px; overflow-wrap: normal; overflow-x: visible; overflow-y: visible; padding-bottom: 0px; padding-left: 15px; padding-right: 15px; padding-top: 0px; page-break-after: auto; page-break-before: auto; page-break-inside: auto; pointer-events: auto; position: relative; resize: none; right: auto; speak: normal; table-layout: auto; tab-size: 8; text-align: start; text-decoration: none; text-indent: 0px; text-rendering: auto; text-shadow: none; text-overflow: clip; text-transform: none; top: auto; touch-action: auto; transition-delay: 0s; transition-duration: 0s; transition-property: all; transition-timing-function: ease; unicode-bidi: normal; vertical-align: baseline; visibility: visible; white-space: normal; widows: auto; width: 390px; will-change: auto; word-break: normal; word-spacing: 0px; word-wrap: normal; z-index: auto; zoom: 1; -webkit-animation-delay: 0s; -webkit-animation-direction: normal; -webkit-animation-duration: 0s; -webkit-animation-fill-mode: none; -webkit-animation-iteration-count: 1; -webkit-animation-name: none; -webkit-animation-play-state: running; -webkit-animation-timing-function: ease; -webkit-appearance: none; backface-visibility: visible; -webkit-backface-visibility: visible; -webkit-background-clip: border-box; -webkit-background-composite: source-over; -webkit-background-origin: padding-box; -webkit-background-size: auto; -webkit-border-fit: border; -webkit-border-horizontal-spacing: 0px; -webkit-border-image: none; -webkit-border-vertical-spacing: 0px; -webkit-box-align: stretch; -webkit-box-decoration-break: slice; -webkit-box-direction: normal; -webkit-box-flex: 0; -webkit-box-flex-group: 1; -webkit-box-lines: single; -webkit-box-ordinal-group: 1; -webkit-box-orient: horizontal; -webkit-box-pack: start; -webkit-box-reflect: none; -webkit-box-shadow: none; -webkit-clip-path: none; -webkit-column-break-after: auto; -webkit-column-break-before: auto; -webkit-column-break-inside: auto; -webkit-column-count: auto; -webkit-column-gap: normal; -webkit-column-rule-color: rgb(51, 51, 51); -webkit-column-rule-style: none; -webkit-column-rule-width: 0px; -webkit-column-span: none; -webkit-column-width: auto; -webkit-filter: none; align-content: stretch; align-items: stretch; align-self: stretch; flex-basis: auto; flex-grow: 0; flex-shrink: 1; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; -webkit-font-smoothing: auto; -webkit-highlight: none; -webkit-hyphenate-character: auto; -webkit-line-box-contain: block inline replaced; -webkit-line-break: auto; -webkit-line-clamp: none; -webkit-locale: en; -webkit-margin-before-collapse: collapse; -webkit-margin-after-collapse: collapse; -webkit-mask-box-image: none; -webkit-mask-box-image-outset: 0px; -webkit-mask-box-image-repeat: stretch; -webkit-mask-box-image-slice: 0 fill; -webkit-mask-box-image-source: none; -webkit-mask-box-image-width: auto; -webkit-mask-clip: border-box; -webkit-mask-composite: source-over; -webkit-mask-image: none; -webkit-mask-origin: border-box; -webkit-mask-position: 0% 0%; -webkit-mask-repeat: repeat; -webkit-mask-size: auto; order: 0; perspective: none; -webkit-perspective: none; perspective-origin: 195px 108.5px; -webkit-perspective-origin: 195px 108.5px; -webkit-print-color-adjust: economy; -webkit-rtl-ordering: logical; shape-outside: none; shape-image-threshold: 0; shape-margin: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-text-combine: none; -webkit-text-decorations-in-effect: none; -webkit-text-emphasis-color: rgb(51, 51, 51); -webkit-text-emphasis-position: over; -webkit-text-emphasis-style: none; -webkit-text-fill-color: rgb(51, 51, 51); -webkit-text-orientation: vertical-right; -webkit-text-security: none; -webkit-text-stroke-color: rgb(51, 51, 51); -webkit-text-stroke-width: 0px; transform: none; -webkit-transform: none; transform-origin: 195px 108.5px; -webkit-transform-origin: 195px 108.5px; transform-style: flat; -webkit-transform-style: flat; -webkit-transition-delay: 0s; -webkit-transition-duration: 0s; -webkit-transition-property: all; -webkit-transition-timing-function: ease; -webkit-user-drag: auto; -webkit-user-modify: read-only; -webkit-user-select: text; -webkit-writing-mode: horizontal-tb; -webkit-app-region: no-drag; buffered-rendering: auto; clip-path: none; clip-rule: nonzero; mask: none; filter: none; flood-color: rgb(0, 0, 0); flood-opacity: 1; lighting-color: rgb(255, 255, 255); stop-color: rgb(0, 0, 0); stop-opacity: 1; color-interpolation: srgb; color-interpolation-filters: linearrgb; color-rendering: auto; fill: rgb(0, 0, 0); fill-opacity: 1; fill-rule: nonzero; marker-end: none; marker-mid: none; marker-start: none; mask-type: luminance; shape-rendering: auto; stroke: none; stroke-dasharray: none; stroke-dashoffset: 0; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-opacity: 1; stroke-width: 1; alignment-baseline: auto; baseline-shift: baseline; dominant-baseline: auto; text-anchor: start; writing-mode: lr-tb; glyph-orientation-horizontal: 0deg; glyph-orientation-vertical: auto; vector-effect: none; paint-order: fill stroke markers;",
         "beforeElem": "",
-        "afterElem": ""
+        "afterElem": "",
+        "boundingBox": {
+          "left": 1155,
+          "right": 1545,
+          "top": 410,
+          "bottom": 627
+        }
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 390,
+          "right": 1530,
+          "top": 430,
+          "bottom": 757
+        },
         "rect": {
           "width": {
             "before": 1140,
             "after": 360
           },
           "left": {
-            "before": 33,
-            "after": 820.5
+            "before": 390,
+            "after": 1170
           },
           "bottom": {
             "before": 757,
             "after": 463
-          },
-          "right": {
-            "before": 1173,
-            "after": 1180.5
           },
           "top": {
             "before": 724,
@@ -2401,6 +1165,12 @@
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 390,
+          "right": 1530,
+          "top": 473,
+          "bottom": 807
+        },
         "rect": {
           "height": {
             "before": 40,
@@ -2411,16 +1181,12 @@
             "after": 360
           },
           "left": {
-            "before": 33,
-            "after": 820.5
+            "before": 390,
+            "after": 1170
           },
           "bottom": {
             "before": 807,
             "after": 573
-          },
-          "right": {
-            "before": 1173,
-            "after": 1180.5
           },
           "top": {
             "before": 767,
@@ -2448,22 +1214,24 @@
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 390,
+          "right": 1530,
+          "top": 583,
+          "bottom": 851
+        },
         "rect": {
           "width": {
             "before": 1140,
             "after": 360
           },
           "left": {
-            "before": 33,
-            "after": 820.5
+            "before": 390,
+            "after": 1170
           },
           "bottom": {
             "before": 851,
             "after": 617
-          },
-          "right": {
-            "before": 1173,
-            "after": 1180.5
           },
           "top": {
             "before": 817,
@@ -2491,18 +1259,24 @@
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 390,
+          "right": 1281.03125,
+          "top": 583,
+          "bottom": 851
+        },
         "rect": {
           "left": {
-            "before": 33,
-            "after": 820.5
+            "before": 390,
+            "after": 1170
           },
           "bottom": {
             "before": 851,
             "after": 617
           },
           "right": {
-            "before": 144.03125,
-            "after": 931.53125
+            "before": 501.03125,
+            "after": 1281.03125
           },
           "top": {
             "before": 817,
@@ -2512,127 +1286,67 @@
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 0,
+          "right": 1920,
+          "top": 647,
+          "bottom": 882
+        },
         "rect": {
-          "width": {
-            "before": 1206,
-            "after": 1221
-          },
           "bottom": {
             "before": 882,
             "after": 648
-          },
-          "right": {
-            "before": 1206,
-            "after": 1221
           },
           "top": {
             "before": 881,
             "after": 647
           }
-        },
-        "computed": {
-          "perspective-origin": {
-            "before": "603px 0.5px",
-            "after": "610.5px 0.5px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "603px 0.5px",
-            "after": "610.5px 0.5px"
-          },
-          "transform-origin": {
-            "before": "603px 0.5px",
-            "after": "610.5px 0.5px"
-          },
-          "-webkit-transform-origin": {
-            "before": "603px 0.5px",
-            "after": "610.5px 0.5px"
-          }
         }
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 0,
+          "right": 1920,
+          "top": 668,
+          "bottom": 922
+        },
         "rect": {
-          "width": {
-            "before": 1206,
-            "after": 1221
-          },
           "bottom": {
             "before": 922,
             "after": 688
-          },
-          "right": {
-            "before": 1206,
-            "after": 1221
           },
           "top": {
             "before": 902,
             "after": 668
           }
-        },
-        "computed": {
-          "perspective-origin": {
-            "before": "603px 10px",
-            "after": "610.5px 10px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "603px 10px",
-            "after": "610.5px 10px"
-          },
-          "transform-origin": {
-            "before": "603px 10px",
-            "after": "610.5px 10px"
-          },
-          "-webkit-transform-origin": {
-            "before": "603px 10px",
-            "after": "610.5px 10px"
-          }
         }
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 0,
+          "right": 1920,
+          "top": 668,
+          "bottom": 922
+        },
         "rect": {
-          "width": {
-            "before": 1206,
-            "after": 1221
-          },
           "bottom": {
             "before": 922,
             "after": 688
           },
-          "right": {
-            "before": 1206,
-            "after": 1221
-          },
           "top": {
             "before": 902,
             "after": 668
-          }
-        },
-        "computed": {
-          "perspective-origin": {
-            "before": "603px 10px",
-            "after": "610.5px 10px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "603px 10px",
-            "after": "610.5px 10px"
-          },
-          "transform-origin": {
-            "before": "603px 10px",
-            "after": "610.5px 10px"
-          },
-          "-webkit-transform-origin": {
-            "before": "603px 10px",
-            "after": "610.5px 10px"
           }
         }
       }
     ],
     "order": [],
-    "doctype": "<!doctype html>",
-    "width": 1230,
-    "height": 948,
+    "width": 1920,
+    "height": 1106,
     "scrollTop": 0,
-    "url": "http://localhost:3000"
+    "url": "http://localhost:3000/",
+    "doctype": "<!doctype html>"
   }
 ]
