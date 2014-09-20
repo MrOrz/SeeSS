@@ -1,6 +1,7 @@
 require! {
   '../../src/livescript/components/PageData.ls'
   '../../src/livescript/components/Renderer.ls'
+  '../../src/livescript/components/ElementDifference.ls'
   '../../src/livescript/components/RenderGraph.ls'
   '../../src/livescript/components/SerializableEvent.ls'
 }
@@ -86,7 +87,7 @@ describe '#applyCSS', (...) !->
     expect page-diff.diffs .to.have.length 1
 
     # Checking type, elem and the actual difference
-    expect page-diff.diffs.0.type .to.be Renderer.ElementDifference.TYPE_MOD
+    expect page-diff.diffs.0.type .to.be ElementDifference.TYPE_MOD
     expect page-diff.query-diff-id(0).class-name .to.be 'position-test'
     expect page-diff.diffs.0.rect.top .to.eql before: 0, after: 10
     expect page-diff.diffs.0.rect.left .to.eql before: 0, after: 10
@@ -152,7 +153,7 @@ describe '#applyCSS', (...) !->
 
     # Check if the difference equals the change caused by
     # CSS2 --> CSS1.
-    expect page-diff.diffs.0.type .to.be Renderer.ElementDifference.TYPE_MOD
+    expect page-diff.diffs.0.type .to.be ElementDifference.TYPE_MOD
     expect page-diff.query-diff-id(0).class-name .to.be 'position-test'
     expect page-diff.diffs.0.rect.top .to.eql before: 10, after: 0
     expect page-diff.diffs.0.rect.left .to.eql before: 10, after: 0
@@ -209,7 +210,7 @@ describe '#applyHTML', (...) !->
 
     expect page-diff .to.be.ok!
     expect page-diff.diffs .to.have.length 1
-    expect page-diff.diffs.0.type .to.be Renderer.ElementDifference.TYPE_MOD
+    expect page-diff.diffs.0.type .to.be ElementDifference.TYPE_MOD
     expect page-diff.diffs.0.computed .to.eql do
       'border-bottom-color':
         before: "rgb(255, 0, 0)"
@@ -223,13 +224,13 @@ describe '#applyHTML', (...) !->
     expect page-diff .to.be.ok!
     expect page-diff.diffs .to.have.length 2
 
-    expect page-diff.diffs.0.type .to.be Renderer.ElementDifference.TYPE_ADDED
+    expect page-diff.diffs.0.type .to.be ElementDifference.TYPE_ADDED
     expect page-diff.query-diff-id(0).class-name .to.be \added
     expect page-diff.diffs.0.bounding-box.top .to.be 0
     expect page-diff.diffs.0.bounding-box.bottom .to.be 16
     expect page-diff.diffs.0.bounding-box.left .to.be 0
 
-    expect page-diff.diffs.1.type .to.be Renderer.ElementDifference.TYPE_MOD
+    expect page-diff.diffs.1.type .to.be ElementDifference.TYPE_MOD
     expect page-diff.diffs.1.rect .to.eql do
       top:
         before: 0
@@ -247,7 +248,7 @@ describe '#applyHTML', (...) !->
     container = page-diff.query-diff-id(0)
     expect container.node-name .to.be \DIV
 
-    expect page-diff.diffs.3.type .to.be Renderer.ElementDifference.TYPE_REMOVED
+    expect page-diff.diffs.3.type .to.be ElementDifference.TYPE_REMOVED
     expect page-diff.diffs.3.before-html .to.be.ok!
 
     # In this test case, the removed element's ID is attached to its parent,
@@ -265,7 +266,7 @@ describe '#applyHTML', (...) !->
     for i from 0 to 2
       container = page-diff.query-diff-id(i)
       expect container.node-name .to.be \BODY
-      expect page-diff.diffs[i].type .to.be Renderer.ElementDifference.TYPE_REMOVED
+      expect page-diff.diffs[i].type .to.be ElementDifference.TYPE_REMOVED
 
 
   it 'executes event stream and detects identical states', ->
