@@ -3,11 +3,15 @@
 var React = require('react');
 var SerializablePageDiff = require('../livescript/components/SerializablePageDiff.ls');
 var IframeUtil = require('../livescript/components/IframeUtil.ls');
+var ElementDifference = require('../livescript/components/ElementDifference.ls');
 
 console.log('React', React);
 console.log('chrome', chrome);
 
+// Make React Debugging Chrome extension happy
+window.React = React;
 
+// Debug
 window.pageDiffs = [];
 
 var DiffList = React.createClass({
@@ -57,6 +61,7 @@ var DiffList = React.createClass({
           var diffPack={
             domWidth: pageDiff.width,
             domHeight: pageDiff.height,
+            diff: diff,
             boxWidth: diff.boundingBox.right - diff.boundingBox.left,
             boxHeight: diff.boundingBox.bottom - diff.boundingBox.top,
             boxLeft: diff.boundingBox.left,
@@ -87,7 +92,8 @@ var DiffList = React.createClass({
                       boxWidth={diff.boxWidth} boxHeight={diff.boxHeight}
                       boxLeft={diff.boxLeft} boxTop={diff.boxTop}
                       dom={diff.dom} url={diff.url}
-                      doctype={diff.doctype} diffId={diff.id}></Diff>);
+                      doctype={diff.doctype} diffId={diff.id}
+                      diff={diff.diff}></Diff>);
 
     });
 
@@ -102,8 +108,50 @@ var DiffList = React.createClass({
 
 var Diff = React.createClass({
   componentDidMount: function(){
-    var iframe = this.refs.iframeElem.getDOMNode();
-    IframeUtil.setDocument(iframe.contentDocument, this.props.dom.cloneNode(true), this.props.doctype);
+    var iframe = this.refs.iframeElem.getDOMNode(),
+        diff = this.props.diff,
+        diffId = this.props.diffId,
+        iframeDoc = iframe.contentDocument,
+        styleElem = iframeDoc.createElement('style');
+
+    // Create animated "before" state dummies
+    //
+    IframeUtil.waitForAssets(iframe.contentDocument).then(function(){
+      var divElem,
+          currentRect,
+          beforeRules, afterRules,
+          elem = iframeDoc.querySelector('['+SerializablePageDiff.DIFF_ID_ATTR+'~="'+diffId+'"]');
+
+      if(diff.type === ElementDifference.TYPE_MOD){
+        if(diff.rect){
+          currentRect = elem.getBoundingClientRect();
+
+          divElem = iframeDoc.createElement('div');
+          divElem.id = "SEESS_POSITION_ANIMATE";
+
+          afterRules =
+            "left:" + currentRect.left + 'px;' +
+            "top:" + currentRect.top + 'px;' +
+            "width:" + currentRect.width + 'px;' +
+            "height:" + currentRect.height + 'px;';
+
+          beforeRules =
+            "left:" + ((diff.rect.left && diff.rect.left.before) || currentRect.left) + 'px;' +
+            "top:" + ((diff.rect.top && diff.rect.top.before) || currentRect.top) + 'px;' +
+            "width:" + ((diff.rect.width && diff.rect.width.before) || currentRect.width) + 'px;' +
+            "height:" + ((diff.rect.height && diff.rect.height.before) || currentRect.height) + 'px;';
+
+
+          styleElem.innerHTML += "#SEESS_POSITION_ANIMATE{z-index: 99999; box-sizing: border-box; position: fixed; border: 1px dashed red; background:rgba(255,0,0,0.1); -webkit-animation: SEESS_POSITION 3s ease-in-out 0s infinite; will-change: left top width height;}\n" +
+            "@-webkit-keyframes SEESS_POSITION {from{"+beforeRules+"} to {"+afterRules+"}}";
+
+          iframeDoc.body.appendChild(divElem);
+        }
+        iframeDoc.body.appendChild(styleElem)
+      }
+    });
+
+    IframeUtil.setDocument(iframeDoc, this.props.dom.cloneNode(true), this.props.doctype);
   },
   render: function(){
     //var cropSize = document.getElementById('fakecrop').style.width;
@@ -128,7 +176,7 @@ var Diff = React.createClass({
     }
 
     var originLeft = this.props.boxLeft + this.props.boxWidth/2,
-        originTop  = this.props.boxTop + this.props.boxHeight/2
+        originTop  = this.props.boxTop + this.props.boxHeight/2;
 
     translate = 'translate(' + (cropSize/2-originLeft) + 'px,' + (cropSize/2-originTop) + 'px)';
     origin = originLeft + 'px ' + originTop + 'px';
