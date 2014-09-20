@@ -11,7 +11,7 @@ console.log('chrome', chrome);
 window.pageDiffs = [];
 
 var DiffList = React.createClass({
-  
+
   getInitialState: function(){
     return {data: []};
   },
@@ -39,43 +39,28 @@ var DiffList = React.createClass({
         case "PAGE_DIFF":
         pageDiff = new SerializablePageDiff(message.data);
         console.log("<Message> Data arrived from background script", pageDiff);
-        
+
         var newData = that.state.data;
-        
-        var noneIframe=IframeUtil.createIframe(pageDiff.width,pageDiff.height);
-        
-        noneIframe.onload=function(){
-          IframeUtil.setDocument(noneIframe.contentDocument,pageDiff.dom(),pageDiff.doctype);
-          IframeUtil.waitForAssets(noneIframe.contentDocument).then(function(){
-            /*after rendering
-                (window.getComputedStyle(id,css) Element.getBoundingClientRect) 
-            */
-            /*
-            diff = pageDiff.diffs[id]
-            target = pageDiff.queryDiffId(id);*/
-          });
-        };
 
-        document.getElementById('body').appendChild(noneIframe);
+        /*after rendering
+            (window.getComputedStyle(id,css) Element.getBoundingClientRect)
+        */
+        /*
+        diff = pageDiff.diffs[id]
+        target = pageDiff.queryDiffId(id);*/
+        var diff, i;
+        for(i = 0; i < pageDiff.diffs.length; i+=1){
+          diff = pageDiff.diffs[i]
 
-
-
-        noneIframe.style.opacity='0';
-        //noneIframe.setAttribute("id", "noneIframe");
-
-        //document.getElementById('body').removeChild(noneIframe);
-/*
-        for(var diff in pageDiff.diffs){
-          
           //Calculate BoundingBox, decide which is to push
 
-          var diffPack={ 
+          var diffPack={
             domWidth: pageDiff.width,
             domHeight: pageDiff.height,
-            boxWidth: 400,
-            boxHeight: 100,
-            boxLeft: 200,
-            boxTop: 200, 
+            boxWidth: diff.boundingBox.right - diff.boundingBox.left,
+            boxHeight: diff.boundingBox.bottom - diff.boundingBox.top,
+            boxLeft: diff.boundingBox.left,
+            boxTop: diff.boundingBox.top,
             dom: pageDiff.dom(),
             url: pageDiff.url
           };
@@ -84,7 +69,7 @@ var DiffList = React.createClass({
         }
 
         that.setState({data: newData});
-*/
+
         // For debug.
         // TODO: Remove when going live!
         //
@@ -96,13 +81,13 @@ var DiffList = React.createClass({
 
   render: function(){
     var DiffArray = this.state.data.map(function(diff){
-        return (<Diff domWidth={diff.domWidth} domHeight={diff.domHeight} 
+        return (<Diff domWidth={diff.domWidth} domHeight={diff.domHeight}
                       boxWidth={diff.boxWidth} boxHeight={diff.boxHeight}
-                      boxLeft={diff.boxLeft} boxTop={diff.boxTop} 
+                      boxLeft={diff.boxLeft} boxTop={diff.boxTop}
                       dom={diff.dom} url={diff.url}></Diff>);
-    
+
     });
-    
+
     return (
       <div className="difflist">
         {DiffArray}
@@ -117,7 +102,7 @@ var Diff = React.createClass({
     //var cropSize = document.getElementById('fakecrop').style.width;
     var cropSize = window.getComputedStyle(document.getElementById('fakecrop')).getPropertyValue('width');
     cropSize = parseInt(cropSize, 10);
-    
+
 console.log('BBwidth: ' + this.props.boxWidth + '\nBBheight: ' + this.props.boxHeight);
 
     var scale = '', translate = '', origin = '';
@@ -126,17 +111,19 @@ console.log('BBwidth: ' + this.props.boxWidth + '\nBBheight: ' + this.props.boxH
 
     if(scaleX < 1 || scaleY < 1){
       var scaleMin;
-      if(scaleX < scaleY)
+      if(scaleX < scaleY){
         scaleMin = scaleX;
-      else
+      }
+      else{
         scaleMin = scaleY;
+      }
       scale = 'scale(' + scaleMin + ',' + scaleMin + ')';
     }
 
     translate = 'translate(' + this.props.boxLeft*(-1) + 'px,' + this.props.boxTop*(-1) + 'px)';
     origin = this.props.domWidth/2 + ' ' + this.props.domHeight/2;
 
-    var iframeStyle={
+    var iframeStyle= {
       width: this.props.domWidth,
       height: this.props.domHeight,
       transform: scale + ' ' +translate,
