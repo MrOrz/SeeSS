@@ -83,7 +83,7 @@ class Renderer
           dom: generate-detached-html @iframe
           doctype: @page-data.doctype
           diffs: diffs
-          page-data: @iframe.page-data
+          page-data: page-data
 
   #
   # Given the source iframe's src, and event sequence,
@@ -221,7 +221,7 @@ class Renderer
             dom: generate-detached-html @iframe
             doctype: @page-data.doctype
             diffs: diffs
-            page-data: @iframe.page-data
+            page-data: @page-data
           mapping: ttmap
         }
 
