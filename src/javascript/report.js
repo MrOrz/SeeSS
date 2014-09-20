@@ -42,6 +42,29 @@ var DiffList = React.createClass({
         
         var newData = that.state.data;
         
+        var noneIframe=IframeUtil.createIframe(pageDiff.width,pageDiff.height);
+        
+        noneIframe.onload=function(){
+          IframeUtil.setDocument(noneIframe.contentDocument,pageDiff.dom(),pageDiff.doctype);
+          IframeUtil.waitForAssets(noneIframe.contentDocument).then(function(){
+            /*after rendering
+                (window.getComputedStyle(id,css) Element.getBoundingClientRect) 
+            */
+            /*
+            diff = pageDiff.diffs[id]
+            target = pageDiff.queryDiffId(id);*/
+          });
+        };
+
+        document.getElementById('body').appendChild(noneIframe);
+
+
+
+        noneIframe.style.opacity='0';
+        //noneIframe.setAttribute("id", "noneIframe");
+
+        //document.getElementById('body').removeChild(noneIframe);
+/*
         for(var diff in pageDiff.diffs){
           
           //Calculate BoundingBox, decide which is to push
@@ -61,7 +84,7 @@ var DiffList = React.createClass({
         }
 
         that.setState({data: newData});
-
+*/
         // For debug.
         // TODO: Remove when going live!
         //
