@@ -91,6 +91,12 @@ describe '#applyCSS', (...) !->
     expect page-diff.diffs.0.rect.top .to.eql before: 0, after: 10
     expect page-diff.diffs.0.rect.left .to.eql before: 0, after: 10
 
+    # Check bounding box contains both before and after
+    expect page-diff.diffs.0.bounding-box.left .to.eql 0
+    expect page-diff.diffs.0.bounding-box.top .to.eql 0
+    expect page-diff.diffs.0.bounding-box.right .to.eql 110  # 100 + 10px offset
+    expect page-diff.diffs.0.bounding-box.bottom .to.eql 110 # 100 + 10px offset
+
   it 'distinguishes computed style change', ->
     const NEW_CSS = 'renderer-css-color-test2.css'
 
@@ -219,6 +225,9 @@ describe '#applyHTML', (...) !->
 
     expect page-diff.diffs.0.type .to.be Renderer.ElementDifference.TYPE_ADDED
     expect page-diff.query-diff-id(0).class-name .to.be \added
+    expect page-diff.diffs.0.bounding-box.top .to.be 0
+    expect page-diff.diffs.0.bounding-box.bottom .to.be 16
+    expect page-diff.diffs.0.bounding-box.left .to.be 0
 
     expect page-diff.diffs.1.type .to.be Renderer.ElementDifference.TYPE_MOD
     expect page-diff.diffs.1.rect .to.eql do
@@ -228,7 +237,6 @@ describe '#applyHTML', (...) !->
       bottom:
         before: 16
         after: 32
-
 
   it 'deals with element removal', ->
     ({page-diff, renderer}) <- feed-test-file-to-source-renderer 'renderer-html-remove-test' .then
@@ -240,6 +248,7 @@ describe '#applyHTML', (...) !->
     expect container.node-name .to.be \DIV
 
     expect page-diff.diffs.3.type .to.be Renderer.ElementDifference.TYPE_REMOVED
+    expect page-diff.diffs.3.before-html .to.be.ok!
 
     # In this test case, the removed element's ID is attached to its parent,
     # which happens to be the the container of all buttons

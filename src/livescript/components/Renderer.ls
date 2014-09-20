@@ -327,6 +327,13 @@ class ElementDifference
     @ <<< diff-or-snapshot
     @elem = undefined if @elem # Remove @elem if from snapshot
 
+    if @bounding-box is undefined # If no bounding box, use @rect as default
+      @bounding-box =
+        left: diff-or-snapshot.rect.left
+        right: diff-or-snapshot.rect.right
+        top: diff-or-snapshot.rect.top
+        bottom: diff-or-snapshot.rect.bottom
+
 # Defines what information should be remembered for each element in the page snapshot.
 # The page snapshot is an array of ElementSnapshot in DOM tree walk order.
 #
@@ -364,14 +371,21 @@ class ElementSnapshot
       ''
 
   diff: (old-elem-snapshot) ->
-    differences = {}
     is-empty = true
+
+    # Calculate bounding box (left, right, top, bottom)
+    differences =
+      bounding-box:
+        left: @rect.left <? old-elem-snapshot.rect.left
+        right: @rect.right >? old-elem-snapshot.rect.right
+        top: @rect.top <? old-elem-snapshot.rect.top
+        bottom: @rect.bottom >? old-elem-snapshot.rect.bottom
 
     # Check rect
     for own key, new-value of @rect
       old-value = old-elem-snapshot.rect[key]
 
-      unless old-value == new-value
+      if old-value isnt new-value
         is-empty = false
         differences.rect ?= {}
         differences.rect[key] =
