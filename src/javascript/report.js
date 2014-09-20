@@ -50,7 +50,7 @@ var DiffList = React.createClass({
         target = pageDiff.queryDiffId(id);*/
         var diff, i;
         for(i = 0; i < pageDiff.diffs.length; i+=1){
-          diff = pageDiff.diffs[i]
+          diff = pageDiff.diffs[i];
 
           //Calculate BoundingBox, decide which is to push
 
@@ -62,7 +62,8 @@ var DiffList = React.createClass({
             boxLeft: diff.boundingBox.left,
             boxTop: diff.boundingBox.top,
             dom: pageDiff.dom(),
-            url: pageDiff.url
+            url: pageDiff.url,
+            doctype: pageDiff.doctype
           };
 
           newData.push(diffPack);
@@ -84,7 +85,8 @@ var DiffList = React.createClass({
         return (<Diff domWidth={diff.domWidth} domHeight={diff.domHeight}
                       boxWidth={diff.boxWidth} boxHeight={diff.boxHeight}
                       boxLeft={diff.boxLeft} boxTop={diff.boxTop}
-                      dom={diff.dom} url={diff.url}></Diff>);
+                      dom={diff.dom} url={diff.url}
+                      doctype={diff.doctype}></Diff>);
 
     });
 
@@ -98,12 +100,16 @@ var DiffList = React.createClass({
 
 
 var Diff = React.createClass({
+  componentDidMount: function(){
+    var iframe = this.refs.iframeElem.getDOMNode();
+    IframeUtil.setDocument(iframe.contentDocument, this.props.dom.cloneNode(true), this.props.doctype);
+  },
   render: function(){
     //var cropSize = document.getElementById('fakecrop').style.width;
     var cropSize = window.getComputedStyle(document.getElementById('fakecrop')).getPropertyValue('width');
     cropSize = parseInt(cropSize, 10);
 
-console.log('BBwidth: ' + this.props.boxWidth + '\nBBheight: ' + this.props.boxHeight);
+    console.log('BBwidth: ' + this.props.boxWidth + '\nBBheight: ' + this.props.boxHeight);
 
     var scale = '', translate = '', origin = '';
     var scaleX = cropSize / this.props.boxWidth;
@@ -121,7 +127,7 @@ console.log('BBwidth: ' + this.props.boxWidth + '\nBBheight: ' + this.props.boxH
     }
 
     translate = 'translate(' + this.props.boxLeft*(-1) + 'px,' + this.props.boxTop*(-1) + 'px)';
-    origin = this.props.domWidth/2 + ' ' + this.props.domHeight/2;
+    origin = this.props.domWidth/2 + 'px ' + this.props.domHeight/2 + 'px';
 
     var iframeStyle= {
       width: this.props.domWidth,
@@ -133,7 +139,7 @@ console.log('BBwidth: ' + this.props.boxWidth + '\nBBheight: ' + this.props.boxH
     return (
       <div className="diff">
         <div className="crop">
-          <iframe style={iframeStyle} src="http://www.ntu.edu.tw"></iframe>
+          <iframe style={iframeStyle} ref="iframeElem"></iframe>
         </div>
         <p className ="url"> {this.props.url} </p>
       </div>
