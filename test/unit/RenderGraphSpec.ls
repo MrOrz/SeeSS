@@ -3,6 +3,7 @@ require! {
   '../../src/livescript/components/PageData.ls'
   '../../src/livescript/components/RenderGraph.ls'
   '../../src/livescript/components/SerializableEvent.ls'
+  '../../src/livescript/components/XPathUtil.ls'.generate-x-path
 }
 
 # A Renderer mock that only stores fake page data, without creating additional iframes
@@ -39,9 +40,9 @@ describe '#add', (...) !->
     renderer1 = graph.add (new PageDataMock \node1), (new RenderGraph.Edge renderer0, \edge-0-1)
     renderer2 = graph.add (new PageDataMock \node2), (new RenderGraph.Edge renderer1, \edge-1-2)
 
-    expect graph.adj-list.0.1.event .to.be \edge-0-1
+    expect graph.adj-list.0.1.events .to.be \edge-0-1
     expect graph.adj-list.1.0 .to.be undefined
-    expect graph.adj-list.1.2.event .to.be \edge-1-2
+    expect graph.adj-list.1.2.events .to.be \edge-1-2
     expect graph.adj-list.0.2 .to.be undefined
 
   it "recognizes and reuses duplicated renderer instance", ->
@@ -83,13 +84,13 @@ describe '#children-of', (...) !->
     child0 = graph.children-of 0
 
     expect child0.length .to.eql 1
-    expect child0.0.in-edge.event .to.be \edge-0-1
+    expect child0.0.in-edge.events .to.be \edge-0-1
     expect child0.0.renderer.page-data.html .to.be \node1
 
     child1 = graph.children-of 1
 
     expect child1.length .to.eql 1
-    expect child1.0.in-edge.event .to.be \edge-1-2
+    expect child1.0.in-edge.events .to.be \edge-1-2
     expect child1.0.renderer.page-data.html .to.be \node2
 
     child2 = graph.children-of 2
@@ -126,9 +127,9 @@ describe '#refresh', (...) !->
       expect page-diff.diffs.0.computed.color.before .to.be "rgb(0, 0, 255)"
       expect page-diff.diffs.0.computed.color.after .to.be "rgb(255, 0, 0)"
 
-  it 'refreshes all iframe when HTML changed, and outputs difference', ->
+  it 'refreshes all iframe when HTML changed, and outputs difference', !->
     graph = new RenderGraph document.body
-    filename = "base/test/served/renderer-html-click-test-src-changed.html"
+    const filename = "base/test/served/renderer-html-click-test-src-changed.html"
 
     # Use http://127.0.0.1 instead of http://localhost to simulate cross-origin scenario
     #
@@ -136,18 +137,45 @@ describe '#refresh', (...) !->
 
     root = graph.add (new PageData html: __html__['test/fixtures/renderer-html-click-test-src.html'], url: url)
 
-    edge-root-state0 = new RenderGraph.Edge root, new SerializableEvent({type: \click, constructor-name: \MouseEvent, target: '/html/body/ul/*[1]'})
+    edge-root-state0 = new RenderGraph.Edge root, [new SerializableEvent({type: \click, _constructor-name: \MouseEvent, target: '/html/body/ul/*[1]'})]
     state0 = graph.add (new PageData html: __html__['test/fixtures/renderer-html-click-test-state0.html'], url: url), edge-root-state0
 
-    edge-state0-state1 = new RenderGraph.Edge state0, new SerializableEvent({type: \click, constructor-name: \MouseEvent, target: '/html/body/ul/*[2]'})
+    edge-state0-state1 = new RenderGraph.Edge state0, [new SerializableEvent({type: \click, _constructor-name: \MouseEvent, target: '/html/body/ul/*[2]'})]
     state1 = graph.add (new PageData html: __html__['test/fixtures/renderer-html-click-test-state1.html'], url: url), edge-state0-state1
 
-    edge-state1-state2 = new RenderGraph.Edge state1, new SerializableEvent({type: \click, constructor-name: \MouseEvent, target: '/html/body/ul/*[3]'})
+    edge-state1-state2 = new RenderGraph.Edge state1, [new SerializableEvent({type: \click, _constructor-name: \MouseEvent, target: '/html/body/ul/*[3]'})]
     state2 = graph.add (new PageData html: __html__['test/fixtures/renderer-html-click-test-state2.html'], url: url), edge-state1-state2
 
-    promises <- Promise.all graph.refresh(filename) .then
+    results <- Promise.all graph.refresh(filename) .then
 
-    expect promises .to.have.length 4
+    expect results .to.have.length 4
+    for page-diff, idx in results
+      # Number of Color change: root has 2 (ul and li), state0 has 3 (ul and li*2), and vice versa
+      expect page-diff.diffs .to.have.length idx + 2
+
+  it 'refreshes when edges contains events targeting document, window, <html> and <body>.', ->
+    graph = new RenderGraph document.body
+    const filename = "base/test/served/renderer-html-doc-click-test-state0.html"
+
+    # Use http://127.0.0.1 instead of http://localhost to simulate cross-origin scenario
+    #
+    url = "http://127.0.0.1:#{location.port}/#{filename}"
+
+    root = graph.add (new PageData html: __html__['test/fixtures/renderer-html-doc-click-test-state0.html'], url: url)
+
+    edge-root-state1 = new RenderGraph.Edge root, [new SerializableEvent({type: \click, _constructor-name: \MouseEvent, target: generate-x-path(root.iframe.content-window), bubbles: true})]
+    state1 = graph.add (new PageData html: __html__['test/fixtures/renderer-html-doc-click-test-state1.html'], url: url), edge-root-state1
+
+    edge-state1-state2 = new RenderGraph.Edge state1, [new SerializableEvent({type: \click, _constructor-name: \MouseEvent, target: generate-x-path(state1.iframe.content-document), bubbles: true})]
+    state2 = graph.add (new PageData html: __html__['test/fixtures/renderer-html-doc-click-test-state2.html'], url: url), edge-state1-state2
+
+    edge-state2-state3 = new RenderGraph.Edge state2, [new SerializableEvent({type: \click, _constructor-name: \MouseEvent, target: '/html/body', bubbles: true})]
+    state3 = graph.add (new PageData html: __html__['test/fixtures/renderer-html-doc-click-test-state3.html'], url: url), edge-state2-state3
+
+    results <- Promise.all graph.refresh(filename) .then
+    expect results .to.eql [null, null, null, null]
+
+  it 'can be executed multiple times'
 
   function load-css doc, new-filename, old-filename = \PLACEHOLDER
     # Hack: Change the CSS filename inside renderer iframe to simulate CSS file change

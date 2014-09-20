@@ -13,15 +13,17 @@ class SerializableEvent
   # or a serailzable event object just deserialized from JSON,
   # or a timestamp from the last event.
   #
-  (timestamp-or-event, event-window) ->
+  (timestamp-or-event) ->
     if typeof timestamp-or-event is \number
+      # timestamp-or-event is a timestamp
       @_setup-wait-event timestamp-or-event
 
     else
-      @constructor-name = timestamp-or-event.constructor-name || timestamp-or-event.constructor.name
+      # timestamp-or-event is an event
+      @_constructor-name = timestamp-or-event._constructor-name || timestamp-or-event.constructor.name
 
       if is-dom-event timestamp-or-event
-        @_setup-dom-event timestamp-or-event, event-window
+        @_setup-dom-event timestamp-or-event
 
       else
         @_recover-from-json timestamp-or-event
@@ -44,7 +46,26 @@ class SerializableEvent
 
       target-elem.add-event-listener @type, resolve
 
-      evt = new win[@constructor-name] @type, @
+      # Input element value changes before "input" event dispatches
+      if @type is \input
+        target-elem.value = @_input-value
+
+      # Make sure event properties are identical to serialiableEvent.
+      #
+      # Specific values (such as .which in KeyboardEvent) cannot be set via
+      # the constructor of the event.
+      #
+      # References:
+      # http://stackoverflow.com/questions/10455626/keydown-simulation-in-chrome-fires-normally-but-not-the-correct-key
+      # https://gist.github.com/termi/4654819
+      evt = new win[@_constructor-name] @type, @
+      for own key, value of @ when key not in <[_constructorName _inputValue target]> and evt[key] isnt value
+        try
+          delete evt[key]
+          Object.define-property evt, key, writable: true, value: value
+        catch e
+          # Some properties is read-only
+
       target-elem.dispatch-event evt
 
 
@@ -55,25 +76,40 @@ class SerializableEvent
     @type = \WAIT
     @timeout = Date.now! - timestamp
 
-  _setup-dom-event: (evt, event-window) !->
-    for property, value of evt when is-relevant(property, value)
-      @[property] = if value instanceof event-window.Element
-        generate-x-path value
-      else
-        value
+  _setup-dom-event: (evt) !->
+    target = evt.target
+
+    if target.node-type is Node.DOCUMENT_NODE
+      event-window = target.default-view
+    else if target.constructor.name is \Window
+      event-window = target
+    else
+      event-window = target.owner-document.default-view
+
+    for property, value of evt when is-relevant(property, value, event-window)
+      @[property] = value
+
+    @target = generate-x-path target
+    if evt.type is \input
+      @_input-value = target.value
 
   _recover-from-json: (evt) !->
     @ <<< evt
 
-  function is-dom-event (evt)
-    !evt.constructor-name
+  get-input-value: ->
+    @_input-value
 
-  function is-relevant prop, value
+  function is-dom-event (evt)
+    !evt._constructor-name
+
+  function is-relevant prop, value, event-window
     # Irrelevant event properties:
     #
     # view: a window object, but not necessarily the window object where the event is triggered
     # path: not sure what it is, just a NodeList
     #
-    not (typeof value is \function || value is undefined || prop in <[view path]> )
+    not (typeof value is \function || value instanceof event-window.Element ||
+         value is event-window || value is event-window.document ||
+         value is undefined || prop in <[view path]> )
 
 module.exports = SerializableEvent

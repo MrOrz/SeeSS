@@ -7,7 +7,7 @@ require! {
 
 # Stored mouse event created by browser natively
 #
-var mouse-event
+var mouse-event, input-event
 
 # The iframe that mouse-event happened in
 #
@@ -20,15 +20,14 @@ before (cb) ->
   #
   iframe.onload = ->
     iframe.onload = null
-    iframe-doc := iframe.content-window.document
+    iframe-doc := iframe.content-document
 
-    iframe-doc.write '<div id="click-target">SerializableEvent click target</div>'
+    iframe-doc.write '<div id="click-target">SerializableEvent click target</div><input type="text" id="input-target" value="test">'
     iframe-doc.close!
 
     # The manually-built event that we use to trigger mouse event
     #
-    evt = new MouseEvent \click, do
-      view: window
+    manual-click-event = new MouseEvent \click, do
       bubbles: true
       cancelable: true
       which: 1
@@ -36,20 +35,31 @@ before (cb) ->
       clientX: 2
       clientY: 3
 
+    manual-input-event = new Event \input, do
+      bubbles: true
+      cancelable: true
+
     # Fetch #click-target, add click handler and trigger a real click event.
     #
     click-target = iframe-doc.get-element-by-id \click-target
+    input-target = iframe-doc.get-element-by-id \input-target
 
-    listener = (e) ->
-      # Capture the real-world click event.
-      #
-      click-target.remove-event-listener \click, listener
+    # Capture the real-world events.
+    #
+    click-listener = (e) ->
+      click-target.remove-event-listener \click, click-listener
       mouse-event := e
+
+    input-listener = (e) ->
+      input-target.remove-event-listener \input, input-listener
+      input-event := e
       cb!
 
-    click-target.add-event-listener \click, listener
+    click-target.add-event-listener \click, click-listener
+    input-target.add-event-listener \input, input-listener
 
-    click-target.dispatch-event evt
+    click-target.dispatch-event manual-click-event
+    input-target.dispatch-event manual-input-event
 
   document.body.insert-before iframe, null
 
@@ -57,12 +67,12 @@ before (cb) ->
 describe '#constructor', (...) !->
 
   it 'is serializable', ->
-    sevt = new SerializableEvent mouse-event, iframe.content-window
+    sevt = new SerializableEvent mouse-event
 
     expect JSON.stringify(sevt) .to.be.a \string
 
   it 'recovers from unserialization', ->
-    sevt = new SerializableEvent mouse-event, iframe.content-window
+    sevt = new SerializableEvent mouse-event
 
     deserialized = JSON.parse JSON.stringify sevt
 
@@ -71,7 +81,7 @@ describe '#constructor', (...) !->
     expect recovered-sevt .to.eql sevt
 
   it 'converts event target to correct XPath', ->
-    sevt = new SerializableEvent mouse-event, iframe.content-window
+    sevt = new SerializableEvent mouse-event
     recovered-sevt = new SerializableEvent JSON.parse JSON.stringify sevt
     recovered-target = iframe.content-window.document `query-x-path` recovered-sevt.target
 
@@ -83,11 +93,46 @@ describe '#constructor', (...) !->
     expect sevt.type .to.be \WAIT
     expect sevt.timeout .to.be.less-than 5ms # 5ms should be long enough
 
+
+  it 'can serialize events dispatched to document element', (cb) ->
+    document-event-handler = (evt) ->
+      return if evt.target isnt iframe-doc
+
+      iframe-doc.remove-event-listener \click, document-event-handler
+      sevt = new SerializableEvent evt
+
+      expect JSON.stringify(sevt) .to.be.a \string
+
+      cb!
+
+    iframe-doc.add-event-listener \click, document-event-handler
+
+    # Clone mouse-event so that mouse-event.target don't get changed by this test
+    mouse-event-clone = new MouseEvent \click, mouse-event
+    iframe-doc.dispatch-event mouse-event-clone
+
+  it 'serializes events dispatched to window', (cb) ->
+    window-event-handler = (evt) ->
+      return if evt.target isnt iframe.content-window
+
+      iframe.content-window.remove-event-listener \click, window-event-handler
+      sevt = new SerializableEvent evt
+
+      expect JSON.stringify(sevt) .to.be.a \string
+
+      cb!
+
+    iframe.content-window.add-event-listener \click, window-event-handler
+
+    # Clone mouse-event so that mouse-event.target don't get changed by this test
+    mouse-event-clone = new MouseEvent \click, mouse-event
+    iframe.content-window.dispatch-event mouse-event-clone
+
 describe '#dispatch-in-window', (...) !->
 
   it 'dispatches DOM events', ->
 
-    sevt = new SerializableEvent mouse-event, iframe.content-window
+    sevt = new SerializableEvent mouse-event
     spy = sinon.spy!
 
     target = iframe-doc.get-element-by-id \click-target
@@ -100,7 +145,7 @@ describe '#dispatch-in-window', (...) !->
   it 'dispatches wait events'
 
   it 'rejects when event target not found', ->
-    sevt = new SerializableEvent mouse-event, iframe.content-window
+    sevt = new SerializableEvent mouse-event
 
     resolve-spy = sinon.spy!
     reject-spy = sinon.spy!
@@ -114,3 +159,14 @@ describe '#dispatch-in-window', (...) !->
       expect resolve-spy .to.be.not-called!
       expect reject-spy .to.be.called-once!
 
+  it 'serializes and dispatches input events along with input content', ->
+    input-target = iframe.content-document.get-element-by-id \input-target
+
+    sevt = new SerializableEvent input-event
+
+    # Unset the input-target's value
+    input-target.value = ''
+
+    sevt.dispatch-in-window iframe.content-window
+    .then !->
+      expect input-target.value .to.be \test

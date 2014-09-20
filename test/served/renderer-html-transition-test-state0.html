@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="/base/src/livescript/rendererScript.ls" unsafe></script>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+    body{
+      margin: 0
+    }
+    .target {
+      width: 100px;
+      height: 100px;
+      background: #000;
+      transform: translate(0, 0);
+      transition: transform 10s ease;
+    }
+    .is-done {
+      transform: translate(200px, 0);
+    }
+  </style>
+</head>
+<body>
+  <button>Move target</button>
+  <div class="target"></div>
+
+  <script>
+    document.querySelector('button').addEventListener('click', function(){
+      document.querySelector('.target').classList.add('is-done');
+    });
+  </script>
+</body>
+</html>
+
+

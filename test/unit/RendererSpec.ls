@@ -270,8 +270,8 @@ describe '#applyHTML', (...) !->
     <- renderer.render document.body .then
 
     edges =
-      new RenderGraph.Edge null, new SerializableEvent {constructorName: 'MouseEvent', target: '/html/body/ul/*[1]', type: 'click', which: 1, bubbles: true, cancelable: true}
-      new RenderGraph.Edge null, new SerializableEvent {constructorName: 'MouseEvent', target: '/html/body/ul/*[2]', type: 'click', which: 1, bubbles: true, cancelable: true}
+      new RenderGraph.Edge null, [new SerializableEvent {_constructor-name: \MouseEvent, target: '/html/body/ul/*[1]', type: \click, which: 1, bubbles: true, cancelable: true}]
+      new RenderGraph.Edge null, [new SerializableEvent {_constructor-name: \MouseEvent, target: '/html/body/ul/*[2]', type: \click, which: 1, bubbles: true, cancelable: true}]
 
     # Use http://127.0.0.1 instead of http://localhost to simulate cross-origin scenario
     #
@@ -279,7 +279,122 @@ describe '#applyHTML', (...) !->
 
     expect page-diff .to.be null
 
+  it 'takes correct snapshots even if there are transitions', ->
+    renderer = new Renderer (new PageData html: __html__['test/fixtures/renderer-html-transition-test-state1.html'])
+
+    <- renderer.render document.body .then
+
+    edges =
+      new RenderGraph.Edge null, [new SerializableEvent {_constructor-name: \MouseEvent, target: '/html/body/*[1]', type: \click, which: 1, bubbles: true, cancelable: true}]
+      ...
+
+    ({page-diff, mapping}) <- renderer.applyHTML "http://127.0.0.1:#{location.port}/base/test/served/renderer-html-transition-test-state0.html", Promise.resolve(edges) .then
+
+    expect page-diff .to.be null
+
+  it 'executes event stream of consecutive input events' ->
+    events =
+      * _constructor-name: \MouseEvent
+        type: \click
+        which: 1
+      * _constructor-name: \FocusEvent
+        type: \focus
+      * _constructor-name: \KeyboardEvent # shift
+        type: \keydown
+        which: 16
+        shift-key: true
+        key-code: 16
+      * _constructor-name: \KeyboardEvent # X
+        type: \keydown
+        which: 88
+        key-code: 88
+        shift-key: true
+      * _constructor-name: \KeyboardEvent # X
+        type: \keypress
+        which: 88
+        shift-key: true
+        key-code: 88
+      * _constructor-name: \Event # X
+        type: \input
+        _input-value: \X
+      * _constructor-name: \KeyboardEvent # X
+        type: \keyup
+        which: 88
+        shift-key: true
+        key-code: 88
+      * _constructor-name: \KeyboardEvent # D
+        type: \keydown
+        which: 68
+        shift-key: true
+        key-code: 68
+      * _constructor-name: \KeyboardEvent # D
+        type: \keypress
+        which: 68
+        shift-key: true
+        key-code: 68
+      * _constructor-name: \Event # D
+        type: \input
+        _input-value: \XD
+      * _constructor-name: \KeyboardEvent # D
+        type: \keyup
+        which: 68
+        shift-key: true
+        key-code: 68
+      * _constructor-name: \KeyboardEvent # shift
+        type: \keyup
+        which: 16
+        shift-key: false
+        key-code: 16
+      * _constructor-name: \KeyboardEvent # Enter
+        type: \keydown
+        which: 13
+        key-code: 13
+      * _constructor-name: \KeyboardEvent # Press
+        type: \keypress
+        which: 13
+        key-code: 13
+      * _constructor-name: \KeyboardEvent # Enter
+        type: \keyup
+        which: 13
+        key-code: 13
+
+    serializable-events = for evt in events
+      evt <<< {+cancelable, +bubbles, target: '/html/body/*[1]'}
+      new SerializableEvent evt
+
+    renderer = new Renderer (new PageData html: __html__['test/fixtures/renderer-html-input-test-state1.html'])
+
+    <- renderer.render document.body .then
+
+    edges =
+      new RenderGraph.Edge null, serializable-events
+      ...
+
+    ({page-diff, mapping}) <- renderer.applyHTML "http://127.0.0.1:#{location.port}/base/test/served/renderer-html-input-test-state0.html", Promise.resolve(edges) .then
+
+    expect page-diff .to.be null
+
+  it 'handles cross-origin CSS', ->
+
+    # Assume a renderer rendering a page that is 2 clicks away from source.
+    #
+    # renderer-html-click-test-src --- 2 clicks --> renderer-html-click-test-state1
+    #
+    renderer = new Renderer (new PageData html: __html__['test/fixtures/renderer-html-cross-origin.html'], url: "http://127.0.0.1:#{location.port}")
+
+    <- renderer.render document.body .then
+
+    # Use http://127.0.0.1 instead of http://localhost to simulate cross-origin scenario
+    #
+    ({page-diff, mapping}) <- renderer.applyHTML "http://127.0.0.1:#{location.port}/base/test/served/renderer-html-cross-origin.html", Promise.resolve([]) .then
+
+    expect page-diff .to.be null
+
+
+
+
   it 'rejects promise when events could not be replayed'
+
 
   function feed-test-file-to-source-renderer testfile
     renderer = new Renderer(new PageData html: __html__["test/fixtures/#{testfile}-before.html"])

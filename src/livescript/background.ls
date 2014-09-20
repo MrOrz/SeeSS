@@ -5,9 +5,13 @@ require! {
   './components/Message.ls'
   './components/TabManager.ls'
   './components/Constants.ls'
+  './components/ReportManager.ls'
+  Promise: bluebird
 }
 
 const TAG = "[Background]"
+
+ReportManager.open!
 
 chrome.browser-action.on-clicked.add-listener (tab) ->
   if TabManager.get-state(tab.id) is on
@@ -44,9 +48,8 @@ chrome.runtime.on-message.add-listener ({type, data}, sender, send-response) ->
 
     # Compose edge object upon receiving edge data
     #
-    var edge
-    if data.edge
-      edge = new RenderGraph.Edge TabManager.get-renderer(sender-tab-id), data.event
+    if data.events.length > 0
+      edge = new RenderGraph.Edge TabManager.get-renderer(sender-tab-id), data.events
 
     # Add the page-data and edge to the graph, then update the current renderer of the tab
     #
@@ -70,7 +73,7 @@ chrome.tabs.on-updated.add-listener (tab-id, change-info) ->
 # LiveReload Connections & Refresh Handling
 # -----------------------------------------
 
-var live-reload-client
+var live-reload-client, report-tab-id
 
 (...) <- Object.observe graph.renderers, _, <[add delete]>
 
@@ -86,8 +89,16 @@ if renderer-count > 0 and !live-reload-client
   live-reload-client := new LiveReloadClient do
     on-reload: (change) !->
       console.log TAG, "Change detected", change
-      results <- Promise.all graph.refresh(change.path) .then
-      console.log TAG, "SeeSS results", results.filter -> it isnt null
+
+      ReportManager.start graph.renderers.length
+
+      Promise.map (graph.refresh change.path), (page-diff) ->
+        ReportManager.send page-diff
+        return page-diff
+      .then (results) ->
+        console.log TAG, "SeeSS results", results
+        ReportManager.end!
+
     on-connect: !->
       chrome.browser-action.set-badge-background-color color: '#090'
     on-disconnect: !->

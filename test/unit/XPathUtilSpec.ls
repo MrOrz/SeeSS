@@ -72,3 +72,11 @@ describe '#generate-x-path', (...) !->
 
     expect x-path .to.be '/html/body/*[1]/*[1]'
     expect (htmldoc `query-x-path` x-path) .to.be add-button
+
+  it 'handles document node', (...) !->
+    x-path = generate-x-path document
+    expect (document `query-x-path` x-path) .to.be document
+
+  it 'handles window element', (...) !->
+    x-path = generate-x-path window
+    expect (document `query-x-path` x-path) .to.be window

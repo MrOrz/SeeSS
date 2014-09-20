@@ -2,22 +2,24 @@ require! {
   page-diffs: 'json!../../test/fixtures/pagediffs-bootstrap.json'
 }
 
-window.chrome =
-  mock: yes
+unless location.href.match /^chrome-extension:/
 
-  runtime:
-    on-message:
-      add-listener: (cb) ->
-        cb type: \PROCESS_START
+  window.chrome =
+    mock: yes
 
-        function consume
-          cb do
-            type: \PAGE_DIFF
-            data: page-diffs.shift!
+    runtime:
+      on-message:
+        add-listener: (cb) ->
+          cb type: \PROCESS_START
 
-          if page-diffs.length > 0
-            set-timeout consume, 500
-          else
-            cb type: \PROCESS_END
+          function consume
+            cb do
+              type: \PAGE_DIFF
+              data: page-diffs.shift!
 
-        set-timeout consume, 1000
+            if page-diffs.length > 0
+              set-timeout consume, 500
+            else
+              cb type: \PROCESS_END
+
+          set-timeout consume, 1000
