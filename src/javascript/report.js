@@ -63,7 +63,8 @@ var DiffList = React.createClass({
             boxTop: diff.boundingBox.top,
             dom: pageDiff.dom(),
             url: pageDiff.url,
-            doctype: pageDiff.doctype
+            doctype: pageDiff.doctype,
+            id: i
           };
 
           newData.push(diffPack);
@@ -86,7 +87,7 @@ var DiffList = React.createClass({
                       boxWidth={diff.boxWidth} boxHeight={diff.boxHeight}
                       boxLeft={diff.boxLeft} boxTop={diff.boxTop}
                       dom={diff.dom} url={diff.url}
-                      doctype={diff.doctype}></Diff>);
+                      doctype={diff.doctype} diffId={diff.id}></Diff>);
 
     });
 
@@ -126,13 +127,16 @@ var Diff = React.createClass({
       scale = 'scale(' + scaleMin + ',' + scaleMin + ')';
     }
 
-    translate = 'translate(' + this.props.boxLeft*(-1) + 'px,' + this.props.boxTop*(-1) + 'px)';
-    origin = this.props.domWidth/2 + 'px ' + this.props.domHeight/2 + 'px';
+    var originLeft = this.props.boxLeft + this.props.boxWidth/2,
+        originTop  = this.props.boxTop + this.props.boxHeight/2
+
+    translate = 'translate(' + (cropSize/2-originLeft) + 'px,' + (cropSize/2-originTop) + 'px)';
+    origin = originLeft + 'px ' + originTop + 'px';
 
     var iframeStyle= {
       width: this.props.domWidth,
       height: this.props.domHeight,
-      transform: scale + ' ' +translate,
+      transform: translate + ' ' + scale,
       transformOrigin: origin
     };
 
