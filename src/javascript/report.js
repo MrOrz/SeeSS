@@ -114,10 +114,10 @@ var Diff = React.createClass({
         iframeDoc = iframe.contentDocument,
         styleElem = iframeDoc.createElement('style');
 
-    // Create animated "before" state dummies
+    // Create animated repositioning hint
     //
     IframeUtil.waitForAssets(iframe.contentDocument).then(function(){
-      var divElem,
+      var hintElem,
           currentRect,
           beforeRulesData, beforeRules, afterRules,
           elem = iframeDoc.querySelector('['+SerializablePageDiff.DIFF_ID_ATTR+'~="'+diffId+'"]');
@@ -126,8 +126,8 @@ var Diff = React.createClass({
         if(diff.rect){
           currentRect = elem.getBoundingClientRect();
 
-          divElem = iframeDoc.createElement('div');
-          divElem.id = "SEESS_POSITION_ANIMATE";
+          hintElem = iframeDoc.createElement('div');
+          hintElem.id = "SEESS_POSITION_ANIMATE";
 
 
           beforeRuleData = {
@@ -154,12 +154,12 @@ var Diff = React.createClass({
               "z-index: 99999; box-sizing: border-box; position: fixed; " +
               "border: 1px dashed red; background:rgba(255,0,0,0.1);" +
               "transform-origin: left top;" +
-              "-webkit-animation: SEESS_POSITION 3s ease-in-out 0s infinite;" +
+              "-webkit-animation: SEESS_POSITION_" + diffId + " 3s ease-in-out 0s infinite;" +
               "will-change: transform; " + beforeRules +
             "}\n" +
-            "@-webkit-keyframes SEESS_POSITION {to {"+afterRules+"}}";
+            "@-webkit-keyframes SEESS_POSITION_" + diffId + " {to {"+afterRules+"}}";
 
-          iframeDoc.body.appendChild(divElem);
+          iframeDoc.body.appendChild(hintElem);
         }
         iframeDoc.body.appendChild(styleElem);
       }
