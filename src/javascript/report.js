@@ -42,6 +42,9 @@ var DiffList = React.createClass({
 
         // The background script passes a SerializablePageDiff instance here.
         case "PAGE_DIFF":
+        if(message.data === null){
+          return;
+        }
         pageDiff = new SerializablePageDiff(message.data);
         console.log("<Message> Data arrived from background script", pageDiff);
 
