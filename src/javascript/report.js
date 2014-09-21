@@ -30,6 +30,7 @@ var DiffList = React.createClass({
         //
         case "PROCESS_START":
         console.log("<Message> Background script processing started");
+        that.setState({data: []});
         break;
 
         // The background script has done all processing.
