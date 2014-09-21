@@ -210,6 +210,9 @@ class Renderer
       # Register @reloader on the new iframe content window
       @reloader = new Reloader @iframe.content-window, {log: -> , error: ->}, Timer
 
+      # Hack: we don't call @reloader.reload, must provide set its options explicitly.
+      @reloader.options = {}
+
       # Return SerializablePageDiff instance or null
       if diffs.length is 0
         return {
