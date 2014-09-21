@@ -121,12 +121,6 @@ var DiffList = React.createClass({
 
         var newData = that.state.data;
 
-        /*after rendering
-            (window.getComputedStyle(id,css) Element.getBoundingClientRect)
-        */
-        /*
-        diff = pageDiff.diffs[id]
-        target = pageDiff.queryDiffId(id);*/
         var diff, i;
         for(i = 0; i < pageDiff.diffs.length; i+=1){
           diff = pageDiff.diffs[i];
@@ -136,15 +130,15 @@ var DiffList = React.createClass({
           var diffPack={
             domWidth: pageDiff.width,
             domHeight: pageDiff.height,
-            diff: diff,
+            diffs: [diff],
+            ids: [i],
             boxWidth: diff.boundingBox.right - diff.boundingBox.left,
             boxHeight: diff.boundingBox.bottom - diff.boundingBox.top,
             boxLeft: diff.boundingBox.left,
             boxTop: diff.boundingBox.top,
             dom: pageDiff.dom(),
             url: pageDiff.url,
-            doctype: pageDiff.doctype,
-            id: i
+            doctype: pageDiff.doctype
           };
 
           newData.push(diffPack);
@@ -167,8 +161,8 @@ var DiffList = React.createClass({
                       boxWidth={diff.boxWidth} boxHeight={diff.boxHeight}
                       boxLeft={diff.boxLeft} boxTop={diff.boxTop}
                       dom={diff.dom} url={diff.url}
-                      doctype={diff.doctype} diffId={diff.id}
-                      diff={diff.diff}></Diff>);
+                      doctype={diff.doctype} diffIds={diff.ids}
+                      diffs={diff.diffs}></Diff>);
 
     });
 
@@ -184,62 +178,64 @@ var DiffList = React.createClass({
 var Diff = React.createClass({
   componentDidMount: function(){
     var iframe = this.refs.iframeElem.getDOMNode(),
-        diff = this.props.diff,
-        diffId = this.props.diffId,
+        diffs = this.props.diffs,
+        diffIds = this.props.diffIds,
         iframeDoc = iframe.contentDocument,
         styleElem = iframeDoc.createElement('style');
 
     // Create animated repositioning hint
     //
     IframeUtil.waitForAssets(iframe.contentDocument).then(function(){
-      var hintElem,
-          currentRect,
-          beforeRulesData, beforeRules, afterRules,
-          elem = iframeDoc.querySelector('['+SerializablePageDiff.DIFF_ID_ATTR+'~="'+diffId+'"]');
+      diffs.forEach(function(diff, i){
+        var diffId = diffIds[i],
+            hintElem,
+            currentRect,
+            beforeRulesData, beforeRules, afterRules,
+            elem = iframeDoc.querySelector('['+SerializablePageDiff.DIFF_ID_ATTR+'~="'+diffId+'"]');
 
-      if(diff.type === ElementDifference.TYPE_MOD){
-        if(diff.rect){
-          currentRect = elem.getBoundingClientRect();
+        if(diff.type === ElementDifference.TYPE_MOD){
+          if(diff.rect){
+            currentRect = elem.getBoundingClientRect();
 
-          hintElem = iframeDoc.createElement('div');
-          hintElem.id = "SEESS_POSITION_ANIMATE";
-
-
-          beforeRuleData = {
-            left: (diff.rect.left && diff.rect.left.before) || currentRect.left,
-            top: (diff.rect.top && diff.rect.top.before) || currentRect.top,
-            width: (diff.rect.width && diff.rect.width.before) || currentRect.width,
-            height: (diff.rect.height && diff.rect.height.before) || currentRect.height
-          };
-
-          beforeRules =
-            "left: " + beforeRuleData.left + 'px;' +
-            "top: " + beforeRuleData.top + 'px;' +
-            "width: " + beforeRuleData.width + 'px;' +
-            "height: " + beforeRuleData.height + 'px;';
-
-          afterRules =
-            "transform: translate(" + (currentRect.left-beforeRuleData.left) + 'px,' +
-                                    (currentRect.top-beforeRuleData.top) + 'px) ' +
-                       "scale(" + (currentRect.width / beforeRuleData.width) + ',' +
-                                  (currentRect.height / beforeRuleData.height) + ');';
+            hintElem = iframeDoc.createElement('div');
+            hintElem.id = "SEESS_POSITION_ANIMATE";
 
 
-          styleElem.innerHTML += "#SEESS_POSITION_ANIMATE{" +
-              "z-index: 99999; box-sizing: border-box; position: fixed; " +
-              "border: 1px dashed red; background:rgba(255,0,0,0.1);" +
-              "transform-origin: left top;" +
-              "-webkit-animation: SEESS_POSITION_" + diffId + " 3s ease-in-out 0s infinite;" +
-              "will-change: transform; " + beforeRules +
-            "}\n" +
-            "@-webkit-keyframes SEESS_POSITION_" + diffId + " {to {"+afterRules+"}}";
+            beforeRuleData = {
+              left: (diff.rect.left && diff.rect.left.before) || currentRect.left,
+              top: (diff.rect.top && diff.rect.top.before) || currentRect.top,
+              width: (diff.rect.width && diff.rect.width.before) || currentRect.width,
+              height: (diff.rect.height && diff.rect.height.before) || currentRect.height
+            };
 
-          iframeDoc.body.appendChild(hintElem);
+            beforeRules =
+              "left: " + beforeRuleData.left + 'px;' +
+              "top: " + beforeRuleData.top + 'px;' +
+              "width: " + beforeRuleData.width + 'px;' +
+              "height: " + beforeRuleData.height + 'px;';
+
+            afterRules =
+              "transform: translate(" + (currentRect.left-beforeRuleData.left) + 'px,' +
+                                      (currentRect.top-beforeRuleData.top) + 'px) ' +
+                         "scale(" + (currentRect.width / beforeRuleData.width) + ',' +
+                                    (currentRect.height / beforeRuleData.height) + ');';
+
+
+            styleElem.innerHTML += "#SEESS_POSITION_ANIMATE{" +
+                "z-index: 99999; box-sizing: border-box; position: fixed; " +
+                "border: 1px dashed red; background:rgba(255,0,0,0.1);" +
+                "transform-origin: left top;" +
+                "-webkit-animation: SEESS_POSITION_" + diffId + " 3s ease-in-out 0s infinite;" +
+                "will-change: transform; " + beforeRules +
+              "}\n" +
+              "@-webkit-keyframes SEESS_POSITION_" + diffId + " {to {"+afterRules+"}}";
+
+            iframeDoc.body.appendChild(hintElem);
+          }
         }
-        iframeDoc.body.appendChild(styleElem);
-      }
+      });
+      iframeDoc.body.appendChild(styleElem);
     });
-
     IframeUtil.setDocument(iframeDoc, this.props.dom.cloneNode(true), this.props.doctype);
   },
   render: function(){
