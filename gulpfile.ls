@@ -28,7 +28,7 @@ gulp.task \webpack, (cb)->
     entry:
       content-script: './src/livescript/contentScript.ls'
       background: './src/livescript/background.ls'
-      chrome-mock: './src/livescript/chromeMock.ls'
+      page-diff-data-mock: './src/livescript/pageDiffDataMock.ls'
       report: './src/javascript/report.js'
       renderer-script: './src/livescript/rendererScript.ls'
       seess-mock: './src/javascript/seessMock.js'
