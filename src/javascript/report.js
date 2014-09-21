@@ -14,6 +14,78 @@ window.React = React;
 // Debug
 window.pageDiffs = [];
 
+var ReportApp = React.createClass({
+  render: function(){
+    return (
+      <div>
+        <ReportHeader />
+        <DiffList />
+      </div>
+    );
+  }
+});
+
+var ReportHeader = React.createClass({
+  getInitialState: function(){
+    return {
+      isInitial: true,
+      isLoading: false,
+      total: 0,
+      done: 0
+    };
+  },
+  componentDidMount: function(){
+    // Message handling
+    var that = this;
+    chrome.runtime.onMessage.addListener(function(message){
+      switch(message.type){
+      case "PROCESS_START":
+        that.setState({
+          isLoading: true,
+          isInitial: false,
+          total: message.data.total,
+          done: 0,
+          startTimestamp: Date.now()
+        });
+        break;
+
+      case "PROCESS_END":
+        that.setState({
+          isLoading: false,
+          processingTime: (Date.now() - that.state.startTimestamp) / 1000
+        });
+        break;
+
+      case "PAGE_DIFF":
+        that.setState({
+          done: that.state.done + 1
+        });
+      }
+    });
+  },
+  render: function(){
+    if(this.state.isInitial){
+      return (
+        <header>
+          <h1>SeeSS</h1>
+          <h3 id="loading">Start recording some interaction! :)</h3>
+        </header>
+      );
+    }else{
+      if(this.state.isLoading){
+        return (
+          <h3 id="loading">Loading... ({this.state.done} / {this.state.total})</h3>
+        );
+      }else{
+        return (
+          <h3 id="loading">Done in {this.state.processingTime} seconds.({this.state.done}/{this.state.total})</h3>
+        );
+      }
+    }
+  }
+});
+
+
 var DiffList = React.createClass({
 
   getInitialState: function(){
@@ -37,7 +109,6 @@ var DiffList = React.createClass({
         //
         case "PROCESS_END":
         console.log("<Message> Background script processing end");
-        document.getElementById('loading').style.display = 'none';
         break;
 
         // The background script passes a SerializablePageDiff instance here.
@@ -219,9 +290,7 @@ var Diff = React.createClass({
 });
 
 
-React.renderComponent(<DiffList />,
-document.getElementById('body'));
-
+React.renderComponent(<ReportApp />, document.getElementById('body'));
 
 
 // For debug.
