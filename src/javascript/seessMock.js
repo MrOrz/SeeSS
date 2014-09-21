@@ -67,9 +67,27 @@ Math.random = (function() {
 
 /*
   Mock requestAnimationFrame so that the callbacks can get fired even when the page
-  is rendered inside an iframe in the background page
+  is rendered inside an iframe in the background page.
+
+  From 2048's polyfill.
 */
 
-window.requestAnimationFrame = window.webkitRequestAnimationFrame = function(callback){
-  setTimeout(callback, 0);
+(function(){
+
+var lastTime = 0;
+window.requestAnimationFrame = function (callback) {
+  var currTime = new Date().getTime();
+  var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+  var id = window.setTimeout(function () {
+    callback(currTime + timeToCall);
+  },
+  timeToCall);
+  lastTime = currTime + timeToCall;
+  return id;
 };
+
+window.cancelAnimationFrame = function (id) {
+  clearTimeout(id);
+};
+
+}());
