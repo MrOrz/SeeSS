@@ -130,6 +130,14 @@ var DiffList = React.createClass({
           pageDiff.diffs[i].id = i;
         }
 
+        // Generate CSS transition for computed styles
+        //
+        var dom = pageDiff.dom(),
+            styleElem = dom.createElement('style');
+
+        styleElem.innerHTML = generateCSSFromComputed(pageDiff.diffs);
+        dom.head.appendChild(styleElem);
+
         // Merge the overlapping bounding boxes
         //
         pageDiff.diffs.sort(function(di, dj){
@@ -162,7 +170,7 @@ var DiffList = React.createClass({
             domWidth: pageDiff.width,
             domHeight: pageDiff.height,
             mergedDiff: mergedDiffs[i],
-            dom: pageDiff.dom(),
+            dom: dom,
             url: pageDiff.url,
             doctype: pageDiff.doctype
           });
@@ -216,12 +224,13 @@ var Diff = React.createClass({
     var that = this,
         iframe = this.refs.iframeElem.getDOMNode(),
         diffs = this.props.diffs,
+        iframeWin = iframe.contentWindow,
         iframeDoc = iframe.contentDocument,
         styleElem = iframeDoc.createElement('style');
 
     IframeUtil.setDocument(iframeDoc, this.props.dom.cloneNode(true), this.props.doctype);
 
-    IframeUtil.waitForAssets(iframe.contentDocument).then(function(){
+    IframeUtil.waitForAssets(iframeDoc).then(function(){
       // Create animated repositioning hint
       //
       diffs.forEach(function(diff){
@@ -229,7 +238,8 @@ var Diff = React.createClass({
             hintElem,
             currentRect,
             beforeRulesData, beforeRules, afterRules,
-            elem = iframeDoc.querySelector('['+SerializablePageDiff.DIFF_ID_ATTR+'~="'+diffId+'"]');
+            elemSelector = '['+SerializablePageDiff.DIFF_ID_ATTR+'~="'+diffId+'"]',
+            elem = iframeDoc.querySelector(elemSelector);
 
         if(diff.type === ElementDifference.TYPE_MOD){
           if(diff.rect){
@@ -279,7 +289,7 @@ var Diff = React.createClass({
       // be done after that.
       //
       console.log('Scrolling to ', that.state.iframeScrollNeeded);
-      iframe.contentWindow.scrollTo(0, that.state.iframeScrollNeeded);
+      iframeWin.scrollTo(0, that.state.iframeScrollNeeded);
     });
   },
   render: function(){
@@ -462,3 +472,35 @@ MergedDiff.prototype.isOverlapping = function(diff){
 
   return true;
 };
+
+function generateCSSFromComputed(diffs) {
+  var i, j, prop, changedProperties, css = "",
+      beforeRules, afterRules, diff, diffId, elemSelector;
+
+  for(i=0; i<diffs.length; i+=1){
+    diff = diffs[i];
+    diffId = diff.id;
+    elemSelector = '['+SerializablePageDiff.DIFF_ID_ATTR+'~="'+diffId+'"]';
+
+    if(!diff.computed){continue;}
+
+    changedProperties = Object.keys(diff.computed);
+
+    beforeRules = ""; afterRules = "";
+    for(j=0; j<changedProperties.length; j+=1){
+      prop = changedProperties[j];
+      beforeRules += prop + ":" + diff.computed[prop].before + ";";
+      afterRules += prop + ":" + diff.computed[prop].after + ";";
+    }
+
+    css += elemSelector + "{\n" +
+      "-webkit-animation: SEESS_COMPUTED_" + diffId + " 3s ease-in-out 0s infinite !important;\n" +
+      "will-change: " + changedProperties.join(',') + ";\n" +
+    "}\n" +
+    "@-webkit-keyframes SEESS_COMPUTED_" + diffId + " { \n" +
+      "from {" + beforeRules + "}\n" +
+      "to {" + afterRules + "}\n" +
+    "}";
+  }
+  return css;
+}
