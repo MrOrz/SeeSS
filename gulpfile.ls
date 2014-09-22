@@ -31,6 +31,7 @@ gulp.task \webpack, (cb)->
       page-diff-data-mock: './src/livescript/pageDiffDataMock.ls'
       report: './src/javascript/report.js'
       renderer-script: './src/livescript/rendererScript.ls'
+      injected-renderer-script: './src/livescript/injectedRendererScript.ls'
       seess-mock: './src/javascript/seessMock.js'
     output:
       path: './build'

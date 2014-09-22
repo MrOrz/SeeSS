@@ -28,6 +28,7 @@ module.exports = function(config) {
 
       // Content scripts
       {pattern: 'src/livescript/rendererScript.ls', watched: true, included: false, served: true},
+      {pattern: 'src/livescript/injectedRendererScript.ls', watched: true, included: false, served: true},
 
       // Filename placeholders
       {pattern: 'test/fixtures/PLACEHOLDER',  watched: false, included: false, served: true}

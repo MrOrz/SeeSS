@@ -58,13 +58,14 @@ class SerializableEvent
       # References:
       # http://stackoverflow.com/questions/10455626/keydown-simulation-in-chrome-fires-normally-but-not-the-correct-key
       # https://gist.github.com/termi/4654819
+      # http://jsbin.com/pubos/3/edit
       evt = new win[@_constructor-name] @type, @
       for own key, value of @ when key not in <[_constructorName _inputValue target]> and evt[key] isnt value
         try
           delete evt[key]
           Object.define-property evt, key, writable: true, value: value
         catch e
-          # Some properties is read-only
+          # Some properties are read-only
 
       target-elem.dispatch-event evt
 
