@@ -132,11 +132,8 @@ var DiffList = React.createClass({
 
         // Generate CSS transition for computed styles
         //
-        var dom = pageDiff.dom(),
-            styleElem = dom.createElement('style');
 
-        styleElem.innerHTML = generateCSSFromComputed(pageDiff.diffs);
-        dom.head.appendChild(styleElem);
+        var animatedCSS = generateAnimatedComputed(pageDiff.diffs);
 
         // Merge the overlapping bounding boxes
         //
@@ -170,9 +167,10 @@ var DiffList = React.createClass({
             domWidth: pageDiff.width,
             domHeight: pageDiff.height,
             mergedDiff: mergedDiffs[i],
-            dom: dom,
+            dom: pageDiff.dom(),
             url: pageDiff.url,
-            doctype: pageDiff.doctype
+            doctype: pageDiff.doctype,
+            css: animatedCSS
           });
         }
 
@@ -191,7 +189,7 @@ var DiffList = React.createClass({
                     boxWidth={boxWidth} boxHeight={boxHeight}
                     boxLeft={packed.mergedDiff.box.left} boxTop={packed.mergedDiff.box.top}
                     dom={packed.dom} url={packed.url}
-                    doctype={packed.doctype}
+                    doctype={packed.doctype} css={packed.css}
                     diffs={packed.mergedDiff.diffs}></Diff>);
     });
 
@@ -227,6 +225,8 @@ var Diff = React.createClass({
         iframeWin = iframe.contentWindow,
         iframeDoc = iframe.contentDocument,
         styleElem = iframeDoc.createElement('style');
+
+    styleElem.innerHTML += this.props.css;
 
     IframeUtil.setDocument(iframeDoc, this.props.dom.cloneNode(true), this.props.doctype);
 
@@ -473,7 +473,7 @@ MergedDiff.prototype.isOverlapping = function(diff){
   return true;
 };
 
-function generateCSSFromComputed(diffs) {
+function generateAnimatedComputed(diffs) {
   var i, j, k, prop, diffProp, changedProperties, css = "",
       beforeRules, afterRules, diff, diffId, elemSelector,
       diffProps = ['computed', 'beforeElem', 'afterElem'];
@@ -487,7 +487,7 @@ function generateCSSFromComputed(diffs) {
       diffProp = diffProps[j];
       if(!diff[diffProp]){continue;}
 
-      // Calculate elemSelecror
+      // Calculate elemSelector
       elemSelector = '['+SerializablePageDiff.DIFF_ID_ATTR+'~="'+diffId+'"]';
       if(diffProp === 'beforeElem'){
         // Pseudo-elem styles
