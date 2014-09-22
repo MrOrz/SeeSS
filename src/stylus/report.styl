@@ -3,6 +3,9 @@
 global-reset()
 reset-html5()
 
+large-box-size = 500px
+small-box-size = 250px
+
 body
 	background-color: #0ead9a
 
@@ -22,8 +25,8 @@ h1
 	margin: 20px
 
 .crop
-	width: 500px
-	height: 500px
+	width: large-box-size
+	height: large-box-size
 	overflow: hidden
 	position: relative
 
@@ -37,7 +40,7 @@ h1
 
 	iframe
 		will-change: transform
-		transition: transform .6s ease
+		transition: transform .3s ease
 
 .difflist
 	margin: 30px
@@ -47,8 +50,8 @@ h1
 
 .diff
 	background-color: rgba(255, 255, 255, 0.5)
-	width: 500px
-	height: 500px
+	width: large-box-size
+	height: large-box-size
 	margin: 40px
 	margin-top: 50px
 	display: inline-block
@@ -64,6 +67,10 @@ h1
 
 // Position the zoomed iframe
 .is-zoomed
+	&.diff
+		padding-top: large-box-size
+		height: 0;
+
 	.crop
 		fixed left 0 top 0
 		right: 0
@@ -78,8 +85,11 @@ h1
 
 @media (max-width: 1280px)
 	.diff, .crop
-		width: 250px
-		height: 250px
+		width: small-box-size
+		height: small-box-size
+
+	.diff.is-zoomed
+		padding-top: small-box-size
 
 #fakecrop
 	display: none
