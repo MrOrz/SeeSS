@@ -11,8 +11,6 @@ console.log('chrome', chrome);
 // Make React Debugging Chrome extension happy
 window.React = React;
 
-// Debug
-window.pageDiffs = [];
 
 var ReportApp = React.createClass({
   render: function(){
@@ -98,21 +96,21 @@ var DiffList = React.createClass({
       var pageDiff;
       switch(message.type){
 
-        // Background script starts processing a CSS or HTML change.
-        //
-        case "PROCESS_START":
+      // Background script starts processing a CSS or HTML change.
+      //
+      case "PROCESS_START":
         console.log("<Message> Background script processing started");
         that.setState({data: []});
         break;
 
-        // The background script has done all processing.
-        //
-        case "PROCESS_END":
+      // The background script has done all processing.
+      //
+      case "PROCESS_END":
         console.log("<Message> Background script processing end");
         break;
 
-        // The background script passes a SerializablePageDiff instance here.
-        case "PAGE_DIFF":
+      // The background script passes a SerializablePageDiff instance here.
+      case "PAGE_DIFF":
         if(message.data === null){
           return;
         }
@@ -122,6 +120,12 @@ var DiffList = React.createClass({
         var newData = that.state.data;
 
         var diff, i;
+        // Write diff id inside diff
+        for(i=0; i<pageDiff.diffs.length; i+=1){
+          pageDiff.diffs[i].id = i;
+        }
+
+
         for(i = 0; i < pageDiff.diffs.length; i+=1){
           diff = pageDiff.diffs[i];
 
@@ -131,7 +135,6 @@ var DiffList = React.createClass({
             domWidth: pageDiff.width,
             domHeight: pageDiff.height,
             diffs: [diff],
-            ids: [i],
             boxWidth: diff.boundingBox.right - diff.boundingBox.left,
             boxHeight: diff.boundingBox.bottom - diff.boundingBox.top,
             boxLeft: diff.boundingBox.left,
@@ -145,11 +148,6 @@ var DiffList = React.createClass({
         }
 
         that.setState({data: newData});
-
-        // For debug.
-        // TODO: Remove when going live!
-        //
-        pageDiffs.push(pageDiff);
       }
     });
   },
@@ -161,7 +159,7 @@ var DiffList = React.createClass({
                       boxWidth={diff.boxWidth} boxHeight={diff.boxHeight}
                       boxLeft={diff.boxLeft} boxTop={diff.boxTop}
                       dom={diff.dom} url={diff.url}
-                      doctype={diff.doctype} diffIds={diff.ids}
+                      doctype={diff.doctype}
                       diffs={diff.diffs}></Diff>);
 
     });
@@ -179,15 +177,14 @@ var Diff = React.createClass({
   componentDidMount: function(){
     var iframe = this.refs.iframeElem.getDOMNode(),
         diffs = this.props.diffs,
-        diffIds = this.props.diffIds,
         iframeDoc = iframe.contentDocument,
         styleElem = iframeDoc.createElement('style');
 
     // Create animated repositioning hint
     //
     IframeUtil.waitForAssets(iframe.contentDocument).then(function(){
-      diffs.forEach(function(diff, i){
-        var diffId = diffIds[i],
+      diffs.forEach(function(diff){
+        var diffId = diff.id,
             hintElem,
             currentRect,
             beforeRulesData, beforeRules, afterRules,
