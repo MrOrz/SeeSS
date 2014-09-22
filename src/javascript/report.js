@@ -474,33 +474,47 @@ MergedDiff.prototype.isOverlapping = function(diff){
 };
 
 function generateCSSFromComputed(diffs) {
-  var i, j, prop, changedProperties, css = "",
-      beforeRules, afterRules, diff, diffId, elemSelector;
+  var i, j, k, prop, diffProp, changedProperties, css = "",
+      beforeRules, afterRules, diff, diffId, elemSelector,
+      diffProps = ['computed', 'beforeElem', 'afterElem'];
 
   for(i=0; i<diffs.length; i+=1){
     diff = diffs[i];
     diffId = diff.id;
-    elemSelector = '['+SerializablePageDiff.DIFF_ID_ATTR+'~="'+diffId+'"]';
 
-    if(!diff.computed){continue;}
+    // For diff.computed, diff.before or diff.after
+    for(j=0; j<diffProps.length; j+=1){
+      diffProp = diffProps[j];
+      if(!diff[diffProp]){continue;}
 
-    changedProperties = Object.keys(diff.computed);
+      // Calculate elemSelecror
+      elemSelector = '['+SerializablePageDiff.DIFF_ID_ATTR+'~="'+diffId+'"]';
+      if(diffProp === 'beforeElem'){
+        // Pseudo-elem styles
+        elemSelector += ':before';
+      }else if(diffProp === 'afterElem'){
+        // Pseudo-elem styles
+        elemSelector += ':after';
+      }
 
-    beforeRules = ""; afterRules = "";
-    for(j=0; j<changedProperties.length; j+=1){
-      prop = changedProperties[j];
-      beforeRules += prop + ":" + diff.computed[prop].before + ";";
-      afterRules += prop + ":" + diff.computed[prop].after + ";";
+      changedProperties = Object.keys(diff[diffProp]);
+
+      beforeRules = ""; afterRules = "";
+      for(k=0; k<changedProperties.length; k+=1){
+        prop = changedProperties[k];
+        beforeRules += prop + ":" + diff[diffProp][prop].before + ";";
+        afterRules += prop + ":" + diff[diffProp][prop].after + ";";
+      }
+
+      css += elemSelector + "{\n" +
+        "-webkit-animation: SEESS_"+diffProp+"_" + diffId + " 3s ease-in-out 0s infinite !important;\n" +
+        "will-change: " + changedProperties.join(',') + ";\n" +
+      "}\n" +
+      "@-webkit-keyframes SEESS_"+diffProp+"_" + diffId + " { \n" +
+        "from {" + beforeRules + "}\n" +
+        "to {" + afterRules + "}\n" +
+      "}";
     }
-
-    css += elemSelector + "{\n" +
-      "-webkit-animation: SEESS_COMPUTED_" + diffId + " 3s ease-in-out 0s infinite !important;\n" +
-      "will-change: " + changedProperties.join(',') + ";\n" +
-    "}\n" +
-    "@-webkit-keyframes SEESS_COMPUTED_" + diffId + " { \n" +
-      "from {" + beforeRules + "}\n" +
-      "to {" + afterRules + "}\n" +
-    "}";
   }
   return css;
 }
