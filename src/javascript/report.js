@@ -402,6 +402,10 @@ function MergedDiff(){
   };
 }
 
+// Neighbor threshold
+//
+MergedDiff.THRESHOLD = 25;
+
 MergedDiff.prototype.isEmpty = function(){
   return this.diffs.length === 0;
 };
@@ -410,10 +414,17 @@ MergedDiff.prototype.add = function(diff){
   // Merge diff and update the bounding box of merged diffs
   //
 
-  this.box.left = (diff.boundingBox.left < this.box.left) ? diff.boundingBox.left : this.box.left;
-  this.box.right = (diff.boundingBox.right > this.box.right) ? diff.boundingBox.right : this.box.right;
-  this.box.top = (diff.boundingBox.top < this.box.top) ? diff.boundingBox.top : this.box.top;
-  this.box.bottom = (diff.boundingBox.bottom > this.box.bottom) ? diff.boundingBox.bottom : this.box.bottom;
+  var enlargedDiffBox = {
+    left: diff.boundingBox.left - MergedDiff.THRESHOLD,
+    right: diff.boundingBox.right + MergedDiff.THRESHOLD,
+    top: diff.boundingBox.top - MergedDiff.THRESHOLD,
+    bottom: diff.boundingBox.bottom + MergedDiff.THRESHOLD
+  };
+
+  this.box.left = (enlargedDiffBox.left < this.box.left) ? enlargedDiffBox.left : this.box.left;
+  this.box.right = (enlargedDiffBox.right > this.box.right) ? enlargedDiffBox.right : this.box.right;
+  this.box.top = (enlargedDiffBox.top < this.box.top) ? enlargedDiffBox.top : this.box.top;
+  this.box.bottom = (enlargedDiffBox.bottom > this.box.bottom) ? enlargedDiffBox.bottom : this.box.bottom;
 
   this.diffs.push(diff);
 };
