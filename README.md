@@ -9,7 +9,7 @@ When we write program, the code editor or IDE provides lots of hints like underl
 
 Now, we have SeeSS.
 
-*TODO A demo screenshot/gif/video here*
+![SeeSS demo video](http://i.giphy.com/5xtDarlHZCiCXM2uFe8.gif)
 
 SeeSS is a Chrome extension that helps you identify unintended visual changes by visualizing CSS change impact. It tells you what parts of website has visually changed everytime you hit save in the code editor, satisfying your desire to oversee the impact of every line you've edited. It is the missing tool in your front-end development flow, sitting right between your editor and the preview browser.
 
