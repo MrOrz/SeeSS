@@ -1,914 +1,965 @@
 [
   {
-    "width": 1230,
-    "height": 948,
-    "scrollTop": 0,
-    "url": "http://localhost:3000",
-    "html": "<html lang=\"en\" class=\"cufon-active cufon-ready\"><head>\n  <title>Home</title>\n  <meta charset=\"utf-8\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/reset.css\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/grid_12.css\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/style.css?livereload=1409672791871\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/slider.css\">\n  <link href=\"http://fonts.googleapis.com/css?family=Lato:300italic\" rel=\"stylesheet\" type=\"text/css\">\n  <!--[if lt IE 8]>\n  <div style=' clear: both; text-align:center; position: relative;'>\n    <a href=\"http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode\">\n      <img src=\"http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg\" border=\"0\" height=\"42\" width=\"820\" alt=\"You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today.\" />\n    </a>\n  </div>\n  <![endif]-->\n  <!--[if lt IE 9]>\n  <script type=\"text/javascript\" src=\"js/html5.js\"></script>\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"css/ie.css\">\n  <![endif]-->\n<style type=\"text/css\">cufon{text-indent:0!important;}@media screen,projection{cufon{display:inline!important;display:inline-block!important;position:relative!important;vertical-align:middle!important;font-size:1px!important;line-height:1px!important;}cufon cufontext{display:-moz-inline-box!important;display:inline-block!important;width:0!important;height:0!important;overflow:hidden!important;text-indent:-10000in!important;}cufon canvas{position:relative!important;}}@media print{cufon{padding:0!important;}cufon canvas{display:none!important;}}</style></head>\n<body>\n  <header>\n    <div>\n      <div>\n        <h1>\n          <a href=\"index.html\">\n            <img src=\"http://localhost:3000/images/logo.png\" alt=\"\"></a>\n        </h1>\n        <nav>\n          <ul class=\"menu\">\n            <li class=\"current\">\n              <a href=\"index.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Home\" style=\"width: 41px; height: 25px;\"><canvas width=\"65\" height=\"27\" style=\"width: 65px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Home</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"about.html\"><cufon class=\"cufon cufon-canvas\" alt=\"About\" style=\"width: 45px; height: 25px;\"><canvas width=\"70\" height=\"27\" style=\"width: 70px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>About</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"services.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Services\" style=\"width: 58px; height: 25px;\"><canvas width=\"83\" height=\"27\" style=\"width: 83px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Services</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"products.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Products\" style=\"width: 61px; height: 25px;\"><canvas width=\"85\" height=\"27\" style=\"width: 85px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Products</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"contacts.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Contacts\" style=\"width: 65px; height: 25px;\"><canvas width=\"90\" height=\"27\" style=\"width: 90px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Contacts</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"prices.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Prices\" style=\"width: 42px; height: 25px;\"><canvas width=\"66\" height=\"27\" style=\"width: 66px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Prices</cufontext></cufon></a>\n            </li>\n          </ul>\n        </nav>\n        <div class=\"clear\"></div>\n      </div>\n    </div>\n  </header>\n  <div id=\"slide\">\n    <div class=\"slider\">\n      <ul class=\"pagination\">\n        <li data-rel=\"first\" class=\"current\"><a></a></li>\n        <li data-rel=\"second\"><a></a></li>\n        <li data-rel=\"third\"><a></a></li>\n      </ul>\n      <ul class=\"items\">\n        <li>\n          <img src=\"http://localhost:3000/images/slider-1.jpg\" alt=\"\">\n          <div class=\"banner\">\n            <p class=\"text-1\"><cufon class=\"cufon cufon-canvas\" alt=\"We've \" style=\"width: 126px; height: 60px;\"><canvas width=\"188\" height=\"64\" style=\"width: 188px; height: 64px; top: 6px; left: -11px;\"></canvas><cufontext>We've </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Got \" style=\"width: 87px; height: 60px;\"><canvas width=\"149\" height=\"64\" style=\"width: 149px; height: 64px; top: 6px; left: -11px;\"></canvas><cufontext>Got </cufontext></cufon><strong><cufon class=\"cufon cufon-canvas\" alt=\"an \" style=\"width: 52px; height: 60px;\"><canvas width=\"114\" height=\"64\" style=\"width: 114px; height: 64px; top: 6px; left: -11px;\"></canvas><cufontext>an </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Idea!\" style=\"width: 94px; height: 60px;\"><canvas width=\"156\" height=\"64\" style=\"width: 156px; height: 64px; top: 6px; left: -11px;\"></canvas><cufontext>Idea!</cufontext></cufon></strong></p>\n            <p class=\"text-2\">\n              Ut wisi enim ahd minim veniam quis nostrud exerci takltion ulamc orper suscipit lobortis\n            </p>\n          </div>\n        </li>\n        <li>\n          <img src=\"http://localhost:3000/images/slider-2.jpg\" alt=\"\">\n          <div class=\"banner\">\n            <p class=\"text-1\"><cufon class=\"cufon cufon-canvas\" alt=\"Here \" style=\"width: 96px; height: 60px;\"><canvas width=\"158\" height=\"64\" style=\"width: 158px; height: 64px; top: 6px; left: -11px;\"></canvas><cufontext>Here </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"We \" style=\"width: 77px; height: 60px;\"><canvas width=\"139\" height=\"64\" style=\"width: 139px; height: 64px; top: 6px; left: -11px;\"></canvas><cufontext>We </cufontext></cufon><strong><cufon class=\"cufon cufon-canvas\" alt=\"Are!\" style=\"width: 82px; height: 60px;\"><canvas width=\"144\" height=\"64\" style=\"width: 144px; height: 64px; top: 6px; left: -11px;\"></canvas><cufontext>Are!</cufontext></cufon></strong></p>\n            <p class=\"text-2\">\n              Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.\n            </p>\n          </div>\n        </li>\n        <li>\n          <img src=\"http://localhost:3000/images/slider-3.jpg\" alt=\"\">\n          <div class=\"banner\">\n            <p class=\"text-1\"><cufon class=\"cufon cufon-canvas\" alt=\"Stay \" style=\"width: 98px; height: 60px;\"><canvas width=\"160\" height=\"64\" style=\"width: 160px; height: 64px; top: 6px; left: -11px;\"></canvas><cufontext>Stay </cufontext></cufon><strong><cufon class=\"cufon cufon-canvas\" alt=\"Creative!\" style=\"width: 166px; height: 60px;\"><canvas width=\"228\" height=\"64\" style=\"width: 228px; height: 64px; top: 6px; left: -11px;\"></canvas><cufontext>Creative!</cufontext></cufon></strong></p>\n            <p class=\"text-2\">\n              Feugiat nulla facilisis at vero erots et accumsan et iusto odio dignis sim qui blandit.\n            </p>\n          </div>\n        </li>\n      </ul>\n    </div>\n  </div>\n  <!--==============================content================================-->\n  <section id=\"content\">\n    <div class=\"ic\">More Website Templates @ TemplateMonster.com. June 25, 2012!</div>\n    <div class=\"container_12\">\n      <div class=\"grid_6 box-1\">\n        <img src=\"http://localhost:3000/images/page1-img1.png\" alt=\"\">\n        <div class=\"extra-wrap\">\n          <h2><cufon class=\"cufon cufon-canvas\" alt=\"Who \" style=\"width: 53px; height: 31px;\"><canvas width=\"85\" height=\"33\" style=\"width: 85px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Who </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"We \" style=\"width: 40px; height: 31px;\"><canvas width=\"72\" height=\"33\" style=\"width: 72px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>We </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Are\" style=\"width: 36px; height: 31px;\"><canvas width=\"67\" height=\"33\" style=\"width: 67px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Are</cufontext></cufon></h2>\n          <p>\n            Start-Up is one of\n            <a href=\"http://blog.templatemonster.com/free-website-templates/\" class=\"link\" target=\"_blank\">free website templates</a>\n            created by TemplateMonster.com team. It’s optimized for 1280X1024 screen resolution.\n          </p>\n        </div>\n      </div>\n      <div class=\"grid_6 box-1\">\n        <img src=\"http://localhost:3000/images/page1-img2.png\" alt=\"\">\n        <div class=\"extra-wrap\">\n          <h2><cufon class=\"cufon cufon-canvas\" alt=\"Starting \" style=\"width: 81px; height: 31px;\"><canvas width=\"113\" height=\"33\" style=\"width: 113px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Starting </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Up...\" style=\"width: 53px; height: 31px;\"><canvas width=\"84\" height=\"33\" style=\"width: 84px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Up...</cufontext></cufon></h2>\n          <p>\n            The PSD source files of this\n            <a href=\"http://blog.templatemonster.com/2012/06/25/free-website-template-jquery-slider-business/\" class=\"link\">Start-Up Template</a>\n            are available for free for the registered members of TemplateMonster.com.\n          </p>\n        </div>\n      </div>\n      <div class=\"grid_12 box-2\">\n        <div>\n          <p class=\"text-3\"><cufon class=\"cufon cufon-canvas\" alt=\"Welcome \" style=\"width: 133px; height: 50px;\"><canvas width=\"185\" height=\"53\" style=\"width: 185px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext>Welcome </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"to \" style=\"width: 35px; height: 50px;\"><canvas width=\"87\" height=\"53\" style=\"width: 87px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext>to </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Our \" style=\"width: 76px; height: 50px;\"><canvas width=\"128\" height=\"53\" style=\"width: 128px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext>Our </cufontext></cufon><span><cufon class=\"cufon cufon-canvas\" alt=\"Start-Up\" style=\"width: 142px; height: 50px;\"><canvas width=\"189\" height=\"53\" style=\"width: 189px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext>Start-Up</cufontext></cufon></span><cufon class=\"cufon cufon-canvas\" alt=\" \" style=\"width: 11px; height: 50px;\"><canvas width=\"62\" height=\"53\" style=\"width: 62px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext> </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Website!\" style=\"width: 124px; height: 50px;\"><canvas width=\"175\" height=\"53\" style=\"width: 175px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext>Website!</cufontext></cufon></p>\n          <p class=\"text-4\">\n            Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse\n          </p>\n        </div>\n      </div>\n      <div class=\"grid_8\">\n        <h2 class=\"top-1\"><cufon class=\"cufon cufon-canvas\" alt=\"Our \" style=\"width: 47px; height: 31px;\"><canvas width=\"80\" height=\"33\" style=\"width: 80px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Our </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Ideas\" style=\"width: 50px; height: 31px;\"><canvas width=\"81\" height=\"33\" style=\"width: 81px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Ideas</cufontext></cufon></h2>\n        <div class=\"box-3\">\n          <div>\n            <img src=\"http://localhost:3000/images/page1-img3.jpg\" alt=\"\" class=\"img-border\">\n            <a href=\"#\" class=\"link-2\">Nam liber tempor</a>\n            <p>\n              Uwisi eniminim veniam quis nostrud exerci tation ullamcorperex eacom.\n            </p>\n          </div>\n          <div>\n            <img src=\"http://localhost:3000/images/page1-img4.jpg\" alt=\"\" class=\"img-border\">\n            <a href=\"#\" class=\"link-2\">Cum soluta nobis</a>\n            <p>\n              Duis autem vel eum iriure dolor henrerit vulputate velit esse molestie.\n            </p>\n          </div>\n          <div class=\"last\">\n            <img src=\"http://localhost:3000/images/page1-img5.jpg\" alt=\"\" class=\"img-border\">\n            <a href=\"#\" class=\"link-2\">Eleifend optiongue</a>\n            <p>\n              Feugiat nulla facilisis atvero eros et accumsan et iusto odio dignissim.\n            </p>\n          </div>\n        </div>\n        <a href=\"#\" class=\"button top-4\"><cufon class=\"cufon cufon-canvas\" alt=\"Read \" style=\"width: 42px; height: 24px;\"><canvas width=\"67\" height=\"26\" style=\"width: 67px; height: 26px; top: 2px; left: -4px;\"></canvas><cufontext>Read </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"More\" style=\"width: 38px; height: 24px;\"><canvas width=\"62\" height=\"26\" style=\"width: 62px; height: 26px; top: 2px; left: -4px;\"></canvas><cufontext>More</cufontext></cufon></a>\n      </div>\n      <div class=\"grid_4\">\n        <h2 class=\"top-1\"><cufon class=\"cufon cufon-canvas\" alt=\"Latest \" style=\"width: 65px; height: 31px;\"><canvas width=\"97\" height=\"33\" style=\"width: 97px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Latest </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Events\" style=\"width: 61px; height: 31px;\"><canvas width=\"91\" height=\"33\" style=\"width: 91px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Events</cufontext></cufon></h2>\n        <div class=\"box-4 top-2\">\n          <div class=\"date\">\n            <strong><cufon class=\"cufon cufon-canvas\" alt=\"29\" style=\"width: 38px; height: 40px;\"><canvas width=\"67\" height=\"43\" style=\"width: 67px; height: 43px; top: 4px; left: -7px;\"></canvas><cufontext>29</cufontext></cufon></strong>\n            <span>May, 2012</span>\n            <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"0\">Join</a>\n          </div>\n          <p>\n            <a href=\"#\" class=\"link\">Lorem ipsum dolor sit amet consetetur</a>\n            <br>\n            Sadipscing elitriam nonumy eirmod nonumy eirmod tempor invidunt labore.\n          </p>\n        </div>\n        <div class=\"box-4 top-3\">\n          <div class=\"date\">\n            <strong><cufon class=\"cufon cufon-canvas\" alt=\"21\" style=\"width: 28px; height: 40px;\"><canvas width=\"67\" height=\"43\" style=\"width: 67px; height: 43px; top: 4px; left: -7px;\"></canvas><cufontext>21</cufontext></cufon></strong>\n            <span>May, 2012</span>\n            <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"1\">Join</a>\n          </div>\n          <p>\n            <a href=\"#\" class=\"link\">Dolore magna aliquyam erat dolor</a>\n            <br>\n            At vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren.\n          </p>\n        </div>\n        <a href=\"#\" class=\"button top-4\"><cufon class=\"cufon cufon-canvas\" alt=\"Read \" style=\"width: 42px; height: 24px;\"><canvas width=\"67\" height=\"26\" style=\"width: 67px; height: 26px; top: 2px; left: -4px;\"></canvas><cufontext>Read </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"More\" style=\"width: 38px; height: 24px;\"><canvas width=\"62\" height=\"26\" style=\"width: 62px; height: 26px; top: 2px; left: -4px;\"></canvas><cufontext>More</cufontext></cufon></a>\n      </div>\n      <div class=\"clear\"></div>\n    </div>\n  </section>\n  <!--==============================footer=================================-->\n  <footer>\n    <div class=\"container_12\">\n      <p>© 2012 Start-Up<br>\n        <a rel=\"nofollow\" href=\"http://www.templatemonster.com/\" target=\"_blank\" class=\"link\">Website Template</a>\n        by TemplateMonster.com\n      </p>\n      <div class=\"soc-icons sub-link\">\n        <a rel=\"nofollow\" href=\"http://www.html5xcss3.com/\" target=\"_blank\" class=\"link\">Html5xcss3.com</a><br>\n        <span><cufon class=\"cufon cufon-canvas\" alt=\"Follow \" style=\"width: 41px; height: 20px;\"><canvas width=\"62\" height=\"22\" style=\"width: 62px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Follow </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Us:\" style=\"width: 23px; height: 20px;\"><canvas width=\"44\" height=\"22\" style=\"width: 44px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Us:</cufontext></cufon></span>\n        <a href=\"#\">\n          <img src=\"http://localhost:3000/images/icon-1.jpg\" alt=\"\"></a>\n        <a href=\"#\">\n          <img src=\"http://localhost:3000/images/icon-2.jpg\" alt=\"\"></a>\n        <a href=\"#\">\n          <img src=\"http://localhost:3000/images/icon-3.jpg\" alt=\"\"></a>\n      </div>\n    </div>\n  </footer>\n\n\n\n\n\n\n\n</body></html>",
+    "html": "<html lang=\"en\" class=\"cufon-active cufon-ready\"><head>\n  <title>Home</title>\n  <meta charset=\"utf-8\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/reset.css\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/grid_12.css\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/style.css?livereload=1411382889467\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/slider.css\">\n  <link href=\"http://fonts.googleapis.com/css?family=Lato:300italic\" rel=\"stylesheet\" type=\"text/css\">\n  <!--[if lt IE 8]>\n  <div style=' clear: both; text-align:center; position: relative;'>\n    <a href=\"http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode\">\n      <img src=\"http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg\" border=\"0\" height=\"42\" width=\"820\" alt=\"You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today.\" />\n    </a>\n  </div>\n  <![endif]-->\n  <!--[if lt IE 9]>\n  <script type=\"text/javascript\" src=\"js/html5.js\"></script>\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"css/ie.css\">\n  <![endif]-->\n<style type=\"text/css\">cufon{text-indent:0!important;}@media screen,projection{cufon{display:inline!important;display:inline-block!important;position:relative!important;vertical-align:middle!important;font-size:1px!important;line-height:1px!important;}cufon cufontext{display:-moz-inline-box!important;display:inline-block!important;width:0!important;height:0!important;overflow:hidden!important;text-indent:-10000in!important;}cufon canvas{position:relative!important;}}@media print{cufon{padding:0!important;}cufon canvas{display:none!important;}}</style></head>\n<body>\n  <header>\n    <div>\n      <div>\n        <h1>\n          <a href=\"index.html\">\n            <img src=\"http://localhost:3000/images/logo.png\" alt=\"\"></a>\n        </h1>\n        <nav>\n          <ul class=\"menu\">\n            <li class=\"current\">\n              <a href=\"index.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Home\" style=\"width: 41px; height: 25px;\"><canvas width=\"65\" height=\"27\" style=\"width: 65px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Home</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"about.html\"><cufon class=\"cufon cufon-canvas\" alt=\"About\" style=\"width: 45px; height: 25px;\"><canvas width=\"70\" height=\"27\" style=\"width: 70px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>About</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"services.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Services\" style=\"width: 58px; height: 25px;\"><canvas width=\"83\" height=\"27\" style=\"width: 83px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Services</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"products.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Products\" style=\"width: 61px; height: 25px;\"><canvas width=\"85\" height=\"27\" style=\"width: 85px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Products</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"contacts.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Contacts\" style=\"width: 65px; height: 25px;\"><canvas width=\"90\" height=\"27\" style=\"width: 90px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Contacts</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"prices.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Prices\" style=\"width: 42px; height: 25px;\"><canvas width=\"66\" height=\"27\" style=\"width: 66px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Prices</cufontext></cufon></a>\n            </li>\n          </ul>\n        </nav>\n        <div class=\"clear\"></div>\n      </div>\n    </div>\n  </header>\n  <div id=\"slide\">\n    <div class=\"slider\">\n      <ul class=\"pagination\">\n        <li data-rel=\"first\" class=\"current\"><a></a></li>\n        <li data-rel=\"second\"><a></a></li>\n        <li data-rel=\"third\"><a></a></li>\n      </ul>\n      <ul class=\"items\">\n        <li>\n          <img src=\"http://localhost:3000/images/slider-1.jpg\" alt=\"\">\n          <div class=\"banner\">\n            <p class=\"text-1\"><cufon class=\"cufon cufon-canvas\" alt=\"We've \" style=\"width: 126px; height: 60px;\"><canvas width=\"188\" height=\"64\" style=\"width: 188px; height: 64px; top: 6px; left: -11px;\"></canvas><cufontext>We've </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Got \" style=\"width: 87px; height: 60px;\"><canvas width=\"149\" height=\"64\" style=\"width: 149px; height: 64px; top: 6px; left: -11px;\"></canvas><cufontext>Got </cufontext></cufon><strong><cufon class=\"cufon cufon-canvas\" alt=\"an \" style=\"width: 52px; height: 60px;\"><canvas width=\"114\" height=\"64\" style=\"width: 114px; height: 64px; top: 6px; left: -11px;\"></canvas><cufontext>an </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Idea!\" style=\"width: 94px; height: 60px;\"><canvas width=\"156\" height=\"64\" style=\"width: 156px; height: 64px; top: 6px; left: -11px;\"></canvas><cufontext>Idea!</cufontext></cufon></strong></p>\n            <p class=\"text-2\">\n              Ut wisi enim ahd minim veniam quis nostrud exerci takltion ulamc orper suscipit lobortis\n            </p>\n          </div>\n        </li>\n        <li>\n          <img src=\"http://localhost:3000/images/slider-2.jpg\" alt=\"\">\n          <div class=\"banner\">\n            <p class=\"text-1\"><cufon class=\"cufon cufon-canvas\" alt=\"Here \" style=\"width: 96px; height: 60px;\"><canvas width=\"158\" height=\"64\" style=\"width: 158px; height: 64px; top: 6px; left: -11px;\"></canvas><cufontext>Here </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"We \" style=\"width: 77px; height: 60px;\"><canvas width=\"139\" height=\"64\" style=\"width: 139px; height: 64px; top: 6px; left: -11px;\"></canvas><cufontext>We </cufontext></cufon><strong><cufon class=\"cufon cufon-canvas\" alt=\"Are!\" style=\"width: 82px; height: 60px;\"><canvas width=\"144\" height=\"64\" style=\"width: 144px; height: 64px; top: 6px; left: -11px;\"></canvas><cufontext>Are!</cufontext></cufon></strong></p>\n            <p class=\"text-2\">\n              Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.\n            </p>\n          </div>\n        </li>\n        <li>\n          <img src=\"http://localhost:3000/images/slider-3.jpg\" alt=\"\">\n          <div class=\"banner\">\n            <p class=\"text-1\"><cufon class=\"cufon cufon-canvas\" alt=\"Stay \" style=\"width: 98px; height: 60px;\"><canvas width=\"160\" height=\"64\" style=\"width: 160px; height: 64px; top: 6px; left: -11px;\"></canvas><cufontext>Stay </cufontext></cufon><strong><cufon class=\"cufon cufon-canvas\" alt=\"Creative!\" style=\"width: 166px; height: 60px;\"><canvas width=\"228\" height=\"64\" style=\"width: 228px; height: 64px; top: 6px; left: -11px;\"></canvas><cufontext>Creative!</cufontext></cufon></strong></p>\n            <p class=\"text-2\">\n              Feugiat nulla facilisis at vero erots et accumsan et iusto odio dignis sim qui blandit.\n            </p>\n          </div>\n        </li>\n      </ul>\n    </div>\n  </div>\n  <!--==============================content================================-->\n  <section id=\"content\">\n    <div class=\"ic\">More Website Templates @ TemplateMonster.com. June 25, 2012!</div>\n    <div class=\"container_12\">\n      <div class=\"grid_6 box-1\">\n        <img src=\"http://localhost:3000/images/page1-img1.png\" alt=\"\">\n        <div class=\"extra-wrap\">\n          <h2><cufon class=\"cufon cufon-canvas\" alt=\"Who \" style=\"width: 53px; height: 31px;\"><canvas width=\"85\" height=\"33\" style=\"width: 85px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Who </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"We \" style=\"width: 40px; height: 31px;\"><canvas width=\"72\" height=\"33\" style=\"width: 72px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>We </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Are\" style=\"width: 36px; height: 31px;\"><canvas width=\"67\" height=\"33\" style=\"width: 67px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Are</cufontext></cufon></h2>\n          <p>\n            Start-Up is one of\n            <a href=\"http://blog.templatemonster.com/free-website-templates/\" class=\"link\" target=\"_blank\">free website templates</a>\n            created by TemplateMonster.com team. It’s optimized for 1280X1024 screen resolution.\n          </p>\n        </div>\n      </div>\n      <div class=\"grid_6 box-1\">\n        <img src=\"http://localhost:3000/images/page1-img2.png\" alt=\"\">\n        <div class=\"extra-wrap\">\n          <h2><cufon class=\"cufon cufon-canvas\" alt=\"Starting \" style=\"width: 81px; height: 31px;\"><canvas width=\"113\" height=\"33\" style=\"width: 113px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Starting </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Up...\" style=\"width: 53px; height: 31px;\"><canvas width=\"84\" height=\"33\" style=\"width: 84px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Up...</cufontext></cufon></h2>\n          <p>\n            The PSD source files of this\n            <a href=\"http://blog.templatemonster.com/2012/06/25/free-website-template-jquery-slider-business/\" class=\"link\">Start-Up Template</a>\n            are available for free for the registered members of TemplateMonster.com.\n          </p>\n        </div>\n      </div>\n      <div class=\"grid_12 box-2\">\n        <div>\n          <p class=\"text-3\"><cufon class=\"cufon cufon-canvas\" alt=\"Welcome \" style=\"width: 133px; height: 50px;\"><canvas width=\"185\" height=\"53\" style=\"width: 185px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext>Welcome </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"to \" style=\"width: 35px; height: 50px;\"><canvas width=\"87\" height=\"53\" style=\"width: 87px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext>to </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Our \" style=\"width: 76px; height: 50px;\"><canvas width=\"128\" height=\"53\" style=\"width: 128px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext>Our </cufontext></cufon><span><cufon class=\"cufon cufon-canvas\" alt=\"Start-Up\" style=\"width: 142px; height: 50px;\"><canvas width=\"189\" height=\"53\" style=\"width: 189px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext>Start-Up</cufontext></cufon></span><cufon class=\"cufon cufon-canvas\" alt=\" \" style=\"width: 11px; height: 50px;\"><canvas width=\"62\" height=\"53\" style=\"width: 62px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext> </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Website!\" style=\"width: 124px; height: 50px;\"><canvas width=\"175\" height=\"53\" style=\"width: 175px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext>Website!</cufontext></cufon></p>\n          <p class=\"text-4\">\n            Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse\n          </p>\n        </div>\n      </div>\n      <div class=\"grid_8\">\n        <h2 class=\"top-1\"><cufon class=\"cufon cufon-canvas\" alt=\"Our \" style=\"width: 47px; height: 31px;\"><canvas width=\"80\" height=\"33\" style=\"width: 80px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Our </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Ideas\" style=\"width: 50px; height: 31px;\"><canvas width=\"81\" height=\"33\" style=\"width: 81px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Ideas</cufontext></cufon></h2>\n        <div class=\"box-3\">\n          <div>\n            <img src=\"http://localhost:3000/images/page1-img3.jpg\" alt=\"\" class=\"img-border\">\n            <a href=\"#\" class=\"link-2\" __seess_diff_id__=\"0\">Nam liber tempor</a>\n            <p>\n              Uwisi eniminim veniam quis nostrud exerci tation ullamcorperex eacom.\n            </p>\n          </div>\n          <div>\n            <img src=\"http://localhost:3000/images/page1-img4.jpg\" alt=\"\" class=\"img-border\">\n            <a href=\"#\" class=\"link-2\" __seess_diff_id__=\"1\">Cum soluta nobis</a>\n            <p>\n              Duis autem vel eum iriure dolor henrerit vulputate velit esse molestie.\n            </p>\n          </div>\n          <div class=\"last\">\n            <img src=\"http://localhost:3000/images/page1-img5.jpg\" alt=\"\" class=\"img-border\">\n            <a href=\"#\" class=\"link-2\" __seess_diff_id__=\"2\">Eleifend optiongue</a>\n            <p>\n              Feugiat nulla facilisis atvero eros et accumsan et iusto odio dignissim.\n            </p>\n          </div>\n        </div>\n        <a href=\"#\" class=\"button top-4\"><cufon class=\"cufon cufon-canvas\" alt=\"Read \" style=\"width: 42px; height: 24px;\"><canvas width=\"67\" height=\"26\" style=\"width: 67px; height: 26px; top: 2px; left: -4px;\"></canvas><cufontext>Read </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"More\" style=\"width: 38px; height: 24px;\"><canvas width=\"62\" height=\"26\" style=\"width: 62px; height: 26px; top: 2px; left: -4px;\"></canvas><cufontext>More</cufontext></cufon></a>\n      </div>\n      <div class=\"grid_4\">\n        <h2 class=\"top-1\"><cufon class=\"cufon cufon-canvas\" alt=\"Latest \" style=\"width: 65px; height: 31px;\"><canvas width=\"97\" height=\"33\" style=\"width: 97px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Latest </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Events\" style=\"width: 61px; height: 31px;\"><canvas width=\"91\" height=\"33\" style=\"width: 91px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Events</cufontext></cufon></h2>\n        <div class=\"box-4 top-2\">\n          <div class=\"date\">\n            <strong><cufon class=\"cufon cufon-canvas\" alt=\"29\" style=\"width: 38px; height: 40px;\"><canvas width=\"67\" height=\"43\" style=\"width: 67px; height: 43px; top: 4px; left: -7px;\"></canvas><cufontext>29</cufontext></cufon></strong>\n            <span __seess_diff_id__=\"3\">May, 2012</span>\n            <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"4\">Join</a>\n          </div>\n          <p>\n            <a href=\"#\" class=\"link\">Lorem ipsum dolor sit amet consetetur</a>\n            <br>\n            Sadipscing elitriam nonumy eirmod nonumy eirmod tempor invidunt labore.\n          </p>\n        </div>\n        <div class=\"box-4 top-3\">\n          <div class=\"date\">\n            <strong><cufon class=\"cufon cufon-canvas\" alt=\"21\" style=\"width: 28px; height: 40px;\"><canvas width=\"67\" height=\"43\" style=\"width: 67px; height: 43px; top: 4px; left: -7px;\"></canvas><cufontext>21</cufontext></cufon></strong>\n            <span __seess_diff_id__=\"5\">May, 2012</span>\n            <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"6\">Join</a>\n          </div>\n          <p>\n            <a href=\"#\" class=\"link\">Dolore magna aliquyam erat dolor</a>\n            <br>\n            At vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren.\n          </p>\n        </div>\n        <a href=\"#\" class=\"button top-4\"><cufon class=\"cufon cufon-canvas\" alt=\"Read \" style=\"width: 42px; height: 24px;\"><canvas width=\"67\" height=\"26\" style=\"width: 67px; height: 26px; top: 2px; left: -4px;\"></canvas><cufontext>Read </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"More\" style=\"width: 38px; height: 24px;\"><canvas width=\"62\" height=\"26\" style=\"width: 62px; height: 26px; top: 2px; left: -4px;\"></canvas><cufontext>More</cufontext></cufon></a>\n      </div>\n      <div class=\"clear\"></div>\n    </div>\n  </section>\n  <!--==============================footer=================================-->\n  <footer>\n    <div class=\"container_12\">\n      <p>© 2012 Start-Up<br>\n        <a rel=\"nofollow\" href=\"http://www.templatemonster.com/\" target=\"_blank\" class=\"link\">Website Template</a>\n        by TemplateMonster.com\n      </p>\n      <div class=\"soc-icons sub-link\">\n        <a rel=\"nofollow\" href=\"http://www.html5xcss3.com/\" target=\"_blank\" class=\"link\">Html5xcss3.com</a><br>\n        <span><cufon class=\"cufon cufon-canvas\" alt=\"Follow \" style=\"width: 41px; height: 20px;\"><canvas width=\"62\" height=\"22\" style=\"width: 62px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Follow </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Us:\" style=\"width: 23px; height: 20px;\"><canvas width=\"44\" height=\"22\" style=\"width: 44px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Us:</cufontext></cufon></span>\n        <a href=\"#\">\n          <img src=\"http://localhost:3000/images/icon-1.jpg\" alt=\"\"></a>\n        <a href=\"#\">\n          <img src=\"http://localhost:3000/images/icon-2.jpg\" alt=\"\"></a>\n        <a href=\"#\">\n          <img src=\"http://localhost:3000/images/icon-3.jpg\" alt=\"\"></a>\n      </div>\n    </div>\n  </footer>\n\n\n\n\n\n\n\n</body></html>",
     "diffs": [
       {
         "type": 0,
+        "boundingBox": {
+          "left": 70,
+          "right": 219.671875,
+          "top": 1176,
+          "bottom": 1201
+        },
         "rect": {
           "width": {
-            "before": 75.03125,
-            "after": 35.03125
+            "before": 149.671875,
+            "after": 142
           },
           "right": {
-            "before": 1189.140625,
-            "after": 1149.140625
+            "before": 219.671875,
+            "after": 212
           }
         },
         "computed": {
-          "padding-left": {
-            "before": "20px",
-            "after": "0px"
-          },
-          "padding-right": {
-            "before": "20px",
-            "after": "0px"
-          },
           "perspective-origin": {
-            "before": "37.515625px 18px",
-            "after": "17.515625px 18px"
+            "before": "74.828125px 12.5px",
+            "after": "71px 12.5px"
           },
           "-webkit-perspective-origin": {
-            "before": "37.515625px 18px",
-            "after": "17.515625px 18px"
+            "before": "74.828125px 12.5px",
+            "after": "71px 12.5px"
           },
           "transform-origin": {
-            "before": "37.515625px 18px",
-            "after": "17.515625px 18px"
+            "before": "74.828125px 12.5px",
+            "after": "71px 12.5px"
           },
           "-webkit-transform-origin": {
-            "before": "37.515625px 18px",
-            "after": "17.515625px 18px"
+            "before": "74.828125px 12.5px",
+            "after": "71px 12.5px"
           }
         }
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 275,
+          "right": 425.75,
+          "top": 1176,
+          "bottom": 1201
+        },
         "rect": {
           "width": {
-            "before": 75.03125,
-            "after": 35.03125
+            "before": 150.75,
+            "after": 139
           },
           "right": {
-            "before": 1189.140625,
-            "after": 1149.140625
+            "before": 425.75,
+            "after": 414
           }
         },
         "computed": {
-          "padding-left": {
-            "before": "20px",
-            "after": "0px"
-          },
-          "padding-right": {
-            "before": "20px",
-            "after": "0px"
-          },
           "perspective-origin": {
-            "before": "37.515625px 18px",
-            "after": "17.515625px 18px"
+            "before": "75.375px 12.5px",
+            "after": "69.5px 12.5px"
           },
           "-webkit-perspective-origin": {
-            "before": "37.515625px 18px",
-            "after": "17.515625px 18px"
+            "before": "75.375px 12.5px",
+            "after": "69.5px 12.5px"
           },
           "transform-origin": {
-            "before": "37.515625px 18px",
-            "after": "17.515625px 18px"
+            "before": "75.375px 12.5px",
+            "after": "69.5px 12.5px"
           },
           "-webkit-transform-origin": {
-            "before": "37.515625px 18px",
-            "after": "17.515625px 18px"
-          }
-        }
-      }
-    ],
-    "order": []
-  },
-  {
-    "width": 1230,
-    "height": 948,
-    "scrollTop": 0,
-    "url": "http://localhost:3000",
-    "html": "<html lang=\"en\" class=\"cufon-active cufon-ready\"><head>\n  <title>Services</title>\n  <meta charset=\"utf-8\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/reset.css\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/grid_12.css\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/style.css?livereload=1409672791874\">\n  <link href=\"http://fonts.googleapis.com/css?family=Lato:300italic\" rel=\"stylesheet\" type=\"text/css\">\n  \n  \n  <style type=\"text/css\">cufon{text-indent:0!important;}@media screen,projection{cufon{display:inline!important;display:inline-block!important;position:relative!important;vertical-align:middle!important;font-size:1px!important;line-height:1px!important;}cufon cufontext{display:-moz-inline-box!important;display:inline-block!important;width:0!important;height:0!important;overflow:hidden!important;text-indent:-10000in!important;}cufon canvas{position:relative!important;}}@media print{cufon{padding:0!important;}cufon canvas{display:none!important;}}</style>\n  \n  \n  <!--[if lt IE 8]>\n  <div style=' clear: both; text-align:center; position: relative;'>\n    <a href=\"http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode\">\n      <img src=\"http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg\" border=\"0\" height=\"42\" width=\"820\" alt=\"You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today.\" />\n    </a>\n  </div>\n  <![endif]-->\n  <!--[if lt IE 9]>\n  <script type=\"text/javascript\" src=\"js/html5.js\"></script>\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"css/ie.css\">\n  <![endif]-->\n</head>\n<body>\n  <header>\n    <div>\n      <div>\n        <h1>\n          <a href=\"index.html\">\n            <img src=\"http://localhost:3000/images/logo.png\" alt=\"\"></a>\n        </h1>\n        <nav>\n          <ul class=\"menu\">\n            <li>\n              <a href=\"index.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Home\" style=\"width: 41px; height: 25px;\"><canvas width=\"65\" height=\"27\" style=\"width: 65px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Home</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"about.html\"><cufon class=\"cufon cufon-canvas\" alt=\"About\" style=\"width: 45px; height: 25px;\"><canvas width=\"70\" height=\"27\" style=\"width: 70px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>About</cufontext></cufon></a>\n            </li>\n            <li class=\"current\">\n              <a href=\"services.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Services\" style=\"width: 58px; height: 25px;\"><canvas width=\"83\" height=\"27\" style=\"width: 83px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Services</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"products.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Products\" style=\"width: 61px; height: 25px;\"><canvas width=\"85\" height=\"27\" style=\"width: 85px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Products</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"contacts.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Contacts\" style=\"width: 65px; height: 25px;\"><canvas width=\"90\" height=\"27\" style=\"width: 90px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Contacts</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"prices.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Prices\" style=\"width: 42px; height: 25px;\"><canvas width=\"66\" height=\"27\" style=\"width: 66px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Prices</cufontext></cufon></a>\n            </li>\n          </ul>\n        </nav>\n        <div class=\"clear\"></div>\n      </div>\n    </div>\n  </header>\n  <!--==============================content================================-->\n  <section id=\"content\">\n    <div class=\"ic\">More Website Templates @ TemplateMonster.com. June 25, 2012!</div>\n    <div class=\"container_12 top\">\n      <div class=\"grid_4\">\n        <h2><cufon class=\"cufon cufon-canvas\" alt=\"Designing\" style=\"width: 90px; height: 31px;\"><canvas width=\"119\" height=\"33\" style=\"width: 119px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Designing</cufontext></cufon></h2>\n        <img src=\"http://localhost:3000/images/page3-img1.jpg\" alt=\"\" class=\"img-border top-3\">\n        <p class=\"top-4\">\n          <a href=\"#\" class=\"link\">At vero eos et accusam et justo</a>\n          <br>\n          Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod.\n        </p>\n        <a href=\"#\" class=\"button top-4\"><cufon class=\"cufon cufon-canvas\" alt=\"Read \" style=\"width: 42px; height: 24px;\"><canvas width=\"67\" height=\"26\" style=\"width: 67px; height: 26px; top: 2px; left: -4px;\"></canvas><cufontext>Read </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"More\" style=\"width: 38px; height: 24px;\"><canvas width=\"62\" height=\"26\" style=\"width: 62px; height: 26px; top: 2px; left: -4px;\"></canvas><cufontext>More</cufontext></cufon></a>\n      </div>\n      <div class=\"grid_4\">\n        <h2><cufon class=\"cufon cufon-canvas\" alt=\"Programming\" style=\"width: 113px; height: 31px;\"><canvas width=\"143\" height=\"33\" style=\"width: 143px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Programming</cufontext></cufon></h2>\n        <img src=\"http://localhost:3000/images/page3-img2.jpg\" alt=\"\" class=\"img-border top-3\">\n        <p class=\"top-4\">\n          <a href=\"#\" class=\"link\">Tempor invidunt ut labore et dolore</a>\n          <br>\n          Magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est.\n        </p>\n        <a href=\"#\" class=\"button top-4\"><cufon class=\"cufon cufon-canvas\" alt=\"Read \" style=\"width: 42px; height: 24px;\"><canvas width=\"67\" height=\"26\" style=\"width: 67px; height: 26px; top: 2px; left: -4px;\"></canvas><cufontext>Read </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"More\" style=\"width: 38px; height: 24px;\"><canvas width=\"62\" height=\"26\" style=\"width: 62px; height: 26px; top: 2px; left: -4px;\"></canvas><cufontext>More</cufontext></cufon></a>\n      </div>\n      <div class=\"grid_4\">\n        <h2><cufon class=\"cufon cufon-canvas\" alt=\"SEO\" style=\"width: 60px; height: 31px;\"><canvas width=\"73\" height=\"33\" style=\"width: 73px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>SEO</cufontext></cufon></h2>\n        <img src=\"http://localhost:3000/images/page3-img3.jpg\" alt=\"\" class=\"img-border top-3\">\n        <p class=\"top-4\">\n          <a href=\"#\" class=\"link\">Lorem ipsum dolor sit amet</a>\n          <br>\n          Lorem ipsum dolor sit amet, consetetur sadipscing elitt accusam. Aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore.\n        </p>\n        <a href=\"#\" class=\"button top-4\"><cufon class=\"cufon cufon-canvas\" alt=\"Read \" style=\"width: 42px; height: 24px;\"><canvas width=\"67\" height=\"26\" style=\"width: 67px; height: 26px; top: 2px; left: -4px;\"></canvas><cufontext>Read </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"More\" style=\"width: 38px; height: 24px;\"><canvas width=\"62\" height=\"26\" style=\"width: 62px; height: 26px; top: 2px; left: -4px;\"></canvas><cufontext>More</cufontext></cufon></a>\n      </div>\n\n      <div class=\"grid_12 box-2 pad-1\">\n        <div>\n          <p class=\"text-3\"><cufon class=\"cufon cufon-canvas\" alt=\"We \" style=\"width: 64px; height: 50px;\"><canvas width=\"115\" height=\"53\" style=\"width: 115px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext>We </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Offer \" style=\"width: 96px; height: 50px;\"><canvas width=\"147\" height=\"53\" style=\"width: 147px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext>Offer </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Full \" style=\"width: 65px; height: 50px;\"><canvas width=\"116\" height=\"53\" style=\"width: 116px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext>Full </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Range \" style=\"width: 100px; height: 50px;\"><canvas width=\"152\" height=\"53\" style=\"width: 152px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext>Range </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"of \" style=\"width: 34px; height: 50px;\"><canvas width=\"86\" height=\"53\" style=\"width: 86px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext>of </cufontext></cufon><span><cufon class=\"cufon cufon-canvas\" alt=\"Services\" style=\"width: 114px; height: 50px;\"><canvas width=\"163\" height=\"53\" style=\"width: 163px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext>Services</cufontext></cufon></span><cufon class=\"cufon cufon-canvas\" alt=\" \" style=\"width: 11px; height: 50px;\"><canvas width=\"62\" height=\"53\" style=\"width: 62px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext> </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"!\" style=\"width: 11px; height: 50px;\"><canvas width=\"62\" height=\"53\" style=\"width: 62px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext>!</cufontext></cufon></p>\n          <p class=\"text-4\">\n            Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt\n          </p>\n        </div>\n      </div>\n      <div class=\"grid_12\">\n        <h2><cufon class=\"cufon cufon-canvas\" alt=\"Skills \" style=\"width: 54px; height: 31px;\"><canvas width=\"86\" height=\"33\" style=\"width: 86px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Skills </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Set\" style=\"width: 31px; height: 31px;\"><canvas width=\"62\" height=\"33\" style=\"width: 62px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Set</cufontext></cufon></h2>\n        <div class=\"box-7\">\n          <div>\n            <a href=\"#\" class=\"link-2\">3-D Modeling</a>\n            <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"0\">Learn more</a>\n            <p class=\"p4\">\n              Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.\n            </p>\n            <a href=\"#\" class=\"link-2\">3-D Modeling</a>\n            <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"1\">Learn more</a>\n            <p>\n              Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.\n            </p>\n          </div>\n          <div>\n            <a href=\"#\" class=\"link-2\">Creative Direction</a>\n            <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"2\">Learn more</a>\n\n            <p class=\"p4\">\n              At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est.\n            </p>\n            <a href=\"#\" class=\"link-2\">Creative Direction</a>\n            <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"3\">Learn more</a>\n\n            <p>\n              At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est.\n            </p>\n          </div>\n          <div class=\"last\">\n            <a href=\"#\" class=\"link-2\">Development</a>\n            <a href=\"#\" class=\"red-button\" __seess_diff_id__=\"4\">Learn more</a>\n\n            <p class=\"p4\">\n              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.\n            </p>\n            <a href=\"#\" class=\"link-2\">Development</a>\n            <a href=\"#\" class=\"red-button\" __seess_diff_id__=\"5\">Learn more</a>\n\n            <p>\n              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.\n            </p>\n          </div>\n        </div>\n        <a href=\"#\" class=\"button top-4\"><cufon class=\"cufon cufon-canvas\" alt=\"Read \" style=\"width: 42px; height: 24px;\"><canvas width=\"67\" height=\"26\" style=\"width: 67px; height: 26px; top: 2px; left: -4px;\"></canvas><cufontext>Read </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"More\" style=\"width: 38px; height: 24px;\"><canvas width=\"62\" height=\"26\" style=\"width: 62px; height: 26px; top: 2px; left: -4px;\"></canvas><cufontext>More</cufontext></cufon></a>\n      </div>\n      <div class=\"clear\"></div>\n    </div>\n  </section>\n  <!--==============================footer=================================-->\n  <footer>\n      <div class=\"container_12\">\n        <p>© 2012 Start-Up<br>\n          <a rel=\"nofollow\" href=\"http://www.templatemonster.com/\" target=\"_blank\" class=\"link\">Website Template</a>\n          by TemplateMonster.com\n        </p>\n        <div class=\"soc-icons sub-link\">\n          <a rel=\"nofollow\" href=\"http://www.html5xcss3.com/\" target=\"_blank\" class=\"link\">Html5xcss3.com</a><br>\n          <span><cufon class=\"cufon cufon-canvas\" alt=\"Follow \" style=\"width: 41px; height: 20px;\"><canvas width=\"62\" height=\"22\" style=\"width: 62px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Follow </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Us:\" style=\"width: 23px; height: 20px;\"><canvas width=\"44\" height=\"22\" style=\"width: 44px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Us:</cufontext></cufon></span>\n          <a href=\"#\">\n            <img src=\"http://localhost:3000/images/icon-1.jpg\" alt=\"\"></a>\n          <a href=\"#\">\n            <img src=\"http://localhost:3000/images/icon-2.jpg\" alt=\"\"></a>\n          <a href=\"#\">\n            <img src=\"http://localhost:3000/images/icon-3.jpg\" alt=\"\"></a>\n        </div>\n      </div>\n    </footer>\n\n</body></html>",
-    "diffs": [
-      {
-        "type": 0,
-        "rect": {
-          "width": {
-            "before": 134.0625,
-            "after": 94.0625
-          },
-          "right": {
-            "before": 570.171875,
-            "after": 530.171875
-          }
-        },
-        "computed": {
-          "padding-left": {
-            "before": "20px",
-            "after": "0px"
-          },
-          "padding-right": {
-            "before": "20px",
-            "after": "0px"
-          },
-          "perspective-origin": {
-            "before": "67.03125px 18px",
-            "after": "47.03125px 18px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "67.03125px 18px",
-            "after": "47.03125px 18px"
-          },
-          "transform-origin": {
-            "before": "67.03125px 18px",
-            "after": "47.03125px 18px"
-          },
-          "-webkit-transform-origin": {
-            "before": "67.03125px 18px",
-            "after": "47.03125px 18px"
+            "before": "75.375px 12.5px",
+            "after": "69.5px 12.5px"
           }
         }
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 480,
+          "right": 638.921875,
+          "top": 1176,
+          "bottom": 1201
+        },
         "rect": {
           "width": {
-            "before": 134.0625,
-            "after": 94.0625
+            "before": 158.921875,
+            "after": 148
           },
           "right": {
-            "before": 570.171875,
-            "after": 530.171875
+            "before": 638.921875,
+            "after": 628
           }
         },
         "computed": {
-          "padding-left": {
-            "before": "20px",
-            "after": "0px"
-          },
-          "padding-right": {
-            "before": "20px",
-            "after": "0px"
-          },
           "perspective-origin": {
-            "before": "67.03125px 18px",
-            "after": "47.03125px 18px"
+            "before": "79.453125px 12.5px",
+            "after": "74px 12.5px"
           },
           "-webkit-perspective-origin": {
-            "before": "67.03125px 18px",
-            "after": "47.03125px 18px"
+            "before": "79.453125px 12.5px",
+            "after": "74px 12.5px"
           },
           "transform-origin": {
-            "before": "67.03125px 18px",
-            "after": "47.03125px 18px"
+            "before": "79.453125px 12.5px",
+            "after": "74px 12.5px"
           },
           "-webkit-transform-origin": {
-            "before": "67.03125px 18px",
-            "after": "47.03125px 18px"
+            "before": "79.453125px 12.5px",
+            "after": "74px 12.5px"
           }
         }
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 766,
+          "right": 858.28125,
+          "top": 1035,
+          "bottom": 1059
+        },
         "rect": {
           "width": {
-            "before": 134.0625,
-            "after": 94.0625
+            "before": 92.28125,
+            "after": 92
           },
           "right": {
-            "before": 934.171875,
-            "after": 894.171875
+            "before": 858.28125,
+            "after": 858
           }
         },
         "computed": {
-          "padding-left": {
-            "before": "20px",
-            "after": "0px"
-          },
-          "padding-right": {
-            "before": "20px",
-            "after": "0px"
-          },
           "perspective-origin": {
-            "before": "67.03125px 18px",
-            "after": "47.03125px 18px"
+            "before": "46.140625px 12px",
+            "after": "46px 12px"
           },
           "-webkit-perspective-origin": {
-            "before": "67.03125px 18px",
-            "after": "47.03125px 18px"
+            "before": "46.140625px 12px",
+            "after": "46px 12px"
           },
           "transform-origin": {
-            "before": "67.03125px 18px",
-            "after": "47.03125px 18px"
+            "before": "46.140625px 12px",
+            "after": "46px 12px"
           },
           "-webkit-transform-origin": {
-            "before": "67.03125px 18px",
-            "after": "47.03125px 18px"
+            "before": "46.140625px 12px",
+            "after": "46px 12px"
           }
         }
       },
       {
         "type": 0,
-        "rect": {
-          "width": {
-            "before": 134.0625,
-            "after": 94.0625
-          },
-          "right": {
-            "before": 934.171875,
-            "after": 894.171875
-          }
+        "boundingBox": {
+          "left": 861.609375,
+          "right": 936.640625,
+          "top": 1014,
+          "bottom": 1050
         },
-        "computed": {
-          "padding-left": {
-            "before": "20px",
-            "after": "0px"
-          },
-          "padding-right": {
-            "before": "20px",
-            "after": "0px"
-          },
-          "perspective-origin": {
-            "before": "67.03125px 18px",
-            "after": "47.03125px 18px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "67.03125px 18px",
-            "after": "47.03125px 18px"
-          },
-          "transform-origin": {
-            "before": "67.03125px 18px",
-            "after": "47.03125px 18px"
-          },
-          "-webkit-transform-origin": {
-            "before": "67.03125px 18px",
-            "after": "47.03125px 18px"
-          }
-        }
-      },
-      {
-        "type": 0,
         "rect": {
           "width": {
-            "before": 134.0625,
-            "after": 94.0625
-          },
-          "right": {
-            "before": 1217.171875,
-            "after": 1177.171875
-          }
-        },
-        "computed": {
-          "padding-left": {
-            "before": "20px",
-            "after": "0px"
-          },
-          "padding-right": {
-            "before": "20px",
-            "after": "0px"
-          },
-          "perspective-origin": {
-            "before": "67.03125px 18px",
-            "after": "47.03125px 18px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "67.03125px 18px",
-            "after": "47.03125px 18px"
-          },
-          "transform-origin": {
-            "before": "67.03125px 18px",
-            "after": "47.03125px 18px"
-          },
-          "-webkit-transform-origin": {
-            "before": "67.03125px 18px",
-            "after": "47.03125px 18px"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "width": {
-            "before": 134.0625,
-            "after": 94.0625
-          },
-          "right": {
-            "before": 1217.171875,
-            "after": 1177.171875
-          }
-        },
-        "computed": {
-          "padding-left": {
-            "before": "20px",
-            "after": "0px"
-          },
-          "padding-right": {
-            "before": "20px",
-            "after": "0px"
-          },
-          "perspective-origin": {
-            "before": "67.03125px 18px",
-            "after": "47.03125px 18px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "67.03125px 18px",
-            "after": "47.03125px 18px"
-          },
-          "transform-origin": {
-            "before": "67.03125px 18px",
-            "after": "47.03125px 18px"
-          },
-          "-webkit-transform-origin": {
-            "before": "67.03125px 18px",
-            "after": "47.03125px 18px"
-          }
-        }
-      }
-    ],
-    "order": []
-  },
-  {
-    "width": 1230,
-    "height": 948,
-    "scrollTop": 0,
-    "url": "http://localhost:3000",
-    "html": "<html lang=\"en\" class=\"cufon-active cufon-ready\"><head>\n  <title>Contacts</title>\n  <meta charset=\"utf-8\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/reset.css\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/grid_12.css\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/style.css?livereload=1409672791877\">\n  <link href=\"http://fonts.googleapis.com/css?family=Lato:300italic\" rel=\"stylesheet\" type=\"text/css\">\n  \n  <style type=\"text/css\">cufon{text-indent:0!important;}@media screen,projection{cufon{display:inline!important;display:inline-block!important;position:relative!important;vertical-align:middle!important;font-size:1px!important;line-height:1px!important;}cufon cufontext{display:-moz-inline-box!important;display:inline-block!important;width:0!important;height:0!important;overflow:hidden!important;text-indent:-10000in!important;}cufon canvas{position:relative!important;}}@media print{cufon{padding:0!important;}cufon canvas{display:none!important;}}</style>\n  \n  \n  <!--[if lt IE 8]>\n  <div style=' clear: both; text-align:center; position: relative;'>\n    <a href=\"http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode\">\n      <img src=\"http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg\" border=\"0\" height=\"42\" width=\"820\" alt=\"You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today.\" />\n    </a>\n  </div>\n  <![endif]-->\n  <!--[if lt IE 9]>\n  <script type=\"text/javascript\" src=\"js/html5.js\"></script>\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"css/ie.css\">\n  <![endif]-->\n</head>\n<body>\n  <header>\n    <div>\n      <div>\n        <h1>\n          <a href=\"index.html\">\n            <img src=\"http://localhost:3000/images/logo.png\" alt=\"\"></a>\n        </h1>\n        <nav>\n          <ul class=\"menu\">\n            <li>\n              <a href=\"index.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Home\" style=\"width: 41px; height: 25px;\"><canvas width=\"65\" height=\"27\" style=\"width: 65px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Home</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"about.html\"><cufon class=\"cufon cufon-canvas\" alt=\"About\" style=\"width: 45px; height: 25px;\"><canvas width=\"70\" height=\"27\" style=\"width: 70px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>About</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"services.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Services\" style=\"width: 58px; height: 25px;\"><canvas width=\"83\" height=\"27\" style=\"width: 83px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Services</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"products.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Products\" style=\"width: 61px; height: 25px;\"><canvas width=\"85\" height=\"27\" style=\"width: 85px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Products</cufontext></cufon></a>\n            </li>\n            <li class=\"current\">\n              <a href=\"contacts.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Contacts\" style=\"width: 65px; height: 25px;\"><canvas width=\"90\" height=\"27\" style=\"width: 90px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Contacts</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"prices.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Prices\" style=\"width: 42px; height: 25px;\"><canvas width=\"66\" height=\"27\" style=\"width: 66px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Prices</cufontext></cufon></a>\n            </li>\n          </ul>\n        </nav>\n        <div class=\"clear\"></div>\n      </div>\n    </div>\n  </header>\n  <!--==============================content================================-->\n  <section id=\"content\">\n    <div class=\"ic\">More Website Templates @ TemplateMonster.com. June 25, 2012!</div>\n    <div class=\"container_12 top\">\n      <div class=\"grid_8\">\n        <h2><cufon class=\"cufon cufon-canvas\" alt=\"How \" style=\"width: 48px; height: 31px;\"><canvas width=\"80\" height=\"33\" style=\"width: 80px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>How </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"to \" style=\"width: 22px; height: 31px;\"><canvas width=\"54\" height=\"33\" style=\"width: 54px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>to </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Find \" style=\"width: 45px; height: 31px;\"><canvas width=\"77\" height=\"33\" style=\"width: 77px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Find </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Us\" style=\"width: 29px; height: 31px;\"><canvas width=\"59\" height=\"33\" style=\"width: 59px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Us</cufontext></cufon></h2>\n        <div class=\"map img-border\">\n          <img src=\"http://localhost:3000/images/map.png\">\n        </div>\n        <div class=\"right-1\">\n          <p class=\"clr-1 p2\">\n            Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitt accusam.\n          </p>\n          <p>\n            Aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore Stet clita ea et gubergren, kasd magna no rebum. sanctus sea sed takimata ut vero voluptua. est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.\n          </p>\n        </div>\n      </div>\n      <div class=\"grid_4\">\n        <h2><cufon class=\"cufon cufon-canvas\" alt=\"Contact \" style=\"width: 78px; height: 31px;\"><canvas width=\"110\" height=\"33\" style=\"width: 110px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Contact </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Form\" style=\"width: 45px; height: 31px;\"><canvas width=\"68\" height=\"33\" style=\"width: 68px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Form</cufontext></cufon></h2>\n        <form id=\"form\" method=\"post\">\n          <fieldset>\n            <label>\n              <input type=\"text\" value=\"Name\" onblur=\"if(this.value=='') this.value='Name'\" onfocus=\"if(this.value =='Name' ) this.value=''\"></label>\n            <label>\n              <input type=\"text\" value=\"Email\" onblur=\"if(this.value=='') this.value='Email'\" onfocus=\"if(this.value =='Email' ) this.value=''\"></label>\n            <label>\n              <input type=\"text\" value=\"Phone\" onblur=\"if(this.value=='') this.value='Phone'\" onfocus=\"if(this.value =='Phone' ) this.value=''\"></label>\n            <label>\n              <textarea onblur=\"if(this.value==''){this.value='Message'}\" onfocus=\"if(this.value=='Message'){this.value=''}\">Message</textarea>\n            </label>\n            <div class=\"btns\">\n              <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"0\">Clear</a>\n              <a href=\"#\" class=\"green-button\" onclick=\"document.getElementById('form').submit()\" __seess_diff_id__=\"1\">Send</a>\n            </div>\n          </fieldset>\n        </form>\n      </div>\n      <div class=\"clear\"></div>\n    </div>\n  </section>\n  <!--==============================footer=================================-->\n  <footer>\n      <div class=\"container_12\">\n        <p>© 2012 Start-Up<br>\n          <a rel=\"nofollow\" href=\"http://www.templatemonster.com/\" target=\"_blank\" class=\"link\">Website Template</a>\n          by TemplateMonster.com\n        </p>\n        <div class=\"soc-icons sub-link\">\n          <a rel=\"nofollow\" href=\"http://www.html5xcss3.com/\" target=\"_blank\" class=\"link\">Html5xcss3.com</a><br>\n          <span><cufon class=\"cufon cufon-canvas\" alt=\"Follow \" style=\"width: 41px; height: 20px;\"><canvas width=\"62\" height=\"22\" style=\"width: 62px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Follow </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Us:\" style=\"width: 23px; height: 20px;\"><canvas width=\"44\" height=\"22\" style=\"width: 44px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Us:</cufontext></cufon></span>\n          <a href=\"#\">\n            <img src=\"http://localhost:3000/images/icon-1.jpg\" alt=\"\"></a>\n          <a href=\"#\">\n            <img src=\"http://localhost:3000/images/icon-2.jpg\" alt=\"\"></a>\n          <a href=\"#\">\n            <img src=\"http://localhost:3000/images/icon-3.jpg\" alt=\"\"></a>\n        </div>\n      </div>\n    </footer>\n\n</body></html>",
-    "diffs": [
-      {
-        "type": 0,
-        "rect": {
-          "width": {
-            "before": 85.015625,
-            "after": 45.015625
-          },
-          "right": {
-            "before": 1075.015625,
-            "after": 1035.015625
-          }
-        },
-        "computed": {
-          "padding-left": {
-            "before": "20px",
-            "after": "0px"
-          },
-          "padding-right": {
-            "before": "20px",
-            "after": "0px"
-          },
-          "perspective-origin": {
-            "before": "42.5px 18px",
-            "after": "22.5px 18px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "42.5px 18px",
-            "after": "22.5px 18px"
-          },
-          "transform-origin": {
-            "before": "42.5px 18px",
-            "after": "22.5px 18px"
-          },
-          "-webkit-transform-origin": {
-            "before": "42.5px 18px",
-            "after": "22.5px 18px"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "width": {
-            "before": 84.046875,
-            "after": 44.046875
+            "before": 35.03125,
+            "after": 75.03125
           },
           "left": {
-            "before": 1102.625,
-            "after": 1062.625
+            "before": 861.890625,
+            "after": 861.609375
           },
           "right": {
-            "before": 1186.671875,
-            "after": 1106.671875
+            "before": 896.921875,
+            "after": 936.640625
           }
         },
         "computed": {
           "padding-left": {
-            "before": "20px",
-            "after": "0px"
+            "before": "0px",
+            "after": "20px"
           },
           "padding-right": {
-            "before": "20px",
-            "after": "0px"
+            "before": "0px",
+            "after": "20px"
           },
           "perspective-origin": {
-            "before": "42.015625px 18px",
-            "after": "22.015625px 18px"
+            "before": "17.515625px 18px",
+            "after": "37.515625px 18px"
           },
           "-webkit-perspective-origin": {
-            "before": "42.015625px 18px",
-            "after": "22.015625px 18px"
+            "before": "17.515625px 18px",
+            "after": "37.515625px 18px"
           },
           "transform-origin": {
-            "before": "42.015625px 18px",
-            "after": "22.015625px 18px"
+            "before": "17.515625px 18px",
+            "after": "37.515625px 18px"
           },
           "-webkit-transform-origin": {
-            "before": "42.015625px 18px",
-            "after": "22.015625px 18px"
+            "before": "17.515625px 18px",
+            "after": "37.515625px 18px"
+          }
+        }
+      },
+      {
+        "type": 0,
+        "boundingBox": {
+          "left": 766,
+          "right": 858.28125,
+          "top": 1175,
+          "bottom": 1199
+        },
+        "rect": {
+          "width": {
+            "before": 92.28125,
+            "after": 92
+          },
+          "right": {
+            "before": 858.28125,
+            "after": 858
+          }
+        },
+        "computed": {
+          "perspective-origin": {
+            "before": "46.140625px 12px",
+            "after": "46px 12px"
+          },
+          "-webkit-perspective-origin": {
+            "before": "46.140625px 12px",
+            "after": "46px 12px"
+          },
+          "transform-origin": {
+            "before": "46.140625px 12px",
+            "after": "46px 12px"
+          },
+          "-webkit-transform-origin": {
+            "before": "46.140625px 12px",
+            "after": "46px 12px"
+          }
+        }
+      },
+      {
+        "type": 0,
+        "boundingBox": {
+          "left": 861.609375,
+          "right": 936.640625,
+          "top": 1154,
+          "bottom": 1190
+        },
+        "rect": {
+          "width": {
+            "before": 35.03125,
+            "after": 75.03125
+          },
+          "left": {
+            "before": 861.890625,
+            "after": 861.609375
+          },
+          "right": {
+            "before": 896.921875,
+            "after": 936.640625
+          }
+        },
+        "computed": {
+          "padding-left": {
+            "before": "0px",
+            "after": "20px"
+          },
+          "padding-right": {
+            "before": "0px",
+            "after": "20px"
+          },
+          "perspective-origin": {
+            "before": "17.515625px 18px",
+            "after": "37.515625px 18px"
+          },
+          "-webkit-perspective-origin": {
+            "before": "17.515625px 18px",
+            "after": "37.515625px 18px"
+          },
+          "transform-origin": {
+            "before": "17.515625px 18px",
+            "after": "37.515625px 18px"
+          },
+          "-webkit-transform-origin": {
+            "before": "17.515625px 18px",
+            "after": "37.515625px 18px"
           }
         }
       }
     ],
-    "order": []
-  },
-  {
-    "width": 1230,
-    "height": 948,
+    "order": [],
+    "width": 1088,
+    "height": 747,
     "scrollTop": 0,
-    "url": "http://localhost:3000",
-    "html": "<html lang=\"en\" class=\"cufon-active cufon-ready\"><head>\n  <title>Prices</title>\n  <meta charset=\"utf-8\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/reset.css\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/grid_12.css\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/style.css?livereload=1409672791878\">\n  <link href=\"http://fonts.googleapis.com/css?family=Lato:300italic\" rel=\"stylesheet\" type=\"text/css\">\n  \n  <style type=\"text/css\">cufon{text-indent:0!important;}@media screen,projection{cufon{display:inline!important;display:inline-block!important;position:relative!important;vertical-align:middle!important;font-size:1px!important;line-height:1px!important;}cufon cufontext{display:-moz-inline-box!important;display:inline-block!important;width:0!important;height:0!important;overflow:hidden!important;text-indent:-10000in!important;}cufon canvas{position:relative!important;}}@media print{cufon{padding:0!important;}cufon canvas{display:none!important;}}</style>\n  \n  \n  <!--[if lt IE 8]>\n  <div style=' clear: both; text-align:center; position: relative;'>\n    <a href=\"http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode\">\n      <img src=\"http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg\" border=\"0\" height=\"42\" width=\"820\" alt=\"You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today.\" />\n    </a>\n  </div>\n  <![endif]-->\n  <!--[if lt IE 9]>\n  <script type=\"text/javascript\" src=\"js/html5.js\"></script>\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"css/ie.css\">\n  <![endif]-->\n</head>\n<body>\n  <header>\n    <div>\n      <div>\n        <h1>\n          <a href=\"index.html\">\n            <img src=\"http://localhost:3000/images/logo.png\" alt=\"\"></a>\n        </h1>\n        <nav>\n          <ul class=\"menu\">\n            <li>\n              <a href=\"index.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Home\" style=\"width: 41px; height: 25px;\"><canvas width=\"65\" height=\"27\" style=\"width: 65px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Home</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"about.html\"><cufon class=\"cufon cufon-canvas\" alt=\"About\" style=\"width: 45px; height: 25px;\"><canvas width=\"70\" height=\"27\" style=\"width: 70px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>About</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"services.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Services\" style=\"width: 58px; height: 25px;\"><canvas width=\"83\" height=\"27\" style=\"width: 83px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Services</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"products.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Products\" style=\"width: 61px; height: 25px;\"><canvas width=\"85\" height=\"27\" style=\"width: 85px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Products</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"contacts.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Contacts\" style=\"width: 65px; height: 25px;\"><canvas width=\"90\" height=\"27\" style=\"width: 90px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Contacts</cufontext></cufon></a>\n            </li>\n            <li class=\"current\">\n              <a href=\"prices.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Prices\" style=\"width: 42px; height: 25px;\"><canvas width=\"66\" height=\"27\" style=\"width: 66px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Prices</cufontext></cufon></a>\n            </li>\n          </ul>\n        </nav>\n        <div class=\"clear\"></div>\n      </div>\n    </div>\n  </header>\n  <!--==============================content================================-->\n  <section id=\"content\">\n    <div class=\"ic\">More Website Templates @ TemplateMonster.com. June 25, 2012!</div>\n    <div class=\"container_12 top\">\n      <div class=\"grid_12\">\n        <h2 class=\"p5\"><cufon class=\"cufon cufon-canvas\" alt=\"Our \" style=\"width: 47px; height: 31px;\"><canvas width=\"80\" height=\"33\" style=\"width: 80px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Our </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Products\" style=\"width: 74px; height: 31px;\"><canvas width=\"104\" height=\"33\" style=\"width: 104px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Products</cufontext></cufon></h2>\n      </div>\n      <div class=\"grid_4\">\n        <div>\n          <img src=\"http://localhost:3000/images/page4-img1.jpg\" alt=\"\" class=\"img-border\">\n          <p class=\"top-4\">\n            <a href=\"#\" class=\"link\">At vero eos et accusam et justo</a>\n            <br>\n            Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod.\n          </p>\n          <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"0\">Buy this Now</a>\n        </div>\n        <div class=\"top-7\">\n          <img src=\"http://localhost:3000/images/page4-img4.jpg\" alt=\"\" class=\"img-border\">\n          <p class=\"top-4\">\n            <a href=\"#\" class=\"link\">At vero eos et accusam et justo</a>\n            <br>\n            Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod.\n          </p>\n          <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"1\">Buy this Now</a>\n\n        </div>\n      </div>\n      <div class=\"grid_4\">\n        <div>\n          <img src=\"http://localhost:3000/images/page4-img2.jpg\" alt=\"\" class=\"img-border\">\n          <p class=\"top-4\">\n            <a href=\"#\" class=\"link\">Tempor invidunt ut labore et dolore</a>\n            <br>\n            Magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est.\n          </p>\n          <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"2\">Buy this Now</a>\n        </div>\n        <div class=\"top-7\">\n          <img src=\"http://localhost:3000/images/page4-img5.jpg\" alt=\"\" class=\"img-border\">\n          <p class=\"top-4\">\n            <a href=\"#\" class=\"link\">Tempor invidunt ut labore et dolore</a>\n            <br>\n            Magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est.\n          </p>\n          <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"3\">Buy this Now</a>\n        </div>\n      </div>\n      <div class=\"grid_4\">\n        <div>\n          <img src=\"http://localhost:3000/images/page4-img3.jpg\" alt=\"\" class=\"img-border\">\n          <p class=\"top-4\">\n            <a href=\"#\" class=\"link\">Lorem ipsum dolor sit amet</a>\n            <br>\n            Lorem ipsum dolor sit amet, consetetur sadipscing elitt accusam. Aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore.\n          </p>\n          <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"4\">Buy this Now</a>\n        </div>\n        <div class=\"top-7\">\n          <img src=\"http://localhost:3000/images/page4-img6.jpg\" alt=\"\" class=\"img-border\">\n          <p class=\"top-4\">\n            <a href=\"#\" class=\"link\">Lorem ipsum dolor sit amet</a>\n            <br>\n            Lorem ipsum dolor sit amet, consetetur sadipscing elitt accusam. Aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore.\n          </p>\n          <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"5\">Buy this Now</a>\n        </div>\n      </div>\n      <div class=\"clear\"></div>\n    </div>\n\n\n    <div class=\"pricing_table columns_3 clearfix\">\n      <!-- START LIST BOX -->\n      <div class=\"box item_list\">\n        <div class=\"head\">\n          <!-- --> </div>\n        <ul class=\"pricing_items pricing-labels\">\n          <li class=\"first\">Blogs Allowed</li>\n          <li>Photo Albums</li>\n          <li>Technical Support</li>\n          <li>Post by Email</li>\n          <li>Data Transfer</li>\n          <li class=\"last\">Link Backs</li>\n        </ul>\n\n      </div>\n      <!-- END LIST BOX -->\n\n      <!-- START 1st BOX -->\n      <div class=\"box\">\n        <div class=\"head first\">\n          <h2 class=\"title\"><cufon class=\"cufon cufon-canvas\" alt=\"Basic\" style=\"width: 58px; height: 20px;\"><canvas width=\"69\" height=\"22\" style=\"width: 69px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Basic</cufontext></cufon></h2>\n          <h3 class=\"price\">$15/month</h3>\n        </div>\n        <ul class=\"pricing_items clearfix\">\n          <li data-item=\"Blogs\">5</li>\n          <li data-item=\"PhotoAlbums\">2</li>\n          <li data-item=\"TechnicalSupport\">\n            <span class=\"featureno\">&nbsp;</span>\n          </li>\n          <li data-item=\"PostByEmail\">\n            <span class=\"featureno\">&nbsp;</span>\n          </li>\n          <li data-item=\"DataTransfer\">50GB</li>\n          <li data-item=\"LinkBacks\">20</li>\n        </ul>\n        <div class=\"foot first clearfix\">\n          <a href=\"#\" class=\"big_link\">Sign Up</a>\n        </div>\n      </div>\n      <!-- END 1st BOX -->\n\n      <!-- START 3rd BOX -->\n      <div class=\"box featured\">\n        <div class=\"head\">\n          <h2 class=\"title\"><cufon class=\"cufon cufon-canvas\" alt=\"Premium\" style=\"width: 90px; height: 20px;\"><canvas width=\"99\" height=\"22\" style=\"width: 99px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Premium</cufontext></cufon></h2>\n          <h3 class=\"price\">$50/month</h3>\n          <div class=\"best\">Recommended</div>\n        </div>\n        <ul class=\"pricing_items clearfix\">\n          <li data-item=\"Blogs\">Unlimited</li>\n          <li data-item=\"PhotoAlbums\">Unlimited</li>\n          <li data-item=\"TechnicalSupport\">\n            <span class=\"featureyes\">&nbsp;</span>\n          </li>\n          <li data-item=\"PostByEmail\">\n            <span class=\"featureyes\">&nbsp;</span>\n          </li>\n          <li data-item=\"DataTransfer\">Unlimited</li>\n          <li data-item=\"LinkBacks\">50,000</li>\n        </ul>\n        <div class=\"foot clearfix\">\n\n          <a href=\"javascript:\" class=\"big_link\">Sign Up</a>\n\n        </div>\n      </div>\n      <!-- START 3rd BOX -->\n\n      <!-- START 4th BOX -->\n      <div class=\"box\">\n        <div class=\"head last\">\n          <h2 class=\"title\"><cufon class=\"cufon cufon-canvas\" alt=\"Pro\" style=\"width: 39px; height: 20px;\"><canvas width=\"48\" height=\"22\" style=\"width: 48px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Pro</cufontext></cufon></h2>\n          <h3 class=\"price\">$30/month</h3>\n        </div>\n        <ul class=\"pricing_items clearfix\">\n          <li data-item=\"Blogs\">500</li>\n          <li data-item=\"PhotoAlbums\">2000</li>\n          <li data-item=\"TechnicalSupport\">\n            <span class=\"featureyes\">&nbsp;</span>\n          </li>\n          <li data-item=\"PostByEmail\">\n            <span class=\"featureyes\">&nbsp;</span>\n          </li>\n          <li data-item=\"DataTransfer\">50GB</li>\n          <li data-item=\"LinkBacks\">1500</li>\n        </ul>\n        <div class=\"foot last clearfix\">\n\n          <a href=\"javascript:\" class=\"big_link\">Sign Up</a>\n\n        </div>\n      </div>\n      <!-- END 4th BOX -->\n    </div>\n\n\n\n  </section>\n  <!--==============================footer=================================-->\n  <footer>\n    <div class=\"container_12\">\n      <p>\n        © 2012 Start-Up\n        <br>\n        <a rel=\"nofollow\" href=\"http://www.templatemonster.com/\" target=\"_blank\" class=\"link\">Website Template</a>\n        by TemplateMonster.com\n      </p>\n      <div class=\"soc-icons sub-link\">\n        <a rel=\"nofollow\" href=\"http://www.html5xcss3.com/\" target=\"_blank\" class=\"link\">Html5xcss3.com</a>\n        <br>\n        <span><cufon class=\"cufon cufon-canvas\" alt=\"Follow \" style=\"width: 41px; height: 20px;\"><canvas width=\"62\" height=\"22\" style=\"width: 62px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Follow </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Us:\" style=\"width: 23px; height: 20px;\"><canvas width=\"44\" height=\"22\" style=\"width: 44px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Us:</cufontext></cufon></span>\n        <a href=\"#\">\n          <img src=\"http://localhost:3000/images/icon-1.jpg\" alt=\"\"></a>\n        <a href=\"#\">\n          <img src=\"http://localhost:3000/images/icon-2.jpg\" alt=\"\"></a>\n        <a href=\"#\">\n          <img src=\"http://localhost:3000/images/icon-3.jpg\" alt=\"\"></a>\n      </div>\n    </div>\n  </footer>\n\n</body></html>",
+    "url": "http://localhost:3000/index.html",
+    "doctype": "<!doctype html>"
+  },
+  null,
+  {
+    "html": "<html lang=\"en\" class=\"cufon-active cufon-ready\"><head>\n  <title>Services</title>\n  <meta charset=\"utf-8\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/reset.css\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/grid_12.css\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/style.css?livereload=1411382889472\">\n  <link href=\"http://fonts.googleapis.com/css?family=Lato:300italic\" rel=\"stylesheet\" type=\"text/css\">\n  \n  \n  <style type=\"text/css\">cufon{text-indent:0!important;}@media screen,projection{cufon{display:inline!important;display:inline-block!important;position:relative!important;vertical-align:middle!important;font-size:1px!important;line-height:1px!important;}cufon cufontext{display:-moz-inline-box!important;display:inline-block!important;width:0!important;height:0!important;overflow:hidden!important;text-indent:-10000in!important;}cufon canvas{position:relative!important;}}@media print{cufon{padding:0!important;}cufon canvas{display:none!important;}}</style>\n  \n  \n  <!--[if lt IE 8]>\n  <div style=' clear: both; text-align:center; position: relative;'>\n    <a href=\"http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode\">\n      <img src=\"http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg\" border=\"0\" height=\"42\" width=\"820\" alt=\"You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today.\" />\n    </a>\n  </div>\n  <![endif]-->\n  <!--[if lt IE 9]>\n  <script type=\"text/javascript\" src=\"js/html5.js\"></script>\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"css/ie.css\">\n  <![endif]-->\n</head>\n<body>\n  <header>\n    <div>\n      <div>\n        <h1>\n          <a href=\"index.html\">\n            <img src=\"http://localhost:3000/images/logo.png\" alt=\"\"></a>\n        </h1>\n        <nav>\n          <ul class=\"menu\">\n            <li>\n              <a href=\"index.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Home\" style=\"width: 41px; height: 25px;\"><canvas width=\"65\" height=\"27\" style=\"width: 65px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Home</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"about.html\"><cufon class=\"cufon cufon-canvas\" alt=\"About\" style=\"width: 45px; height: 25px;\"><canvas width=\"70\" height=\"27\" style=\"width: 70px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>About</cufontext></cufon></a>\n            </li>\n            <li class=\"current\">\n              <a href=\"services.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Services\" style=\"width: 58px; height: 25px;\"><canvas width=\"83\" height=\"27\" style=\"width: 83px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Services</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"products.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Products\" style=\"width: 61px; height: 25px;\"><canvas width=\"85\" height=\"27\" style=\"width: 85px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Products</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"contacts.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Contacts\" style=\"width: 65px; height: 25px;\"><canvas width=\"90\" height=\"27\" style=\"width: 90px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Contacts</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"prices.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Prices\" style=\"width: 42px; height: 25px;\"><canvas width=\"66\" height=\"27\" style=\"width: 66px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Prices</cufontext></cufon></a>\n            </li>\n          </ul>\n        </nav>\n        <div class=\"clear\"></div>\n      </div>\n    </div>\n  </header>\n  <!--==============================content================================-->\n  <section id=\"content\">\n    <div class=\"ic\">More Website Templates @ TemplateMonster.com. June 25, 2012!</div>\n    <div class=\"container_12 top\">\n      <div class=\"grid_4\">\n        <h2><cufon class=\"cufon cufon-canvas\" alt=\"Designing\" style=\"width: 90px; height: 31px;\"><canvas width=\"119\" height=\"33\" style=\"width: 119px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Designing</cufontext></cufon></h2>\n        <img src=\"http://localhost:3000/images/page3-img1.jpg\" alt=\"\" class=\"img-border top-3\">\n        <p class=\"top-4\">\n          <a href=\"#\" class=\"link\">At vero eos et accusam et justo</a>\n          <br>\n          Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod.\n        </p>\n        <a href=\"#\" class=\"button top-4\"><cufon class=\"cufon cufon-canvas\" alt=\"Read \" style=\"width: 42px; height: 24px;\"><canvas width=\"67\" height=\"26\" style=\"width: 67px; height: 26px; top: 2px; left: -4px;\"></canvas><cufontext>Read </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"More\" style=\"width: 38px; height: 24px;\"><canvas width=\"62\" height=\"26\" style=\"width: 62px; height: 26px; top: 2px; left: -4px;\"></canvas><cufontext>More</cufontext></cufon></a>\n      </div>\n      <div class=\"grid_4\">\n        <h2><cufon class=\"cufon cufon-canvas\" alt=\"Programming\" style=\"width: 113px; height: 31px;\"><canvas width=\"143\" height=\"33\" style=\"width: 143px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Programming</cufontext></cufon></h2>\n        <img src=\"http://localhost:3000/images/page3-img2.jpg\" alt=\"\" class=\"img-border top-3\">\n        <p class=\"top-4\">\n          <a href=\"#\" class=\"link\">Tempor invidunt ut labore et dolore</a>\n          <br>\n          Magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est.\n        </p>\n        <a href=\"#\" class=\"button top-4\"><cufon class=\"cufon cufon-canvas\" alt=\"Read \" style=\"width: 42px; height: 24px;\"><canvas width=\"67\" height=\"26\" style=\"width: 67px; height: 26px; top: 2px; left: -4px;\"></canvas><cufontext>Read </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"More\" style=\"width: 38px; height: 24px;\"><canvas width=\"62\" height=\"26\" style=\"width: 62px; height: 26px; top: 2px; left: -4px;\"></canvas><cufontext>More</cufontext></cufon></a>\n      </div>\n      <div class=\"grid_4\">\n        <h2><cufon class=\"cufon cufon-canvas\" alt=\"SEO\" style=\"width: 60px; height: 31px;\"><canvas width=\"73\" height=\"33\" style=\"width: 73px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>SEO</cufontext></cufon></h2>\n        <img src=\"http://localhost:3000/images/page3-img3.jpg\" alt=\"\" class=\"img-border top-3\">\n        <p class=\"top-4\">\n          <a href=\"#\" class=\"link\">Lorem ipsum dolor sit amet</a>\n          <br>\n          Lorem ipsum dolor sit amet, consetetur sadipscing elitt accusam. Aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore.\n        </p>\n        <a href=\"#\" class=\"button top-4\"><cufon class=\"cufon cufon-canvas\" alt=\"Read \" style=\"width: 42px; height: 24px;\"><canvas width=\"67\" height=\"26\" style=\"width: 67px; height: 26px; top: 2px; left: -4px;\"></canvas><cufontext>Read </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"More\" style=\"width: 38px; height: 24px;\"><canvas width=\"62\" height=\"26\" style=\"width: 62px; height: 26px; top: 2px; left: -4px;\"></canvas><cufontext>More</cufontext></cufon></a>\n      </div>\n\n      <div class=\"grid_12 box-2 pad-1\">\n        <div>\n          <p class=\"text-3\"><cufon class=\"cufon cufon-canvas\" alt=\"We \" style=\"width: 64px; height: 50px;\"><canvas width=\"115\" height=\"53\" style=\"width: 115px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext>We </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Offer \" style=\"width: 96px; height: 50px;\"><canvas width=\"147\" height=\"53\" style=\"width: 147px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext>Offer </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Full \" style=\"width: 65px; height: 50px;\"><canvas width=\"116\" height=\"53\" style=\"width: 116px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext>Full </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Range \" style=\"width: 100px; height: 50px;\"><canvas width=\"152\" height=\"53\" style=\"width: 152px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext>Range </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"of \" style=\"width: 34px; height: 50px;\"><canvas width=\"86\" height=\"53\" style=\"width: 86px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext>of </cufontext></cufon><span><cufon class=\"cufon cufon-canvas\" alt=\"Services\" style=\"width: 114px; height: 50px;\"><canvas width=\"163\" height=\"53\" style=\"width: 163px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext>Services</cufontext></cufon></span><cufon class=\"cufon cufon-canvas\" alt=\" \" style=\"width: 11px; height: 50px;\"><canvas width=\"62\" height=\"53\" style=\"width: 62px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext> </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"!\" style=\"width: 11px; height: 50px;\"><canvas width=\"62\" height=\"53\" style=\"width: 62px; height: 53px; top: 5px; left: -9px;\"></canvas><cufontext>!</cufontext></cufon></p>\n          <p class=\"text-4\">\n            Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt\n          </p>\n        </div>\n      </div>\n      <div class=\"grid_12\">\n        <h2><cufon class=\"cufon cufon-canvas\" alt=\"Skills \" style=\"width: 54px; height: 31px;\"><canvas width=\"86\" height=\"33\" style=\"width: 86px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Skills </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Set\" style=\"width: 31px; height: 31px;\"><canvas width=\"62\" height=\"33\" style=\"width: 62px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Set</cufontext></cufon></h2>\n        <div class=\"box-7\">\n          <div>\n            <a href=\"#\" class=\"link-2\">3-D Modeling</a>\n            <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"0\">Learn more</a>\n            <p class=\"p4\">\n              Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.\n            </p>\n            <a href=\"#\" class=\"link-2\">3-D Modeling</a>\n            <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"1\">Learn more</a>\n            <p>\n              Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.\n            </p>\n          </div>\n          <div>\n            <a href=\"#\" class=\"link-2\">Creative Direction</a>\n            <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"2\">Learn more</a>\n\n            <p class=\"p4\">\n              At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est.\n            </p>\n            <a href=\"#\" class=\"link-2\">Creative Direction</a>\n            <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"3\">Learn more</a>\n\n            <p>\n              At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est.\n            </p>\n          </div>\n          <div class=\"last\">\n            <a href=\"#\" class=\"link-2\">Development</a>\n            <a href=\"#\" class=\"red-button\" __seess_diff_id__=\"4\">Learn more</a>\n\n            <p class=\"p4\">\n              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.\n            </p>\n            <a href=\"#\" class=\"link-2\">Development</a>\n            <a href=\"#\" class=\"red-button\" __seess_diff_id__=\"5\">Learn more</a>\n\n            <p>\n              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.\n            </p>\n          </div>\n        </div>\n        <a href=\"#\" class=\"button top-4\"><cufon class=\"cufon cufon-canvas\" alt=\"Read \" style=\"width: 42px; height: 24px;\"><canvas width=\"67\" height=\"26\" style=\"width: 67px; height: 26px; top: 2px; left: -4px;\"></canvas><cufontext>Read </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"More\" style=\"width: 38px; height: 24px;\"><canvas width=\"62\" height=\"26\" style=\"width: 62px; height: 26px; top: 2px; left: -4px;\"></canvas><cufontext>More</cufontext></cufon></a>\n      </div>\n      <div class=\"clear\"></div>\n    </div>\n  </section>\n  <!--==============================footer=================================-->\n  <footer>\n      <div class=\"container_12\">\n        <p>© 2012 Start-Up<br>\n          <a rel=\"nofollow\" href=\"http://www.templatemonster.com/\" target=\"_blank\" class=\"link\">Website Template</a>\n          by TemplateMonster.com\n        </p>\n        <div class=\"soc-icons sub-link\">\n          <a rel=\"nofollow\" href=\"http://www.html5xcss3.com/\" target=\"_blank\" class=\"link\">Html5xcss3.com</a><br>\n          <span><cufon class=\"cufon cufon-canvas\" alt=\"Follow \" style=\"width: 41px; height: 20px;\"><canvas width=\"62\" height=\"22\" style=\"width: 62px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Follow </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Us:\" style=\"width: 23px; height: 20px;\"><canvas width=\"44\" height=\"22\" style=\"width: 44px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Us:</cufontext></cufon></span>\n          <a href=\"#\">\n            <img src=\"http://localhost:3000/images/icon-1.jpg\" alt=\"\"></a>\n          <a href=\"#\">\n            <img src=\"http://localhost:3000/images/icon-2.jpg\" alt=\"\"></a>\n          <a href=\"#\">\n            <img src=\"http://localhost:3000/images/icon-3.jpg\" alt=\"\"></a>\n        </div>\n      </div>\n    </footer>\n\n</body></html>",
     "diffs": [
       {
         "type": 0,
+        "boundingBox": {
+          "left": 183.609375,
+          "right": 317.671875,
+          "top": 821,
+          "bottom": 857
+        },
         "rect": {
           "width": {
-            "before": 147.046875,
-            "after": 107.046875
+            "before": 94.0625,
+            "after": 134.0625
           },
           "right": {
-            "before": 469.546875,
-            "after": 429.546875
+            "before": 277.671875,
+            "after": 317.671875
           }
         },
         "computed": {
           "padding-left": {
-            "before": "20px",
-            "after": "0px"
+            "before": "0px",
+            "after": "20px"
           },
           "padding-right": {
-            "before": "20px",
-            "after": "0px"
+            "before": "0px",
+            "after": "20px"
           },
           "perspective-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "47.03125px 18px",
+            "after": "67.03125px 18px"
           },
           "-webkit-perspective-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "47.03125px 18px",
+            "after": "67.03125px 18px"
           },
           "transform-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "47.03125px 18px",
+            "after": "67.03125px 18px"
           },
           "-webkit-transform-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "47.03125px 18px",
+            "after": "67.03125px 18px"
           }
         }
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 183.609375,
+          "right": 317.671875,
+          "top": 949,
+          "bottom": 985
+        },
         "rect": {
           "width": {
-            "before": 147.046875,
-            "after": 107.046875
+            "before": 94.0625,
+            "after": 134.0625
           },
           "right": {
-            "before": 469.546875,
-            "after": 429.546875
+            "before": 277.671875,
+            "after": 317.671875
           }
         },
         "computed": {
           "padding-left": {
-            "before": "20px",
-            "after": "0px"
+            "before": "0px",
+            "after": "20px"
           },
           "padding-right": {
-            "before": "20px",
-            "after": "0px"
+            "before": "0px",
+            "after": "20px"
           },
           "perspective-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "47.03125px 18px",
+            "after": "67.03125px 18px"
           },
           "-webkit-perspective-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "47.03125px 18px",
+            "after": "67.03125px 18px"
           },
           "transform-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "47.03125px 18px",
+            "after": "67.03125px 18px"
           },
           "-webkit-transform-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "47.03125px 18px",
+            "after": "67.03125px 18px"
           }
         }
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 547.609375,
+          "right": 681.671875,
+          "top": 821,
+          "bottom": 857
+        },
         "rect": {
           "width": {
-            "before": 147.046875,
-            "after": 107.046875
+            "before": 94.0625,
+            "after": 134.0625
           },
           "right": {
-            "before": 789.546875,
-            "after": 749.546875
+            "before": 641.671875,
+            "after": 681.671875
           }
         },
         "computed": {
           "padding-left": {
-            "before": "20px",
-            "after": "0px"
+            "before": "0px",
+            "after": "20px"
           },
           "padding-right": {
-            "before": "20px",
-            "after": "0px"
+            "before": "0px",
+            "after": "20px"
           },
           "perspective-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "47.03125px 18px",
+            "after": "67.03125px 18px"
           },
           "-webkit-perspective-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "47.03125px 18px",
+            "after": "67.03125px 18px"
           },
           "transform-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "47.03125px 18px",
+            "after": "67.03125px 18px"
           },
           "-webkit-transform-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "47.03125px 18px",
+            "after": "67.03125px 18px"
           }
         }
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 547.609375,
+          "right": 681.671875,
+          "top": 949,
+          "bottom": 985
+        },
         "rect": {
           "width": {
-            "before": 147.046875,
-            "after": 107.046875
+            "before": 94.0625,
+            "after": 134.0625
           },
           "right": {
-            "before": 789.546875,
-            "after": 749.546875
+            "before": 641.671875,
+            "after": 681.671875
           }
         },
         "computed": {
           "padding-left": {
-            "before": "20px",
-            "after": "0px"
+            "before": "0px",
+            "after": "20px"
           },
           "padding-right": {
-            "before": "20px",
-            "after": "0px"
+            "before": "0px",
+            "after": "20px"
           },
           "perspective-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "47.03125px 18px",
+            "after": "67.03125px 18px"
           },
           "-webkit-perspective-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "47.03125px 18px",
+            "after": "67.03125px 18px"
           },
           "transform-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "47.03125px 18px",
+            "after": "67.03125px 18px"
           },
           "-webkit-transform-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "47.03125px 18px",
+            "after": "67.03125px 18px"
           }
         }
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 830.609375,
+          "right": 964.671875,
+          "top": 821,
+          "bottom": 857
+        },
         "rect": {
           "width": {
-            "before": 147.046875,
-            "after": 107.046875
+            "before": 94.0625,
+            "after": 134.0625
           },
           "right": {
-            "before": 1109.546875,
-            "after": 1069.546875
+            "before": 924.671875,
+            "after": 964.671875
           }
         },
         "computed": {
           "padding-left": {
-            "before": "20px",
-            "after": "0px"
+            "before": "0px",
+            "after": "20px"
           },
           "padding-right": {
-            "before": "20px",
-            "after": "0px"
+            "before": "0px",
+            "after": "20px"
           },
           "perspective-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "47.03125px 18px",
+            "after": "67.03125px 18px"
           },
           "-webkit-perspective-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "47.03125px 18px",
+            "after": "67.03125px 18px"
           },
           "transform-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "47.03125px 18px",
+            "after": "67.03125px 18px"
           },
           "-webkit-transform-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "47.03125px 18px",
+            "after": "67.03125px 18px"
           }
         }
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 830.609375,
+          "right": 964.671875,
+          "top": 949,
+          "bottom": 985
+        },
         "rect": {
           "width": {
-            "before": 147.046875,
-            "after": 107.046875
+            "before": 94.0625,
+            "after": 134.0625
           },
           "right": {
-            "before": 1109.546875,
-            "after": 1069.546875
+            "before": 924.671875,
+            "after": 964.671875
           }
         },
         "computed": {
           "padding-left": {
-            "before": "20px",
-            "after": "0px"
+            "before": "0px",
+            "after": "20px"
           },
           "padding-right": {
-            "before": "20px",
-            "after": "0px"
+            "before": "0px",
+            "after": "20px"
           },
           "perspective-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "47.03125px 18px",
+            "after": "67.03125px 18px"
           },
           "-webkit-perspective-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "47.03125px 18px",
+            "after": "67.03125px 18px"
           },
           "transform-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "47.03125px 18px",
+            "after": "67.03125px 18px"
           },
           "-webkit-transform-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "47.03125px 18px",
+            "after": "67.03125px 18px"
           }
         }
       }
     ],
-    "order": []
-  },
-  {
-    "width": 1230,
-    "height": 948,
+    "order": [],
+    "width": 1088,
+    "height": 747,
     "scrollTop": 0,
-    "url": "http://localhost:3000",
-    "html": "<html lang=\"en\" class=\"cufon-active cufon-ready\"><head>\n  <title>Prices</title>\n  <meta charset=\"utf-8\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/reset.css\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/grid_12.css\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/style.css?livereload=1409672791880\">\n  <link href=\"http://fonts.googleapis.com/css?family=Lato:300italic\" rel=\"stylesheet\" type=\"text/css\">\n  \n  <style type=\"text/css\">cufon{text-indent:0!important;}@media screen,projection{cufon{display:inline!important;display:inline-block!important;position:relative!important;vertical-align:middle!important;font-size:1px!important;line-height:1px!important;}cufon cufontext{display:-moz-inline-box!important;display:inline-block!important;width:0!important;height:0!important;overflow:hidden!important;text-indent:-10000in!important;}cufon canvas{position:relative!important;}}@media print{cufon{padding:0!important;}cufon canvas{display:none!important;}}</style>\n  \n  \n  <!--[if lt IE 8]>\n  <div style=' clear: both; text-align:center; position: relative;'>\n    <a href=\"http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode\">\n      <img src=\"http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg\" border=\"0\" height=\"42\" width=\"820\" alt=\"You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today.\" />\n    </a>\n  </div>\n  <![endif]-->\n  <!--[if lt IE 9]>\n  <script type=\"text/javascript\" src=\"js/html5.js\"></script>\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"css/ie.css\">\n  <![endif]-->\n</head>\n<body>\n  <header>\n    <div>\n      <div>\n        <h1>\n          <a href=\"index.html\">\n            <img src=\"http://localhost:3000/images/logo.png\" alt=\"\"></a>\n        </h1>\n        <nav>\n          <ul class=\"menu\">\n            <li>\n              <a href=\"index.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Home\" style=\"width: 41px; height: 25px;\"><canvas width=\"65\" height=\"27\" style=\"width: 65px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Home</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"about.html\"><cufon class=\"cufon cufon-canvas\" alt=\"About\" style=\"width: 45px; height: 25px;\"><canvas width=\"70\" height=\"27\" style=\"width: 70px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>About</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"services.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Services\" style=\"width: 58px; height: 25px;\"><canvas width=\"83\" height=\"27\" style=\"width: 83px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Services</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"products.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Products\" style=\"width: 61px; height: 25px;\"><canvas width=\"85\" height=\"27\" style=\"width: 85px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Products</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"contacts.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Contacts\" style=\"width: 65px; height: 25px;\"><canvas width=\"90\" height=\"27\" style=\"width: 90px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Contacts</cufontext></cufon></a>\n            </li>\n            <li class=\"current\">\n              <a href=\"prices.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Prices\" style=\"width: 42px; height: 25px;\"><canvas width=\"66\" height=\"27\" style=\"width: 66px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Prices</cufontext></cufon></a>\n            </li>\n          </ul>\n        </nav>\n        <div class=\"clear\"></div>\n      </div>\n    </div>\n  </header>\n  <!--==============================content================================-->\n  <section id=\"content\">\n    <div class=\"ic\">More Website Templates @ TemplateMonster.com. June 25, 2012!</div>\n    <div class=\"container_12 top\">\n      <div class=\"grid_12\">\n        <h2 class=\"p5\"><cufon class=\"cufon cufon-canvas\" alt=\"Our \" style=\"width: 47px; height: 31px;\"><canvas width=\"80\" height=\"33\" style=\"width: 80px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Our </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Products\" style=\"width: 74px; height: 31px;\"><canvas width=\"104\" height=\"33\" style=\"width: 104px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Products</cufontext></cufon></h2>\n      </div>\n      <div class=\"grid_4\">\n        <div>\n          <img src=\"http://localhost:3000/images/page4-img1.jpg\" alt=\"\" class=\"img-border\">\n          <p class=\"top-4\">\n            <a href=\"#\" class=\"link\">At vero eos et accusam et justo</a>\n            <br>\n            Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod.\n          </p>\n          <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"0\">Buy this Now</a>\n        </div>\n        <div class=\"top-7\">\n          <img src=\"http://localhost:3000/images/page4-img4.jpg\" alt=\"\" class=\"img-border\">\n          <p class=\"top-4\">\n            <a href=\"#\" class=\"link\">At vero eos et accusam et justo</a>\n            <br>\n            Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod.\n          </p>\n          <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"1\">Buy this Now</a>\n\n        </div>\n      </div>\n      <div class=\"grid_4\">\n        <div>\n          <img src=\"http://localhost:3000/images/page4-img2.jpg\" alt=\"\" class=\"img-border\">\n          <p class=\"top-4\">\n            <a href=\"#\" class=\"link\">Tempor invidunt ut labore et dolore</a>\n            <br>\n            Magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est.\n          </p>\n          <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"2\">Buy this Now</a>\n        </div>\n        <div class=\"top-7\">\n          <img src=\"http://localhost:3000/images/page4-img5.jpg\" alt=\"\" class=\"img-border\">\n          <p class=\"top-4\">\n            <a href=\"#\" class=\"link\">Tempor invidunt ut labore et dolore</a>\n            <br>\n            Magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est.\n          </p>\n          <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"3\">Buy this Now</a>\n        </div>\n      </div>\n      <div class=\"grid_4\">\n        <div>\n          <img src=\"http://localhost:3000/images/page4-img3.jpg\" alt=\"\" class=\"img-border\">\n          <p class=\"top-4\">\n            <a href=\"#\" class=\"link\">Lorem ipsum dolor sit amet</a>\n            <br>\n            Lorem ipsum dolor sit amet, consetetur sadipscing elitt accusam. Aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore.\n          </p>\n          <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"4\">Buy this Now</a>\n        </div>\n        <div class=\"top-7\">\n          <img src=\"http://localhost:3000/images/page4-img6.jpg\" alt=\"\" class=\"img-border\" __seess_event_target__=\"\">\n          <p class=\"top-4\">\n            <a href=\"#\" class=\"link\">Lorem ipsum dolor sit amet</a>\n            <br>\n            Lorem ipsum dolor sit amet, consetetur sadipscing elitt accusam. Aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore.\n          </p>\n          <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"5\">Buy this Now</a>\n        </div>\n      </div>\n      <div class=\"clear\"></div>\n    </div>\n\n\n    <div class=\"pricing_table columns_3 clearfix\">\n      <!-- START LIST BOX -->\n      <div class=\"box item_list\">\n        <div class=\"head\">\n          <!-- --> </div>\n        <ul class=\"pricing_items pricing-labels\">\n          <li class=\"first\">Blogs Allowed</li>\n          <li>Photo Albums</li>\n          <li>Technical Support</li>\n          <li>Post by Email</li>\n          <li>Data Transfer</li>\n          <li class=\"last\">Link Backs</li>\n        </ul>\n\n      </div>\n      <!-- END LIST BOX -->\n\n      <!-- START 1st BOX -->\n      <div class=\"box\">\n        <div class=\"head first\">\n          <h2 class=\"title\"><cufon class=\"cufon cufon-canvas\" alt=\"Basic\" style=\"width: 58px; height: 20px;\"><canvas width=\"69\" height=\"22\" style=\"width: 69px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Basic</cufontext></cufon></h2>\n          <h3 class=\"price\">$15/month</h3>\n        </div>\n        <ul class=\"pricing_items clearfix\">\n          <li data-item=\"Blogs\">5</li>\n          <li data-item=\"PhotoAlbums\">2</li>\n          <li data-item=\"TechnicalSupport\">\n            <span class=\"featureno\">&nbsp;</span>\n          </li>\n          <li data-item=\"PostByEmail\">\n            <span class=\"featureno\">&nbsp;</span>\n          </li>\n          <li data-item=\"DataTransfer\">50GB</li>\n          <li data-item=\"LinkBacks\">20</li>\n        </ul>\n        <div class=\"foot first clearfix\">\n          <a href=\"#\" class=\"big_link\">Sign Up</a>\n        </div>\n      </div>\n      <!-- END 1st BOX -->\n\n      <!-- START 3rd BOX -->\n      <div class=\"box featured\">\n        <div class=\"head\">\n          <h2 class=\"title\"><cufon class=\"cufon cufon-canvas\" alt=\"Premium\" style=\"width: 90px; height: 20px;\"><canvas width=\"99\" height=\"22\" style=\"width: 99px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Premium</cufontext></cufon></h2>\n          <h3 class=\"price\">$50/month</h3>\n          <div class=\"best\">Recommended</div>\n        </div>\n        <ul class=\"pricing_items clearfix\">\n          <li data-item=\"Blogs\">Unlimited</li>\n          <li data-item=\"PhotoAlbums\">Unlimited</li>\n          <li data-item=\"TechnicalSupport\">\n            <span class=\"featureyes\">&nbsp;</span>\n          </li>\n          <li data-item=\"PostByEmail\">\n            <span class=\"featureyes\">&nbsp;</span>\n          </li>\n          <li data-item=\"DataTransfer\">Unlimited</li>\n          <li data-item=\"LinkBacks\">50,000</li>\n        </ul>\n        <div class=\"foot clearfix\">\n\n          <a href=\"javascript:\" class=\"big_link\">Sign Up</a>\n\n        </div>\n      </div>\n      <!-- START 3rd BOX -->\n\n      <!-- START 4th BOX -->\n      <div class=\"box\">\n        <div class=\"head last\">\n          <h2 class=\"title\"><cufon class=\"cufon cufon-canvas\" alt=\"Pro\" style=\"width: 39px; height: 20px;\"><canvas width=\"48\" height=\"22\" style=\"width: 48px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Pro</cufontext></cufon></h2>\n          <h3 class=\"price\">$30/month</h3>\n        </div>\n        <ul class=\"pricing_items clearfix\">\n          <li data-item=\"Blogs\">500</li>\n          <li data-item=\"PhotoAlbums\">2000</li>\n          <li data-item=\"TechnicalSupport\">\n            <span class=\"featureyes\">&nbsp;</span>\n          </li>\n          <li data-item=\"PostByEmail\">\n            <span class=\"featureyes\">&nbsp;</span>\n          </li>\n          <li data-item=\"DataTransfer\">50GB</li>\n          <li data-item=\"LinkBacks\">1500</li>\n        </ul>\n        <div class=\"foot last clearfix\">\n\n          <a href=\"javascript:\" class=\"big_link\">Sign Up</a>\n\n        </div>\n      </div>\n      <!-- END 4th BOX -->\n    </div>\n\n\n\n  </section>\n  <!--==============================footer=================================-->\n  <footer>\n    <div class=\"container_12\">\n      <p>\n        © 2012 Start-Up\n        <br>\n        <a rel=\"nofollow\" href=\"http://www.templatemonster.com/\" target=\"_blank\" class=\"link\">Website Template</a>\n        by TemplateMonster.com\n      </p>\n      <div class=\"soc-icons sub-link\">\n        <a rel=\"nofollow\" href=\"http://www.html5xcss3.com/\" target=\"_blank\" class=\"link\">Html5xcss3.com</a>\n        <br>\n        <span><cufon class=\"cufon cufon-canvas\" alt=\"Follow \" style=\"width: 41px; height: 20px;\"><canvas width=\"62\" height=\"22\" style=\"width: 62px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Follow </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Us:\" style=\"width: 23px; height: 20px;\"><canvas width=\"44\" height=\"22\" style=\"width: 44px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Us:</cufontext></cufon></span>\n        <a href=\"#\">\n          <img src=\"http://localhost:3000/images/icon-1.jpg\" alt=\"\"></a>\n        <a href=\"#\">\n          <img src=\"http://localhost:3000/images/icon-2.jpg\" alt=\"\"></a>\n        <a href=\"#\">\n          <img src=\"http://localhost:3000/images/icon-3.jpg\" alt=\"\"></a>\n      </div>\n    </div>\n  </footer>\n\n</body></html>",
+    "url": "http://localhost:3000/services.html",
+    "doctype": "<!doctype html>"
+  },
+  null,
+  {
+    "html": "<html lang=\"en\" class=\"cufon-active cufon-ready\"><head>\n  <title>Contacts</title>\n  <meta charset=\"utf-8\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/reset.css\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/grid_12.css\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/style.css?livereload=1411382889478\">\n  <link href=\"http://fonts.googleapis.com/css?family=Lato:300italic\" rel=\"stylesheet\" type=\"text/css\">\n  \n  <style type=\"text/css\">cufon{text-indent:0!important;}@media screen,projection{cufon{display:inline!important;display:inline-block!important;position:relative!important;vertical-align:middle!important;font-size:1px!important;line-height:1px!important;}cufon cufontext{display:-moz-inline-box!important;display:inline-block!important;width:0!important;height:0!important;overflow:hidden!important;text-indent:-10000in!important;}cufon canvas{position:relative!important;}}@media print{cufon{padding:0!important;}cufon canvas{display:none!important;}}</style>\n  \n  \n  <!--[if lt IE 8]>\n  <div style=' clear: both; text-align:center; position: relative;'>\n    <a href=\"http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode\">\n      <img src=\"http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg\" border=\"0\" height=\"42\" width=\"820\" alt=\"You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today.\" />\n    </a>\n  </div>\n  <![endif]-->\n  <!--[if lt IE 9]>\n  <script type=\"text/javascript\" src=\"js/html5.js\"></script>\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"css/ie.css\">\n  <![endif]-->\n</head>\n<body>\n  <header>\n    <div>\n      <div>\n        <h1>\n          <a href=\"index.html\">\n            <img src=\"http://localhost:3000/images/logo.png\" alt=\"\"></a>\n        </h1>\n        <nav>\n          <ul class=\"menu\">\n            <li>\n              <a href=\"index.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Home\" style=\"width: 41px; height: 25px;\"><canvas width=\"65\" height=\"27\" style=\"width: 65px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Home</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"about.html\"><cufon class=\"cufon cufon-canvas\" alt=\"About\" style=\"width: 45px; height: 25px;\"><canvas width=\"70\" height=\"27\" style=\"width: 70px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>About</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"services.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Services\" style=\"width: 58px; height: 25px;\"><canvas width=\"83\" height=\"27\" style=\"width: 83px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Services</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"products.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Products\" style=\"width: 61px; height: 25px;\"><canvas width=\"85\" height=\"27\" style=\"width: 85px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Products</cufontext></cufon></a>\n            </li>\n            <li class=\"current\">\n              <a href=\"contacts.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Contacts\" style=\"width: 65px; height: 25px;\"><canvas width=\"90\" height=\"27\" style=\"width: 90px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Contacts</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"prices.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Prices\" style=\"width: 42px; height: 25px;\"><canvas width=\"66\" height=\"27\" style=\"width: 66px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Prices</cufontext></cufon></a>\n            </li>\n          </ul>\n        </nav>\n        <div class=\"clear\"></div>\n      </div>\n    </div>\n  </header>\n  <!--==============================content================================-->\n  <section id=\"content\">\n    <div class=\"ic\">More Website Templates @ TemplateMonster.com. June 25, 2012!</div>\n    <div class=\"container_12 top\">\n      <div class=\"grid_8\">\n        <h2><cufon class=\"cufon cufon-canvas\" alt=\"How \" style=\"width: 48px; height: 31px;\"><canvas width=\"80\" height=\"33\" style=\"width: 80px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>How </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"to \" style=\"width: 22px; height: 31px;\"><canvas width=\"54\" height=\"33\" style=\"width: 54px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>to </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Find \" style=\"width: 45px; height: 31px;\"><canvas width=\"77\" height=\"33\" style=\"width: 77px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Find </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Us\" style=\"width: 29px; height: 31px;\"><canvas width=\"59\" height=\"33\" style=\"width: 59px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Us</cufontext></cufon></h2>\n        <div class=\"map img-border\">\n          <img src=\"http://localhost:3000/images/map.png\">\n        </div>\n        <div class=\"right-1\">\n          <p class=\"clr-1 p2\">\n            Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitt accusam.\n          </p>\n          <p>\n            Aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore Stet clita ea et gubergren, kasd magna no rebum. sanctus sea sed takimata ut vero voluptua. est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.\n          </p>\n        </div>\n      </div>\n      <div class=\"grid_4\">\n        <h2><cufon class=\"cufon cufon-canvas\" alt=\"Contact \" style=\"width: 78px; height: 31px;\"><canvas width=\"110\" height=\"33\" style=\"width: 110px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Contact </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Form\" style=\"width: 45px; height: 31px;\"><canvas width=\"68\" height=\"33\" style=\"width: 68px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Form</cufontext></cufon></h2>\n        <form id=\"form\" method=\"post\">\n          <fieldset>\n            <label>\n              <input type=\"text\" value=\"Name\" onblur=\"if(this.value=='') this.value='Name'\" onfocus=\"if(this.value =='Name' ) this.value=''\"></label>\n            <label>\n              <input type=\"text\" value=\"Email\" onblur=\"if(this.value=='') this.value='Email'\" onfocus=\"if(this.value =='Email' ) this.value=''\"></label>\n            <label>\n              <input type=\"text\" value=\"Phone\" onblur=\"if(this.value=='') this.value='Phone'\" onfocus=\"if(this.value =='Phone' ) this.value=''\"></label>\n            <label>\n              <textarea onblur=\"if(this.value==''){this.value='Message'}\" onfocus=\"if(this.value=='Message'){this.value=''}\">Message</textarea>\n            </label>\n            <div class=\"btns\">\n              <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"0\">Clear</a>\n              <a href=\"#\" class=\"green-button\" onclick=\"document.getElementById('form').submit()\" __seess_diff_id__=\"1\">Send</a>\n            </div>\n          </fieldset>\n        </form>\n      </div>\n      <div class=\"clear\"></div>\n    </div>\n  </section>\n  <!--==============================footer=================================-->\n  <footer>\n      <div class=\"container_12\">\n        <p>© 2012 Start-Up<br>\n          <a rel=\"nofollow\" href=\"http://www.templatemonster.com/\" target=\"_blank\" class=\"link\">Website Template</a>\n          by TemplateMonster.com\n        </p>\n        <div class=\"soc-icons sub-link\">\n          <a rel=\"nofollow\" href=\"http://www.html5xcss3.com/\" target=\"_blank\" class=\"link\">Html5xcss3.com</a><br>\n          <span><cufon class=\"cufon cufon-canvas\" alt=\"Follow \" style=\"width: 41px; height: 20px;\"><canvas width=\"62\" height=\"22\" style=\"width: 62px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Follow </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Us:\" style=\"width: 23px; height: 20px;\"><canvas width=\"44\" height=\"22\" style=\"width: 44px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Us:</cufontext></cufon></span>\n          <a href=\"#\">\n            <img src=\"http://localhost:3000/images/icon-1.jpg\" alt=\"\"></a>\n          <a href=\"#\">\n            <img src=\"http://localhost:3000/images/icon-2.jpg\" alt=\"\"></a>\n          <a href=\"#\">\n            <img src=\"http://localhost:3000/images/icon-3.jpg\" alt=\"\"></a>\n        </div>\n      </div>\n    </footer>\n\n</body></html>",
     "diffs": [
       {
         "type": 0,
+        "boundingBox": {
+          "left": 730,
+          "right": 815.015625,
+          "top": 575,
+          "bottom": 611
+        },
         "rect": {
           "width": {
-            "before": 147.046875,
-            "after": 107.046875
+            "before": 45.015625,
+            "after": 85.015625
           },
           "right": {
-            "before": 469.546875,
-            "after": 429.546875
+            "before": 775.015625,
+            "after": 815.015625
           }
         },
         "computed": {
           "padding-left": {
-            "before": "20px",
-            "after": "0px"
+            "before": "0px",
+            "after": "20px"
           },
           "padding-right": {
-            "before": "20px",
-            "after": "0px"
+            "before": "0px",
+            "after": "20px"
           },
           "perspective-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "22.5px 18px",
+            "after": "42.5px 18px"
           },
           "-webkit-perspective-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "22.5px 18px",
+            "after": "42.5px 18px"
           },
           "transform-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "22.5px 18px",
+            "after": "42.5px 18px"
           },
           "-webkit-transform-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "22.5px 18px",
+            "after": "42.5px 18px"
           }
         }
       },
       {
         "type": 0,
+        "boundingBox": {
+          "left": 802.625,
+          "right": 926.671875,
+          "top": 575,
+          "bottom": 611
+        },
         "rect": {
           "width": {
-            "before": 147.046875,
-            "after": 107.046875
+            "before": 44.046875,
+            "after": 84.046875
+          },
+          "left": {
+            "before": 802.625,
+            "after": 842.625
           },
           "right": {
-            "before": 469.546875,
-            "after": 429.546875
+            "before": 846.671875,
+            "after": 926.671875
           }
         },
         "computed": {
           "padding-left": {
-            "before": "20px",
-            "after": "0px"
+            "before": "0px",
+            "after": "20px"
           },
           "padding-right": {
-            "before": "20px",
-            "after": "0px"
+            "before": "0px",
+            "after": "20px"
           },
           "perspective-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "22.015625px 18px",
+            "after": "42.015625px 18px"
           },
           "-webkit-perspective-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "22.015625px 18px",
+            "after": "42.015625px 18px"
           },
           "transform-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "22.015625px 18px",
+            "after": "42.015625px 18px"
           },
           "-webkit-transform-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "width": {
-            "before": 147.046875,
-            "after": 107.046875
-          },
-          "right": {
-            "before": 789.546875,
-            "after": 749.546875
-          }
-        },
-        "computed": {
-          "padding-left": {
-            "before": "20px",
-            "after": "0px"
-          },
-          "padding-right": {
-            "before": "20px",
-            "after": "0px"
-          },
-          "perspective-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
-          },
-          "transform-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
-          },
-          "-webkit-transform-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "width": {
-            "before": 147.046875,
-            "after": 107.046875
-          },
-          "right": {
-            "before": 789.546875,
-            "after": 749.546875
-          }
-        },
-        "computed": {
-          "padding-left": {
-            "before": "20px",
-            "after": "0px"
-          },
-          "padding-right": {
-            "before": "20px",
-            "after": "0px"
-          },
-          "perspective-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
-          },
-          "transform-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
-          },
-          "-webkit-transform-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "width": {
-            "before": 147.046875,
-            "after": 107.046875
-          },
-          "right": {
-            "before": 1109.546875,
-            "after": 1069.546875
-          }
-        },
-        "computed": {
-          "padding-left": {
-            "before": "20px",
-            "after": "0px"
-          },
-          "padding-right": {
-            "before": "20px",
-            "after": "0px"
-          },
-          "perspective-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
-          },
-          "transform-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
-          },
-          "-webkit-transform-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "rect": {
-          "width": {
-            "before": 147.046875,
-            "after": 107.046875
-          },
-          "right": {
-            "before": 1109.546875,
-            "after": 1069.546875
-          }
-        },
-        "computed": {
-          "padding-left": {
-            "before": "20px",
-            "after": "0px"
-          },
-          "padding-right": {
-            "before": "20px",
-            "after": "0px"
-          },
-          "perspective-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
-          },
-          "-webkit-perspective-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
-          },
-          "transform-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
-          },
-          "-webkit-transform-origin": {
-            "before": "73.515625px 18px",
-            "after": "53.515625px 18px"
+            "before": "22.015625px 18px",
+            "after": "42.015625px 18px"
           }
         }
       }
     ],
-    "order": []
+    "order": [],
+    "width": 1088,
+    "height": 747,
+    "scrollTop": 0,
+    "url": "http://localhost:3000/contacts.html",
+    "doctype": "<!doctype html>"
+  },
+  {
+    "html": "<html lang=\"en\" class=\"cufon-active cufon-ready\"><head>\n  <title>Prices</title>\n  <meta charset=\"utf-8\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/reset.css\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/grid_12.css\">\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"http://localhost:3000/css/style.css?livereload=1411382889479\">\n  <link href=\"http://fonts.googleapis.com/css?family=Lato:300italic\" rel=\"stylesheet\" type=\"text/css\">\n  \n  <style type=\"text/css\">cufon{text-indent:0!important;}@media screen,projection{cufon{display:inline!important;display:inline-block!important;position:relative!important;vertical-align:middle!important;font-size:1px!important;line-height:1px!important;}cufon cufontext{display:-moz-inline-box!important;display:inline-block!important;width:0!important;height:0!important;overflow:hidden!important;text-indent:-10000in!important;}cufon canvas{position:relative!important;}}@media print{cufon{padding:0!important;}cufon canvas{display:none!important;}}</style>\n  \n  \n  <!--[if lt IE 8]>\n  <div style=' clear: both; text-align:center; position: relative;'>\n    <a href=\"http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode\">\n      <img src=\"http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg\" border=\"0\" height=\"42\" width=\"820\" alt=\"You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today.\" />\n    </a>\n  </div>\n  <![endif]-->\n  <!--[if lt IE 9]>\n  <script type=\"text/javascript\" src=\"js/html5.js\"></script>\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"css/ie.css\">\n  <![endif]-->\n</head>\n<body>\n  <header>\n    <div>\n      <div>\n        <h1>\n          <a href=\"index.html\">\n            <img src=\"http://localhost:3000/images/logo.png\" alt=\"\"></a>\n        </h1>\n        <nav>\n          <ul class=\"menu\">\n            <li>\n              <a href=\"index.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Home\" style=\"width: 41px; height: 25px;\"><canvas width=\"65\" height=\"27\" style=\"width: 65px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Home</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"about.html\"><cufon class=\"cufon cufon-canvas\" alt=\"About\" style=\"width: 45px; height: 25px;\"><canvas width=\"70\" height=\"27\" style=\"width: 70px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>About</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"services.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Services\" style=\"width: 58px; height: 25px;\"><canvas width=\"83\" height=\"27\" style=\"width: 83px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Services</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"products.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Products\" style=\"width: 61px; height: 25px;\"><canvas width=\"85\" height=\"27\" style=\"width: 85px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Products</cufontext></cufon></a>\n            </li>\n            <li>\n              <a href=\"contacts.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Contacts\" style=\"width: 65px; height: 25px;\"><canvas width=\"90\" height=\"27\" style=\"width: 90px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Contacts</cufontext></cufon></a>\n            </li>\n            <li class=\"current\">\n              <a href=\"prices.html\"><cufon class=\"cufon cufon-canvas\" alt=\"Prices\" style=\"width: 42px; height: 25px;\"><canvas width=\"66\" height=\"27\" style=\"width: 66px; height: 27px; top: 2px; left: -5px;\"></canvas><cufontext>Prices</cufontext></cufon></a>\n            </li>\n          </ul>\n        </nav>\n        <div class=\"clear\"></div>\n      </div>\n    </div>\n  </header>\n  <!--==============================content================================-->\n  <section id=\"content\">\n    <div class=\"ic\">More Website Templates @ TemplateMonster.com. June 25, 2012!</div>\n    <div class=\"container_12 top\">\n      <div class=\"grid_12\">\n        <h2 class=\"p5\"><cufon class=\"cufon cufon-canvas\" alt=\"Our \" style=\"width: 47px; height: 31px;\"><canvas width=\"80\" height=\"33\" style=\"width: 80px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Our </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Products\" style=\"width: 74px; height: 31px;\"><canvas width=\"104\" height=\"33\" style=\"width: 104px; height: 33px; top: 3px; left: -6px;\"></canvas><cufontext>Products</cufontext></cufon></h2>\n      </div>\n      <div class=\"grid_4\">\n        <div>\n          <img src=\"http://localhost:3000/images/page4-img1.jpg\" alt=\"\" class=\"img-border\">\n          <p class=\"top-4\">\n            <a href=\"#\" class=\"link\">At vero eos et accusam et justo</a>\n            <br>\n            Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod.\n          </p>\n          <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"0\">Buy this Now</a>\n        </div>\n        <div class=\"top-7\">\n          <img src=\"http://localhost:3000/images/page4-img4.jpg\" alt=\"\" class=\"img-border\">\n          <p class=\"top-4\">\n            <a href=\"#\" class=\"link\">At vero eos et accusam et justo</a>\n            <br>\n            Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod.\n          </p>\n          <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"1\">Buy this Now</a>\n\n        </div>\n      </div>\n      <div class=\"grid_4\">\n        <div>\n          <img src=\"http://localhost:3000/images/page4-img2.jpg\" alt=\"\" class=\"img-border\">\n          <p class=\"top-4\">\n            <a href=\"#\" class=\"link\">Tempor invidunt ut labore et dolore</a>\n            <br>\n            Magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est.\n          </p>\n          <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"2\">Buy this Now</a>\n        </div>\n        <div class=\"top-7\">\n          <img src=\"http://localhost:3000/images/page4-img5.jpg\" alt=\"\" class=\"img-border\">\n          <p class=\"top-4\">\n            <a href=\"#\" class=\"link\">Tempor invidunt ut labore et dolore</a>\n            <br>\n            Magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est.\n          </p>\n          <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"3\">Buy this Now</a>\n        </div>\n      </div>\n      <div class=\"grid_4\">\n        <div>\n          <img src=\"http://localhost:3000/images/page4-img3.jpg\" alt=\"\" class=\"img-border\">\n          <p class=\"top-4\">\n            <a href=\"#\" class=\"link\">Lorem ipsum dolor sit amet</a>\n            <br>\n            Lorem ipsum dolor sit amet, consetetur sadipscing elitt accusam. Aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore.\n          </p>\n          <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"4\">Buy this Now</a>\n        </div>\n        <div class=\"top-7\">\n          <img src=\"http://localhost:3000/images/page4-img6.jpg\" alt=\"\" class=\"img-border\">\n          <p class=\"top-4\">\n            <a href=\"#\" class=\"link\">Lorem ipsum dolor sit amet</a>\n            <br>\n            Lorem ipsum dolor sit amet, consetetur sadipscing elitt accusam. Aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore.\n          </p>\n          <a href=\"#\" class=\"green-button\" __seess_diff_id__=\"5\">Buy this Now</a>\n        </div>\n      </div>\n      <div class=\"clear\"></div>\n    </div>\n\n\n    <div class=\"pricing_table columns_3 clearfix\">\n      <!-- START LIST BOX -->\n      <div class=\"box item_list\">\n        <div class=\"head\">\n          <!-- --> </div>\n        <ul class=\"pricing_items pricing-labels\">\n          <li class=\"first\">Blogs Allowed</li>\n          <li>Photo Albums</li>\n          <li>Technical Support</li>\n          <li>Post by Email</li>\n          <li>Data Transfer</li>\n          <li class=\"last\">Link Backs</li>\n        </ul>\n\n      </div>\n      <!-- END LIST BOX -->\n\n      <!-- START 1st BOX -->\n      <div class=\"box\">\n        <div class=\"head first\">\n          <h2 class=\"title\"><cufon class=\"cufon cufon-canvas\" alt=\"Basic\" style=\"width: 58px; height: 20px;\"><canvas width=\"69\" height=\"22\" style=\"width: 69px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Basic</cufontext></cufon></h2>\n          <h3 class=\"price\">$15/month</h3>\n        </div>\n        <ul class=\"pricing_items clearfix\">\n          <li data-item=\"Blogs\">5</li>\n          <li data-item=\"PhotoAlbums\">2</li>\n          <li data-item=\"TechnicalSupport\">\n            <span class=\"featureno\">&nbsp;</span>\n          </li>\n          <li data-item=\"PostByEmail\">\n            <span class=\"featureno\">&nbsp;</span>\n          </li>\n          <li data-item=\"DataTransfer\">50GB</li>\n          <li data-item=\"LinkBacks\">20</li>\n        </ul>\n        <div class=\"foot first clearfix\">\n          <a href=\"#\" class=\"big_link\">Sign Up</a>\n        </div>\n      </div>\n      <!-- END 1st BOX -->\n\n      <!-- START 3rd BOX -->\n      <div class=\"box featured\">\n        <div class=\"head\">\n          <h2 class=\"title\"><cufon class=\"cufon cufon-canvas\" alt=\"Premium\" style=\"width: 90px; height: 20px;\"><canvas width=\"99\" height=\"22\" style=\"width: 99px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Premium</cufontext></cufon></h2>\n          <h3 class=\"price\">$50/month</h3>\n          <div class=\"best\">Recommended</div>\n        </div>\n        <ul class=\"pricing_items clearfix\">\n          <li data-item=\"Blogs\">Unlimited</li>\n          <li data-item=\"PhotoAlbums\">Unlimited</li>\n          <li data-item=\"TechnicalSupport\">\n            <span class=\"featureyes\">&nbsp;</span>\n          </li>\n          <li data-item=\"PostByEmail\">\n            <span class=\"featureyes\">&nbsp;</span>\n          </li>\n          <li data-item=\"DataTransfer\">Unlimited</li>\n          <li data-item=\"LinkBacks\">50,000</li>\n        </ul>\n        <div class=\"foot clearfix\">\n\n          <a href=\"javascript:\" class=\"big_link\">Sign Up</a>\n\n        </div>\n      </div>\n      <!-- START 3rd BOX -->\n\n      <!-- START 4th BOX -->\n      <div class=\"box\">\n        <div class=\"head last\">\n          <h2 class=\"title\"><cufon class=\"cufon cufon-canvas\" alt=\"Pro\" style=\"width: 39px; height: 20px;\"><canvas width=\"48\" height=\"22\" style=\"width: 48px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Pro</cufontext></cufon></h2>\n          <h3 class=\"price\">$30/month</h3>\n        </div>\n        <ul class=\"pricing_items clearfix\">\n          <li data-item=\"Blogs\">500</li>\n          <li data-item=\"PhotoAlbums\">2000</li>\n          <li data-item=\"TechnicalSupport\">\n            <span class=\"featureyes\">&nbsp;</span>\n          </li>\n          <li data-item=\"PostByEmail\">\n            <span class=\"featureyes\">&nbsp;</span>\n          </li>\n          <li data-item=\"DataTransfer\">50GB</li>\n          <li data-item=\"LinkBacks\">1500</li>\n        </ul>\n        <div class=\"foot last clearfix\">\n\n          <a href=\"javascript:\" class=\"big_link\">Sign Up</a>\n\n        </div>\n      </div>\n      <!-- END 4th BOX -->\n    </div>\n\n\n\n  </section>\n  <!--==============================footer=================================-->\n  <footer>\n    <div class=\"container_12\">\n      <p>\n        © 2012 Start-Up\n        <br>\n        <a rel=\"nofollow\" href=\"http://www.templatemonster.com/\" target=\"_blank\" class=\"link\">Website Template</a>\n        by TemplateMonster.com\n      </p>\n      <div class=\"soc-icons sub-link\">\n        <a rel=\"nofollow\" href=\"http://www.html5xcss3.com/\" target=\"_blank\" class=\"link\">Html5xcss3.com</a>\n        <br>\n        <span><cufon class=\"cufon cufon-canvas\" alt=\"Follow \" style=\"width: 41px; height: 20px;\"><canvas width=\"62\" height=\"22\" style=\"width: 62px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Follow </cufontext></cufon><cufon class=\"cufon cufon-canvas\" alt=\"Us:\" style=\"width: 23px; height: 20px;\"><canvas width=\"44\" height=\"22\" style=\"width: 44px; height: 22px; top: 2px; left: -4px;\"></canvas><cufontext>Us:</cufontext></cufon></span>\n        <a href=\"#\">\n          <img src=\"http://localhost:3000/images/icon-1.jpg\" alt=\"\"></a>\n        <a href=\"#\">\n          <img src=\"http://localhost:3000/images/icon-2.jpg\" alt=\"\"></a>\n        <a href=\"#\">\n          <img src=\"http://localhost:3000/images/icon-3.jpg\" alt=\"\"></a>\n      </div>\n    </div>\n  </footer>\n\n</body></html>",
+    "diffs": [
+      {
+        "type": 0,
+        "boundingBox": {
+          "left": 70,
+          "right": 217.046875,
+          "top": 503,
+          "bottom": 539
+        },
+        "rect": {
+          "width": {
+            "before": 107.046875,
+            "after": 147.046875
+          },
+          "right": {
+            "before": 177.046875,
+            "after": 217.046875
+          }
+        },
+        "computed": {
+          "padding-left": {
+            "before": "0px",
+            "after": "20px"
+          },
+          "padding-right": {
+            "before": "0px",
+            "after": "20px"
+          },
+          "perspective-origin": {
+            "before": "53.515625px 18px",
+            "after": "73.515625px 18px"
+          },
+          "-webkit-perspective-origin": {
+            "before": "53.515625px 18px",
+            "after": "73.515625px 18px"
+          },
+          "transform-origin": {
+            "before": "53.515625px 18px",
+            "after": "73.515625px 18px"
+          },
+          "-webkit-transform-origin": {
+            "before": "53.515625px 18px",
+            "after": "73.515625px 18px"
+          }
+        }
+      },
+      {
+        "type": 0,
+        "boundingBox": {
+          "left": 70,
+          "right": 217.046875,
+          "top": 897,
+          "bottom": 933
+        },
+        "rect": {
+          "width": {
+            "before": 107.046875,
+            "after": 147.046875
+          },
+          "right": {
+            "before": 177.046875,
+            "after": 217.046875
+          }
+        },
+        "computed": {
+          "padding-left": {
+            "before": "0px",
+            "after": "20px"
+          },
+          "padding-right": {
+            "before": "0px",
+            "after": "20px"
+          },
+          "perspective-origin": {
+            "before": "53.515625px 18px",
+            "after": "73.515625px 18px"
+          },
+          "-webkit-perspective-origin": {
+            "before": "53.515625px 18px",
+            "after": "73.515625px 18px"
+          },
+          "transform-origin": {
+            "before": "53.515625px 18px",
+            "after": "73.515625px 18px"
+          },
+          "-webkit-transform-origin": {
+            "before": "53.515625px 18px",
+            "after": "73.515625px 18px"
+          }
+        }
+      },
+      {
+        "type": 0,
+        "boundingBox": {
+          "left": 390,
+          "right": 537.046875,
+          "top": 503,
+          "bottom": 539
+        },
+        "rect": {
+          "width": {
+            "before": 107.046875,
+            "after": 147.046875
+          },
+          "right": {
+            "before": 497.046875,
+            "after": 537.046875
+          }
+        },
+        "computed": {
+          "padding-left": {
+            "before": "0px",
+            "after": "20px"
+          },
+          "padding-right": {
+            "before": "0px",
+            "after": "20px"
+          },
+          "perspective-origin": {
+            "before": "53.515625px 18px",
+            "after": "73.515625px 18px"
+          },
+          "-webkit-perspective-origin": {
+            "before": "53.515625px 18px",
+            "after": "73.515625px 18px"
+          },
+          "transform-origin": {
+            "before": "53.515625px 18px",
+            "after": "73.515625px 18px"
+          },
+          "-webkit-transform-origin": {
+            "before": "53.515625px 18px",
+            "after": "73.515625px 18px"
+          }
+        }
+      },
+      {
+        "type": 0,
+        "boundingBox": {
+          "left": 390,
+          "right": 537.046875,
+          "top": 897,
+          "bottom": 933
+        },
+        "rect": {
+          "width": {
+            "before": 107.046875,
+            "after": 147.046875
+          },
+          "right": {
+            "before": 497.046875,
+            "after": 537.046875
+          }
+        },
+        "computed": {
+          "padding-left": {
+            "before": "0px",
+            "after": "20px"
+          },
+          "padding-right": {
+            "before": "0px",
+            "after": "20px"
+          },
+          "perspective-origin": {
+            "before": "53.515625px 18px",
+            "after": "73.515625px 18px"
+          },
+          "-webkit-perspective-origin": {
+            "before": "53.515625px 18px",
+            "after": "73.515625px 18px"
+          },
+          "transform-origin": {
+            "before": "53.515625px 18px",
+            "after": "73.515625px 18px"
+          },
+          "-webkit-transform-origin": {
+            "before": "53.515625px 18px",
+            "after": "73.515625px 18px"
+          }
+        }
+      },
+      {
+        "type": 0,
+        "boundingBox": {
+          "left": 710,
+          "right": 857.046875,
+          "top": 503,
+          "bottom": 539
+        },
+        "rect": {
+          "width": {
+            "before": 107.046875,
+            "after": 147.046875
+          },
+          "right": {
+            "before": 817.046875,
+            "after": 857.046875
+          }
+        },
+        "computed": {
+          "padding-left": {
+            "before": "0px",
+            "after": "20px"
+          },
+          "padding-right": {
+            "before": "0px",
+            "after": "20px"
+          },
+          "perspective-origin": {
+            "before": "53.515625px 18px",
+            "after": "73.515625px 18px"
+          },
+          "-webkit-perspective-origin": {
+            "before": "53.515625px 18px",
+            "after": "73.515625px 18px"
+          },
+          "transform-origin": {
+            "before": "53.515625px 18px",
+            "after": "73.515625px 18px"
+          },
+          "-webkit-transform-origin": {
+            "before": "53.515625px 18px",
+            "after": "73.515625px 18px"
+          }
+        }
+      },
+      {
+        "type": 0,
+        "boundingBox": {
+          "left": 710,
+          "right": 857.046875,
+          "top": 897,
+          "bottom": 933
+        },
+        "rect": {
+          "width": {
+            "before": 107.046875,
+            "after": 147.046875
+          },
+          "right": {
+            "before": 817.046875,
+            "after": 857.046875
+          }
+        },
+        "computed": {
+          "padding-left": {
+            "before": "0px",
+            "after": "20px"
+          },
+          "padding-right": {
+            "before": "0px",
+            "after": "20px"
+          },
+          "perspective-origin": {
+            "before": "53.515625px 18px",
+            "after": "73.515625px 18px"
+          },
+          "-webkit-perspective-origin": {
+            "before": "53.515625px 18px",
+            "after": "73.515625px 18px"
+          },
+          "transform-origin": {
+            "before": "53.515625px 18px",
+            "after": "73.515625px 18px"
+          },
+          "-webkit-transform-origin": {
+            "before": "53.515625px 18px",
+            "after": "73.515625px 18px"
+          }
+        }
+      }
+    ],
+    "order": [],
+    "width": 1088,
+    "height": 747,
+    "scrollTop": 0,
+    "url": "http://localhost:3000/prices.html",
+    "doctype": "<!doctype html>"
   }
 ]
