@@ -117,34 +117,48 @@ var DiffList = React.createClass({
         pageDiff = new SerializablePageDiff(message.data);
         console.log("<Message> Data arrived from background script", pageDiff);
 
-        var newData = that.state.data;
-
-        var diff, i;
+        var diff, i, pageDiffLength = pageDiff.diffs.length;
         // Write diff id inside diff
-        for(i=0; i<pageDiff.diffs.length; i+=1){
+        for(i=0; i<pageDiffLength; i+=1){
           pageDiff.diffs[i].id = i;
         }
 
+        // Merge the overlapping bounding boxes
+        //
+        pageDiff.diffs.sort(function(di, dj){
+          return di.boundingBox.top - dj.boundingBox.top;
+        });
 
-        for(i = 0; i < pageDiff.diffs.length; i+=1){
+        var mergedDiffs = [],
+            currentMergedDiff = new MergedDiff();
+
+        for(i=0; i<pageDiffLength; i+=1){
           diff = pageDiff.diffs[i];
 
-          //Calculate BoundingBox, decide which is to push
+          if( !currentMergedDiff.isEmpty() &&
+              !currentMergedDiff.isOverlapping(diff) ){
+            // Not overlapping, open up a new MergedDiff instance
+            //
+            mergedDiffs.push(currentMergedDiff);
+            currentMergedDiff = new MergedDiff();
+          }
 
-          var diffPack={
+          currentMergedDiff.add(diff);
+        }
+        mergedDiffs.push(currentMergedDiff);
+
+        // Prepare the diff list state data
+        //
+        var newData = that.state.data;
+        for(i = 0; i < mergedDiffs.length; i+=1){
+          newData.push({
             domWidth: pageDiff.width,
             domHeight: pageDiff.height,
-            diffs: [diff],
-            boxWidth: diff.boundingBox.right - diff.boundingBox.left,
-            boxHeight: diff.boundingBox.bottom - diff.boundingBox.top,
-            boxLeft: diff.boundingBox.left,
-            boxTop: diff.boundingBox.top,
+            mergedDiff: mergedDiffs[i],
             dom: pageDiff.dom(),
             url: pageDiff.url,
             doctype: pageDiff.doctype
-          };
-
-          newData.push(diffPack);
+          });
         }
 
         that.setState({data: newData});
@@ -154,19 +168,21 @@ var DiffList = React.createClass({
 
 
   render: function(){
-    var DiffArray = this.state.data.map(function(diff){
-        return (<Diff domWidth={diff.domWidth} domHeight={diff.domHeight}
-                      boxWidth={diff.boxWidth} boxHeight={diff.boxHeight}
-                      boxLeft={diff.boxLeft} boxTop={diff.boxTop}
-                      dom={diff.dom} url={diff.url}
-                      doctype={diff.doctype}
-                      diffs={diff.diffs}></Diff>);
+    var diffList = this.state.data.map(function(packed){
+      var boxWidth = packed.mergedDiff.box.right - packed.mergedDiff.box.left,
+          boxHeight = packed.mergedDiff.box.bottom - packed.mergedDiff.box.top;
 
+      return (<Diff domWidth={packed.domWidth} domHeight={packed.domHeight}
+                    boxWidth={boxWidth} boxHeight={boxHeight}
+                    boxLeft={packed.mergedDiff.box.left} boxTop={packed.mergedDiff.box.top}
+                    dom={packed.dom} url={packed.url}
+                    doctype={packed.doctype}
+                    diffs={packed.mergedDiff.diffs}></Diff>);
     });
 
     return (
       <div className="difflist">
-        {DiffArray}
+        {diffList}
       </div>
     );
   }
@@ -195,7 +211,7 @@ var Diff = React.createClass({
             currentRect = elem.getBoundingClientRect();
 
             hintElem = iframeDoc.createElement('div');
-            hintElem.id = "SEESS_POSITION_ANIMATE";
+            hintElem.id = "SEESS_POSITION_ANIMATE_"+diffId;
 
 
             beforeRuleData = {
@@ -218,14 +234,14 @@ var Diff = React.createClass({
                                     (currentRect.height / beforeRuleData.height) + ');';
 
 
-            styleElem.innerHTML += "#SEESS_POSITION_ANIMATE{" +
+            styleElem.innerHTML += "#" + hintElem.id + "{" +
                 "z-index: 99999; box-sizing: border-box; position: fixed; " +
                 "border: 1px dashed red; background:rgba(255,0,0,0.1);" +
                 "transform-origin: left top; opacity: 1;" +
                 "-webkit-animation: SEESS_POSITION_" + diffId + " 3s ease-in-out 0s infinite;" +
                 "will-change: transform; " + beforeRules +
               "}\n" +
-              "@-webkit-keyframes SEESS_POSITION_" + diffId + " {to {"+afterRules+"opacity: 0.5;}}";
+              "@-webkit-keyframes SEESS_POSITION_" + diffId + " {to {"+afterRules+"opacity: 0.5;}}\n";
 
             iframeDoc.body.appendChild(hintElem);
           }
@@ -286,9 +302,65 @@ var Diff = React.createClass({
 React.renderComponent(<ReportApp />, document.getElementById('body'));
 
 
-// For debug.
-// TODO: Remove when going live!
-//
+function MergedDiff(){
+  this.diffs = [];
 
+  // A default that will update to the given diff by #add(diff) method
+  //
+  this.box = {
+    left: Infinity,
+    top: Infinity,
+    right: -Infinity,
+    bottom: -Infinity
+  };
+}
 
+MergedDiff.prototype.isEmpty = function(){
+  return this.diffs.length === 0;
+};
 
+MergedDiff.prototype.add = function(diff){
+  // Merge diff and update the bounding box of merged diffs
+  //
+
+  this.box.left = (diff.boundingBox.left < this.box.left) ? diff.boundingBox.left : this.box.left;
+  this.box.right = (diff.boundingBox.right > this.box.right) ? diff.boundingBox.right : this.box.right;
+  this.box.top = (diff.boundingBox.top < this.box.top) ? diff.boundingBox.top : this.box.top;
+  this.box.bottom = (diff.boundingBox.bottom > this.box.bottom) ? diff.boundingBox.bottom : this.box.bottom;
+
+  this.diffs.push(diff);
+};
+
+MergedDiff.prototype.isOverlapping = function(diff){
+  // Return if the merged diff overlaps with a diff
+  //
+  var leftMostBox, topMostBox, anotherBox;
+
+  if(this.box.left <= diff.boundingBox.left){
+    leftMostBox = this.box;
+    anotherBox = diff.boundingBox;
+  }else{
+    leftMostBox = diff.boundingBox;
+    anotherBox = this.box;
+  }
+
+  // Check if horizontally detached
+  if(leftMostBox.right < anotherBox.left){
+    return false;
+  }
+
+  if(this.box.top <= diff.boundingBox.top){
+    topMostBox = this.box;
+    anotherBox = diff.boundingBox;
+  }else{
+    topMostBox = diff.boundingBox;
+    anotherBox = this.box;
+  }
+
+  // Check if vertically detached
+  if(topMostBox.bottom < anotherBox.top){
+    return false;
+  }
+
+  return true;
+};
