@@ -4,6 +4,7 @@ var React = require('react');
 var SerializablePageDiff = require('../livescript/components/SerializablePageDiff.ls');
 var IframeUtil = require('../livescript/components/IframeUtil.ls');
 var ElementDifference = require('../livescript/components/ElementDifference.ls');
+var Scroller = require('exports?Scroller!../../vendor/bower_components/scroller/src/Scroller.js');
 
 console.log('React', React);
 console.log('chrome', chrome);
@@ -190,6 +191,11 @@ var DiffList = React.createClass({
 
 
 var Diff = React.createClass({
+  getInitialState: function(){
+    return {
+      isZoomed: false
+    };
+  },
   componentDidMount: function(){
     var iframe = this.refs.iframeElem.getDOMNode(),
         diffs = this.props.diffs,
@@ -286,15 +292,67 @@ var Diff = React.createClass({
       transformOrigin: origin
     };
 
+    var diffClasses = 'diff' + (this.state.isZoomed ? ' is-zoomed' : '');
+
     return (
-      <div className="diff">
-        <div className="crop">
+      <div className={diffClasses} onKey>
+        <div className="crop" onClick={this.setZoom} ref="iframeContainer">
           <iframe style={iframeStyle} ref="iframeElem"></iframe>
         </div>
-        <p className ="url"> {this.props.url} </p>
+        <p className ="url">{this.props.url}</p>
       </div>
     );
 
+  },
+  setZoom: function(){
+    if(this.state.isZoomed){ return; }
+
+    var that = this,
+        isDragging = false,
+        iframe = this.refs.iframeElem.getDOMNode(),
+        iframeContainer = this.refs.iframeContainer.getDOMNode(),
+        scroller = new Scroller(function(left, top){
+          console.log(left, top);
+          iframe.style.setProperty("transform", "translate("+(-left)+"px,"+(-top)+"px)", "important");
+        }, {zooming: false, animating: false, bouncing: false}),
+        escCallback = function(e){
+          if(e.which !== 27) { return; }
+          window.removeEventListener('keydown', escCallback);
+          iframeContainer.removeEventListener('mousedown', mousedownCallback);
+          iframeContainer.removeEventListener('mouseup', mouseupCallback);
+          window.removeEventListener('mouseleave', mouseupCallback);
+          window.removeEventListener('mousemove', mousemoveCallback);
+
+          that.setState({isZoomed: false});
+        },
+        mousedownCallback = function(e){
+          isDragging = true;
+          scroller.doTouchStart([e], e.timeStamp);
+          // e.preventDefault();
+          console.log('mousedown');
+        },
+        mouseupCallback = function(e){
+          console.log('mouseup');
+          isDragging = false;
+          scroller.doTouchEnd(e.timeStamp);
+        },
+        mousemoveCallback = function(e){
+          console.log(e);
+          if(isDragging){
+            scroller.doTouchMove([e], e.timeStamp);
+          }
+        };
+
+    scroller.setDimensions(window.innerWidth, window.innerHeight, iframe.clientWidth, iframe.clientHeight);
+    scroller.setPosition(0, 0);
+
+    window.addEventListener('keydown', escCallback);
+    iframeContainer.addEventListener('mousedown', mousedownCallback);
+    iframeContainer.addEventListener('mouseup', mouseupCallback);
+    window.addEventListener('mouseleave', mouseupCallback);
+    window.addEventListener('mousemove', mousemoveCallback);
+
+    this.setState({isZoomed: true});
   }
 });
 

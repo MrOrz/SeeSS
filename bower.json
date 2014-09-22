@@ -25,6 +25,7 @@
     "tests"
   ],
   "dependencies": {
-    "livereload-js": "https://github.com/livereload/livereload-js.git#master"
+    "livereload-js": "https://github.com/livereload/livereload-js.git#master",
+    "scroller": "~1.2.2"
   }
 }

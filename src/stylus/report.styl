@@ -1,4 +1,4 @@
-@require 'nib/reset'
+@require 'nib'
 
 global-reset()
 reset-html5()
@@ -22,9 +22,21 @@ h1
 	margin: 20px
 
 .crop
-	width: 350px
-	height: 350px
+	width: 500px
+	height: 500px
 	overflow: hidden
+	position: relative
+
+	// Prevent clicking & scrolling on iframe
+	&:after
+		content: ''
+		absolute: left 0 top 0
+		right: 0
+		bottom: 0
+		cursor: zoom-in
+
+	iframe
+		transition: transform .6s ease
 
 .difflist
 	margin: 30px
@@ -34,8 +46,8 @@ h1
 
 .diff
 	background-color: rgba(255, 255, 255, 0.5)
-	width: 350px
-	height: 350px
+	width: 500px
+	height: 500px
 	margin: 40px
 	margin-top: 50px
 	display: inline-block
@@ -49,9 +61,26 @@ h1
 	text-align: center
 	margin: 20px
 
-@media (max-width: 1280px)
-	.diff, 
+// Position the zoomed iframe
+.is-zoomed
 	.crop
+		fixed left 0 top 0
+		right: 0
+		bottom: 0
+		width: auto
+		height: auto
+		z-index: 1
+
+		&:after
+			z-index: 1
+			cursor: move
+
+	iframe
+		transform: scale(1) !important
+		transform-origin: center center !important
+
+@media (max-width: 1280px)
+	.diff, .crop
 		width: 250px
 		height: 250px
 
