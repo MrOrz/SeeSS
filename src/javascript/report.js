@@ -219,6 +219,7 @@ var Diff = React.createClass({
         iframeDoc = iframe.contentDocument,
         styleElem = iframeDoc.createElement('style');
 
+    IframeUtil.setDocument(iframeDoc, this.props.dom.cloneNode(true), this.props.doctype);
 
     IframeUtil.waitForAssets(iframe.contentDocument).then(function(){
       // Create animated repositioning hint
@@ -280,7 +281,6 @@ var Diff = React.createClass({
       console.log('Scrolling to ', that.state.iframeScrollNeeded);
       iframe.contentWindow.scrollTo(0, that.state.iframeScrollNeeded);
     });
-    IframeUtil.setDocument(iframeDoc, this.props.dom.cloneNode(true), this.props.doctype);
   },
   render: function(){
     var that = this;
