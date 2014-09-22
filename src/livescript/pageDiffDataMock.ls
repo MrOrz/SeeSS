@@ -13,7 +13,7 @@ unless location.href.match /^chrome-extension:/
         add-listener: (cb) ->
           callbacks.push cb
 
-  <- set-timeout _, 1500
+  <- set-timeout _, 250
 
   for cb in callbacks
     cb type: \PROCESS_START, data: {total: page-diffs.length}
@@ -26,9 +26,9 @@ unless location.href.match /^chrome-extension:/
         data: data
 
     if page-diffs.length > 0
-      set-timeout consume, 500
+      set-timeout consume, 250
     else
       for cb in callbacks
         cb type: \PROCESS_END
 
-  set-timeout consume, 1000
+  set-timeout consume, 250
