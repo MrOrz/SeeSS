@@ -311,46 +311,44 @@ var Diff = React.createClass({
         iframe = this.refs.iframeElem.getDOMNode(),
         iframeContainer = this.refs.iframeContainer.getDOMNode(),
         originalTransform = iframe.style.transform,
-        // scroller = new Scroller(function(left, top){
-        //   console.log(left, top);
-        //   iframe.style.setProperty("transform", "translate("+(-left)+"px,"+(-top)+"px)", "important");
-        // }, {zooming: false, animating: false, bouncing: false}),
+        scroller = new Scroller(function(left, top){
+          iframe.style.setProperty("transform", "translate("+(-left)+"px,"+(-top)+"px)");
+        }, {zooming: false, animating: false, bouncing: false, locking: false}),
         escCallback = function(e){
           if(e.which !== 27) { return; }
           window.removeEventListener('keydown', escCallback);
-          // iframeContainer.removeEventListener('mousedown', mousedownCallback);
-          // iframeContainer.removeEventListener('mouseup', mouseupCallback);
-          // window.removeEventListener('mouseleave', mouseupCallback);
-          // window.removeEventListener('mousemove', mousemoveCallback);
-
+          iframeContainer.removeEventListener('mousedown', mousedownCallback);
+          iframeContainer.removeEventListener('mouseup', mouseupCallback);
+          iframeContainer.removeEventListener('mouseleave', mouseupCallback);
+          iframeContainer.removeEventListener('mousemove', mousemoveCallback);
+          iframe.style.removeProperty("transition");
+          iframe.style.setProperty('transform', originalTransform);
           that.setState({isZoomed: false});
-        // },
-        // mousedownCallback = function(e){
-        //   isDragging = true;
-        //   scroller.doTouchStart([e], e.timeStamp);
-        //   // e.preventDefault();
-        //   console.log('mousedown');
-        // },
-        // mouseupCallback = function(e){
-        //   console.log('mouseup');
-        //   isDragging = false;
-        //   scroller.doTouchEnd(e.timeStamp);
-        // },
-        // mousemoveCallback = function(e){
-        //   console.log(e);
-        //   if(isDragging){
-        //     scroller.doTouchMove([e], e.timeStamp);
-        //   }
+        },
+        mousedownCallback = function(e){
+          isDragging = true;
+          scroller.doTouchStart([e], e.timeStamp);
+          e.preventDefault();
+          iframe.style.setProperty("transition", "none");
+        },
+        mouseupCallback = function(e){
+          isDragging = false;
+          scroller.doTouchEnd(e.timeStamp);
+        },
+        mousemoveCallback = function(e){
+          if(isDragging){
+            scroller.doTouchMove([e], e.timeStamp);
+          }
         };
 
-    // scroller.setDimensions(window.innerWidth, window.innerHeight, iframe.clientWidth, iframe.clientHeight);
-    // scroller.setPosition(0, 0);
+    scroller.setDimensions(window.innerWidth, window.innerHeight, iframe.clientWidth, iframe.clientHeight);
+    scroller.setPosition(0, 0);
 
     window.addEventListener('keydown', escCallback);
-    // iframeContainer.addEventListener('mousedown', mousedownCallback);
-    // iframeContainer.addEventListener('mouseup', mouseupCallback);
-    // window.addEventListener('mouseleave', mouseupCallback);
-    // window.addEventListener('mousemove', mousemoveCallback);
+    iframeContainer.addEventListener('mousedown', mousedownCallback);
+    iframeContainer.addEventListener('mouseup', mouseupCallback);
+    iframeContainer.addEventListener('mouseleave', mouseupCallback);
+    iframeContainer.addEventListener('mousemove', mousemoveCallback);
 
     this.setState({isZoomed: true});
   }

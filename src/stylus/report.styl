@@ -36,6 +36,7 @@ h1
 		cursor: zoom-in
 
 	iframe
+		will-change: transform
 		transition: transform .6s ease
 
 .difflist
@@ -74,10 +75,6 @@ h1
 		&:after
 			z-index: 1
 			cursor: move
-
-	iframe
-		transform: scale(1) !important
-		transform-origin: center center !important
 
 @media (max-width: 1280px)
 	.diff, .crop
