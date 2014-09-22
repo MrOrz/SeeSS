@@ -221,11 +221,11 @@ var Diff = React.createClass({
             styleElem.innerHTML += "#SEESS_POSITION_ANIMATE{" +
                 "z-index: 99999; box-sizing: border-box; position: fixed; " +
                 "border: 1px dashed red; background:rgba(255,0,0,0.1);" +
-                "transform-origin: left top;" +
+                "transform-origin: left top; opacity: 1;" +
                 "-webkit-animation: SEESS_POSITION_" + diffId + " 3s ease-in-out 0s infinite;" +
                 "will-change: transform; " + beforeRules +
               "}\n" +
-              "@-webkit-keyframes SEESS_POSITION_" + diffId + " {to {"+afterRules+"}}";
+              "@-webkit-keyframes SEESS_POSITION_" + diffId + " {to {"+afterRules+"opacity: 0.5;}}";
 
             iframeDoc.body.appendChild(hintElem);
           }
