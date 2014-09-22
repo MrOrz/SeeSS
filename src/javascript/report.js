@@ -12,6 +12,12 @@ console.log('chrome', chrome);
 // Make React Debugging Chrome extension happy
 window.React = React;
 
+var cropSize, setCropSize = function(){
+  cropSize = parseInt(window.getComputedStyle(document.getElementById('fakecrop')).getPropertyValue('width'), 10);
+};
+window.addEventListener('resize', setCropSize);
+setCropSize();
+
 
 var ReportApp = React.createClass({
   render: function(){
@@ -192,19 +198,31 @@ var DiffList = React.createClass({
 
 var Diff = React.createClass({
   getInitialState: function(){
+
+    // Calculate the iframe scrollTop needed to reveal the bottom edge of the
+    // merged bounding box
+    //
+    var iframeScrollNeeded = 0;
+    if(this.props.boxTop + this.props.boxHeight > this.props.domHeight){
+      iframeScrollNeeded = this.props.boxTop + this.props.boxHeight - this.props.domHeight + 15; // 15: horizontal scrollbar width, if any
+    }
+
     return {
-      isZoomed: false
+      isZoomed: false,
+      iframeScrollNeeded: iframeScrollNeeded
     };
   },
   componentDidMount: function(){
-    var iframe = this.refs.iframeElem.getDOMNode(),
+    var that = this,
+        iframe = this.refs.iframeElem.getDOMNode(),
         diffs = this.props.diffs,
         iframeDoc = iframe.contentDocument,
         styleElem = iframeDoc.createElement('style');
 
-    // Create animated repositioning hint
-    //
+
     IframeUtil.waitForAssets(iframe.contentDocument).then(function(){
+      // Create animated repositioning hint
+      //
       diffs.forEach(function(diff){
         var diffId = diff.id,
             hintElem,
@@ -241,7 +259,7 @@ var Diff = React.createClass({
 
 
             styleElem.innerHTML += "#" + hintElem.id + "{" +
-                "z-index: 99999; box-sizing: border-box; position: fixed; " +
+                "z-index: 99999; box-sizing: border-box; position: absolute; " +
                 "border: 1px dashed red; background:rgba(255,0,0,0.1);" +
                 "transform-origin: left top; opacity: 1;" +
                 "-webkit-animation: SEESS_POSITION_" + diffId + " 3s ease-in-out 0s infinite;" +
@@ -254,16 +272,24 @@ var Diff = React.createClass({
         }
       });
       iframeDoc.body.appendChild(styleElem);
+
+      // Scroll the iframe the merged bounding box is submerged below the fold.
+      // Scrolling affects getBoundingClientRect() calls so scrolling must
+      // be done after that.
+      //
+      console.log('Scrolling to ', that.state.iframeScrollNeeded);
+      iframe.contentWindow.scrollTo(0, that.state.iframeScrollNeeded);
     });
     IframeUtil.setDocument(iframeDoc, this.props.dom.cloneNode(true), this.props.doctype);
   },
   render: function(){
-    var cropSize = window.getComputedStyle(document.getElementById('fakecrop')).getPropertyValue('width');
-    cropSize = parseInt(cropSize, 10);
+    var that = this;
 
     console.log('BBwidth: ' + this.props.boxWidth + '\nBBheight: ' + this.props.boxHeight);
 
-    var scale = '', translate = '', origin = '';
+    // Calculate scale
+    //
+    var scale = '';
     var scaleX = cropSize / this.props.boxWidth;
     var scaleY = cropSize / this.props.boxHeight;
 
@@ -278,12 +304,17 @@ var Diff = React.createClass({
       scale = 'scale(' + scaleMin + ',' + scaleMin + ')';
     }
 
-    var originLeft = this.props.boxLeft + this.props.boxWidth/2,
-        originTop  = this.props.boxTop + this.props.boxHeight/2;
+    // Calculate translation & origin
+    //
+    var translate = '', origin = '',
+        originLeft = this.props.boxLeft + this.props.boxWidth/2,
+        originTop  = this.props.boxTop - this.state.iframeScrollNeeded + this.props.boxHeight/2;
 
     translate = 'translate(' + (cropSize/2-originLeft) + 'px,' + (cropSize/2-originTop) + 'px)';
     origin = originLeft + 'px ' + originTop + 'px';
 
+    // Render
+    //
     var iframeStyle= {
       width: this.props.domWidth,
       height: this.props.domHeight,
