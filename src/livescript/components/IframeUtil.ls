@@ -81,4 +81,4 @@ module.exports =
       # requestAnimationFrame often fires before the CSS got applied.
       #
       return new Promise (resolve) ->
-        setTimeout resolve, 0
+        setTimeout resolve, 25
