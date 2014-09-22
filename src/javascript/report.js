@@ -183,14 +183,6 @@ var Diff = React.createClass({
     // Create animated repositioning hint
     //
     IframeUtil.waitForAssets(iframe.contentDocument).then(function(){
-      return new Promise(function(resolve){
-        // Wait for browsers to render assets.
-        // Seems that only setTimeout triggers the re-layout or something like that.
-        // requestAnimationFrame often fires before the CSS got applied.
-        //
-        setTimeout(resolve, 0);
-      });
-    }).then(function(){
       diffs.forEach(function(diff){
         var diffId = diff.id,
             hintElem,

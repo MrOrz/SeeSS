@@ -74,3 +74,11 @@ module.exports =
 
       # If no unloaded element at all, resolve immediately.
       resolve! if unloaded-element-count is 0
+
+    .then ->
+      # Wait for browsers to render assets.
+      # Seems that only setTimeout triggers the re-layout or something like that.
+      # requestAnimationFrame often fires before the CSS got applied.
+      #
+      return new Promise (resolve) ->
+        setTimeout resolve, 0

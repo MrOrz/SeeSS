@@ -253,13 +253,6 @@ class Renderer
         onload!
 
     .then ~>
-      # Wait for browsers to render assets.
-      # Seems that only setTimeout triggers the re-layout or something like that.
-      # requestAnimationFrame often fires before the CSS got applied.
-      #
-      return Promise.delay 0
-
-    .then ~>
       take-snapshot iframe
 
   function take-snapshot iframe
