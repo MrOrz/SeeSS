@@ -4,6 +4,9 @@ require! {
   child_process
   nib
   connect
+  path
+  fs
+  'strip-json-comments'
   'gulp-util'
   'gulp-jade'
   'gulp-stylus'
@@ -22,6 +25,19 @@ gulp.task \default, <[watch]>
 # bothering using gulp-webpack.
 #
 webpack-cache = {}
+
+gulp.task \pack, <[build]>, ->
+  manifest = JSON.parse strip-json-comments fs.read-file-sync './build/manifest.json', 'utf-8'
+  version = manifest.version
+  build-dir = path.resolve './build/'
+  pem = path.resolve 'build.pem'
+
+  child_process.exec-sync "
+    \"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+    \" --pack-extension=#{build-dir} --pack-extension-key=#{pem}
+  "
+
+  child_process.exec-sync "mv build.crx dist/#{version}.crx"
 
 gulp.task \webpack, (cb)->
   webpack do

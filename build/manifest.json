@@ -2,7 +2,7 @@
   // Required
   "manifest_version": 2,
   "name": "SeeSS",
-  "version": "0.0.0",
+  "version": "0.0.1",
 
   // Recommended
   "description": "SeeSS Chrome extension helps you identify unintended visual changes by visualizing CSS change impact.",

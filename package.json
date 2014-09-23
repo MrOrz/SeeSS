@@ -46,7 +46,7 @@
     "coffee-loader": "~0.7.2",
     "coffee-script": "~1.7.1",
     "coveralls": "~2.11.1",
-    "execSync": "~1.0.1-pre",
+    "execSync": "^1.0.2",
     "expect.js": "~0.3.1",
     "istanbul": "~0.3.0",
     "karma": "~0.12.21",
@@ -61,7 +61,8 @@
     "karma-webpack": "~1.2.1",
     "rewire": "^2.1.0",
     "rewire-webpack": "^0.2.0",
-    "sinon": "^1.10.3"
+    "sinon": "^1.10.3",
+    "strip-json-comments": "^1.0.1"
   },
   "optionalDependencies": {
     "gulp-livereload": "^2.1.1"
