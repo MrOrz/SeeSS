@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "homepage": "https://github.com/MrOrz/SeeSS",
   "authors": [
-    "MrOrz <johnsonliang7@gmail.com>"
+    "MrOrz"
   ],
   "description": "SeeSS Chrome extension helps you identify unintended visual changes by visualizing CSS change impact.",
   "moduleType": [
